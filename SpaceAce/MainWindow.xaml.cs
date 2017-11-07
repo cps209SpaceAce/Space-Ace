@@ -30,6 +30,8 @@ namespace SpaceAce
             //rhino is awesome
             //he is beyond awesome
             //he is BEAWESOME
+
+            Console.WriteLine("you stink.");
         }
     }
 }
