@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace Model
 {
@@ -17,7 +16,7 @@ namespace Model
             throw new NotImplementedException();
         }
 
-        public override Point UpdatePosition()
+        public override Point UpdatePosition() //???? fix this please.
         {
             //TODO: move ship in staight line
             throw new NotImplementedException();
