@@ -73,7 +73,6 @@
     <Compile Include="Model\AI.cs" />
     <Compile Include="Model\Boss.cs" />
     <Compile Include="Model\Bullet.cs" />
-    <Compile Include="Model\default.cs" />
     <Compile Include="Images\Image.cs" />
     <Compile Include="Model\Entities.cs" />
     <Compile Include="Model\GameController.cs" />
@@ -97,6 +96,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

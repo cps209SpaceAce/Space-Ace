@@ -25,6 +25,11 @@ namespace Model
             // with a heading towards th right
             return null;
         }
+
+        public void Activate_powerup()
+        {
+            //TODO: activate powerup
+        }
         public void DropBomb(List<Entities> badguys)
         {
             //TODO: damage all badguys
