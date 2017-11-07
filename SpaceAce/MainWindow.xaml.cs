@@ -27,8 +27,11 @@ namespace SpaceAce
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //Noah stinks
-            //stinkin superawesomeeeeeee YO
+            //rhino is awesome
+            //he is beyond awesome
+            //he is BEAWESOME
+
+            Console.WriteLine("you stink.");
         }
     }
 }
