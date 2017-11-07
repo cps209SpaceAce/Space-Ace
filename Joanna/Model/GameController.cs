@@ -8,17 +8,17 @@ namespace Model
 {
     public enum PlayerAction {Up,Down,Left,Right,Fire,Bomb,Powerup}
     public enum Difficulty {Easy, Medium, Hard}
-    public enum levels {Level_1, Level_2, Boss }
+    public enum levels {Level1, Level2, Boss }
     class GameController
     {
-        public List<Entity> current_Enemies = new List<Entity>();
-        public Entity[,] enemie_Que;
-        public Player player;
-        public List<Bullet> player_fire = new List<Bullet>();
-        public levels level;
-        public GameData world;
-        public Difficulty difficulty;
-        public double base_Speed;
+        private List<Entities> current_Enemies = new List<Entities>();
+        private Entities[,] enemie_Que;
+        private Player player;
+        private List<Bullet> player_fire = new List<Bullet>();
+        private levels level;
+        private GameData world;
+        private Difficulty difficulty;
+        private double base_Speed;
 
         public GameController()
         {
@@ -31,7 +31,7 @@ namespace Model
             //loop through entites and detect collision
         }
 
-        public void Save(string fileName)
+        public void Save()
         {
             //TODO: run for loop and collect all strings generated from each object in world
             //format of string: TypeOfEntity,instance variable1, instance variable2, instance variable3, instance variable4 ... so on
@@ -39,7 +39,7 @@ namespace Model
 
             //TODO: Write each line to file, leave GameController class at end             
         }
-        public GameController Load(string fileName)
+        public GameController Load()
         {
             //TODO: make check if file exists, if no file exists, create world with default settings
 

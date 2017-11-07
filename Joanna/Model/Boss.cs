@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Boss : Entity
+    public class Boss : Entities
     {
         public override bool Hit()
         {

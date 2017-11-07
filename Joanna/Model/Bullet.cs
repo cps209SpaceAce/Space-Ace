@@ -7,36 +7,32 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public enum pattern { Straight, Sin, Cos, Tan };
-    public class AI : Entity
+    public enum ID {Friendly, Hostile }
+    public class Bullet : Entities
     {
-        private pattern Flightpath;
+        //friendly means it does not hit player
+        // id determines direction of travel
+        public ID id;
+
         public override bool Hit()
         {
             throw new NotImplementedException();
         }
 
-        public override Point UpdatePosition() //???? fix this please.
+        public override Point UpdatePosition()
         {
-            //TODO: move ship in staight line
+            //TODO: move bullet in correct direction
             throw new NotImplementedException();
         }
     }
-    public class Formation : AI
+    public class Tracking : Bullet
     {
+        private Entities target;
         public override Point UpdatePosition()
         {
-            //TODO: move ship in a Pattern
+            //TODO: Towards target
             throw new NotImplementedException();
         }
-    }
-    public class Tracker : AI
-    {
-        private Player target;
-        public override Point UpdatePosition()
-        {
-            //TODO: Track player
-            throw new NotImplementedException();
-        }
+        //TODO: add tracking
     }
 }

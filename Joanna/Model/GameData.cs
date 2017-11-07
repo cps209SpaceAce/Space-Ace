@@ -13,8 +13,8 @@ namespace Model
     {
         public Player Player { get; set; }
         public int Level { get; set; }
-        public List<Entity> Enemies { get; set; }
-        public Entity[,] Schedule { get; set; }
+        public List<Entities> Enemies { get; set; }
+        public Entities[,] Schedule { get; set; }
         public int Score { get; set; }
 
         public void Save()
