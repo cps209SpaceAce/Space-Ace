@@ -21,6 +21,7 @@ namespace SpaceAce.Model
         Level Level;       // Last Level Complete
         Difficulty Diff;   // Difficulty
         int Score;         // Final Score
+        string shipImage;
     }
 
 
@@ -34,12 +35,13 @@ namespace SpaceAce.Model
             this.highScores = Load();
         }
 
-        /// On startup - Load from file
+        /// On startup - Load from JSON file
         /// List of HighScores.
         private List<HighScore> Load()
         {
-            // Read File
+            // Read JSON File
             // Convert to list
+           
             List<HighScore> list = new List<HighScore> { new HighScore() { } };
             return list;
         }
@@ -55,7 +57,7 @@ namespace SpaceAce.Model
         }
 
         // After update
-        // Updates the File
+        // Saves to JSON File
         public void Save()
         {
 

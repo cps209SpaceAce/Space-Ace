@@ -71,7 +71,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HighScore\HighScoreMan.cs" />
+    <Compile Include="HighScore\HighScoreManager.cs" />
     <Compile Include="Images\Image.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
