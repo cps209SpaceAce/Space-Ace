@@ -28,7 +28,7 @@ namespace SpaceAce
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //I am awesome
-            //stinkin superawesomeeeeeee YO
+            //monkeys stink
         }
     }
 }
