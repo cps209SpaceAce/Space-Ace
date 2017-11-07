@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Model
 {
     public enum powerup {Power}
-    public class Player:Entities
+    public class Player:Entity
     {
         private int lives { get; set; }
         private int bombs { get; set; }
