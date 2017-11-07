@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace SpaceAce.Model
 {
@@ -11,8 +12,8 @@ namespace SpaceAce.Model
        public int x = 420;
        public int y = 420;
 
-        // noah sucks
-        // also his car sucks
+        // noah sucks at being a loser
+        // also his car sucks at being a bad car
 
 
     }
