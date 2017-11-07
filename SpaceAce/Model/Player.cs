@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 namespace Model
 {
     public enum powerup {Power}
-    public class Player:Entity
+
+    public class Player: Entity
+
     {
         private int lives { get; set; }
         private int bombs { get; set; }
@@ -30,7 +32,7 @@ namespace Model
         {
             //TODO: activate powerup
         }
-        public void DropBomb(List<Entities> badguys)
+        public void DropBomb(List<Entity> badguys)
         {
             //TODO: damage all badguys
         }
@@ -63,7 +65,7 @@ namespace Model
         }
 
         //handles when the player is idle
-        override public Point UpdatePosition()
+        public override Point UpdatePosition()
         {
             //TODO: update player position
 
