@@ -65,20 +65,11 @@
   </Class>
   <Class Name="Model.GameController">
     <Position X="21.25" Y="0.5" Width="1.5" />
-    <AssociationLine Name="player" Type="Model.Player" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
-      <Path>
-        <Point X="21.25" Y="1.719" />
-        <Point X="18.625" Y="1.719" />
-        <Point X="18.625" Y="5.375" />
-        <Point X="18.25" Y="5.375" />
-      </Path>
-    </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAQkIABAAAAAAAAEABAAAEAAAEAEAABAAAAAIAAAAA=</HashCode>
+      <HashCode>AAAQkIABAAAAAAAAEABIAAEAAAEAEAABAAAAAIAAAAA=</HashCode>
       <FileName>Model\GameController.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="player" />
       <Field Name="world" />
     </ShowAsAssociation>
   </Class>
@@ -131,7 +122,7 @@
       <FileName>Model\GameController.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Model.levels">
+  <Enum Name="Model.Level">
     <Position X="23" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAADAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>

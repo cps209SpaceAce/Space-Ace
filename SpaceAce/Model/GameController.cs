@@ -30,6 +30,7 @@ namespace Model
         public GameData world;
         public Difficulty difficulty;
         public double base_Speed;
+        public int score;
 
         public GameController()
         {
