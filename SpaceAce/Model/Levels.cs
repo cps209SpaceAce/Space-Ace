@@ -8,6 +8,8 @@ namespace Model
 {
     class Levels
     {       
+
+
         public Entities[,] Level1()
         {
             //TODO Create list of enemies for level 1
