@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Script.Serialization;
 
-namespace SpaceAce.Model
+namespace SpaceAce.HighScore
 {
     enum Difficulty
     {
@@ -15,35 +16,34 @@ namespace SpaceAce.Model
         Level_1,Level_2,Boss
     }
 
-    struct HighScore
+    
+    class HighScore
     {
-        string Name;       // Name
-        Level Level;       // Last Level Complete
-        Difficulty Diff;   // Difficulty
-        int Score;         // Final Score
-        string shipImage;
+        public string Name;       // Name
+        public Level Level;       // Last Level Complete
+        public Difficulty Diff;   // Difficulty
+        public int Score;         // Final Score
+        public string shipImage;
+
+        public HighScore()
+        {
+        }
     }
 
 
     class HighScoreManager
     {
         // List of HighScores saved
-        List<HighScore> highScores;
+        public List<HighScore> highScores { get; set; }
 
-        public HighScoreManager()
-        {
-            this.highScores = Load();
-        }
 
         /// On startup - Load from JSON file
         /// List of HighScores.
-        private List<HighScore> Load()
+        private void Load()
         {
             // Read JSON File
             // Convert to list
-           
-            List<HighScore> list = new List<HighScore> { new HighScore() { } };
-            return list;
+            // load to HighScores     
         }
 
 
@@ -66,6 +66,6 @@ namespace SpaceAce.Model
         
     }
 
-    
-
+    // http://matijabozicevic.com/blog/csharp-net-development/csharp-serialize-object-to-json-format-using-javascriptserialization
+    // https://stackoverflow.com/questions/7000811/cannot-find-javascriptserializer-in-net-4-0
 }
