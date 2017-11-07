@@ -8,5 +8,12 @@ namespace SpaceAce.Model
 {
     class Demo
     {
+       public int x = 420;
+       public int y = 420;
+
+        // noah sucks
+        // also his car sucks
+
+
     }
 }
