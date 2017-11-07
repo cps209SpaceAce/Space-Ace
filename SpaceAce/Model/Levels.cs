@@ -9,6 +9,7 @@ namespace Model
     class Levels
     {       
 
+        // This is a level class
 
         public Entities[,] Level1()
         {
