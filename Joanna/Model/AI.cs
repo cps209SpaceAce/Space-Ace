@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Model
 {
     public enum pattern { Straight, Sin, Cos, Tan };
-    public class AI : Entity
+    public class AI : Entities
     {
         private pattern Flightpath;
         public override bool Hit()

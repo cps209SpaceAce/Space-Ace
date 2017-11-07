@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
 using System.Windows;
+using Model;
 
 [TestClass]
 public class LoadSaveTests
@@ -39,11 +39,11 @@ public class LoadSaveTests
     public void SaveListofQueEnemies_Success()
     {
         GameController ctrl = new GameController();
-        List<Entity> queEnemies = new List<Entity>();
-        queEnemies.Add(new Asteroid(new Point(30, 20)));
-        queEnemies.Add(new Asteroid(new Point(10, 10)));
+        Entity[,] queEnemies = new Entity[2,2];
+        queEnemies[0,0] = new Asteroid(new Point(30, 20));
+        queEnemies[0, 1] = new Asteroid(new Point(30, 20));
 
-        ctrl.QueEnemies = queEnemies;
+        ctrl.enemie_Que = queEnemies;
 
         ctrl.Save("SaveFile.txt");
 

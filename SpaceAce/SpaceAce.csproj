@@ -61,6 +61,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="UnitTests\SaveLoadTests.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,7 +82,7 @@
     <Compile Include="Model\Boss.cs" />
     <Compile Include="Model\Bullet.cs" />
     <Compile Include="Images\Image.cs" />
-    <Compile Include="Model\Entities.cs" />
+    <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\GameController.cs" />
     <Compile Include="Model\GameData.cs" />
     <Compile Include="Model\Levels.cs" />

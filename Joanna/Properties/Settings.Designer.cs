@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LoadSave.Properties
+namespace SpaceAce.Properties
 {
 
 

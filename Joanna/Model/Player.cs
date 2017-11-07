@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Model
 {
     public enum powerup {Power}
-    public class Player:Entity
+    public class Player:Entities
     {
         private int lives { get; set; }
         private int bombs { get; set; }
@@ -25,7 +25,7 @@ namespace Model
             // with a heading towards th right
             return null;
         }
-        public void DropBomb(List<Entity> badguys)
+        public void DropBomb(List<Entities> badguys)
         {
             //TODO: damage all badguys
         }

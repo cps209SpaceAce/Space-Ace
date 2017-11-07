@@ -12,8 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing;
 
-namespace LoadSave
+namespace SpaceAce
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -23,6 +24,15 @@ namespace LoadSave
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //rhino is awesome
+            //he is beyond awesome
+            //he is BEAWESOME
+
+            Console.WriteLine("you stink.");
         }
     }
 }

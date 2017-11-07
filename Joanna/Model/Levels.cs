@@ -11,17 +11,17 @@ namespace Model
 
         // This is a level class
 
-        public Entity[,] Level1()
+        public Entities[,] Level1()
         {
             //TODO Create list of enemies for level 1
             return null;
         }
-        public Entity[,] Level2()
+        public Entities[,] Level2()
         {
             //TODO Create list of enemies for level 2
             return null;
         }
-        public Entity[,] Level3()
+        public Entities[,] Level3()
         {
             //TODO Create list of enemies for level 3
             return null;

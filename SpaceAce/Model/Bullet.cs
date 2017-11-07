@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Model
 {
     public enum ID {Friendly, Hostile }
-    public class Bullet : Entities
+    public class Bullet : Entity
     {
         //friendly means it does not hit player
         // id determines direction of travel
@@ -27,7 +27,7 @@ namespace Model
     }
     public class Tracking : Bullet
     {
-        private Entities target;
+        private Entity target;
         public override Point UpdatePosition()
         {
             //TODO: Towards target
