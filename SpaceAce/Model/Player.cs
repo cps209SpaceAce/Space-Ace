@@ -61,7 +61,9 @@ namespace Model
         override public Point UpdatePosition()
         {
             //TODO: update player position
-            return new Point(0,0);
+
+            Point h = new Point(0, 0);//filler
+            return h;
         }
 
     }
