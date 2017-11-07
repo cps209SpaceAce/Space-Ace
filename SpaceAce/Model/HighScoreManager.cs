@@ -7,15 +7,7 @@ using System.Web.Script.Serialization;
 
 namespace Model
 {
-    enum Difficulty
-    {
-        Easy, Medium, Hard
-    }
-    enum Level
-    {
-        Level_1,Level_2,Boss
-    }
-
+    
     
     class HighScore
     {
