@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    public enum powerup {Power}
     public class Player:Entities
     {
         private int lives { get; set; }
         private int bombs { get; set; }
+        private powerup powerup { get; set; }
 
         public Player(int lives, int bombs)
         {

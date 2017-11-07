@@ -15,11 +15,23 @@ namespace Model
         //health auto set to 1
         private int health;
         public Entities(){  }
-
+        private Rectangle hitbox;
         //return true if destroyed else return false
         public abstract bool Hit();
 
         public abstract Point UpdatePosition();
+    }
+
+    public class Powerup:Entities
+    {
+        public override Point UpdatePosition()
+        {
+            throw new NotImplementedException();
+        }
+        public override bool Hit()
+        {
+            throw new NotImplementedException();
+        }
     }
     
 
