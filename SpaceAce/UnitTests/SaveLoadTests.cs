@@ -126,9 +126,9 @@ public class LoadSaveTests
     public void Save_GameControllerData_Success()
     {
         GameController ctrl = new GameController();
-        ctrl.level = levels.Level_1;
+        ctrl.level = Level.Level_1;
         ctrl.base_Speed = 100;
-        ctrl.current_score = 9001;
+        ctrl.score = 9001;
 
         ctrl.Save("SaveFile.txt");
 
@@ -249,8 +249,8 @@ public class LoadSaveTests
         ctrl.Load("SaveFile.txt");
 
         Assert.IsTrue(ctrl.base_Speed == 10);
-        Assert.IsTrue(ctrl.current_score == 1337);
-        Assert.IsTrue(ctrl.level == levels.Level_2);
+        Assert.IsTrue(ctrl.score == 1337);
+        Assert.IsTrue(ctrl.level == Level.Level_2);
     }
 }
 
