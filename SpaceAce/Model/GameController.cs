@@ -8,7 +8,7 @@ namespace Model
 {
     public enum PlayerAction {Up,Down,Left,Right,Fire,Bomb,Powerup}
     public enum Difficulty {Easy, Medium, Hard}
-    public enum levels {Level1, Level2, Boss }
+    public enum levels {Level_1, Level_2, Boss }
     class GameController
     {
         private List<Entities> current_Enemies = new List<Entities>();
