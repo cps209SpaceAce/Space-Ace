@@ -16,7 +16,7 @@ namespace Model
             throw new NotImplementedException();
         }
 
-        public override Point UpdatePosition()
+        public override Point UpdatePosition() //???? fix this please.
         {
             //TODO: move ship in staight line
             throw new NotImplementedException();
