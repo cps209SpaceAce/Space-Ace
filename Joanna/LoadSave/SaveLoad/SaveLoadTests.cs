@@ -21,8 +21,7 @@ public class LoadSaveTests
 
         ctrl.Enemies = enemies;
 
-        SaveManager save = new SaveManager();
-        save.Save();
+        ctrl.Save("SaveFile.txt");
 
         StreamReader reader = new StreamReader("SaveFile.txt");
 
@@ -44,10 +43,9 @@ public class LoadSaveTests
         queEnemies.Add(new Asteroid(new Point(30, 20)));
         queEnemies.Add(new Asteroid(new Point(10, 10)));
 
-        ctrl.Enemies = queEnemies;
+        ctrl.QueEnemies = queEnemies;
 
-        SaveManager save = new SaveManager();
-        save.Save();
+        ctrl.Save("SaveFile.txt");
 
         StreamReader reader = new StreamReader("SaveFile.txt");
 
@@ -70,8 +68,7 @@ public class LoadSaveTests
 
         ctrl.PlayerBullets = playerBullets;
 
-        SaveManager save = new SaveManager();
-        save.Save();
+        ctrl.Save("SaveFile.txt");
 
         StreamReader reader = new StreamReader("SaveFile.txt");
 
@@ -93,8 +90,7 @@ public class LoadSaveTests
 
         ctrl.PowerUps = powerUp;
 
-        SaveManager save = new SaveManager();
-        save.Save();
+        ctrl.Save("SaveFile.txt");
 
         StreamReader reader = new StreamReader("SaveFile.txt");
 
@@ -116,8 +112,7 @@ public class LoadSaveTests
 
         ctrl.EnemyBullets = enemyBullets;
 
-        SaveManager save = new SaveManager();
-        save.Save();
+        ctrl.Save("SaveFile.txt");
 
         StreamReader reader = new StreamReader("SaveFile.txt");
 
@@ -132,14 +127,13 @@ public class LoadSaveTests
 
 
     [TestMethod]
-    public void PlayerData_Success() //todo
+    public void PlayerData_Success() 
     {
         GameController ctrl = new GameController();
 
         ctrl.Player = new Player("Jojo", new Point(50,50));
 
-        SaveManager save = new SaveManager();
-        save.Save();
+        ctrl.Save("SaveFile.txt");
 
         StreamReader reader = new StreamReader("SaveFile.txt");
 
@@ -157,8 +151,7 @@ public class LoadSaveTests
         ctrl.Speed = 100;
         ctrl.Score = 9001;
 
-        SaveManager save = new SaveManager();
-        save.Save();
+        ctrl.Save("SaveFile.txt");
 
         StreamReader reader = new StreamReader("SaveFile.txt");
 
@@ -173,12 +166,11 @@ public class LoadSaveTests
     }
 
     [TestMethod]
-    public void Default_GameController_Success() //todo
+    public void Default_GameController_Success() 
     {
         GameController ctrl = new GameController();
 
-        SaveManager save = new SaveManager();
-        save.Save();
+        ctrl.Save("SaveFile.txt");
 
         StreamReader reader = new StreamReader("SaveFile.txt");
 
@@ -190,6 +182,132 @@ public class LoadSaveTests
         Assert.IsTrue(reader.ReadLine() == "0,10,0"); //default speed here.
         Assert.IsTrue(reader.ReadLine() == "[end]");
 
+    }
+
+    [TestMethod]
+    public void Load_Player_Success() 
+    {
+        GameController ctrl = new GameController();
+
+        StreamWriter writer = new StreamWriter("SaveFile.txt");
+
+        writer.WriteLine("[player]");
+        writer.WriteLine("Jojo,100,40,50,none");
+        writer.WriteLine("[end]");
+
+        ctrl.Load("SaveFile.txt");
+
+        Assert.IsTrue(ctrl.Player.Name == "Jojo");
+        Assert.IsTrue(ctrl.Player.X == "40");
+        Assert.IsTrue(ctrl.Player.Y == "50");
+    }
+
+    [TestMethod]
+    public void Load_Enemies_Success() 
+    {
+        GameController ctrl = new GameController();
+
+        StreamWriter writer = new StreamWriter("SaveFile.txt");
+
+        writer.WriteLine("[enemies]");
+        writer.WriteLine("asteroid,100,40,50");
+        writer.WriteLine("asteroid,100,30,20");
+        writer.WriteLine("[end]");
+
+        ctrl.Load("SaveFile.txt");
+
+        Assert.IsTrue(ctrl.Enemies.Count == 2);
+    }
+
+    [TestMethod]
+    public void Load_QuedEnemies_Success() 
+    {
+        GameController ctrl = new GameController();
+
+        StreamWriter writer = new StreamWriter("SaveFile.txt");
+
+        writer.WriteLine("[queuedEnemies]");
+        writer.WriteLine("asteroid,100,40,50");
+        writer.WriteLine("asteroid,100,30,20");
+        writer.WriteLine("[end]");
+
+        ctrl.Load("SaveFile.txt");
+
+        Assert.IsTrue(ctrl.QueEnemies.Count == 2);
+    }
+
+    [TestMethod]
+    public void Load_EnemyBullets_Success() 
+    {
+        GameController ctrl = new GameController();
+
+        StreamWriter writer = new StreamWriter("SaveFile.txt");
+
+        writer.WriteLine("[enemyBullets]");
+        writer.WriteLine("40,50");
+        writer.WriteLine("30,20");
+        writer.WriteLine("10,5");
+        writer.WriteLine("3,2");
+        writer.WriteLine("[end]");
+
+        ctrl.Load("SaveFile.txt");
+
+        Assert.IsTrue(ctrl.EnemyBullets.Count == 4);
+    }
+
+    [TestMethod]
+    public void Load_PlayerBullets_Success() 
+    {
+        GameController ctrl = new GameController();
+
+        StreamWriter writer = new StreamWriter("SaveFile.txt");
+
+        writer.WriteLine("[playerBullets]");
+        writer.WriteLine("40,50");
+        writer.WriteLine("30,20");
+        writer.WriteLine("10,5");
+        writer.WriteLine("3,2");
+        writer.WriteLine("[end]");
+
+        ctrl.Load("SaveFile.txt");
+
+        Assert.IsTrue(ctrl.PlayerBullets.Count == 4);
+    }
+
+    [TestMethod]
+    public void Load_Defaults_Success() 
+    {
+        GameController ctrl = new GameController();
+
+        StreamWriter writer = new StreamWriter("SaveFile.txt");
+
+        writer.WriteLine("[defaults]");
+        writer.WriteLine("2,10,1337");
+        writer.WriteLine("[end]");
+
+        ctrl.Load("SaveFile.txt");
+
+        Assert.IsTrue(ctrl.Speed == 10);
+        Assert.IsTrue(ctrl.Score == 1337);
+        Assert.IsTrue(ctrl.Level == 2);
+    }
+
+    [TestMethod]
+    public void Load_PowerUp_Success() 
+    {
+        GameController ctrl = new GameController();
+
+        StreamWriter writer = new StreamWriter("SaveFile.txt");
+
+        writer.WriteLine("[powerUp]");
+        writer.WriteLine("invisiblast,30,20");
+        writer.WriteLine("porcupine,4,3");
+        writer.WriteLine("dragon,0,0");
+        writer.WriteLine("[end]");
+
+        ctrl.Load("SaveFile.txt");
+
+        Assert.IsTrue(ctrl.PowerUps.Count == 3);
     }
 }
 

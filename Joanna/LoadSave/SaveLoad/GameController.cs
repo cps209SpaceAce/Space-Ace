@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 
 public class GameController
@@ -13,6 +14,17 @@ public class GameController
     public int Score;
 
     public Player Player { get; internal set; }
+    public List<Entity> QueEnemies { get; internal set; }
+
+    internal void Save(string v)
+    {
+        throw new NotImplementedException();
+    }
+
+    internal void Load(string v)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 public class Entity
@@ -34,6 +46,10 @@ public class Player : Entity
     {
 
     }
+
+    public string Name { get; internal set; }
+    public string X { get; internal set; }
+    public string Y { get; internal set; }
 }
 
 public class Bullet : Entity
