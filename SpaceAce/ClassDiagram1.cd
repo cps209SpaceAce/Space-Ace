@@ -1,133 +1,136 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Model.AI" Collapsed="true">
+  <Class Name="Model.AI">
     <Position X="7" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>EAAAAAAAAAAAACAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\AI.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Model.Formation" Collapsed="true">
-    <Position X="5.75" Y="6" Width="1.5" />
+  <Class Name="Model.Formation">
+    <Position X="5.75" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\AI.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Model.Tracker" Collapsed="true">
-    <Position X="8" Y="6" Width="1.5" />
+  <Class Name="Model.Tracker">
+    <Position X="8" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\AI.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Model.Boss" Collapsed="true">
-    <Position X="14.75" Y="4.5" Width="1.5" />
+  <Class Name="Model.Boss">
+    <Position X="12.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Boss.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Model.Bullet" Collapsed="true">
+  <Class Name="Model.Bullet">
     <Position X="10.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAAAAIAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
       <FileName>Model\Bullet.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Model.Tracking" Collapsed="true">
-    <Position X="10.25" Y="6" Width="1.5" />
+  <Class Name="Model.Tracking">
+    <Position X="10.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Bullet.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Model.Entities">
+  <Class Name="Model.Entity">
     <Position X="10.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAQAAAAAACAAAAIACAAAAAAAAQAAAAAAAAAAAAg=</HashCode>
-      <FileName>Model\Entities.cs</FileName>
+      <FileName>Model\Entity.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Model.Powerup" Collapsed="true">
-    <Position X="17" Y="4.5" Width="1.5" />
+  <Class Name="Model.Powerup">
+    <Position X="14.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Model\Entities.cs</FileName>
+      <FileName>Model\Entity.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Model.Asteroid" Collapsed="true">
+  <Class Name="Model.Asteroid">
     <Position X="3.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Model\Entities.cs</FileName>
+      <FileName>Model\Entity.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Model.GameController" Collapsed="true">
+  <Class Name="Model.GameController">
     <Position X="21.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQkIABAAAAAAAAEABAAAEAAAEAEAABAAAAAIAAAAA=</HashCode>
+      <HashCode>AAAQkIABAAAAAAAAEABIAAEAAAEAEAABAAAAAIAAAAA=</HashCode>
       <FileName>Model\GameController.cs</FileName>
     </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="world" />
+    </ShowAsAssociation>
   </Class>
-  <Class Name="Model.GameData" Collapsed="true">
-    <Position X="23" Y="0.5" Width="1.5" />
+  <Class Name="Model.GameData">
+    <Position X="23.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAgIAAAAAAAAgAAAAAAAAAAEEAAAABAAAAAQAAAAA=</HashCode>
       <FileName>Model\GameData.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Model.Levels" Collapsed="true">
-    <Position X="19.5" Y="1.5" Width="1.5" />
+  <Class Name="Model.Levels">
+    <Position X="19.5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>Model\Levels.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Model.Player" Collapsed="true">
-    <Position X="12.5" Y="4.5" Width="1.5" />
+  <Class Name="Model.Player">
+    <Position X="16.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAASAAAIIAQAAAAAIEAAAAGACAAAAAAAI=</HashCode>
       <FileName>Model\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Enum Name="Model.pattern" Collapsed="true">
-    <Position X="19.5" Y="3.5" Width="1.5" />
+  <Enum Name="Model.pattern">
+    <Position X="19.5" Y="7.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAAAAAAAAAgAAAAAAAEAAAAAAEAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\AI.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Model.ID" Collapsed="true">
-    <Position X="21.25" Y="2.75" Width="1.5" />
+  <Enum Name="Model.ID">
+    <Position X="21.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAQAA=</HashCode>
       <FileName>Model\Bullet.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Model.PlayerAction" Collapsed="true">
-    <Position X="21.25" Y="3.5" Width="1.5" />
+  <Enum Name="Model.PlayerAction">
+    <Position X="21.25" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIBAAAAAIAAAAAAAAAAAAAEAAAACACAAAAAAAI=</HashCode>
       <FileName>Model\GameController.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Model.Difficulty" Collapsed="true">
-    <Position X="19.5" Y="2.75" Width="1.5" />
+  <Enum Name="Model.Difficulty">
+    <Position X="19.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAkAAA=</HashCode>
       <FileName>Model\GameController.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Model.levels" Collapsed="true">
-    <Position X="23" Y="2.75" Width="1.5" />
+  <Enum Name="Model.Level">
+    <Position X="23" Y="5.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAQAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAADAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\GameController.cs</FileName>
     </TypeIdentifier>
   </Enum>
-  <Enum Name="Model.powerup" Collapsed="true">
-    <Position X="23" Y="3.5" Width="1.5" />
+  <Enum Name="Model.powerup">
+    <Position X="23" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
       <FileName>Model\Player.cs</FileName>

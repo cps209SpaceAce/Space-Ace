@@ -6,30 +6,43 @@ using System.Threading.Tasks;
 using System.Drawing;
 namespace Model
 {
-    public enum PlayerAction {Up,Down,Left,Right,Fire,Bomb,Powerup}
-    public enum Difficulty {Easy, Medium, Hard}
-    public enum levels {Level_1, Level_2, Boss }
+    public enum PlayerAction
+    {
+        Up,Down,Left,Right,Fire,Bomb,Powerup
+    }
+    public enum Difficulty
+    {
+        Easy, Medium, Hard
+    }
+    enum Level
+    {
+        Level_1, Level_2, Boss
+    }
+
+
     class GameController
     {
         public List<Entity> current_Enemies = new List<Entity>();
         public Entity[,] enemie_Que;
         public Player player;
         public List<Bullet> player_fire = new List<Bullet>();
-        public levels level;
+        public Level level;
         public GameData world;
         public Difficulty difficulty;
         public double base_Speed;
+        public int score;
 
         public GameController()
         {
             //TODO: load level/save data from GameData
-            //TODO: get enemies for level from Levels
+            //TODO: get enemies for level from Level
         }
 
         public void UpdateWorld()
         {
             //loop through entites and detect collision
         }
+
 
         public void Save(string fileName)
         {
