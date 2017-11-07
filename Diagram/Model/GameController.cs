@@ -6,19 +6,29 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    enum PlayerAction {Up,Down,Left,Right,Fire,Bomb,Powerup}
+    public enum PlayerAction {Up,Down,Left,Right,Fire,Bomb,Powerup}
+    public enum Difficulty {Easy, Medium, Hard}
+    public enum levels {Level1, Level2, Boss }
     class GameController
     {
-        private List<Entities> enemies = new List<Entities>();
-        private Entities[,] que;
+        private List<Entities> current_Enemies = new List<Entities>();
+        private Entities[,] enemie_Que;
         private Player player;
-        private int level;
+        private List<Bullet> player_fire = new List<Bullet>();
+        private levels level;
         private GameData world;
+        private Difficulty difficulty;
+        private double base_Speed;
 
         public GameController()
         {
             //TODO: load level/save data from GameData
             //TODO: get enemies for level from Levels
+        }
+
+        public void UpdateWorld()
+        {
+            //loop through entites and detect collision
         }
 
         public void Save()
