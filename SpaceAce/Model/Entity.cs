@@ -23,7 +23,7 @@ namespace Model
 
     public class Powerup:Entity
     {
-        public Powerup(Point p) { }
+        public Powerup(Point p, string name) { }
         public override Point UpdatePosition()
         {
             throw new NotImplementedException();
