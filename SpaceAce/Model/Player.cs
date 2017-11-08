@@ -12,9 +12,9 @@ namespace Model
     public class Player: Entity
 
     {
-        private int lives { get; set; }
-        private int bombs { get; set; }
-        private powerup powerup { get; set; }
+        public int lives { get; set; }
+        public int bombs { get; set; }
+        public powerup powerup { get; set; }
 
         public Player(int lives, int bombs)
         {
