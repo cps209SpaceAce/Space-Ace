@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Drawing;
+using Model;
+
 
 namespace SpaceAce
 {
@@ -28,11 +30,33 @@ namespace SpaceAce
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //rhino is awesome
-            //he is beyond awesome
-            //he is BEAWESOME
+            GameController ctrl = new GameController();
 
-            Console.WriteLine("you stink.");
+            
+
         }
+
+        private void btnNewGame_Click(object sender, RoutedEventArgs e)
+        {
+            
+            GameWindow gameWindow = new GameWindow();
+            gameWindow.Show();
+        }
+        private void btnLoadGame_Click(object sender, RoutedEventArgs e)
+        {
+            
+            GameWindow gameWindow = new GameWindow();
+            
+            // Load Game
+
+            gameWindow.Show();
+        }
+        private void btnQuit_Click(object sender, RoutedEventArgs e)
+        {
+            
+            System.Windows.Application.Current.Shutdown();
+        }
+        // On diff button click change ctrl diff
+
     }
 }

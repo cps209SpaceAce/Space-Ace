@@ -38,11 +38,35 @@ namespace Model
             //TODO: get enemies for level from Level
         }
 
-        public void UpdateWorld()
+        public void UpdateWorld(PlayerAction actionMove, PlayerAction other)// Each tick of timer will call this.
         {
-            //loop through entites and detect collision
+            // Update each entity
+            foreach (Entity ent in current_Enemies)
+            {
+                ent.UpdatePosition();
+            }
+            foreach (Entity pB in player_fire)
+            {
+                pB.UpdatePosition();
+            }
+
+            player.UpdatePosition(actionMove, other);
+
+
+            // loop through entites and detect collision
+            DetectColl();
+
+            // Check if death
         }
 
+        public void DetectColl()
+        {
+            // loop through
+            // Entities vs. player
+            // Player Bullets vs. entities
+        }
+
+        //  Load - Save
 
         public void Save(string fileName)
         {
@@ -62,9 +86,5 @@ namespace Model
             return new GameController();
         }
 
-        public void updatePlayer(PlayerAction action)
-        {
-            //TODO: call correct method on player based on action
-        }
     }
 }

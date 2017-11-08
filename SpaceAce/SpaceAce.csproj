@@ -61,8 +61,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GameWindow.xaml.cs">
+      <DependentUpon>GameWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UnitTests\Model_tests.cs" />
     <Compile Include="UnitTests\SaveLoadTests.cs" />
+    <Page Include="GameWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -82,7 +89,6 @@
     <Compile Include="Model\AI.cs" />
     <Compile Include="Model\Boss.cs" />
     <Compile Include="Model\Bullet.cs" />
-    <Compile Include="Images\Image.cs" />
     <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\GameController.cs" />
     <Compile Include="Model\GameData.cs" />
@@ -115,7 +121,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\GameScreenBackground.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\titleScreenBackground.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

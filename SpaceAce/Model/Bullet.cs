@@ -26,14 +26,14 @@ namespace Model
             throw new NotImplementedException();
         }
     }
-    public class Tracking : Bullet
-    {
-        private Entity target;
-        public override Point UpdatePosition()
-        {
-            //TODO: Towards target
-            throw new NotImplementedException();
-        }
-        //TODO: add tracking
-    }
+    //public class Tracking : Bullet
+    //{
+    //    private Entity target;
+    //    public override Point UpdatePosition()
+    //    {
+    //        //TODO: Towards target
+    //        throw new NotImplementedException();
+    //    }
+    //    //TODO: add tracking
+    //}
 }
