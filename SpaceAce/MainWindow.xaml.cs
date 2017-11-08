@@ -28,11 +28,7 @@ namespace SpaceAce
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //rhino is awesome
-            //he is beyond awesome
-            //he is BEAWESOME
-
-            Console.WriteLine("you stink.");
+            
         }
     }
 }
