@@ -10,7 +10,10 @@ namespace Model
     public enum pattern { Straight, Sin, Cos, Tan };
     public class AI : Entity
     {
-        private pattern Flightpath;
+        public pattern Flightpath;
+
+        
+
         public override bool Hit()
         {
             throw new NotImplementedException();
