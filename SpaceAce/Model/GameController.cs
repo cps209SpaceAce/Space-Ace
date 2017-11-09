@@ -103,10 +103,10 @@ namespace Model
                     writer.WriteLine("[end]");
                 }
 
-                if (enemie_Que != null && enemie_Que.Length > 0)
+                if (enemie_Que != null && enemie_Que.Count > 0)
                 {
                     writer.WriteLine("[queuedEnemies]");
-                    for (int i = 0; i < enemie_Que.Length; i++) ; //TODO how does one traverse the 2D array?
+                    for (int i = 0; i < enemie_Que.Count; i++) ; //TODO how does one traverse the 2D array?
                     writer.WriteLine("[end]");
                 }
 

@@ -25,7 +25,9 @@ namespace Model
         public override Point UpdatePosition() 
         {
             //TODO: move ship in staight line
-            throw new NotImplementedException();
+            loc.X = Convert.ToInt32(loc.X - (1 * speed));
+            // Why are we returning a point?
+            return loc;
         }
 
         public override string Serialize() 
@@ -65,7 +67,7 @@ namespace Model
     {
         private Player target;
 
-        public Tracker(int health, Point location, int speed) : base(health, location, speed)
+        public Tracker(int health, Point location, int speed) //: base(health, location, speed)
         {
         }
 

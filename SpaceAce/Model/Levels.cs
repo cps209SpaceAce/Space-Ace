@@ -14,17 +14,56 @@ namespace Model
         public List<Entity> Level1()
         {
             //TODO Create list of enemies for level 1
-            AI Bob  = new AI(new Point(1500, 250), pattern.Straight);
-            AI Fred = new AI(new Point(1500, 400), pattern.Straight);
-            AI G    = new AI(new Point(1500, 650), pattern.Straight);
+            AI A  = new AI(new Point(1500, 250), pattern.Straight);
+            AI B = new AI(new Point(1500, 400), pattern.Straight);
+            AI C    = new AI(new Point(1500, 650), pattern.Straight);
+
+            //
+            Difficulty test = Difficulty.Easy;
+            List<Entity> output = null;
+            switch (test)
+            {
+                case Difficulty.Easy:
+                    output = new List<Entity>()
+                    {
+                        A,B,C,new Asteroid(new Point(GameController.random.Next(0, 700))),null,null,
+                        A,B,C,new Asteroid(new Point(GameController.random.Next(0, 700))),null,null,
+                        A,B,C,new Asteroid(new Point(GameController.random.Next(0, 700))),null,null,
+                        A,B,C,new Asteroid(new Point(GameController.random.Next(0, 700))),null,null,
+                        A,B,C,new Asteroid(new Point(GameController.random.Next(0, 700))),null,null,
+                        A,B,C,new Asteroid(new Point(GameController.random.Next(0, 700))),null,null
+                    };
+                    break;
+                case Difficulty.Medium:
+                    for(int i = 0; i < 60; ++i)
+                    {
+                        Entity add = null;
+                        switch (GameController.random.Next(0,5))
+                        {
+                            case 0:
+                                add = new AI(new Point(GameController.random.Next(0, 700)),pattern.Straight);
+                                break;
+                            case 1:
+                                add = new Asteroid(new Point(GameController.random.Next(100, 600)));
+                                break;
+                            case 2:
+                                add = A;
+                                break;
+                            case 3:
+                                add = B;
+                                break;
+                            case 4:
+                                add = C;
+                                break;
+                        }
+                        output.Add(add);
+                    }
+                    
+                    break;
+                case Difficulty.Hard:
+                    break;
+            }
             
-            List<Entity> output = new List<Entity>() {
-                Bob, Fred, G,new Asteroid(new Point(GameController.random.Next(0, 700))),
-                Bob, Fred, G,new Asteroid(new Point(GameController.random.Next(0, 700))),
-                Bob, Fred, G,new Asteroid(new Point(GameController.random.Next(0, 700))),
-                Bob, Fred, G,new Asteroid(new Point(GameController.random.Next(0, 700))),
-                Bob, Fred, G,new Asteroid(new Point(GameController.random.Next(0, 700))),
-                Bob, Fred, G,new Asteroid(new Point(GameController.random.Next(0, 700)))};
             
 
             return output;

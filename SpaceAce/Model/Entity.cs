@@ -70,7 +70,9 @@ namespace Model
         public override Point UpdatePosition()
         {
             //TODO: add movment logic: make it move in a straight line
-            throw new NotImplementedException();
+            loc.X = Convert.ToInt32(loc.X - (1 * speed));
+            // Why are we returning a point?
+            return loc;
         }
 
         public override string Serialize()

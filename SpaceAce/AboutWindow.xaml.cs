@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace SpaceAce
 {
     /// <summary>
-    /// Interaction logic for AboutPage.xaml
+    /// Interaction logic for AboutWindow.xaml
     /// </summary>
-    public partial class AboutPage : Window
+    public partial class AboutWindow : Window
     {
-        public AboutPage()
+        public AboutWindow()
         {
             InitializeComponent();
         }
