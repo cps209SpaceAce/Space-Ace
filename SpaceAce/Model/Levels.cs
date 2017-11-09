@@ -28,6 +28,8 @@ namespace Model
                     { new AI(){loc = new Point(1500,100), Flightpath = pattern.Straight}, new AI(){loc = new Point(1500,20), Flightpath = pattern.Straight }, Bob, new Asteroid(new Point(1500, GameController.random.Next(0,700) )) },
                     { new AI(){loc = new Point(1500,100), Flightpath = pattern.Straight}, new AI(){loc = new Point(1500,20), Flightpath = pattern.Straight }, Bob, new Asteroid(new Point(1500, GameController.random.Next(0,700) )) }
                 };
+            List<List<Entity>> oupt = new List<List<Entity>>() { };
+
 
             return null;
         }
