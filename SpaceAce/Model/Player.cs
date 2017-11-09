@@ -18,7 +18,7 @@ namespace Model
 
         private GameController game;
 
-        public Player(int lives, int bombs,GameController flags,int health, Point location, int speed):base(health,location,speed)
+        public Player(Point location,int lives, int bombs,GameController flags):base(location)
         {
             this.lives = lives;
             this.bombs = bombs;
@@ -52,18 +52,21 @@ namespace Model
         public void Up()
         {
             loc.Y = Convert.ToInt32(loc.Y - (1 * speed));
+            
             //TODO: move player up
         }
 
         public void Down()
         {
             loc.Y = Convert.ToInt32(loc.Y + (1 * speed));
+           
             //TODO: move player down
         }
 
         public void Left()
         {
             loc.X = Convert.ToInt32(loc.X - (1 * speed));
+            
             //TODO: move player left
         }
 
@@ -100,7 +103,7 @@ namespace Model
             {
                 DropBomb();
             }
-            throw new NotImplementedException();
+            return loc;
         }
         public override string Serialize()
         {

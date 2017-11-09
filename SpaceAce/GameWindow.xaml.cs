@@ -18,8 +18,15 @@ namespace SpaceAce
     /// <summary>
     /// Interaction logic for GameWindow.xaml
     /// </summary>
+
+    public struct Icon
+    {
+        public Image i;
+        public Entity e;
+    }
     public partial class GameWindow : Window
     {
+        public List<Icon> icons = new List<SpaceAce.Icon>();
 
         public GameController cltr = new GameController();
 
@@ -34,13 +41,18 @@ namespace SpaceAce
         //WindowState="Maximized"
         //WindowStyle="None"
 
-        public void Window_Loaded()
+        public void Window_Loaded2(Object sender, RoutedEventHandler stuff)
         {
-            images.Add(new Image() { Source = new BitmapImage(new Uri("images/" + "spaceship-hi.png", UriKind.Relative)) });
+            Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "spaceship-hi.png", UriKind.Relative)) };
+            WorldCanvas.Children.Add(img);
+            img.Width = 50;
+            Canvas.SetLeft(img, 0);
+            Canvas.SetTop(img,0);
+            icons.Add(new Icon() { i = images[0], e =cltr.player });
 
             timer = new System.Windows.Threading.DispatcherTimer();
-            timer.Tick += new EventHandler(Timer_Tick);
-            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Tick += Timer_Tick;
+            timer.Interval = new TimeSpan(0, 0, 0,0,10);
             timer.Start();
             // Create New canvas items
 
@@ -51,10 +63,13 @@ namespace SpaceAce
 
         }
 
-        public void Timer_Tick(object sender, EventHandler e)
+        public void Timer_Tick(object sender, EventArgs e)
         {
             cltr.player.UpdatePosition();
-            
+            Icon i = icons[0];
+            Canvas.SetTop(i.i, i.e.loc.Y);
+            Canvas.SetLeft(i.i, i.e.loc.X);
+
         }
 
 
@@ -81,6 +96,60 @@ namespace SpaceAce
                     break;
                 case Key.B:
                     cltr.bomb = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+     
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "spaceship-hi.png", UriKind.Relative)) };
+            WorldCanvas.Children.Add(img);
+            img.Width = 50;
+            
+            Canvas.SetLeft(img, 0);
+            Canvas.SetTop(img, 0);
+            icons.Add(new Icon() { i = img, e = cltr.player });
+
+            timer = new System.Windows.Threading.DispatcherTimer();
+            timer.Tick += Timer_Tick;
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            timer.Start();
+            // Create New canvas items
+
+            // Start Timer
+
+            // Take diff from ctrl
+            // Load from levels
+
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Escape:
+                    break; //TODO: pause game
+                case Key.Left:
+                    cltr.left = false;
+                    break;
+                case Key.Right:
+                    cltr.right = false;
+                    break;
+                case Key.Up:
+                    cltr.up = false;
+                    break;
+                case Key.Down:
+                    cltr.down = false;
+                    break;
+                case Key.Space:
+                    cltr.fired = false;
+                    break;
+                case Key.B:
+                    cltr.bomb = false;
                     break;
                 default:
                     break;

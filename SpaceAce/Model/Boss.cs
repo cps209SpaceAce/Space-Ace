@@ -9,7 +9,7 @@ namespace Model
 {
     public class Boss : Entity, ISerialiable
     {
-        public Boss(int health, Point location, int speed) : base(health, location, speed)
+        public Boss(Point location, int health) : base(location)
         {
         }
 

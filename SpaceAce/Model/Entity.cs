@@ -15,11 +15,11 @@ namespace Model
         public double speed;
         //health auto set to 1
         public int health;
-        public Entity(int health, Point location, int speed)
+        public Entity(Point location)
         {
-            this.health = health;
+            this.health = 1;
             this.loc = location;
-            this.speed = speed;
+            this.speed = 1;
         }
         private Rectangle hitbox;
         //return true if destroyed else return false
@@ -35,7 +35,7 @@ namespace Model
 
     public class Powerup:Entity
     {
-        public Powerup(string name, int health, Point loc, int speed):base(health,loc,speed) { }
+        public Powerup(string name, Point loc):base(loc) { }
         public override Point UpdatePosition()
         {
             throw new NotImplementedException();
@@ -60,7 +60,7 @@ namespace Model
 
     public class Asteroid : Entity
     {
-        public Asteroid(int health, Point loc, int speed) : base(health, loc, speed)
+        public Asteroid(Point loc) : base(loc)
         { }
         public override bool Hit()
         { 
