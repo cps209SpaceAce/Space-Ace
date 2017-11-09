@@ -42,7 +42,7 @@ namespace Model
 
         public override string Serialize()
         {
-            return "powerup" + "," + loc.X + "," + loc.Y; //JOANNA: x,y only for now //JOANNA: for now this only saves x,y coords, 
+            return "powerup" + "," + loc.X + "," + loc.Y; 
             //please provide a way to detect the powerup's type
         }
 

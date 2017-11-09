@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
+using System.IO;
 
 namespace Model
 {
@@ -36,6 +37,7 @@ namespace Model
             // Read JSON File
             // Convert to list
             // load to HighScores     
+            File.WriteAllText("HighScoreData.json", JsonConvert.SerializeObject(highScores));
         }
 
 
@@ -46,6 +48,9 @@ namespace Model
             // Add score to highScores
             // https://stackoverflow.com/questions/3309188/how-to-sort-a-listt-by-a-property-in-the-object
             // Sort by Score - (Look at P4)
+
+            highScores.Add(newScore);
+            highScores.Sort((x, y) => x.Score.CompareTo(y.Score));
         }
 
         // After update
