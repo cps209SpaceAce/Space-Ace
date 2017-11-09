@@ -40,7 +40,7 @@ namespace Model
 
         //lists of moving objects
         public List<Entity> current_Enemies = new List<Entity>();
-        public List<List<Entity>>  = new List<List<Entity>>();
+        public List<Entity> enemie_Que      = new List<Entity>();
         public Player player;
         public List<Bullet> player_fire = new List<Bullet>();
 

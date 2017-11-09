@@ -11,11 +11,6 @@ namespace Model
     public class AI : Entity
     {
         public pattern Flightpath;
-
-        public AI(Point location, pattern flightpath) : base(location)
-        {
-        }
-
         public override bool Hit()
         {
             throw new NotImplementedException();
@@ -39,7 +34,7 @@ namespace Model
     }
     public class Formation : AI
     {
-        public Formation(Point location, pattern flightpath) : base(location, flightpath)
+        public Formation(int health, Point location, int speed) : base(health, location, speed)
         {
         }
 
@@ -64,7 +59,7 @@ namespace Model
     {
         private Player target;
 
-        public Tracker(Point location, pattern flightpath) : base( location, flightpath)
+        public Tracker(int health, Point location, int speed) : base(health, location, speed)
         {
         }
 
