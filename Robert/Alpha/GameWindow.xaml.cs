@@ -26,7 +26,8 @@ namespace SpaceAce
         //WindowState="Maximized"
         //WindowStyle="None"
 
-        public Window_Loaded()
+        
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             // Create New canvas items
 
@@ -34,8 +35,6 @@ namespace SpaceAce
 
             // Take diff from ctrl
             // Load from levels
-                
         }
-
     }
 }

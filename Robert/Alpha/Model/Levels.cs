@@ -14,6 +14,12 @@ namespace Model
         public Entity[,] Level1()
         {
             //TODO Create list of enemies for level 1
+            Entity[,] l = new Entity[,] 
+            {
+                new Normal() { }, new Normal() { },
+                new Normal() { }, new Normal() { }
+
+            };
             return null;
         }
         public Entity[,] Level2()
