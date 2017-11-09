@@ -16,7 +16,7 @@ namespace Model
     {
         Easy, Medium, Hard
     }
-    enum Level
+    public enum Level
     {
         Level_1, Level_2, Boss
     }
@@ -27,20 +27,32 @@ namespace Model
         Entity Deserialize(string code);
     }
 
-    class GameController
+    public class GameController
     {
+        //player actions
+        public bool fired = false;
+        public bool bomb = false;
+        public bool up = false;
+        public bool down = false;
+        public bool left = false;
+        public bool right = false;
+
+        //lists of moving objects
         public List<Entity> current_Enemies = new List<Entity>();
         public Entity[,] enemie_Que;
         public Player player;
         public List<Bullet> player_fire = new List<Bullet>();
+
+        //pre-game setup
         public Level level;
-        public GameData world;
         public Difficulty difficulty;
+
         public double base_Speed;
         public int score;
 
         public GameController()
         {
+            player = new Player(3,3);
             //TODO: load level/save data from GameData
             //TODO: get enemies for level from Level
         }
