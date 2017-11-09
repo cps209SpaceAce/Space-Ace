@@ -53,8 +53,9 @@ namespace Model
 
         public GameController()
         {
-            player = new Player(3,3);
+            player = new Player(new Point(50,350), 3,3);// Flags?
             //TODO: load level/save data from GameData
+            // OR
             //TODO: get enemies for level from Level
         }
 
@@ -65,16 +66,16 @@ namespace Model
             {
                 ent.UpdatePosition();
             }
-            foreach (Entity pB in player_fire)
+            foreach (Entity playerBullet in player_fire)
             {
-                pB.UpdatePosition();
+                playerBullet.UpdatePosition();
             }
 
             player.UpdatePosition();//actionMove, other
 
 
             // loop through entites and detect collision
-            DetectColl();
+            // DetectColl(); 
 
             // Check if death
         }
@@ -83,10 +84,27 @@ namespace Model
         {
             // loop through
             // Entities vs. player
+            foreach (Entity enemy in current_Enemies)
+            {
+                if (enemy.hitbox.IntersectsWith(player.hitbox))
+                {
+                    player.Hit();
+                }
+            }
             // Player Bullets vs. entities
+            foreach (Entity bullet in player_fire)
+            {
+                foreach (Entity enemy in current_Enemies)
+                {
+                    if (bullet.hitbox.IntersectsWith(enemy.hitbox))
+                {
+                        enemy.Hit();
+                    }
+                }   
+            }
         }
 
-        //  Load - Save
+        //-----------  Load - Save  ------------//
 
         public void Save(string fileName)
         {

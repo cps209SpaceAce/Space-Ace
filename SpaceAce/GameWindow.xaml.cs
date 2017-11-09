@@ -34,6 +34,8 @@ namespace SpaceAce
 
         public int spawnCounter = 0;
 
+        public bool isPaused = false;
+
         public DispatcherTimer timer;
 
         public GameWindow()
@@ -50,7 +52,7 @@ namespace SpaceAce
             img.Width = 50;
             Canvas.SetLeft(img, 0);
             Canvas.SetTop(img,0);
-            icons.Add(new Icon() { i = images[0], e =cltr.player });
+            icons.Add(new Icon() { i = images[0], e = cltr.player });
 
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Tick += Timer_Tick;
@@ -92,6 +94,16 @@ namespace SpaceAce
             switch (e.Key)
             {
                 case Key.Escape:
+                    if (!isPaused)
+                    {
+                        timer.Stop();
+                        // Display Pause Menu
+                    }
+                    else
+                    {
+                        timer.Start();
+                        // Close Pause Menu
+                    }
                     break; //TODO: pause game
                 case Key.Left:
                     cltr.left = true;
@@ -146,6 +158,7 @@ namespace SpaceAce
             switch (e.Key)
             {
                 case Key.Escape:
+                    // Nothing
                     break; //TODO: pause game
                 case Key.Left:
                     cltr.left = false;

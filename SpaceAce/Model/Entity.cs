@@ -16,13 +16,16 @@ namespace Model
         //health auto set to 1
         public int health;
 
+        public Rectangle hitbox;
+
         public Entity(Point location)
         {
             this.health = 1;
             this.loc = location;
             this.speed = 1;
+            this.hitbox = new Rectangle(loc.X,loc.Y,50,50);
         }
-        private Rectangle hitbox;
+        
         //return true if destroyed else return false
         public abstract bool Hit();
 
