@@ -12,10 +12,15 @@ namespace Model
         public Point loc; //JOANNA: turned this to public cause private makes it unavailavble to its own children.
                           //if you really want it private, please use 'protected'
 
-        private double speed;
+        public double speed;
         //health auto set to 1
-        private int health;
-        public Entity(){  }
+        public int health;
+        public Entity(int health, Point location, int speed)
+        {
+            this.health = health;
+            this.loc = location;
+            this.speed = speed;
+        }
         private Rectangle hitbox;
         //return true if destroyed else return false
         public abstract bool Hit();
@@ -30,7 +35,7 @@ namespace Model
 
     public class Powerup:Entity
     {
-        public Powerup(Point p, string name) { }
+        public Powerup(string name, int health, Point loc, int speed):base(health,loc,speed) { }
         public override Point UpdatePosition()
         {
             throw new NotImplementedException();
@@ -55,7 +60,7 @@ namespace Model
 
     public class Asteroid : Entity
     {
-        public Asteroid(Point p)
+        public Asteroid(int health, Point loc, int speed) : base(health, loc, speed)
         { }
         public override bool Hit()
         { 

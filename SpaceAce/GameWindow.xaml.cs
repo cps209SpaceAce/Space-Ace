@@ -18,8 +18,15 @@ namespace SpaceAce
     /// <summary>
     /// Interaction logic for GameWindow.xaml
     /// </summary>
+
+    public struct Icon
+    {
+        public Image i;
+        public Entity e;
+    }
     public partial class GameWindow : Window
     {
+        public List<Icon> icons = new List<SpaceAce.Icon>();
 
         public GameController cltr = new GameController();
 
@@ -37,9 +44,10 @@ namespace SpaceAce
         public void Window_Loaded()
         {
             images.Add(new Image() { Source = new BitmapImage(new Uri("images/" + "spaceship-hi.png", UriKind.Relative)) });
-
+            WorldCanvas.Children.Add(images[0]);
+            icons.Add(new Icon() { i = images[0], e =cltr.player });
             timer = new System.Windows.Threading.DispatcherTimer();
-            timer.Tick += new EventHandler(Timer_Tick);
+            timer.Tick += Timer_Tick;
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Start();
             // Create New canvas items
@@ -51,10 +59,13 @@ namespace SpaceAce
 
         }
 
-        public void Timer_Tick(object sender, EventHandler e)
+        public void Timer_Tick(object sender, EventArgs e)
         {
             cltr.player.UpdatePosition();
-            
+            Icon i = icons[0];
+            Canvas.SetTop(i.i, i.e.loc.Y);
+            Canvas.SetLeft(i.i, i.e.loc.X);
+
         }
 
 
