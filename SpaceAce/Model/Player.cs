@@ -72,6 +72,14 @@ namespace Model
             Point h = new Point(0, 0);//filler
             return h;
         }
+        public override string Serialize()
+        {
+            return loc.X + "," + loc.Y + "," + powerup + "," + lives + "," + bombs;
+        }
 
+        public override Entity Deserialize(string code)
+        {
+            return null;
+        }
     }
 }

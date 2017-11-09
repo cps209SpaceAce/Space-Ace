@@ -21,6 +21,16 @@ namespace Model
             //TODO: move ship in staight line
             throw new NotImplementedException();
         }
+
+        public override string Serialize() 
+        {
+            return "ai" + "," + loc.X + "," + loc.Y; //JOANNA: x,y only for now;
+        }
+
+        public override Entity Deserialize(string code)
+        {
+            return null;
+        }
     }
     public class Formation : AI
     {
@@ -28,6 +38,17 @@ namespace Model
         {
             //TODO: move ship in a Pattern
             throw new NotImplementedException();
+        }
+
+
+        public override string Serialize()
+        {
+            return "formation" + "," + loc.X + "," + loc.Y; //JOANNA: x,y only for now
+        }
+
+        public override Entity Deserialize(string code)
+        {
+            return null;
         }
     }
     public class Tracker : AI
@@ -37,6 +58,16 @@ namespace Model
         {
             //TODO: Track player
             throw new NotImplementedException();
+        }
+
+        public override string Serialize()
+        {
+            return "tracker" + "," + loc.X + "," + loc.Y; //JOANNA: x,y only for now;
+        }
+
+        public override Entity Deserialize(string code)
+        {
+            return null;
         }
     }
 }

@@ -31,7 +31,7 @@ namespace SpaceAce
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             GameController ctrl = new GameController();
-
+            ctrl.Save("SaveData.txt"); //for testing only
             
 
         }

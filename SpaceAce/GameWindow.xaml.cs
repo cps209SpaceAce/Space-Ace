@@ -26,7 +26,7 @@ namespace SpaceAce
         //WindowState="Maximized"
         //WindowStyle="None"
 
-        public Window_Loaded()
+        public void Window_Loaded()
         {
             // Create New canvas items
 

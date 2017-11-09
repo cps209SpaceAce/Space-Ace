@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public enum ID {Friendly, Hostile }
+    public enum ID { Friendly, Hostile }
     public class Bullet : Entity
     {
         public Bullet(Point p) { }
@@ -24,6 +24,16 @@ namespace Model
         {
             //TODO: move bullet in correct direction
             throw new NotImplementedException();
+        }
+
+        public override string Serialize()
+        {
+            return "bullet" + "," + loc.X + "," + loc.Y; //JOANNA: x,y only for now
+        }
+
+        public override Entity Deserialize(string code)
+        {
+            return null;
         }
     }
     //public class Tracking : Bullet

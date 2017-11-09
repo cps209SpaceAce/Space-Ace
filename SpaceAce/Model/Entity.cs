@@ -7,9 +7,11 @@ using System.Drawing;
 
 namespace Model
 {
-    abstract public class Entity
+    abstract public class Entity: ISerialiable
     {
-        private Point loc;
+        public Point loc; //JOANNA: turned this to public cause private makes it unavailavble to its own children.
+                          //if you really want it private, please use 'protected'
+
         private double speed;
         //health auto set to 1
         private int health;
@@ -19,6 +21,11 @@ namespace Model
         public abstract bool Hit();
 
         public abstract Point UpdatePosition();
+
+
+        public abstract string Serialize();
+
+        public abstract Entity Deserialize(string code);
     }
 
     public class Powerup:Entity
@@ -31,6 +38,17 @@ namespace Model
         public override bool Hit()
         {
             throw new NotImplementedException();
+        }
+
+        public override string Serialize()
+        {
+            return "powerup" + "," + loc.X + "," + loc.Y; //JOANNA: x,y only for now //JOANNA: for now this only saves x,y coords, 
+            //please provide a way to detect the powerup's type
+        }
+
+        public override Entity Deserialize(string code)
+        {
+            return null;
         }
     }
     
@@ -48,6 +66,16 @@ namespace Model
         {
             //TODO: add movment logic: make it move in a straight line
             throw new NotImplementedException();
+        }
+
+        public override string Serialize()
+        {
+            return "asteroid" + "," + loc.X + "," + loc.Y; ;
+        }
+
+        public override Entity Deserialize(string code)
+        {
+            return null;
         }
     }
 

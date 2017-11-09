@@ -4,11 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.IO;
+
 namespace Model
 {
     public enum PlayerAction
     {
-        Up,Down,Left,Right,Fire,Bomb,Powerup
+        Up, Down, Left, Right, Fire, Bomb, Powerup
     }
     public enum Difficulty
     {
@@ -19,6 +21,11 @@ namespace Model
         Level_1, Level_2, Boss
     }
 
+    interface ISerialiable
+    {
+        string Serialize();
+        Entity Deserialize(string code);
+    }
 
     class GameController
     {
@@ -50,7 +57,7 @@ namespace Model
                 pB.UpdatePosition();
             }
 
-            player.UpdatePosition(actionMove, other);
+            player.UpdatePosition();//actionMove, other
 
 
             // loop through entites and detect collision
@@ -70,11 +77,46 @@ namespace Model
 
         public void Save(string fileName)
         {
-            //TODO: run for loop and collect all strings generated from each object in world
-            //format of string: TypeOfEntity,instance variable1, instance variable2, instance variable3, instance variable4 ... so on
-            //                  TypeOfEntity,instance variable1, instance variable2, instance variable3, instance variable4 ... so on
+            File.WriteAllText(fileName, String.Empty);
 
-            //TODO: Write each line to file, leave GameController class at end             
+            using (StreamWriter writer = new StreamWriter(fileName, true))
+            {
+                
+                if (current_Enemies != null && current_Enemies.Count > 0)
+                {
+                    writer.WriteLine("[enemies]");
+                    for (int i = 0; i < current_Enemies.Count; ++i)
+                        writer.WriteLine(current_Enemies[i].Serialize());
+                    writer.WriteLine("[end]");
+                }
+
+                if (enemie_Que != null && enemie_Que.Length > 0)
+                {
+                    writer.WriteLine("[queuedEnemies]");
+                    for (int i = 0; i < enemie_Que.Length; i++) ; //TODO how does one traverse the 2D array?
+                    writer.WriteLine("[end]");
+                }
+
+                if (player != null)
+                {
+                    writer.WriteLine("[player]");
+                    writer.WriteLine(player.Serialize());
+                    writer.WriteLine("[end]");
+                }
+
+                if (player_fire != null && player_fire.Count > 0)
+                {
+                    writer.WriteLine("[playerBullets]");
+                    for (int i = 0; i < player_fire.Count; ++i)
+                        writer.WriteLine(player_fire[i].Serialize());
+                    writer.WriteLine("[end]");
+                }
+
+                writer.WriteLine("[defaults]");
+                writer.WriteLine(level + "," + score.ToString() + "," + base_Speed.ToString());
+                writer.WriteLine("[end]");
+
+            }
         }
         public GameController Load(string fileName)
         {

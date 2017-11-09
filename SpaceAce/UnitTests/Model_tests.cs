@@ -13,8 +13,8 @@ namespace SpaceAce.UnitTests
         [TestMethod]
         public void Make_NewGame()
         {
-        GameController gc = new GameController(Level.Level_1,Difficulty.Easy);
-        Assert.IsTrue(gc.difficulty == Difficulty.Easy);
+        GameController gc = new GameController();//Level.Level_1,Difficulty.Easy
+            Assert.IsTrue(gc.difficulty == Difficulty.Easy);
         Assert.IsTrue(gc.level == Level.Level_1);
         Assert.IsTrue(gc.enemie_Que != null);
         Assert.IsTrue(gc.player.lives == 3);
