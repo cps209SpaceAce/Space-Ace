@@ -10,7 +10,7 @@ namespace Model
     public enum ID { Friendly, Hostile }
     public class Bullet : Entity
     {
-        public Bullet(int health, Point loc, int speed) : base(health, loc, speed) { }
+        public Bullet(Point loc) : base(loc) { }
         //friendly means it does not hit player
         // id determines direction of travel
         public ID id;

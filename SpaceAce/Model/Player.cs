@@ -18,7 +18,7 @@ namespace Model
 
         private GameController game;
 
-        public Player(int lives, int bombs,GameController flags,int health, Point location, int speed):base(health,location,speed)
+        public Player(Point location,int lives, int bombs,GameController flags):base(location)
         {
             this.lives = lives;
             this.bombs = bombs;

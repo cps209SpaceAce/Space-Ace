@@ -10,9 +10,9 @@ namespace Model
     public enum pattern { Straight, Sin, Cos, Tan };
     public class AI : Entity
     {
-        private pattern Flightpath;
+        public pattern Flightpath;
 
-        public AI(int health, Point location, int speed) : base(health, location, speed)
+        public AI(Point location, pattern flightpath) : base(location)
         {
         }
 
@@ -39,7 +39,7 @@ namespace Model
     }
     public class Formation : AI
     {
-        public Formation(int health, Point location, int speed) : base(health, location, speed)
+        public Formation(Point location, pattern flightpath) : base(location, flightpath)
         {
         }
 
@@ -64,7 +64,7 @@ namespace Model
     {
         private Player target;
 
-        public Tracker(int health, Point location, int speed) : base(health, location, speed)
+        public Tracker(Point location, pattern flightpath) : base( location, flightpath)
         {
         }
 
