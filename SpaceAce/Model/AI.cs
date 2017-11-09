@@ -11,7 +11,7 @@ namespace Model
     public class AI : Entity
     {
         public pattern Flightpath;
-
+        
         public AI(Point location, pattern flightpath) : base(location)
         {
         }
