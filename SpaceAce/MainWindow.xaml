@@ -13,11 +13,20 @@
     </Window.Background>
     <Grid>
         <Button Content="New Game" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
-                Margin="372,438,0,0" VerticalAlignment="Top" Width="236" Height="67" Click="btnNewGame_Click"/>
+                Margin="373,370,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="btnNewGame_Click"/>
         <Button Content="Load Game" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
-                Margin="372,506,0,0" VerticalAlignment="Top" Width="236" Height="67" Click="btnLoadGame_Click"/>
+                Margin="372,425,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="btnLoadGame_Click"/>
+        <Button Content="Difficulty: Easy" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
+                Margin="373,480,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="btnDifficulty_Click"/>
+        <Button Content="High Score" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
+                Margin="372,535,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="btnHighScorePage_Click"/>
+        <Button Content="Help" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
+                Margin="492,590,0,0" VerticalAlignment="Top" Width="117" Height="50" Click="btnHelpPage_Click"/>
+        <Button Content="About" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
+                Margin="372,590,0,0" VerticalAlignment="Top" Width="117" Height="50" Click="btnAboutPage_Click"/>
+        
         <Button Content="Quit" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
-                Margin="372,574,0,0" VerticalAlignment="Top" Width="236" Height="67" Click="btnQuit_Click"/>
+                Margin="373,645,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="btnQuit_Click"/>
         <Image HorizontalAlignment="Left" Height="150" Margin="39,113,0,0" VerticalAlignment="Top" Width="900" Source="Images\title.png"/>
     </Grid>
 </Window>
