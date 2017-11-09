@@ -15,6 +15,7 @@ namespace Model
         public double speed;
         //health auto set to 1
         public int health;
+
         public Entity(Point location)
         {
             this.health = 1;

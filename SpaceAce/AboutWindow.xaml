@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:SpaceAce"
         mc:Ignorable="d"
         Title="Space Ace - About" Height="768" Width="1024" Loaded="Window_Loaded">
+    <Window.Background>
+        <ImageBrush ImageSource="Images\titleScreenBackground.png"></ImageBrush>
+    </Window.Background>
     <Grid>
         
     </Grid>

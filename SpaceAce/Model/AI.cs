@@ -24,9 +24,7 @@ namespace Model
 
         public override Point UpdatePosition() 
         {
-            //TODO: move ship in staight line
             loc.X = Convert.ToInt32(loc.X - (1 * speed));
-            // Why are we returning a point?
             return loc;
         }
 
@@ -42,14 +40,31 @@ namespace Model
     }
     public class Formation : AI
     {
+        public int original_Y;
+
         public Formation(int health, Point location, int speed) : base(health, location, speed)
         {
+            this.original_Y = loc.Y;
         }
 
         public override Point UpdatePosition()
         {
             //TODO: move ship in a Pattern
             throw new NotImplementedException();
+            switch (this.Flightpath)
+            {
+                case pattern.Sin:
+                    loc.X = Convert.ToInt32(loc.X - (1 * speed));
+                    loc.Y = Convert.ToInt32(Math.Sin(loc.X)) + original_Y;
+                    break;
+                case pattern.Cos:
+                    loc.X = Convert.ToInt32(loc.X - (1 * speed));
+                    loc.Y = Convert.ToInt32(Math.Cos(loc.X)) + original_Y;
+                    break;
+                case pattern.Tan:
+                    break;
+            }
+            
         }
 
 
