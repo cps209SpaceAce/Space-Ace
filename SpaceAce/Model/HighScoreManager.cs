@@ -20,11 +20,11 @@ namespace Model
 
         public HighScore(string name, Level level, Difficulty diff, int score, string shipimage )
         {
-            this.Name = name;
-            this.Level = level;
-            this.Diff = diff;        
-            this.Score = score;
-            this.ShipImage = shipimage;
+           Name = name;
+           Level = level;
+           Diff = diff;        
+           Score = score;
+           ShipImage = shipimage;
         }
     }
 
