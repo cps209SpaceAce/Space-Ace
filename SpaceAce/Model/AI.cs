@@ -11,14 +11,12 @@ namespace Model
     public class AI : Entity
     {
         public pattern Flightpath;
-<<<<<<< HEAD
+
         
         public AI(Point location, pattern flightpath) : base(location)
         {
         }
-
-=======
->>>>>>> c3844d21d269562e79946c630c682f6940490721
+        
         public override bool Hit()
         {
             throw new NotImplementedException();

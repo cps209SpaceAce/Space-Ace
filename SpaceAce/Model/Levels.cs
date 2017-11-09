@@ -11,17 +11,23 @@ namespace Model
 
         // This is a level class
 
-        public Entity[,] Level1()
+        public List<Entity> Level1()
         {
             //TODO Create list of enemies for level 1
-            AI Bob = new AI() { loc = new Point(1500, 200), Flightpath = pattern.Straight };
-            AI Fred = new AI() { loc = new Point(1500, 500), Flightpath = pattern.Straight };
-            AI G = new AI() { loc = new Point(1500, 600), Flightpath = pattern.Straight };
-
-            List<Entity> output = new List<Entity>() { new AI() };
+            AI Bob  = new AI(new Point(1500, 250), pattern.Straight);
+            AI Fred = new AI(new Point(1500, 400), pattern.Straight);
+            AI G    = new AI(new Point(1500, 650), pattern.Straight);
+            
+            List<Entity> output = new List<Entity>() {
+                Bob, Fred, G,new Asteroid(new Point(GameController.random.Next(0, 700))),
+                Bob, Fred, G,new Asteroid(new Point(GameController.random.Next(0, 700))),
+                Bob, Fred, G,new Asteroid(new Point(GameController.random.Next(0, 700))),
+                Bob, Fred, G,new Asteroid(new Point(GameController.random.Next(0, 700))),
+                Bob, Fred, G,new Asteroid(new Point(GameController.random.Next(0, 700))),
+                Bob, Fred, G,new Asteroid(new Point(GameController.random.Next(0, 700)))};
             
 
-            return null;
+            return output;
         }
         public Entity[,] Level2()
         {
