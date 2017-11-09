@@ -30,6 +30,7 @@ namespace Model
     public class GameController
     {
         //player actions
+        public static Random random = new Random();
         public bool fired = false;
         public bool bomb = false;
         public bool up = false;
@@ -39,7 +40,7 @@ namespace Model
 
         //lists of moving objects
         public List<Entity> current_Enemies = new List<Entity>();
-        public Entity[,] enemie_Que;
+        public List<List<Entity>>  = new List<List<Entity>>();
         public Player player;
         public List<Bullet> player_fire = new List<Bullet>();
 
@@ -52,7 +53,7 @@ namespace Model
 
         public GameController()
         {
-            player = new Player(3,3,this,1,new Point(0,0),10);
+            player = new Player(3,3);
             //TODO: load level/save data from GameData
             //TODO: get enemies for level from Level
         }
