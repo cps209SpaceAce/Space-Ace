@@ -47,7 +47,7 @@ public class LoadSaveTests
         queEnemies[1, 0] = new Asteroid(new Point(10, 10));
 
 
-        ctrl.enemie_Que = queEnemies;
+        //ctrl.enemie_Que = queEnemies;
 
         ctrl.Save("TestSave.txt");
 
