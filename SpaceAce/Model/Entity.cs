@@ -35,7 +35,7 @@ namespace Model
 
     public class Powerup:Entity
     {
-        public Powerup(string name, Point loc):base(loc) { }
+        public Powerup( Point loc, string name) :base(loc) { }
         public override Point UpdatePosition()
         {
             throw new NotImplementedException();

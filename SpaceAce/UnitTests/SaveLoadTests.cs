@@ -70,7 +70,7 @@ public class LoadSaveTests
     {
         GameController ctrl = new GameController();
         List<Bullet> playerBullets = new List<Bullet>();
-        playerBullets.Add(new Bullet(1, new Point(30, 20),1));
+        playerBullets.Add(new Bullet(new Point(30, 20)));
 
         ctrl.player_fire = playerBullets;
 
@@ -94,7 +94,7 @@ public class LoadSaveTests
     {
         GameController ctrl = new GameController();
         List<Entity> powerUp = new List<Entity>();
-        powerUp.Add(new Powerup("invisiblast",1,new Point(30, 20),1));
+        powerUp.Add(new Powerup(new Point(30, 20), "invisiblast"));
 
         ctrl.current_Enemies = powerUp;
 
