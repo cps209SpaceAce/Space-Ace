@@ -30,7 +30,7 @@ namespace SpaceAce
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            GameController ctrl = new GameController();
+            GameController ctrl = new GameController(); // GameController.xaml.cs -  line 31 - do we need this?
             ctrl.Save("SaveData.txt"); //for testing only
         }
 

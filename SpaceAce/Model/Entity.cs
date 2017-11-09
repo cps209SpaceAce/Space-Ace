@@ -27,7 +27,6 @@ namespace Model
 
         public abstract Point UpdatePosition();
 
-
         public abstract string Serialize();
 
         public abstract Entity Deserialize(string code);
