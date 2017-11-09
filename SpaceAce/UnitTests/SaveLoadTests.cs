@@ -42,12 +42,12 @@ public class LoadSaveTests
     public void Save_QueEnemies_Success()
     {
         GameController ctrl = new GameController();
-        Entity[,] queEnemies = new Entity[2, 2];
-        queEnemies[0, 0] = new Asteroid(new Point(30, 20));
-        queEnemies[1, 0] = new Asteroid(new Point(10, 10));
+        List<Entity> queEnemies = new List<Entity>();
+        queEnemies.Add( new Asteroid(new Point(30, 20)));
+        queEnemies.Add(new Asteroid(new Point(10, 10)));
 
 
-        //ctrl.enemie_Que = queEnemies;
+        ctrl.enemie_Que = queEnemies;
 
         ctrl.Save("TestSave.txt");
 
@@ -209,7 +209,6 @@ public class LoadSaveTests
     public void Load_QuedEnemies_Success()
     {
         GameController ctrl = new GameController();
-
         StreamWriter writer = new StreamWriter("TestLoad.txt");
 
         writer.WriteLine("[queuedEnemies]");
@@ -219,8 +218,8 @@ public class LoadSaveTests
 
         ctrl.Load("TestLoad.txt");
 
-        Assert.IsTrue(ctrl.enemie_Que[0, 0] == new Asteroid(new Point(40, 50)));
-        Assert.IsTrue(ctrl.enemie_Que[1, 0] == new Asteroid(new Point(30, 20)));
+        Assert.IsTrue(ctrl.enemie_Que[0] == new Asteroid(new Point(40, 50)));
+        Assert.IsTrue(ctrl.enemie_Que[1] == new Asteroid(new Point(30, 20)));
 
     }
 
