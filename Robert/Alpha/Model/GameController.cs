@@ -50,7 +50,7 @@ namespace Model
                 pB.UpdatePosition();
             }
 
-            player.UpdatePosition(actionMove, other);
+            //player.UpdatePosition(actionMove, other);
 
 
             // loop through entites and detect collision

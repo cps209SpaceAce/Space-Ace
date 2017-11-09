@@ -3,40 +3,41 @@
   <Class Name="Model.AI">
     <Position X="7" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>EAAAAAAAAAAAACAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>EAAAAAAAAAAAACAAAAIAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\AI.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Model.Formation">
     <Position X="5.75" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\AI.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Model.Tracker">
     <Position X="8" Y="6.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAACAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAACAAIAAAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\AI.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Model.Boss">
     <Position X="12.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAACAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAACAAAAIAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Boss.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Model.Bullet">
     <Position X="10.25" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAACAAAAIAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <HashCode>AAAAAAAAAAAAACAAAAIAAAAAACBAAAAAAAAAAAAAAgA=</HashCode>
       <FileName>Model\Bullet.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Model.Tracking">
-    <Position X="10.25" Y="6.75" Width="1.5" />
+    <Position X="10.25" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAACAAIAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Bullet.cs</FileName>
@@ -45,33 +46,31 @@
   <Class Name="Model.Entity">
     <Position X="10.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAQAAAAAACAAAAIACAAAAAAAAQAAAAAAAAAAAAg=</HashCode>
+      <HashCode>AAAAAAQAAAAAACAAAAIACAAAACBAAQAAAAAAAAAAAAg=</HashCode>
       <FileName>Model\Entity.cs</FileName>
     </TypeIdentifier>
+    <Lollipop Position="0.2" />
   </Class>
   <Class Name="Model.Powerup">
     <Position X="14.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAACAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAACAAAAIAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Entity.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Model.Asteroid">
     <Position X="3.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAACAAAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAACAAAAIAAAAAACBAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Model\Entity.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Model.GameController">
     <Position X="21.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQkIABAAAAAAAAEABIAAEAAAEAEAABAAAAAIAAAAA=</HashCode>
+      <HashCode>AEAQgIABAAACAAAAEADIAIAAAAEIEAABAAAAAoAAgAA=</HashCode>
       <FileName>Model\GameController.cs</FileName>
     </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="world" />
-    </ShowAsAssociation>
   </Class>
   <Class Name="Model.GameData">
     <Position X="23.75" Y="2.5" Width="1.5" />
@@ -90,7 +89,7 @@
   <Class Name="Model.Player">
     <Position X="16.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAIAAAAAASAAAIIAQAAAAAIEAAAAGACAAAAAAAI=</HashCode>
+      <HashCode>AAAAAAIAAAAAASAAAIIAQAAAACJEAAAAGACAAAAAAAI=</HashCode>
       <FileName>Model\Player.cs</FileName>
     </TypeIdentifier>
   </Class>

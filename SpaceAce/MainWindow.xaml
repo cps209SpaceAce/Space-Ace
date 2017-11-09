@@ -18,5 +18,6 @@
                 Margin="372,506,0,0" VerticalAlignment="Top" Width="236" Height="67" Click="btnLoadGame_Click"/>
         <Button Content="Quit" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
                 Margin="372,574,0,0" VerticalAlignment="Top" Width="236" Height="67" Click="btnQuit_Click"/>
+        <Image HorizontalAlignment="Left" Height="150" Margin="39,113,0,0" VerticalAlignment="Top" Width="900" Source="Images\title.png"/>
     </Grid>
 </Window>

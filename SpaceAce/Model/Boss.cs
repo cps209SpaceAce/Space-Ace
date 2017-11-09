@@ -9,6 +9,10 @@ namespace Model
 {
     public class Boss : Entity, ISerialiable
     {
+        public Boss(Point location, int health) : base(location)
+        {
+        }
+
         public override bool Hit()
         {
             throw new NotImplementedException();

@@ -6,14 +6,14 @@
         xmlns:local="clr-namespace:SpaceAce"
         mc:Ignorable="d"
         Title="Space Ace - Game Screen" Height="768" Width="1024"
-        
+        Loaded="Window_Loaded"
         >
     <Window.Background>
         <ImageBrush ImageSource="Images\GameScreenBackground.jpg"></ImageBrush>
     </Window.Background>
 
-    <Grid>
+    <StackPanel>
         <Canvas x:Name="WorldCanvas" HorizontalAlignment="Left" Height="768" Margin="0,0,0,0" VerticalAlignment="Top" Width="1024"                
-            />
-    </Grid>
+         Background="Red"   />
+    </StackPanel>
 </Window>

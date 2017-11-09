@@ -10,7 +10,13 @@ namespace Model
     public enum pattern { Straight, Sin, Cos, Tan };
     public class AI : Entity
     {
-        private pattern Flightpath;
+        public pattern Flightpath;
+
+        
+        public AI(Point location, pattern flightpath) : base(location)
+        {
+        }
+        
         public override bool Hit()
         {
             throw new NotImplementedException();
@@ -34,6 +40,10 @@ namespace Model
     }
     public class Formation : AI
     {
+        public Formation(int health, Point location, int speed) : base(health, location, speed)
+        {
+        }
+
         public override Point UpdatePosition()
         {
             //TODO: move ship in a Pattern
@@ -54,6 +64,11 @@ namespace Model
     public class Tracker : AI
     {
         private Player target;
+
+        public Tracker(int health, Point location, int speed) : base(health, location, speed)
+        {
+        }
+
         public override Point UpdatePosition()
         {
             //TODO: Track player
