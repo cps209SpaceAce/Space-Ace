@@ -52,18 +52,21 @@ namespace Model
         public void Up()
         {
             loc.Y = Convert.ToInt32(loc.Y - (1 * speed));
+            
             //TODO: move player up
         }
 
         public void Down()
         {
             loc.Y = Convert.ToInt32(loc.Y + (1 * speed));
+           
             //TODO: move player down
         }
 
         public void Left()
         {
             loc.X = Convert.ToInt32(loc.X - (1 * speed));
+            
             //TODO: move player left
         }
 
@@ -100,7 +103,7 @@ namespace Model
             {
                 DropBomb();
             }
-            throw new NotImplementedException();
+            return loc;
         }
         public override string Serialize()
         {

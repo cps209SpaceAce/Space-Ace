@@ -52,7 +52,7 @@ namespace Model
 
         public GameController()
         {
-            player = new Player(3,3,this,1,new Point(0,0),1);
+            player = new Player(3,3,this,1,new Point(0,0),10);
             //TODO: load level/save data from GameData
             //TODO: get enemies for level from Level
         }

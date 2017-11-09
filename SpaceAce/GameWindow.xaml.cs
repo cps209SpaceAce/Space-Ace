@@ -41,14 +41,18 @@ namespace SpaceAce
         //WindowState="Maximized"
         //WindowStyle="None"
 
-        public void Window_Loaded()
+        public void Window_Loaded2(Object sender, RoutedEventHandler stuff)
         {
-            images.Add(new Image() { Source = new BitmapImage(new Uri("images/" + "spaceship-hi.png", UriKind.Relative)) });
-            WorldCanvas.Children.Add(images[0]);
+            Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "spaceship-hi.png", UriKind.Relative)) };
+            WorldCanvas.Children.Add(img);
+            img.Width = 50;
+            Canvas.SetLeft(img, 0);
+            Canvas.SetTop(img,0);
             icons.Add(new Icon() { i = images[0], e =cltr.player });
+
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Tick += Timer_Tick;
-            timer.Interval = new TimeSpan(0, 0, 1);
+            timer.Interval = new TimeSpan(0, 0, 0,0,10);
             timer.Start();
             // Create New canvas items
 
@@ -92,6 +96,60 @@ namespace SpaceAce
                     break;
                 case Key.B:
                     cltr.bomb = true;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+     
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "spaceship-hi.png", UriKind.Relative)) };
+            WorldCanvas.Children.Add(img);
+            img.Width = 50;
+            
+            Canvas.SetLeft(img, 0);
+            Canvas.SetTop(img, 0);
+            icons.Add(new Icon() { i = img, e = cltr.player });
+
+            timer = new System.Windows.Threading.DispatcherTimer();
+            timer.Tick += Timer_Tick;
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
+            timer.Start();
+            // Create New canvas items
+
+            // Start Timer
+
+            // Take diff from ctrl
+            // Load from levels
+
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.Escape:
+                    break; //TODO: pause game
+                case Key.Left:
+                    cltr.left = false;
+                    break;
+                case Key.Right:
+                    cltr.right = false;
+                    break;
+                case Key.Up:
+                    cltr.up = false;
+                    break;
+                case Key.Down:
+                    cltr.down = false;
+                    break;
+                case Key.Space:
+                    cltr.fired = false;
+                    break;
+                case Key.B:
+                    cltr.bomb = false;
                     break;
                 default:
                     break;
