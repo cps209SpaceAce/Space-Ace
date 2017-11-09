@@ -16,8 +16,8 @@ public class LoadSaveTests
     {
         GameController ctrl = new GameController();
         List<Entity> enemies = new List<Entity>();
-        enemies.Add(new Asteroid(new Point(30, 20)));
-        enemies.Add(new Asteroid(new Point(10, 10)));
+        enemies.Add(new Asteroid(1000,new Point(30, 20),1));
+        enemies.Add(new Asteroid(1000,new Point(10, 10),1));
 
         ctrl.current_Enemies = enemies;
 
@@ -43,8 +43,8 @@ public class LoadSaveTests
     {
         GameController ctrl = new GameController();
         Entity[,] queEnemies = new Entity[2, 2];
-        queEnemies[0, 0] = new Asteroid(new Point(30, 20));
-        queEnemies[1, 0] = new Asteroid(new Point(10, 10));
+        queEnemies[0, 0] = new Asteroid(1000,new Point(30, 20),1);
+        queEnemies[1, 0] = new Asteroid(1000,new Point(10, 10),1);
 
 
         ctrl.enemie_Que = queEnemies;
@@ -70,7 +70,7 @@ public class LoadSaveTests
     {
         GameController ctrl = new GameController();
         List<Bullet> playerBullets = new List<Bullet>();
-        playerBullets.Add(new Bullet(new Point(30, 20)));
+        playerBullets.Add(new Bullet(1, new Point(30, 20),1));
 
         ctrl.player_fire = playerBullets;
 
@@ -94,7 +94,7 @@ public class LoadSaveTests
     {
         GameController ctrl = new GameController();
         List<Entity> powerUp = new List<Entity>();
-        powerUp.Add(new Powerup(new Point(30, 20), "invisiblast"));
+        powerUp.Add(new Powerup("invisiblast",1,new Point(30, 20),1));
 
         ctrl.current_Enemies = powerUp;
 
@@ -114,7 +114,7 @@ public class LoadSaveTests
     public void Save_PlayerData_Success()
     {
         GameController ctrl = new GameController();
-        ctrl.player = new Player(100, 60);
+        ctrl.player = new Player(100, 60, ctrl,1,new Point(0,0),1); // I had to add some parameters to get it to compile
         ctrl.player.loc = new Point(40, 50);
 
         ctrl.Save("TestSave.txt");
@@ -219,8 +219,8 @@ public class LoadSaveTests
 
         ctrl.Load("TestLoad.txt");
 
-        Assert.IsTrue(ctrl.enemie_Que[0, 0] == new Asteroid(new Point(40, 50)));
-        Assert.IsTrue(ctrl.enemie_Que[1, 0] == new Asteroid(new Point(30, 20)));
+        Assert.IsTrue(ctrl.enemie_Que[0, 0] == new Asteroid(1000,new Point(40, 50),1));
+        Assert.IsTrue(ctrl.enemie_Que[1, 0] == new Asteroid(1000,new Point(30, 20),1));
 
     }
 

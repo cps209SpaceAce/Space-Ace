@@ -16,8 +16,13 @@ namespace Model
         public int bombs { get; set; }
         public powerup powerup { get; set; }
 
-        public Player(int lives, int bombs)
+        private GameController game;
+
+        public Player(int lives, int bombs,GameController flags,int health, Point location, int speed):base(health,location,speed)
         {
+            this.lives = lives;
+            this.bombs = bombs;
+            game = flags;
             //TODO: setup player
         }
 
@@ -32,7 +37,7 @@ namespace Model
         {
             //TODO: activate powerup
         }
-        public void DropBomb(List<Entity> badguys)
+        public void DropBomb()
         {
             //TODO: damage all badguys
         }
@@ -46,31 +51,56 @@ namespace Model
 
         public void Up()
         {
+            loc.Y = Convert.ToInt32(loc.Y - (1 * speed));
             //TODO: move player up
         }
 
         public void Down()
         {
+            loc.Y = Convert.ToInt32(loc.Y + (1 * speed));
             //TODO: move player down
         }
 
         public void Left()
         {
+            loc.X = Convert.ToInt32(loc.X - (1 * speed));
             //TODO: move player left
         }
 
         public void Right()
         {
+            loc.X = Convert.ToInt32(loc.X + (1 * speed));
             //TODO: move player right
         }
 
         //handles when the player is idle
         public override Point UpdatePosition()
         {
-            //TODO: update player position
-
-            Point h = new Point(0, 0);//filler
-            return h;
+            if (game.up)
+            {
+                Up();
+            }
+            if (game.down)
+            {
+                Down();
+            }
+            if (game.left)
+            {
+                Left();
+            }
+            if (game.right)
+            {
+                Right();
+            }
+            if (game.fired)
+            {
+                Fire();
+            }
+            if (game.bomb)
+            {
+                DropBomb();
+            }
+            throw new NotImplementedException();
         }
         public override string Serialize()
         {
