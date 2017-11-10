@@ -9,5 +9,16 @@
     <Window.Background>
         <ImageBrush ImageSource="Images\titleScreenBackground.png"></ImageBrush>
     </Window.Background>
-    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="328" Width="567" Foreground="White" FontSize="24" Margin="83,69,0,0"><Run Text="Joanna Al Madanat Jaar"/><LineBreak/><Run FontSize="22" Text="Student from Jordan, likes planes, spaceships, and feathers."/><LineBreak/><Run/><LineBreak/><Run Text="Noah Mansfield"/><LineBreak/><Run FontSize="22" Text="Student from South Carolina, gets to watch movies on weekends."/><LineBreak/><Run/><LineBreak/><Run Text="Robert Meyer"/><LineBreak/><Run FontSize="22" Text="Student from Australia but lacks an Australian accent."/></TextBlock>
+
+    <Grid>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="94" Width="346" Foreground="White" FontSize="24" Margin="167,484,0,0"><Run Text="Robert Meyer"/><LineBreak/><Run FontSize="22" Text="Student from Australia but lacks an Australian accent."/><LineBreak/><InlineUIContainer/><LineBreak/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="94" Width="346" Foreground="White" FontSize="24" Margin="503,156,0,0"><Run Text="Joa"/><Run Text="nna"/><Run Text=" Al "/><Run Text="M"/><InlineUIContainer/><Run Text="adanat Jaar"/><LineBreak/><Run FontSize="22" Text="Student from Jordan, likes planes, spaceships, and feathers."/><LineBreak/><InlineUIContainer>
+            </InlineUIContainer><LineBreak/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="94" Width="346" Foreground="White" FontSize="24" Margin="304,308,0,0"><Run Text="Noah Mansfield"/><LineBreak/><Run FontSize="22" Text="Town student that can watch movies on weekends."/></TextBlock>
+
+        <Button Content="Close Window" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
+            Margin="720,634,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="btnQuit_Click"/>
+        <Label Content="Meet the team:" Foreground="#FFB6B6B6" Margin="57,40,675.6,648.4" FontSize="36" Background="{x:Null}"/>
+    </Grid>
+
 </Window>
