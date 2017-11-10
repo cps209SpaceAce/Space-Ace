@@ -15,18 +15,21 @@ namespace Model
         public double speed;
         //health auto set to 1
         public int health;
+
+        public Rectangle hitbox;
+
         public Entity(Point location)
         {
             this.health = 1;
             this.loc = location;
             this.speed = 1;
+            this.hitbox = new Rectangle(loc.X,loc.Y,50,50);
         }
-        private Rectangle hitbox;
+        
         //return true if destroyed else return false
         public abstract bool Hit();
 
         public abstract Point UpdatePosition();
-
 
         public abstract string Serialize();
 
@@ -47,7 +50,7 @@ namespace Model
 
         public override string Serialize()
         {
-            return "powerup" + "," + loc.X + "," + loc.Y; //JOANNA: x,y only for now //JOANNA: for now this only saves x,y coords, 
+            return "powerup" + "," + loc.X + "," + loc.Y; 
             //please provide a way to detect the powerup's type
         }
 
@@ -70,7 +73,9 @@ namespace Model
         public override Point UpdatePosition()
         {
             //TODO: add movment logic: make it move in a straight line
-            throw new NotImplementedException();
+            loc.X = Convert.ToInt32(loc.X - (1 * speed));
+            // Why are we returning a point?
+            return loc;
         }
 
         public override string Serialize()

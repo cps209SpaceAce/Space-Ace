@@ -82,7 +82,7 @@ namespace Model
     {
         private Player target;
 
-        public Tracker(int health, Point location, int speed) //: base(health, location, speed)
+        public Tracker(int health, Point location, int speed) : base(health, location, speed)
         {
         }
 

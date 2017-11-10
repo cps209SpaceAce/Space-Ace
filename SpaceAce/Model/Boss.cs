@@ -22,6 +22,11 @@ namespace Model
         {
             //TODO: movement logic for boss
             throw new NotImplementedException();
+            if (loc.X > 950)
+            {
+                loc.X = Convert.ToInt32(loc.X - (1 * speed));
+            }
+            
         }
 
         public override string Serialize()

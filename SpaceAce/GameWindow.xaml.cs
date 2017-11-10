@@ -32,6 +32,10 @@ namespace SpaceAce
 
         public List<Image> images = new List<Image>();
 
+        public int spawnCounter = 0;
+
+        public bool isPaused = false;
+
         public DispatcherTimer timer;
 
         public GameWindow()
@@ -48,7 +52,7 @@ namespace SpaceAce
             img.Width = 50;
             Canvas.SetLeft(img, 0);
             Canvas.SetTop(img,0);
-            icons.Add(new Icon() { i = images[0], e =cltr.player });
+            icons.Add(new Icon() { i = images[0], e = cltr.player });
 
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Tick += Timer_Tick;
@@ -70,6 +74,18 @@ namespace SpaceAce
             Canvas.SetTop(i.i, i.e.loc.Y);
             Canvas.SetLeft(i.i, i.e.loc.X);
 
+            // Spawing Logic - Every 5 Seconds - Pop 5
+            if (spawnCounter > 4)
+            {
+                spawnCounter = 0;
+                for (int index = 0; index < 5; ++index)  // Pop 5 and add to current_Enimies
+                {
+                    cltr.current_Enemies.Add(cltr.enemie_Que[index]);
+                    cltr.enemie_Que.RemoveAt(index);
+                }
+            }
+            else {++spawnCounter;}
+
         }
 
 
@@ -78,6 +94,16 @@ namespace SpaceAce
             switch (e.Key)
             {
                 case Key.Escape:
+                    if (!isPaused)
+                    {
+                        timer.Stop();
+                        // Display Pause Menu
+                    }
+                    else
+                    {
+                        timer.Start();
+                        // Close Pause Menu
+                    }
                     break; //TODO: pause game
                 case Key.Left:
                     cltr.left = true;
@@ -132,6 +158,7 @@ namespace SpaceAce
             switch (e.Key)
             {
                 case Key.Escape:
+                    // Nothing
                     break; //TODO: pause game
                 case Key.Left:
                     cltr.left = false;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,10 +16,15 @@ namespace Model
         public Level Level;       // Last Level Complete
         public Difficulty Diff;   // Difficulty
         public int Score;         // Final Score
-        public string shipImage;
+        public string ShipImage;
 
-        public HighScore()
+        public HighScore(string name, Level level, Difficulty diff, int score, string shipimage )
         {
+           Name = name;
+           Level = level;
+           Diff = diff;        
+           Score = score;
+           ShipImage = shipimage;
         }
     }
 
@@ -31,11 +37,15 @@ namespace Model
 
         /// On startup - Load from JSON file
         /// List of HighScores.
-        private void Load()
+        public  void Load()
         {
             // Read JSON File
+            string loadString = File.ReadAllText(Environment.CurrentDirectory + @"\JSON.txt");
+
             // Convert to list
             // load to HighScores     
+            highScores = new JavaScriptSerializer().Deserialize<List<HighScore>>(loadString);
+            
         }
 
 
@@ -44,15 +54,21 @@ namespace Model
         public void Update(HighScore newScore)
         {
             // Add score to highScores
-            // https://stackoverflow.com/questions/3309188/how-to-sort-a-listt-by-a-property-in-the-object
-            // Sort by Score - (Look at P4)
+            highScores.Add(newScore);
+
+            // Sorts the list by Score
+            highScores = highScores.OrderBy(o => o.Score).ToList();
         }
 
         // After update
         // Saves to JSON File
         public void Save()
         {
+            // Convert to json
+            string json = new JavaScriptSerializer().Serialize(highScores);
 
+            // Write to file
+            File.WriteAllText(Environment.CurrentDirectory + @"\JSON.txt", json);
         }
         
         
