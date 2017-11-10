@@ -11,7 +11,7 @@ namespace Model
 
         // This is a level class
 
-        public List<Entity> Level1()
+        public static List<Entity> Level1()
         {
             //TODO Create list of enemies for level 1
             AI A  = new AI(new Point(1500, 250), pattern.Straight);

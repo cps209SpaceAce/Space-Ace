@@ -42,7 +42,7 @@ namespace Model
     {
         public int original_Y;
 
-        public Formation(int health, Point location, int speed) : base(health, location, speed)
+        public Formation(Point location, pattern f) : base(location,f)
         {
             this.original_Y = loc.Y;
         }
