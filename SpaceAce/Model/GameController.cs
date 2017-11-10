@@ -54,23 +54,31 @@ namespace Model
         public GameController(Difficulty passDiff)
         {
             player = new Player(new Point(50,350), 3,3, this);// Flags?
-            difficulty = passDiff;
             //TODO: load level/save data from GameData
             // OR
             //TODO: get enemies for level from Level
+            enemie_Que = Levels.Level1();
+
         }
 
-        public void UpdateWorld(PlayerAction actionMove, PlayerAction other)// Each tick of timer will call this.
+        public void UpdateWorld()// Each tick of timer will call this.
         {
+
             // Update each entity
-            foreach (Entity ent in current_Enemies)
-            {
-                ent.UpdatePosition();
-            }
-            foreach (Entity playerBullet in player_fire)
-            {
-                playerBullet.UpdatePosition();
-            }
+            
+                foreach (Entity ent in current_Enemies)
+                {
+                    if(ent != null)
+                    ent.UpdatePosition();
+                }
+            
+            
+                foreach (Entity playerBullet in player_fire)
+                {
+                    if(playerBullet != null)
+                    playerBullet.UpdatePosition();
+                }
+            
 
             player.UpdatePosition();//actionMove, other
 

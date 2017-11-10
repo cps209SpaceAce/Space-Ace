@@ -23,7 +23,7 @@ namespace Model
             game = flags;
             this.lives = lives;
             this.bombs = bombs;
-            
+            speed = 5;
             //TODO: setup player
         }
 

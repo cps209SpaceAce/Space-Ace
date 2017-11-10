@@ -23,6 +23,12 @@ namespace SpaceAce
     {
         public Image i;
         public Entity e;
+
+        public void update()
+        {
+            Canvas.SetTop(i, e.loc.Y);
+            Canvas.SetLeft(i, e.loc.X);
+        }
     }
     public partial class GameWindow : Window
     {
@@ -71,22 +77,26 @@ namespace SpaceAce
 
         public void Timer_Tick(object sender, EventArgs e)
         {
-            cltr.player.UpdatePosition();
-            Icon i = icons[0];
-            Canvas.SetTop(i.i, i.e.loc.Y);
-            Canvas.SetLeft(i.i, i.e.loc.X);
+
+            //Icon i = icons[0];
+            //Canvas.SetTop(i.i, i.e.loc.Y);
+            //Canvas.SetLeft(i.i, i.e.loc.X);
+            cltr.UpdateWorld();
 
             // Spawing Logic - Every 5 Seconds - Pop 5
-            //if (spawnCounter > 4)
-            //{
-            //    spawnCounter = 0;
-            //    for (int index = 0; index < 5; ++index)  // Pop 5 and add to current_Enimies
-            //    {
-            //        cltr.current_Enemies.Add(cltr.enemie_Que[index]);
-            //        cltr.enemie_Que.RemoveAt(index);
-            //    }
-            //}
-            //else {++spawnCounter;}
+            if (spawnCounter > 4)
+            {
+                spawnCounter = 0;
+                for (int index = 0; index < 5; ++index)  // Pop 5 and add to current_Enimies
+                {
+                    if (index < cltr.enemie_Que.Count)
+                    {
+                        cltr.current_Enemies.Add(cltr.enemie_Que[index]);
+                        cltr.enemie_Que.RemoveAt(index);
+                    }
+                }
+            }
+            else {++spawnCounter;}
 
         }
 
