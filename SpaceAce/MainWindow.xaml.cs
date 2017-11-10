@@ -30,10 +30,7 @@ namespace SpaceAce
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-<<<<<<< HEAD
-=======
-            
->>>>>>> 25a47fc934073f8321a9e575eb6efcf29bd2a74e
+
         }
 
         private void btnHighScorePage_Click(object sender, RoutedEventArgs e)
@@ -58,12 +55,6 @@ namespace SpaceAce
         {
             GameWindow gameWindow = new GameWindow();
             gameWindow.Show();
-        }
-
-        private void btnHighScorePage_Click(object sender, RoutedEventArgs e)
-        {
-            HighScoreWindow highscreWindow = new HighScoreWindow();
-            highscreWindow.Show();
         }
 
         private void btnAboutPage_Click(object sender, RoutedEventArgs e)
