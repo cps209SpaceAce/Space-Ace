@@ -9,8 +9,5 @@
     <Window.Background>
         <ImageBrush ImageSource="Images\titleScreenBackground.png"></ImageBrush>
     </Window.Background>
-    <Grid>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="402" Width="777" Margin="196,96,0,0"/>
-
-    </Grid>
+    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="328" Width="567" Foreground="White" FontSize="24" Margin="83,69,0,0"><Run Text="Joanna Al Madanat Jaar"/><LineBreak/><Run FontSize="22" Text="Student from Jordan, likes planes, spaceships, and feathers."/><LineBreak/><Run/><LineBreak/><Run Text="Noah Mansfield"/><LineBreak/><Run FontSize="22" Text="Student from South Carolina, gets to watch movies on weekends."/><LineBreak/><Run/><LineBreak/><Run Text="Robert Meyer"/><LineBreak/><Run FontSize="22" Text="Student from Australia but lacks an Australian accent."/></TextBlock>
 </Window>
