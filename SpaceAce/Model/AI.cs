@@ -42,7 +42,7 @@ namespace Model
     {
         public int original_Y;
 
-        public Formation(int health, Point location, int speed) : base(location,pattern.Straight )
+        public Formation(int health, Point location, int speed) : base(health, location, speed)
         {
             this.original_Y = loc.Y;
         }
@@ -82,7 +82,7 @@ namespace Model
     {
         private Player target;
 
-        public Tracker(int health, Point location, int speed) : base(location, pattern.Straight)
+        public Tracker(int health, Point location, int speed) : base(health, location, speed)
         {
         }
 
