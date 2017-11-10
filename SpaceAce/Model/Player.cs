@@ -18,11 +18,11 @@ namespace Model
 
         private GameController game;
 
-        public Player(Point location,int lives, int bombs,GameController flags):base(location)
+        public Player(Point location,int lives, int bombs):base(location)
         {
             this.lives = lives;
             this.bombs = bombs;
-            game = flags;
+            
             //TODO: setup player
         }
 

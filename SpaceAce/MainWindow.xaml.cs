@@ -53,7 +53,7 @@ namespace SpaceAce
             gameWindow.Show();
         }
 
-        private void btnHighScore_Click(object sender, RoutedEventArgs e)
+        private void btnHighScorePage_Click(object sender, RoutedEventArgs e)
         {
             HighScoreWindow highscreWindow = new HighScoreWindow();
             highscreWindow.Show();
