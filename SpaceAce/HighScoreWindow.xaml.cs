@@ -23,5 +23,8 @@ namespace SpaceAce
         {
             InitializeComponent();
         }
+        public void Window_Loaded(Object sender, RoutedEventArgs stuff)
+        {
+        }
     }
 }
