@@ -75,16 +75,16 @@ namespace SpaceAce
             Canvas.SetLeft(i.i, i.e.loc.X);
 
             // Spawing Logic - Every 5 Seconds - Pop 5
-            if (spawnCounter > 4)
-            {
-                spawnCounter = 0;
-                for (int index = 0; index < 5; ++index)  // Pop 5 and add to current_Enimies
-                {
-                    cltr.current_Enemies.Add(cltr.enemie_Que[index]);
-                    cltr.enemie_Que.RemoveAt(index);
-                }
-            }
-            else {++spawnCounter;}
+            //if (spawnCounter > 4)
+            //{
+            //    spawnCounter = 0;
+            //    for (int index = 0; index < 5; ++index)  // Pop 5 and add to current_Enimies
+            //    {
+            //        cltr.current_Enemies.Add(cltr.enemie_Que[index]);
+            //        cltr.enemie_Que.RemoveAt(index);
+            //    }
+            //}
+            //else {++spawnCounter;}
 
         }
 
