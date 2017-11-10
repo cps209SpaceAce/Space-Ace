@@ -30,13 +30,13 @@ namespace SpaceAce
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            GameController ctrl = new GameController(); // GameController.xaml.cs -  line 31 - do we need this?
-            ctrl.Save("SaveData.txt"); //for testing only
+
         }
 
         private void btnHighScorePage_Click(object sender, RoutedEventArgs e)
         {
-
+            HighScoreWindow gameWindow = new HighScoreWindow();
+            gameWindow.Show();
         }
         private void btnNewGame_Click(object sender, RoutedEventArgs e)
         {
@@ -55,12 +55,6 @@ namespace SpaceAce
         {
             GameWindow gameWindow = new GameWindow();
             gameWindow.Show();
-        }
-
-        private void btnHighScore_Click(object sender, RoutedEventArgs e)
-        {
-            HighScoreWindow highscreWindow = new HighScoreWindow();
-            highscreWindow.Show();
         }
 
         private void btnAboutPage_Click(object sender, RoutedEventArgs e)

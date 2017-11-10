@@ -10,6 +10,7 @@
         <ImageBrush ImageSource="Images\titleScreenBackground.png"></ImageBrush>
     </Window.Background>
     <Grid>
-        
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="402" Width="777" Margin="196,96,0,0"/>
+
     </Grid>
 </Window>
