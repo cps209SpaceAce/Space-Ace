@@ -14,7 +14,7 @@ public class LoadSaveTests
     [TestMethod]
     public void Save_CurrentEnemies_Success()
     {
-        GameController ctrl = new GameController();
+        GameController ctrl = new GameController(Difficulty.Easy);
         List<Entity> enemies = new List<Entity>();
         enemies.Add(new Asteroid(new Point(30, 20)));
         enemies.Add(new Asteroid(new Point(10, 10)));
@@ -27,7 +27,7 @@ public class LoadSaveTests
         using (StreamReader reader = new StreamReader("TestSave.txt"))
         {
 
-            Assert.IsTrue(reader.ReadLine() == "[player]");             //default, gamecontroller always has a player
+            Assert.IsTrue(reader.ReadLine() == "[player]");             //default, GameController always has a player
             Assert.IsTrue(reader.ReadLine() == "unnamed,100,0,0,none");
             Assert.IsTrue(reader.ReadLine() == "[end]");
 
@@ -41,7 +41,7 @@ public class LoadSaveTests
     [TestMethod]
     public void Save_QueEnemies_Success()
     {
-        GameController ctrl = new GameController();
+        GameController ctrl = new GameController(Difficulty.Easy);
         List<Entity> queEnemies = new List<Entity>();
         queEnemies.Add( new Asteroid(new Point(30, 20)));
         queEnemies.Add(new Asteroid(new Point(10, 10)));
@@ -68,7 +68,7 @@ public class LoadSaveTests
     [TestMethod]
     public void Save_PlayerBullets_Success()
     {
-        GameController ctrl = new GameController();
+        GameController ctrl = new GameController(Difficulty.Easy);
         List<Bullet> playerBullets = new List<Bullet>();
         playerBullets.Add(new Bullet(new Point(30, 20)));
 
@@ -92,7 +92,7 @@ public class LoadSaveTests
     [TestMethod]
     public void Save_PowerUp_Success()
     {
-        GameController ctrl = new GameController();
+        GameController ctrl = new GameController(Difficulty.Easy);
         List<Entity> powerUp = new List<Entity>();
         powerUp.Add(new Powerup(new Point(30, 20), "invisiblast"));
 
@@ -113,7 +113,7 @@ public class LoadSaveTests
     [TestMethod]
     public void Save_PlayerData_Success()
     {
-        GameController ctrl = new GameController();
+        GameController ctrl = new GameController(Difficulty.Easy);
         ctrl.player = new Player(new Point(0,0), 3,3,ctrl); // I had to add some parameters to get it to compile
         ctrl.player.loc = new Point(40, 50);
 
@@ -133,7 +133,7 @@ public class LoadSaveTests
     [TestMethod]
     public void Save_GameControllerData_Success()
     {
-        GameController ctrl = new GameController();
+        GameController ctrl = new GameController(Difficulty.Easy);
         ctrl.level = Level.Level_1;
         ctrl.base_Speed = 100;
         ctrl.score = 9001;
@@ -154,7 +154,7 @@ public class LoadSaveTests
     [TestMethod]
     public void Save_Defaults_Success()
     {
-        GameController ctrl = new GameController();
+        GameController ctrl = new GameController(Difficulty.Easy);
 
         ctrl.Save("TestSave.txt");
 
@@ -173,7 +173,7 @@ public class LoadSaveTests
     [TestMethod]
     public void Load_Player_Success()
     {
-        GameController ctrl = new GameController();
+        GameController ctrl = new GameController(Difficulty.Easy);
 
 
         StreamWriter writer = new StreamWriter("TestLoad.txt");
@@ -191,7 +191,7 @@ public class LoadSaveTests
     [TestMethod]
     public void Load_Enemies_Success()
     {
-        GameController ctrl = new GameController();
+        GameController ctrl = new GameController(Difficulty.Easy);
 
         StreamWriter writer = new StreamWriter("TestLoad.txt");
 
@@ -208,7 +208,7 @@ public class LoadSaveTests
     [TestMethod]
     public void Load_QuedEnemies_Success()
     {
-        GameController ctrl = new GameController();
+        GameController ctrl = new GameController(Difficulty.Easy);
         StreamWriter writer = new StreamWriter("TestLoad.txt");
 
         writer.WriteLine("[queuedEnemies]");
@@ -226,7 +226,7 @@ public class LoadSaveTests
     [TestMethod]
     public void Load_PlayerBullets_Success()
     {
-        GameController ctrl = new GameController();
+        GameController ctrl = new GameController(Difficulty.Easy);
 
         StreamWriter writer = new StreamWriter("TestLoad.txt");
 
@@ -245,7 +245,7 @@ public class LoadSaveTests
     [TestMethod]
     public void Load_Defaults_Success()
     {
-        GameController ctrl = new GameController();
+        GameController ctrl = new GameController(Difficulty.Easy);
 
         StreamWriter writer = new StreamWriter("TestLoad.txt");
 

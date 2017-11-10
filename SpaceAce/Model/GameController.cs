@@ -51,9 +51,10 @@ namespace Model
         public double base_Speed;
         public int score;
 
-        public GameController()
+        public GameController(Difficulty passDiff)
         {
             player = new Player(new Point(50,350), 3,3, this);// Flags?
+            difficulty = passDiff;
             //TODO: load level/save data from GameData
             // OR
             //TODO: get enemies for level from Level
@@ -156,7 +157,7 @@ namespace Model
             //TODO: read from file and create entities with the specifications found in the file
 
             //Returns new GameController class with all the specifications in the file
-            return new GameController();
+            return new GameController(Difficulty.Easy);
         }
 
     }

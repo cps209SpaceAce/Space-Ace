@@ -17,7 +17,8 @@
         <Button Content="Load Game" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
                 Margin="372,425,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="btnLoadGame_Click"/>
         <Button Content="Difficulty: Easy" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
-                Margin="373,480,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="btnDifficulty_Click"/>
+                Margin="373,480,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="btnDifficulty_Click"
+                x:Name="btnDifficulty"/>
         <Button Content="High Score" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
                 Margin="372,535,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="btnHighScorePage_Click"/>
         <Button Content="Help" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 

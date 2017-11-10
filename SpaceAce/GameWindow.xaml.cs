@@ -28,7 +28,7 @@ namespace SpaceAce
     {
         public List<Icon> icons = new List<SpaceAce.Icon>();
 
-        public GameController cltr = new GameController();
+        public GameController cltr;
 
         public List<Image> images = new List<Image>();
 
@@ -38,10 +38,12 @@ namespace SpaceAce
 
         public DispatcherTimer timer;
 
-        public GameWindow()
+        public GameWindow(Difficulty setDiff)
         {
             InitializeComponent();
+            cltr = new GameController(setDiff);
         }
+        // Don't Delete this VVV
         //WindowState="Maximized"
         //WindowStyle="None"
 

@@ -22,7 +22,7 @@ namespace Model
         {
             this.health = 1;
             this.loc = location;
-            this.speed = 1;
+            this.speed = 4;
             this.hitbox = new Rectangle(loc.X,loc.Y,50,50);
         }
         
