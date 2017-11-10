@@ -34,6 +34,10 @@ namespace SpaceAce
             ctrl.Save("SaveData.txt"); //for testing only
         }
 
+        private void btnHighScorePage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
         private void btnNewGame_Click(object sender, RoutedEventArgs e)
         {
             GameWindow gameWindow = new GameWindow();
