@@ -16,7 +16,6 @@ namespace Model
         public AI(Point location, pattern flightpath) : base(location)
         {
         }
-        
         public override bool Hit()
         {
             throw new NotImplementedException();
@@ -41,8 +40,7 @@ namespace Model
     public class Formation : AI
     {
         public int original_Y;
-
-        public Formation(int health, Point location, int speed) : base(health, location, speed)
+        public Formation(Point location, pattern f) : base(location,f)
         {
             this.original_Y = loc.Y;
         }
@@ -82,8 +80,9 @@ namespace Model
     {
         private Player target;
 
-        public Tracker(int health, Point location, int speed) : base(health, location, speed)
+        public Tracker( Point location, pattern flightpath):base(location, flightpath) //: base(health, location, speed)
         {
+
         }
 
         public override Point UpdatePosition()
