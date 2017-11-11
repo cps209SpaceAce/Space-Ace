@@ -47,6 +47,11 @@ namespace Model
                          new AI(new Point(1200,GameController.random.Next(0, 700)),pattern.Straight),new AI(new Point(1200,GameController.random.Next(0, 700)),pattern.Straight),new AI(new Point(1200,GameController.random.Next(0, 700)),pattern.Straight),new AI(new Point(1200,GameController.random.Next(0, 700)),pattern.Straight),new AI(new Point(1200,GameController.random.Next(0, 700)),pattern.Straight),new AI(new Point(1200,GameController.random.Next(0, 700)),pattern.Straight),new AI(new Point(1200,GameController.random.Next(0, 700)),pattern.Straight),new AI(new Point(1200,GameController.random.Next(0, 700)),pattern.Straight),
                          new AI(new Point(1200,GameController.random.Next(0, 700)),pattern.Straight),new AI(new Point(1200,GameController.random.Next(0, 700)),pattern.Straight),new AI(new Point(1200,GameController.random.Next(0, 700)),pattern.Straight),new AI(new Point(1200,GameController.random.Next(0, 700)),pattern.Straight),new AI(new Point(1200,GameController.random.Next(0, 700)),pattern.Straight),new AI(new Point(1200,GameController.random.Next(0, 700)),pattern.Straight),new AI(new Point(1200,GameController.random.Next(0, 700)),pattern.Straight),new AI(new Point(1200,GameController.random.Next(0, 700)),pattern.Straight)
                     };
+
+                    //{
+                    //        new Formation(new Point(1200, GameController.random.Next(0, 700)), pattern.Sin),new Formation(new Point(1200, GameController.random.Next(0, 700)), pattern.Sin),new Formation(new Point(1200, GameController.random.Next(0, 700)), pattern.Sin),new Formation(new Point(1200, GameController.random.Next(0, 700)), pattern.Sin),new Formation(new Point(1200, GameController.random.Next(0, 700)), pattern.Sin),new Formation(new Point(1200, GameController.random.Next(0, 700)), pattern.Sin),new Formation(new Point(1200, GameController.random.Next(0, 700)), pattern.Sin),new Formation(new Point(1200, GameController.random.Next(0, 700)), pattern.Sin)
+                    //    };
+
                     break;
                 case Difficulty.Medium:
                     for(int i = 0; i < 60; ++i)

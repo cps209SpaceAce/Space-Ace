@@ -13,8 +13,9 @@ namespace Model
         public pattern Flightpath;
 
         
-        public AI(Point location, pattern flightpath) : base(location)
+        public AI(Point location, pattern passFlight) : base(location)
         {
+            Flightpath = passFlight;
         }
         
         public override bool Hit()
@@ -42,29 +43,31 @@ namespace Model
     {
         public int original_Y;
 
-        public Formation(Point location, pattern f) : base(location,f)
+        public Formation(Point location, pattern passFlight) : base(location, passFlight)
         {
             this.original_Y = loc.Y;
+            Flightpath = passFlight;
         }
 
         public override Point UpdatePosition()
         {
             //TODO: move ship in a Pattern
-            throw new NotImplementedException();
-            switch (this.Flightpath)
+            switch (Flightpath)
             {
                 case pattern.Sin:
                     loc.X = Convert.ToInt32(loc.X - (1 * speed));
-                    loc.Y = Convert.ToInt32(Math.Sin(loc.X)) + original_Y;
+                    loc.Y = Convert.ToInt32(10 * Math.Sin(loc.X)) + original_Y;
                     break;
                 case pattern.Cos:
                     loc.X = Convert.ToInt32(loc.X - (1 * speed));
                     loc.Y = Convert.ToInt32(Math.Cos(loc.X)) + original_Y;
                     break;
                 case pattern.Tan:
+                    loc.X = Convert.ToInt32(loc.X - (1 * speed));
+                    loc.Y = Convert.ToInt32(Math.Tan(loc.X)) + original_Y;
                     break;
             }
-            
+            return loc;
         }
 
 
