@@ -24,7 +24,6 @@ namespace Model
     interface ISerialiable
     {
         string Serialize();
-        Entity Deserialize(string code);
     }
 
     public class GameController
@@ -53,7 +52,7 @@ namespace Model
 
         public GameController(Difficulty passDiff)
         {
-            player = new Player(new Point(50,350), 3,3, this);// Flags?
+            player = new Player(50,350, 3,3, this);// Flags?
             //TODO: load level/save data from GameData
             // OR
             //TODO: get enemies for level from Level

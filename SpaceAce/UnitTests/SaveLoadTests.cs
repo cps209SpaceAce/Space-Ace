@@ -16,8 +16,8 @@ public class LoadSaveTests
     {
         GameController ctrl = new GameController(Difficulty.Easy);
         List<Entity> enemies = new List<Entity>();
-        enemies.Add(new Asteroid(new Point(30, 20)));
-        enemies.Add(new Asteroid(new Point(10, 10)));
+        enemies.Add(new Asteroid(30, 20));
+        enemies.Add(new Asteroid(10, 10));
 
         ctrl.current_Enemies = enemies;
 
@@ -43,8 +43,8 @@ public class LoadSaveTests
     {
         GameController ctrl = new GameController(Difficulty.Easy);
         List<Entity> queEnemies = new List<Entity>();
-        queEnemies.Add( new Asteroid(new Point(30, 20)));
-        queEnemies.Add(new Asteroid(new Point(10, 10)));
+        queEnemies.Add( new Asteroid(30, 20));
+        queEnemies.Add(new Asteroid(10, 10));
 
 
         ctrl.enemie_Que = queEnemies;
@@ -70,7 +70,7 @@ public class LoadSaveTests
     {
         GameController ctrl = new GameController(Difficulty.Easy);
         List<Bullet> playerBullets = new List<Bullet>();
-        playerBullets.Add(new Bullet(new Point(30, 20)));
+        playerBullets.Add(new Bullet(30, 20));
 
         ctrl.player_fire = playerBullets;
 
@@ -94,7 +94,7 @@ public class LoadSaveTests
     {
         GameController ctrl = new GameController(Difficulty.Easy);
         List<Entity> powerUp = new List<Entity>();
-        powerUp.Add(new Powerup(new Point(30, 20), "invisiblast"));
+        powerUp.Add(new Powerup(30, 20, "invisiblast"));
 
         ctrl.current_Enemies = powerUp;
 
@@ -114,8 +114,9 @@ public class LoadSaveTests
     public void Save_PlayerData_Success()
     {
         GameController ctrl = new GameController(Difficulty.Easy);
-        ctrl.player = new Player(new Point(0,0), 3,3,ctrl); // I had to add some parameters to get it to compile
-        ctrl.player.loc = new Point(40, 50);
+        ctrl.player = new Player(0,0, 3,3,ctrl); // I had to add some parameters to get it to compile
+        ctrl.player.X = 40;
+        ctrl.player.Y = 50;
 
         ctrl.Save("TestSave.txt");
 
@@ -184,8 +185,8 @@ public class LoadSaveTests
 
         ctrl.Load("TestLoad.txt");
 
-        Assert.IsTrue(ctrl.player.loc.X == 40);
-        Assert.IsTrue(ctrl.player.loc.Y == 50);
+        Assert.IsTrue(ctrl.player.X == 40);
+        Assert.IsTrue(ctrl.player.Y == 50);
     }
 
     [TestMethod]
@@ -218,8 +219,8 @@ public class LoadSaveTests
 
         ctrl.Load("TestLoad.txt");
 
-        Assert.IsTrue(ctrl.enemie_Que[0] == new Asteroid(new Point(40, 50)));
-        Assert.IsTrue(ctrl.enemie_Que[1] == new Asteroid(new Point(30, 20)));
+        Assert.IsTrue(ctrl.enemie_Que[0] == new Asteroid(40, 50));
+        Assert.IsTrue(ctrl.enemie_Que[1] == new Asteroid(30, 20));
 
     }
 
