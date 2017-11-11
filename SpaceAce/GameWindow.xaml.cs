@@ -83,12 +83,12 @@ namespace SpaceAce
             if (id == Id.player)
             {
                 Player p = cltr.player;
-                double y = p.Y + 13;
+                double y = p.Y + 10;
                 double x = p.X + 50;
                 Bullet b = new Bullet(x, y);
                 cltr.player_fire.Add(b);
-                Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "spaceship-hi.png", UriKind.Relative)) };
-                img.Width = 10;
+                Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
+                img.Width = 20;
                 Icon i = new Icon() { i = img, e = b };
                 i.update();
                 WorldCanvas.Children.Add(img);
@@ -109,16 +109,21 @@ namespace SpaceAce
                 cltr.player.FiredABullet = false;
             }
 
+            
+            RemoveEntities();
 
 
             // Update GUI
             foreach (Icon ic in icons)
                 ic.update();
 
-            //if(cltr.difficulty == Difficulty.Easy)
-            //{Console.WriteLine("EASY");}
-            //else{Console.WriteLine("OTHER");}
         }
+        public void RemoveEntities()
+        {
+            // Check Out of Bounds
+            // Check if hit
+        }
+
         // Spawing Logic - Every 5 Seconds - Pop 5
         private void SpawnEntities()
         {
