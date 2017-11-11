@@ -39,7 +39,7 @@ namespace Model
 
         //lists of moving objects
         public List<Entity> current_Enemies = new List<Entity>();
-        public List<Entity> enemie_Que      = new List<Entity>();
+        public List<Entity> enemie_Que = new List<Entity>();
         public Player player;
         public List<Bullet> player_fire = new List<Bullet>();
 
@@ -52,7 +52,7 @@ namespace Model
 
         public GameController(Difficulty passDiff)
         {
-            player = new Player(50,350, 3,3, this);// Flags?
+            player = new Player(50, 350, 3, 3, this);// Flags?
             //TODO: load level/save data from GameData
             // OR
             //TODO: get enemies for level from Level
@@ -73,20 +73,20 @@ namespace Model
         {
 
             // Update each entity
-            
-                foreach (Entity ent in current_Enemies)
-                {
-                    if(ent != null)
+
+            foreach (Entity ent in current_Enemies)
+            {
+                if (ent != null)
                     ent.UpdatePosition();
-                }
-            
-            
-                foreach (Entity playerBullet in player_fire)
-                {
-                    if(playerBullet != null)
+            }
+
+
+            foreach (Entity playerBullet in player_fire)
+            {
+                if (playerBullet != null)
                     playerBullet.UpdatePosition();
-                }
-            
+            }
+
 
             player.UpdatePosition();//actionMove, other
 
@@ -114,10 +114,10 @@ namespace Model
                 foreach (Entity enemy in current_Enemies)
                 {
                     if (bullet.hitbox.IntersectsWith(enemy.hitbox))
-                {
+                    {
                         enemy.Hit();
                     }
-                }   
+                }
             }
         }
 
@@ -127,9 +127,9 @@ namespace Model
         {
             File.WriteAllText(fileName, String.Empty);
 
-            using (StreamWriter writer = new StreamWriter(fileName, true))
+            using (StreamWriter writer = new StreamWriter(fileName))
             {
-                
+
                 if (current_Enemies != null && current_Enemies.Count > 0)
                 {
                     writer.WriteLine("[enemies]");
@@ -142,7 +142,7 @@ namespace Model
                 {
                     writer.WriteLine("[queuedEnemies]");
                     for (int i = 0; i < enemie_Que.Count; i++)
-                       writer.WriteLine( enemie_Que[i].Serialize());
+                        writer.WriteLine(enemie_Que[i].Serialize());
                     writer.WriteLine("[end]");
                 }
 
@@ -171,7 +171,74 @@ namespace Model
         {
             using (StreamReader reader = new StreamReader(fileName))
             {
-                reader.ReadLine();
+                while (!reader.EndOfStream)
+                {
+                    string startLine = reader.ReadLine();
+
+                    if (startLine == "[enemies]")
+                    {
+                        List<Entity> list = new List<Entity>();
+
+                        string line = reader.ReadLine();
+                        while (line != "[end]")
+                        {
+                            list.Add(Entity.Deserialize(line, "enemy", this));
+                            line = reader.ReadLine();
+                        }
+
+                        current_Enemies = list;
+                    }
+
+                    else if (startLine == "[queuedEnemies]")
+                    {
+                        List<Entity> list = new List<Entity>();
+
+                        string line = reader.ReadLine();
+                        while (line != "[end]")
+                        {
+                            list.Add(Entity.Deserialize(line, "enemy", this));
+                            line = reader.ReadLine();
+                        }
+
+                        enemie_Que = list;
+                    }
+
+                    else if (startLine == "[player]")
+                    {
+                        string line = reader.ReadLine();
+                        player = Entity.Deserialize(line, "player", this) as Player;
+                    }
+
+                    else if (startLine == "[playerBullets]")
+                    {
+                        List<Bullet> list = new List<Bullet>();
+
+                        string line = reader.ReadLine();
+                        while (line != "[end]")
+                        {
+                            list.Add(Entity.Deserialize(line, "playerBullet", this) as Bullet);
+                            line = reader.ReadLine();
+                        }
+
+                        player_fire = list;
+                    }
+
+                    else if (startLine == "[defaults]")
+                    {
+                        //2,10,1337
+                        string[] res = reader.ReadLine().Split(',');
+
+                        if (res[0] == "Level_1")
+                            level = Level.Level_1;
+                        else if (res[0] == "Level_2")
+                            level = Level.Level_2;
+                        else if (res[0] == "Boss")
+                            level = Level.Boss;
+
+                        score = Convert.ToInt32(res[1]);
+                        base_Speed = Convert.ToInt32(res[2]);
+                    }
+                }
             }
         }
 

@@ -36,7 +36,53 @@ namespace Model
 
         public abstract string Serialize();
 
-        //implement a factory method deserialize for every entity
+        public static Entity Deserialize(string code, string type, GameController game)
+        {
+            string[] des = code.Split(',');
+            Entity result = null;
+
+            if (type == "enemy") {
+                if (des[0] == "bullet")
+                {
+                    result = new Bullet(Convert.ToInt32(des[1]), Convert.ToInt32(des[2]));
+                    (result as Bullet).direction = -1;
+                    return result;
+                }
+                else if (des[0] == "asteroid")
+                {
+                    result = new Asteroid(Convert.ToInt32(des[2]), Convert.ToInt32(des[3]));
+                    (result as Asteroid).health = Convert.ToInt32(des[1]);
+                    return result;
+                }
+                else if(des[0] == "formation")
+                {
+                }
+                else if(des[0] == "boss")
+                {
+                }
+                else if(des[0] == "powerup")
+                {
+                }
+                else
+                {
+                    throw new Exception("Enemy type Unknown.");
+                }
+
+            }
+            else if(type == "player")
+            {
+                result = new Player(Convert.ToInt32(des[0]), Convert.ToInt32(des[1]), Convert.ToInt32(des[3]), Convert.ToInt32(des[4]), game);
+                if (des[2] == "Power")
+                    (result as Player).powerup = powerup.Power;
+            }
+            else if(type == "playerBullet")
+            {
+                result = new Bullet(Convert.ToInt32(des[1]), Convert.ToInt32(des[2]));
+                (result as Bullet).direction = 1;
+                return result;
+            }
+            return result;
+        }
     }
 
     public class Powerup:Entity
