@@ -26,8 +26,11 @@ namespace SpaceAce
 
         public void update()
         {
-            Canvas.SetTop(i, e.loc.Y);
-            Canvas.SetLeft(i, e.loc.X);
+            if (e != null)
+            {
+                Canvas.SetTop(i, e.loc.Y);
+                Canvas.SetLeft(i, e.loc.X);
+            }
         }
     }
     public partial class GameWindow : Window
@@ -87,8 +90,7 @@ namespace SpaceAce
             // Update GUI
             foreach(Icon ic in icons)
             {
-                Canvas.SetTop(ic.i, ic.e.loc.Y);
-                Canvas.SetLeft(ic.i, ic.e.loc.X);
+                ic.update();
             }
 
             //if(cltr.difficulty == Difficulty.Easy)
@@ -119,7 +121,7 @@ namespace SpaceAce
 
                         // The Index is crashing
                         int ind = cltr.current_Enemies.Count;
-                        //icons.Add(new Icon() {i = img,e = cltr.current_Enemies[ind] });
+                        icons.Add(new Icon() {i = img,e = cltr.current_Enemies[ind-1] });
                         // -----
 
                         cltr.enemie_Que.RemoveAt(0); // Remove from spawn QUE
