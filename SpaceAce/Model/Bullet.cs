@@ -26,7 +26,7 @@ namespace Model
         public override void UpdatePosition()
         {
             //TODO: move bullet in correct direction
-            X += 10 * direction;
+            X += 15 * direction;
             //throw new NotImplementedException();
            
         }
