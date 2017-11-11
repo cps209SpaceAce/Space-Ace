@@ -26,8 +26,10 @@ namespace SpaceAce
 
         public void update()
         {
+            
             Canvas.SetTop(i, e.loc.Y);
             Canvas.SetLeft(i, e.loc.X);
+        
         }
     }
     public partial class GameWindow : Window
@@ -87,8 +89,7 @@ namespace SpaceAce
             // Update GUI
             foreach(Icon ic in icons)
             {
-                Canvas.SetTop(ic.i, ic.e.loc.Y);
-                Canvas.SetLeft(ic.i, ic.e.loc.X);
+                ic.update();
             }
 
             //if(cltr.difficulty == Difficulty.Easy)
@@ -106,23 +107,25 @@ namespace SpaceAce
                 {
                     if (index < cltr.enemie_Que.Count)
                     {
-                        cltr.current_Enemies.Add(cltr.enemie_Que[0]); // Add to Model
+                        if (cltr.enemie_Que[0] != null)
+                        {
+                            cltr.current_Enemies.Add(cltr.enemie_Que[0]); // Add to Model
 
-                        // ----- Something like this for 
-                        // ----- cltr.enemie_Que[index];
-                        Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "Ship 1.png", UriKind.Relative)) };
-                        WorldCanvas.Children.Add(img);
-                        img.Width = 50;
-                        Canvas.SetLeft(img, 0);
-                        Canvas.SetTop(img, 0);
-                        // THIS VVV
+                            // ----- Something like this for 
+                            // ----- cltr.enemie_Que[index];
+                            Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "Ship 1.png", UriKind.Relative)) };
+                            WorldCanvas.Children.Add(img);
+                            img.Width = 50;
+                            Canvas.SetLeft(img, 0);
+                            Canvas.SetTop(img, 0);
+                            // THIS VVV
 
-                        // The Index is crashing
-                        int ind = cltr.current_Enemies.Count;
-                        //icons.Add(new Icon() {i = img,e = cltr.current_Enemies[ind] });
-                        // -----
+                            // The Index is crashing
+                            icons.Add(new Icon() { i = img, e = cltr.current_Enemies[cltr.current_Enemies.Count - 1] });
+                            // -----
 
-                        cltr.enemie_Que.RemoveAt(0); // Remove from spawn QUE
+                            cltr.enemie_Que.RemoveAt(0); // Remove from spawn QUE
+                        }
                     }
                 }
             }
