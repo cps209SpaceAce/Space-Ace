@@ -74,14 +74,45 @@ namespace SpaceAce
 
         }
 
-        public void Timer_Tick(object sender, EventArgs e)
+
+
+        public enum Id { player, computer }
+
+        public void MakeBullet(Id id)
+        {
+            if (id == Id.player)
+            {
+                Player p = cltr.player;
+                double y = p.Y + 13;
+                double x = p.X + 50;
+                Bullet b = new Bullet(x, y);
+                cltr.player_fire.Add(b);
+                Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "asteroid.png", UriKind.Relative)) };
+                img.Width = 10;
+                Icon i = new Icon() { i = img, e = b };
+                i.update();
+                WorldCanvas.Children.Add(img);
+                icons.Add(i);
+            }
+        }
+
+
+            public void Timer_Tick(object sender, EventArgs e)
         {
             cltr.player.UpdatePosition(); // Update the Player Positions
             cltr.UpdateWorld();           // Update the Model
             SpawnEntities();              // Spawn Entities
 
+            if (cltr.player.FiredABullet == true)
+            {
+                MakeBullet(Id.player);
+                cltr.player.FiredABullet = false;
+            }
+
+
+
             // Update GUI
-            foreach(Icon ic in icons)
+            foreach (Icon ic in icons)
                 ic.update();
 
             //if(cltr.difficulty == Difficulty.Easy)
