@@ -24,7 +24,6 @@ namespace Model
     interface ISerialiable
     {
         string Serialize();
-        Entity Deserialize(string code);
     }
 
     public class GameController

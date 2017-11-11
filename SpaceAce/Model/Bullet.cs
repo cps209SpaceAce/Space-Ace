@@ -28,7 +28,7 @@ namespace Model
 
         public override string Serialize()
         {
-            return "bullet" + "," + loc.X + "," + loc.Y; //JOANNA: x,y only for now
+            return "bullet" + "," + loc.X + "," + loc.Y;
         }
 
         public override Entity Deserialize(string code)

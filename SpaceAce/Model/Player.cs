@@ -111,8 +111,11 @@ namespace Model
             return loc.X + "," + loc.Y + "," + powerup + "," + lives + "," + bombs;
         }
 
-        public override Entity Deserialize(string code)
+        public static Entity Deserialize(string code, GameController game)
         {
+            string[] des = code.Split(',');
+            Player p = new Player(new Point(Convert.ToInt32( des[0]), Convert.ToInt32(des[1])), Convert.ToInt32(des[3]), Convert.ToInt32(des[4]), game);
+            //if()
             return null;
         }
     }

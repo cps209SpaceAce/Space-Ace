@@ -31,8 +31,7 @@ namespace Model
 
         public override string Serialize()
         {
-            return "boss" + "," + loc.X + "," + loc.Y; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
-        }
+            return "boss" + "," + loc.X + "," + loc.Y; 
 
         public override Entity Deserialize(string code)
         {
