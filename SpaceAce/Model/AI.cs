@@ -28,12 +28,9 @@ namespace Model
          
         }
 
-        public override string Serialize() 
-        {
-            return "ai" + "," + X + "," + Y; //JOANNA: x,y only for now;
+        public override string Serialize() {
+            return "ai" + "," + X + "," + Y + "," + Flightpath;
         }
-
-        //static factory method deserialize in all children
     }
     public class Formation : AI
     {
@@ -68,11 +65,6 @@ namespace Model
         {
             return "formation" + "," + X + "," + Y + "," + Flightpath;
         }
-
-        public static Formation Deserialize(string code)
-        {
-            return null;
-        }
     }
     public class Tracker : AI
     {
@@ -91,11 +83,6 @@ namespace Model
         public override string Serialize()
         {
             return "tracker" + "," + X + "," + Y; //JOANNA: x,y only for now;
-        }
-
-        public static Tracker Deserialize(string code)
-        {
-            return null;
         }
     }
 }

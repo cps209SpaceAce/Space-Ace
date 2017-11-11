@@ -169,6 +169,10 @@ namespace Model
         }
         public void Load(string fileName)
         {
+            enemie_Que.Clear();
+            current_Enemies.Clear();
+            player_fire.Clear();
+
             using (StreamReader reader = new StreamReader(fileName))
             {
                 while (!reader.EndOfStream)

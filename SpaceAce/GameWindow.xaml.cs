@@ -45,12 +45,15 @@ namespace SpaceAce
 
         public DispatcherTimer timer;
 
-        public GameWindow(Difficulty setDiff)
+        public GameWindow(Difficulty setDiff, bool isLoad) //Joanna: isLoad checks whether to load game or start new one
         {
             InitializeComponent();
             // Load from levels
 
             cltr = new GameController(setDiff);
+
+            if (isLoad)
+                cltr.Load("SaveData.txt");
         }
         // Don't Delete this VVV
         //WindowState="Maximized"
@@ -58,6 +61,7 @@ namespace SpaceAce
 
         public void Window_Loaded2(Object sender, RoutedEventHandler stuff)
         {
+
             // Create Player
             Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "spaceship-hi.png", UriKind.Relative)) };
             WorldCanvas.Children.Add(img);
@@ -201,6 +205,12 @@ namespace SpaceAce
                 case Key.B:
                     cltr.bomb = true;
                     break;
+
+                case Key.S:
+                    cltr.Save("SaveData.txt"); //added by JOANNA
+                    //also, would ctrl be a better name though?
+                    break;
+
                 default:
                     break;
             }

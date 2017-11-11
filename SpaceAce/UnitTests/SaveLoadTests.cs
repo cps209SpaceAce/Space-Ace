@@ -260,6 +260,56 @@ public class LoadSaveTests
         Assert.IsTrue(ctrl.level == Level.Level_2);
 
     }
+
+    [TestMethod]
+    public void Load_FullGame_Success()
+    {
+        GameController ctrl = new GameController();
+
+        using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
+        {
+            writer.WriteLine("[enemies]");
+            writer.WriteLine("asteroid,1,30,20");
+            writer.WriteLine("ai,200,600,Cos");
+            writer.WriteLine("ai,20,20,Cos");
+            writer.WriteLine("ai,80,80,Cos");
+            writer.WriteLine("[end]");
+
+            writer.WriteLine("[queuedEnemies]");
+            writer.WriteLine("ai,100,200,Cos");
+            writer.WriteLine("ai,23,30,Cos");
+            writer.WriteLine("asteroid,1,30,30");
+            writer.WriteLine("[end]");
+
+            writer.WriteLine("[player]");
+            writer.WriteLine("40,30,Power,4,8");
+            writer.WriteLine("[end]");
+
+            writer.WriteLine("[defaults]");
+            writer.WriteLine("Level_2,10,1337");
+            writer.WriteLine("[end]");
+        }
+
+        ctrl.Load("TestLoad.txt");
+
+        Assert.IsTrue(ctrl.base_Speed == 1337);
+        Assert.IsTrue(ctrl.score == 10);
+        Assert.IsTrue(ctrl.level == Level.Level_2);
+        Assert.IsTrue(ctrl.player.X == 40);
+        Assert.IsTrue(ctrl.player.Y == 30);
+        Assert.IsTrue(ctrl.player.powerup == powerup.Power);
+        Assert.IsTrue(ctrl.player.lives == 4);
+        Assert.IsTrue(ctrl.player.bombs == 8);
+
+        Assert.IsTrue(ctrl.enemie_Que.Count == 3);
+        Assert.IsTrue(ctrl.enemie_Que[0].X == 100);
+        Assert.IsTrue(ctrl.enemie_Que[0].Y == 200);
+
+        Assert.IsTrue(ctrl.current_Enemies.Count == 4);
+        Assert.IsTrue(ctrl.current_Enemies[0].X == 30);
+        Assert.IsTrue(ctrl.current_Enemies[0].Y == 20);
+
+    }
 }
 
 

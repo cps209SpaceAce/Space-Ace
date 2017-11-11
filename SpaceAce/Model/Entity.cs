@@ -63,6 +63,21 @@ namespace Model
                 else if(des[0] == "powerup")
                 {
                 }
+                else if (des[0] == "ai")
+                {
+                    pattern flight = pattern.Straight;
+                    if (des[3] == "Cos")
+                        flight = pattern.Cos;
+                    else if (des[3] == "Sin")
+                        flight = pattern.Sin;
+                    else if (des[3] == "Tan")
+                        flight = pattern.Tan;
+                    else if (des[3] == "Straight")
+                        flight = pattern.Straight;
+
+                    result = new AI(Convert.ToInt32(des[1]), Convert.ToInt32(des[2]), flight);
+                    return result;
+                }
                 else
                 {
                     throw new Exception("Enemy type Unknown.");

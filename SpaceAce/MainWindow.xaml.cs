@@ -43,13 +43,13 @@ namespace SpaceAce
         }
         private void btnNewGame_Click(object sender, RoutedEventArgs e)
         {
-            GameWindow gameWindow = new GameWindow(menuDiff);
+            GameWindow gameWindow = new GameWindow(menuDiff, false);
             gameWindow.Show();
         }
         private void btnLoadGame_Click(object sender, RoutedEventArgs e)
         {
             // Not menuDiff
-            GameWindow gameWindow = new GameWindow(menuDiff);
+            GameWindow gameWindow = new GameWindow(menuDiff, true);
             
             // Load Game
 
