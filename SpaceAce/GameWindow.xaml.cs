@@ -106,7 +106,7 @@ namespace SpaceAce
                 {
                     if (index < cltr.enemie_Que.Count)
                     {
-                        cltr.current_Enemies.Add(cltr.enemie_Que[index]); // Add to Model
+                        cltr.current_Enemies.Add(cltr.enemie_Que[0]); // Add to Model
 
                         // ----- Something like this for 
                         // ----- cltr.enemie_Que[index];
@@ -118,11 +118,11 @@ namespace SpaceAce
                         // THIS VVV
 
                         // The Index is crashing
-
-                        //icons.Add(new Icon() {i = images[0],e = cltr.enemie_Que[index] });
+                        int ind = cltr.current_Enemies.Count;
+                        //icons.Add(new Icon() {i = img,e = cltr.current_Enemies[ind] });
                         // -----
 
-                        cltr.enemie_Que.RemoveAt(index); // Remove from spawn QUE
+                        cltr.enemie_Que.RemoveAt(0); // Remove from spawn QUE
                     }
                 }
             }

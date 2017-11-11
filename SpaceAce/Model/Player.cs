@@ -82,19 +82,23 @@ namespace Model
         {
             if (game.up)
             {
-                Up();
+                if (this.loc.Y > 0)
+                    Up();
             }
             if (game.down)
             {
-                Down();
+                if (this.loc.Y < 768 - 50)
+                    Down();
             }
             if (game.left)
             {
-                Left();
+                if (this.loc.X > 0)
+                    Left();
             }
             if (game.right)
             {
-                Right();
+                if (this.loc.X < 1024 - 50)
+                    Right();
             }
             if (game.fired)
             {
