@@ -70,27 +70,20 @@ namespace SpaceAce
             // Start Timer
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Tick += Timer_Tick;
-            timer.Interval = new TimeSpan(0, 0, 0,0,10);
+            timer.Interval = new TimeSpan(0, 0, 0,10,10);
             timer.Start();
-
-            
 
         }
 
         public void Timer_Tick(object sender, EventArgs e)
         {
-            cltr.player.UpdatePosition();
-            //Icon i = icons[0];
-            //Canvas.SetTop(i.i, i.e.loc.Y);
-            //Canvas.SetLeft(i.i, i.e.loc.X);
-            cltr.UpdateWorld(); // Update the Model
-            SpawnEntities();    // Spawn Entities
+            cltr.player.UpdatePosition(); // Update the Player Positions
+            cltr.UpdateWorld();           // Update the Model
+            SpawnEntities();              // Spawn Entities
 
             // Update GUI
             foreach(Icon ic in icons)
-            {
                 ic.update();
-            }
 
             //if(cltr.difficulty == Difficulty.Easy)
             //{Console.WriteLine("EASY");}
@@ -110,9 +103,6 @@ namespace SpaceAce
                         if (cltr.enemie_Que[0] != null)
                         {
                             cltr.current_Enemies.Add(cltr.enemie_Que[0]); // Add to Model
-
-                            // ----- Something like this for 
-                            // ----- cltr.enemie_Que[index];
                             Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "Ship 1.png", UriKind.Relative)) };
                             WorldCanvas.Children.Add(img);
                             img.Width = 50;
@@ -144,11 +134,13 @@ namespace SpaceAce
                     if (!isPaused)
                     {
                         timer.Stop();
+                        isPaused = true;
                         // Display Pause Menu
                     }
                     else
                     {
                         timer.Start();
+                        isPaused = false;
                         // Close Pause Menu
                     }
                     break; //TODO: pause game
