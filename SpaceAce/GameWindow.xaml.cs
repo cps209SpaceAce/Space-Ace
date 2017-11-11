@@ -27,8 +27,8 @@ namespace SpaceAce
         public void update()
         {
             
-            Canvas.SetTop(i, e.loc.Y);
-            Canvas.SetLeft(i, e.loc.X);
+            Canvas.SetTop(i, e.Y);
+            Canvas.SetLeft(i, e.X);
         
         }
     }
@@ -89,6 +89,18 @@ namespace SpaceAce
             //{Console.WriteLine("EASY");}
             //else{Console.WriteLine("OTHER");}
         }
+        public enum Id {player, computer}
+
+        public void Bullet(Id id)
+        {
+            if (id == Id.player)
+            {
+                Player p = cltr.player;
+                double x = p.X + 1;
+                cltr.player_fire.Add(new Bullet(x,p.Y));
+            }
+        }
+
         // Spawing Logic - Every 5 Seconds - Pop 5
         private void SpawnEntities()
         {

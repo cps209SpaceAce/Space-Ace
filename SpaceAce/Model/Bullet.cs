@@ -11,7 +11,7 @@ namespace Model
     public class Bullet : Entity
     {
         int direction = 1;
-        public Bullet(Point loc) : base(loc) { }
+        public Bullet(double X, double Y) : base(X,Y) { }
         //friendly means it does not hit player
         // id determines direction of travel
         public ID id;
@@ -21,16 +21,17 @@ namespace Model
             throw new NotImplementedException();
         }
 
-        public override Point UpdatePosition()
+        public override void UpdatePosition()
         {
             //TODO: move bullet in correct direction
-            loc.X += 5 * direction;
+            X += 5 * direction;
             //throw new NotImplementedException();
+           
         }
 
         public override string Serialize()
         {
-            return "bullet" + "," + loc.X + "," + loc.Y; //JOANNA: x,y only for now
+            return "bullet" + "," + X + "," + Y; //JOANNA: x,y only for now
         }
 
         public override Entity Deserialize(string code)
