@@ -113,8 +113,8 @@ namespace Model
                 {
                     if (player.Hit())
                         Restart();
-                    enemy.Hit();
-                    dead_Badguy.Add(enemy);
+                    if(enemy.Hit())
+                        dead_Badguy.Add(enemy);
                 }
             }
             //Player Bullets vs. entities
@@ -140,6 +140,10 @@ namespace Model
         }
 
         //------------- Bomb logic -------------//
+        /// <summary>
+        /// Destroys all enemys: bombing asteroids is currently broken
+        /// also resets the current enemies
+        /// </summary>
         public void Bomb()
         {
             foreach (Entity e in current_Enemies)

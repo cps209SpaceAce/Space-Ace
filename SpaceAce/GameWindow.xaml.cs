@@ -36,7 +36,7 @@ namespace SpaceAce
                 }
             }
             return false;
-        
+         
         }
     }
     public partial class GameWindow : Window
