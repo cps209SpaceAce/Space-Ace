@@ -8,8 +8,8 @@ using System.Web.Script.Serialization;
 
 namespace Model
 {
-    
-    
+
+
     class HighScore
     {
         public string Name;       // Name
@@ -18,13 +18,26 @@ namespace Model
         public int Score;         // Final Score
         public string ShipImage;
 
-        public HighScore(string name, Level level, Difficulty diff, int score, string shipimage )
+
+        public HighScore(string name, Level level, Difficulty diff, int score, string shipimage)
         {
-           Name = name;
-           Level = level;
-           Diff = diff;        
-           Score = score;
-           ShipImage = shipimage;
+            Name = name;
+            Level = level;
+            Diff = diff;
+            Score = score;
+            ShipImage = shipimage;
+        }
+        public override string ToString()
+        {
+            string lev = "";
+            if (Level == Level.Level_1)
+                lev = "Level 1";
+            else if (Level == Level.Level_2)
+                lev = "Level 2";
+            else if (Level == Level.Boss)
+                lev = "Boss";
+
+            return Name + ": " + lev + ", " + Diff + ". Score: " + Score;
         }
     }
 
@@ -32,20 +45,25 @@ namespace Model
     class HighScoreManager
     {
         // List of HighScores saved
-        public List<HighScore> highScores { get; set; }
+        public List<HighScore> highScores;
 
-
+        public HighScoreManager()
+        {
+            highScores = new List<HighScore>();
+        }
         /// On startup - Load from JSON file
         /// List of HighScores.
-        public  void Load()
+        public void Load()
         {
             // Read JSON File
-            string loadString = File.ReadAllText(Environment.CurrentDirectory + @"\JSON.txt");
+            string loadString = File.ReadAllText(Environment.CurrentDirectory + @"/JSON.txt");
 
             // Convert to list
             // load to HighScores     
-            highScores = new JavaScriptSerializer().Deserialize<List<HighScore>>(loadString);
-            
+            List<HighScore> list = new JavaScriptSerializer().Deserialize<List<HighScore>>(loadString);
+            if (list != null)
+                highScores = list;
+
         }
 
 
@@ -70,8 +88,8 @@ namespace Model
             // Write to file
             File.WriteAllText(Environment.CurrentDirectory + @"\JSON.txt", json);
         }
-        
-        
+
+
     }
 
     // http://matijabozicevic.com/blog/csharp-net-development/csharp-serialize-object-to-json-format-using-javascriptserialization
