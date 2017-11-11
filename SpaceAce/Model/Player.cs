@@ -8,14 +8,15 @@ using System.Threading.Tasks;
 namespace Model
 {
     public enum powerup {Power}
-
+    
     public class Player: Entity
 
     {
+        public int cooldown = 0;
         public int lives { get; set; }
         public int bombs { get; set; }
         public powerup powerup { get; set; }
-        public bool FiredABullet = false;
+        
 
         private GameController game;
 
@@ -28,12 +29,16 @@ namespace Model
             //TODO: setup player
         }
 
-        public Bullet Fire()
+        public void Fire()
         {
-            FiredABullet = true;
+            if (cooldown == 0)
+            {
+                FiredABullet = true;
+                cooldown = 50; // Rate of fire: bigger = slower.
+            }
             //TODO: create a bullet object (with id = friendly) at a point infront of the player
             // with a heading towards th right
-            return null;
+            
         }
 
         public void Activate_powerup()
@@ -82,6 +87,9 @@ namespace Model
         //handles when the player is idle
         public override void UpdatePosition()
         {
+            if(cooldown > 0)
+            cooldown--;
+
             if (game.up)
             {
                 if (this.Y > 0)
