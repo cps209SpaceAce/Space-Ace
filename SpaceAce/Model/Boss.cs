@@ -34,7 +34,7 @@ namespace Model
             return "boss" + "," + X + "," + Y; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
         }
 
-        public override Entity Deserialize(string code)
+        public static Boss Deserialize(string code)
         {
             return null;
         }
