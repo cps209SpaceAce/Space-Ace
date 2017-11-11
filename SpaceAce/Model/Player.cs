@@ -47,6 +47,11 @@ namespace Model
         }
         public void DropBomb()
         {
+            if (bombs != 0)
+            {
+                game.Bomb();
+                bombs--;
+            }
             //TODO: damage all badguys
         }
 

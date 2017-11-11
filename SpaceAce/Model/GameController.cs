@@ -139,6 +139,14 @@ namespace Model
                 player_fire.Remove(b);
         }
 
+        //------------- Bomb logic -------------//
+        public void Bomb()
+        {
+            foreach (Entity e in current_Enemies)
+                e.Hit();
+            current_Enemies = new List<Entity>();
+        }
+
         //-----------  Load - Save  ------------//
 
         public void Save(string fileName)
