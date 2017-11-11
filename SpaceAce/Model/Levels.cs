@@ -14,7 +14,7 @@ namespace Model
         public static List<Entity> Level1()
         {
             //TODO Create list of enemies for level 1
-            AI A  = new AI(new Point(1500, 250), pattern.Straight);
+            AI A  = new AI(new Point(1000, 250), pattern.Straight);
             AI B = new AI(new Point(1500, 400), pattern.Straight);
             AI C    = new AI(new Point(1500, 650), pattern.Straight);
 

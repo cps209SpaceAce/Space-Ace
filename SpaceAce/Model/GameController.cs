@@ -58,6 +58,7 @@ namespace Model
             // OR
             //TODO: get enemies for level from Level
             enemie_Que = Levels.Level1();
+            difficulty = passDiff;
 
         }
 

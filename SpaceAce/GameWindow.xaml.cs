@@ -47,6 +47,8 @@ namespace SpaceAce
         public GameWindow(Difficulty setDiff)
         {
             InitializeComponent();
+            // Load from levels
+
             cltr = new GameController(setDiff);
         }
         // Don't Delete this VVV
@@ -55,6 +57,7 @@ namespace SpaceAce
 
         public void Window_Loaded2(Object sender, RoutedEventHandler stuff)
         {
+            // Create Player
             Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "spaceship-hi.png", UriKind.Relative)) };
             WorldCanvas.Children.Add(img);
             img.Width = 50;
@@ -62,48 +65,71 @@ namespace SpaceAce
             Canvas.SetTop(img,0);
             icons.Add(new Icon() { i = images[0], e = cltr.player });
 
+            // Start Timer
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Tick += Timer_Tick;
             timer.Interval = new TimeSpan(0, 0, 0,0,10);
             timer.Start();
-            // Create New canvas items
 
-            // Start Timer
-
-            // Take diff from ctrl
-            // Load from levels
+            
 
         }
 
         public void Timer_Tick(object sender, EventArgs e)
         {
             cltr.player.UpdatePosition();
-            Icon i = icons[0];
-            Canvas.SetTop(i.i, i.e.loc.Y);
-            Canvas.SetLeft(i.i, i.e.loc.X);
-            cltr.UpdateWorld();
-            
+            //Icon i = icons[0];
+            //Canvas.SetTop(i.i, i.e.loc.Y);
+            //Canvas.SetLeft(i.i, i.e.loc.X);
+            cltr.UpdateWorld(); // Update the Model
+            SpawnEntities();    // Spawn Entities
 
-            // Spawing Logic - Every 5 Seconds - Pop 5
+            // Update GUI
+            foreach(Icon ic in icons)
+            {
+                Canvas.SetTop(ic.i, ic.e.loc.Y);
+                Canvas.SetLeft(ic.i, ic.e.loc.X);
+            }
+
+            //if(cltr.difficulty == Difficulty.Easy)
+            //{Console.WriteLine("EASY");}
+            //else{Console.WriteLine("OTHER");}
+        }
+        // Spawing Logic - Every 5 Seconds - Pop 5
+        private void SpawnEntities()
+        {
+
             if (spawnCounter > 4)
             {
-                Console.WriteLine("SPAWNCOUNTER > 0");
                 spawnCounter = 0;
                 for (int index = 0; index < 5; ++index)  // Pop 5 and add to current_Enimies
                 {
                     if (index < cltr.enemie_Que.Count)
                     {
-                        cltr.current_Enemies.Add(cltr.enemie_Que[index]);
-                        cltr.enemie_Que.RemoveAt(index);
+                        cltr.current_Enemies.Add(cltr.enemie_Que[index]); // Add to Model
+
+                        // ----- Something like this for 
+                        // ----- cltr.enemie_Que[index];
+                        Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "Ship 1.png", UriKind.Relative)) };
+                        WorldCanvas.Children.Add(img);
+                        img.Width = 50;
+                        Canvas.SetLeft(img, 0);
+                        Canvas.SetTop(img, 0);
+                        // THIS VVV
+
+                        // The Index is crashing
+
+                        //icons.Add(new Icon() {i = images[0],e = cltr.enemie_Que[index] });
+                        // -----
+
+                        cltr.enemie_Que.RemoveAt(index); // Remove from spawn QUE
                     }
                 }
             }
             else
             {
-                Console.WriteLine("++");
                 ++spawnCounter;
             }
-
         }
 
 
