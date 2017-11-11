@@ -77,15 +77,17 @@ namespace SpaceAce
 
         public void Timer_Tick(object sender, EventArgs e)
         {
-
-            //Icon i = icons[0];
-            //Canvas.SetTop(i.i, i.e.loc.Y);
-            //Canvas.SetLeft(i.i, i.e.loc.X);
+            cltr.player.UpdatePosition();
+            Icon i = icons[0];
+            Canvas.SetTop(i.i, i.e.loc.Y);
+            Canvas.SetLeft(i.i, i.e.loc.X);
             cltr.UpdateWorld();
+            
 
             // Spawing Logic - Every 5 Seconds - Pop 5
             if (spawnCounter > 4)
             {
+                Console.WriteLine("SPAWNCOUNTER > 0");
                 spawnCounter = 0;
                 for (int index = 0; index < 5; ++index)  // Pop 5 and add to current_Enimies
                 {
@@ -96,7 +98,11 @@ namespace SpaceAce
                     }
                 }
             }
-            else {++spawnCounter;}
+            else
+            {
+                Console.WriteLine("++");
+                ++spawnCounter;
+            }
 
         }
 
