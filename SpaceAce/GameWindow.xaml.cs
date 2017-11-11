@@ -44,6 +44,7 @@ namespace SpaceAce
         public bool isPaused = false;
 
         public DispatcherTimer timer;
+        public string currentLevel = "Level 1";
 
         public GameWindow(Difficulty setDiff, bool isLoad) //Joanna: isLoad checks whether to load game or start new one
         {
