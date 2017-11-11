@@ -36,7 +36,7 @@ namespace Model
 
         public abstract string Serialize();
 
-        public abstract Entity Deserialize(string code);
+        //implement a factory method deserialize for every entity
     }
 
     public class Powerup:Entity
@@ -57,7 +57,7 @@ namespace Model
             //please provide a way to detect the powerup's type
         }
 
-        public override Entity Deserialize(string code)
+        public static Powerup Deserialize(string code)
         {
             return null;
         }
@@ -83,10 +83,10 @@ namespace Model
 
         public override string Serialize()
         {
-            return "asteroid" + "," + X + "," + Y; ;
+            return "asteroid" + "," + health + "," + X + "," + Y;
         }
 
-        public override Entity Deserialize(string code)
+        public static Entity Deserialize(string code)
         {
             return null;
         }

@@ -34,7 +34,7 @@ namespace Model
             return "bullet" + "," + X + "," + Y; //JOANNA: x,y only for now
         }
 
-        public override Entity Deserialize(string code)
+        public static Bullet Deserialize(string code)
         {
             return null;
         }

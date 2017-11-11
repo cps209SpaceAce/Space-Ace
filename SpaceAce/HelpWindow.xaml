@@ -10,6 +10,7 @@
         <ImageBrush ImageSource="Images\titleScreenBackground.png"></ImageBrush>
     </Window.Background>
     <Grid>
-        
+        <Button Content="Close Window" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
+            Margin="720,634,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="Button_Click"/>
     </Grid>
 </Window>

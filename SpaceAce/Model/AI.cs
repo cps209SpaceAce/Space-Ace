@@ -33,10 +33,7 @@ namespace Model
             return "ai" + "," + X + "," + Y; //JOANNA: x,y only for now;
         }
 
-        public override Entity Deserialize(string code)
-        {
-            return null;
-        }
+        //static factory method deserialize in all children
     }
     public class Formation : AI
     {
@@ -70,10 +67,10 @@ namespace Model
 
         public override string Serialize()
         {
-            return "formation" + "," + X + "," + Y; //JOANNA: x,y only for now
+            return "formation" + "," + X + "," + Y + "," + Flightpath;
         }
 
-        public override Entity Deserialize(string code)
+        public static Formation Deserialize(string code)
         {
             return null;
         }
@@ -97,7 +94,7 @@ namespace Model
             return "tracker" + "," + X + "," + Y; //JOANNA: x,y only for now;
         }
 
-        public override Entity Deserialize(string code)
+        public static Tracker Deserialize(string code)
         {
             return null;
         }

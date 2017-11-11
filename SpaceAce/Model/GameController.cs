@@ -61,6 +61,14 @@ namespace Model
 
         }
 
+        //written by Joanna, i need a blank slate for testing, 
+        //no need to use this for anything else though
+        public GameController()
+        {
+            player = new Player(50, 350, 3, 3, this);
+            enemie_Que = new List<Entity>();
+        }
+
         public void UpdateWorld()// Each tick of timer will call this.
         {
 
@@ -133,7 +141,8 @@ namespace Model
                 if (enemie_Que != null && enemie_Que.Count > 0)
                 {
                     writer.WriteLine("[queuedEnemies]");
-                    for (int i = 0; i < enemie_Que.Count; i++) ; //TODO how does one traverse the 2D array?
+                    for (int i = 0; i < enemie_Que.Count; i++)
+                       writer.WriteLine( enemie_Que[i].Serialize());
                     writer.WriteLine("[end]");
                 }
 
@@ -153,19 +162,17 @@ namespace Model
                 }
 
                 writer.WriteLine("[defaults]");
-                writer.WriteLine(level + "," + score.ToString() + "," + base_Speed.ToString());
+                writer.WriteLine(level + "," + score + "," + base_Speed);
                 writer.WriteLine("[end]");
 
             }
         }
-        public GameController Load(string fileName)
+        public void Load(string fileName)
         {
-            //TODO: make check if file exists, if no file exists, create world with default settings
-
-            //TODO: read from file and create entities with the specifications found in the file
-
-            //Returns new GameController class with all the specifications in the file
-            return new GameController(Difficulty.Easy);
+            using (StreamReader reader = new StreamReader(fileName))
+            {
+                reader.ReadLine();
+            }
         }
 
     }

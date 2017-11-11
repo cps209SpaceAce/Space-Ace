@@ -32,6 +32,7 @@ namespace SpaceAce
 
             private void btnQuit_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
         }
     }
   

@@ -27,5 +27,10 @@ namespace SpaceAce
         public void Window_Loaded(Object sender, RoutedEventArgs stuff)
         {
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
