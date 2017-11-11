@@ -45,6 +45,8 @@ namespace SpaceAce
 
         public DispatcherTimer timer;
 
+        public string currentLevel = "Level 1";
+
         public GameWindow(Difficulty setDiff)
         {
             InitializeComponent();
@@ -108,7 +110,6 @@ namespace SpaceAce
                 MakeBullet(Id.player);
                 cltr.player.FiredABullet = false;
             }
-
             
             RemoveEntities();
 
@@ -117,6 +118,15 @@ namespace SpaceAce
             foreach (Icon ic in icons)
                 ic.update();
 
+            // Update Score GUI
+            labelScore.Content = "Score: " + cltr.score;
+            ++cltr.score;// Delete later
+
+            // Update Lives
+            // TODO: We can change to images for bonus
+            labelLives.Content = "Lives: " + String.Concat(Enumerable.Repeat("< ", cltr.player.lives));
+            labelBombs.Content = "Bombs: " + cltr.player.bombs;
+            labelLevel.Content = currentLevel;
         }
         public void RemoveEntities()
         {
@@ -127,9 +137,15 @@ namespace SpaceAce
         // Spawing Logic - Every 5 Seconds - Pop 5
         private void SpawnEntities()
         {
-
-            if (spawnCounter > 25)
+            
+            if (spawnCounter > 40)
             {
+
+                /*
+                 * Set 40 ^^^ to be based off of difficaulty
+                 * Only spawn 1 at a time
+                 * but faster = harder
+                 */
                 spawnCounter = 0;
                 for (int index = 0; index < 5; ++index)  // Pop 5 and add to current_Enimies
                 {
