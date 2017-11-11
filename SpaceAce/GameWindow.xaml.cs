@@ -92,7 +92,7 @@ namespace SpaceAce
         private void SpawnEntities()
         {
 
-            if (spawnCounter > 4)
+            if (spawnCounter > 25)
             {
                 spawnCounter = 0;
                 for (int index = 0; index < 5; ++index)  // Pop 5 and add to current_Enimies
@@ -102,8 +102,16 @@ namespace SpaceAce
                         if (cltr.enemie_Que[0] != null)
                         {
                             cltr.current_Enemies.Add(cltr.enemie_Que[0]); // Add to Model
+                            Image img = null;
+                            if (cltr.enemie_Que[0] is Asteroid)
+                            {
+                                img = new Image() { Source = new BitmapImage(new Uri("images/" + "asteroid.png", UriKind.Relative)) };
+                            }
+                            else if(cltr.enemie_Que[0] is AI)
+                            {
+                                img = new Image() { Source = new BitmapImage(new Uri("images/" + "Ship 1.png", UriKind.Relative)) };
+                            }
                             
-                            Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "Ship 1.png", UriKind.Relative)) };
                             WorldCanvas.Children.Add(img);
                             img.Width = 50;
                             Canvas.SetLeft(img, 0);

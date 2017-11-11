@@ -24,7 +24,7 @@ namespace Model
 
         public override void UpdatePosition() 
         {
-            X = Convert.ToInt32(X - (1 * speed));
+            X = (X - (0.5 * speed));
          
         }
 
@@ -50,7 +50,6 @@ namespace Model
         public override void UpdatePosition()
         {
             //TODO: move ship in a Pattern
-            throw new NotImplementedException();
             switch (this.Flightpath)
             {
                 case pattern.Sin:
