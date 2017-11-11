@@ -87,7 +87,7 @@ namespace SpaceAce
                 double x = p.X + 50;
                 Bullet b = new Bullet(x, y);
                 cltr.player_fire.Add(b);
-                Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "asteroid.png", UriKind.Relative)) };
+                Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "spaceship-hi.png", UriKind.Relative)) };
                 img.Width = 10;
                 Icon i = new Icon() { i = img, e = b };
                 i.update();
