@@ -10,6 +10,7 @@ namespace Model
     public enum ID { Friendly, Hostile }
     public class Bullet : Entity
     {
+        int direction = 1;
         public Bullet(Point loc) : base(loc) { }
         //friendly means it does not hit player
         // id determines direction of travel
@@ -23,7 +24,8 @@ namespace Model
         public override Point UpdatePosition()
         {
             //TODO: move bullet in correct direction
-            throw new NotImplementedException();
+            loc.X += 5 * direction;
+            //throw new NotImplementedException();
         }
 
         public override string Serialize()

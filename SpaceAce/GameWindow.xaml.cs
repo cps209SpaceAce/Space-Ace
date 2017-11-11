@@ -145,10 +145,12 @@ namespace SpaceAce
                     {
                         timer.Stop();
                         // Display Pause Menu
+                        isPaused = true;
                     }
                     else
                     {
                         timer.Start();
+                        isPaused = false;
                         // Close Pause Menu
                     }
                     break; //TODO: pause game
