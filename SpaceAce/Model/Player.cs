@@ -54,7 +54,8 @@ namespace Model
         {
             //TODO: remove one life(ship destroyed)
             //TODO: return true(ship destroyed)
-            throw new NotImplementedException();
+            //lives--;
+            return true;
         }
 
         public void Up()

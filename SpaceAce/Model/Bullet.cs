@@ -13,7 +13,11 @@ namespace Model
         //JOANA: i made direction public for save and load purposes
     
         public int direction = 1; // 1:moving right | -1:moving left
-        public Bullet(double X, double Y) : base(X,Y) { }
+        public Bullet(double X, double Y) : base(X,Y)
+        {
+            hitbox.Width = 5;
+            hitbox.Height = 5;
+        }
         //friendly means it does not hit player
         // id determines direction of travel
         public ID id;

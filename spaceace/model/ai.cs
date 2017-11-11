@@ -11,7 +11,7 @@ namespace Model
     public class AI : Entity
     {
         public pattern Flightpath;
-
+        
         
         public AI(double X, double Y, pattern flightpath) : base(X,Y)
         {
@@ -19,13 +19,16 @@ namespace Model
         
         public override bool Hit()
         {
-            throw new NotImplementedException();
+            alive = false;
+            return true;
         }
 
         public override void UpdatePosition() 
         {
             X = (X - (0.5 * speed));
-         
+            hitbox.X = Convert.ToInt32(X);
+            
+
         }
 
         public override string Serialize() {
@@ -57,6 +60,8 @@ namespace Model
                 case pattern.Tan:
                     break;
             }
+            hitbox.X = Convert.ToInt32(X);
+            hitbox.Y = Convert.ToInt32(Y);
             
         }
 

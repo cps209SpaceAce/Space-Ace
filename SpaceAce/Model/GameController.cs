@@ -68,6 +68,11 @@ namespace Model
             enemie_Que = new List<Entity>();
         }
 
+        public void Restart()
+        {
+
+        }
+
         public void UpdateWorld()// Each tick of timer will call this.
         {
 
@@ -100,16 +105,19 @@ namespace Model
         {
             List<Entity> dead_Badguy = new List<Entity>();
             List<Entity> dead_playerBullet = new List<Entity>();
-            // loop through
-            // Entities vs. player
-            //foreach (Entity enemy in current_Enemies)
-            //{
-            //    if (enemy.hitbox.IntersectsWith(player.hitbox))
-            //    {
-            //        player.Hit();
-            //    }
-            //}
-            // Player Bullets vs. entities
+            //loop through
+            //Entities vs. player
+            foreach (Entity enemy in current_Enemies)
+            {
+                if (enemy.hitbox.IntersectsWith(player.hitbox))
+                {
+                    if (player.Hit())
+                        Restart();
+                    enemy.Hit();
+                    dead_Badguy.Add(enemy);
+                }
+            }
+            //Player Bullets vs. entities
             foreach (Entity bullet in player_fire)
             {
                 foreach (Entity enemy in current_Enemies)
@@ -118,7 +126,7 @@ namespace Model
                     {
                         dead_playerBullet.Add(bullet);
                         bullet.Hit();
-                        if (enemy.Hit() == true)
+                        if (enemy.Hit())
                             dead_Badguy.Add(enemy);
                        
                     }
