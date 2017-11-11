@@ -118,7 +118,10 @@ namespace Model
             {
                 DropBomb();
             }
-            
+
+            hitbox.X = Convert.ToInt32(X);
+            hitbox.Y = Convert.ToInt32(Y);
+
         }
         public override string Serialize()
         {

@@ -19,6 +19,7 @@ namespace Model
         public Rectangle hitbox;
         public double X;
         public double Y;
+        public bool alive = true;
 
         public Entity(double X, double Y)
         {
@@ -138,8 +139,10 @@ namespace Model
         {
             //TODO: add movment logic: make it move in a straight line
             X = Convert.ToInt32(X - (1 * speed));
-            // Why are we returning a point?
+            hitbox.X = Convert.ToInt32(X);
             
+            // Why are we returning a point?
+
         }
 
         public override string Serialize()

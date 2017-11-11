@@ -91,22 +91,24 @@ namespace Model
 
 
             // loop through entites and detect collision
-            // DetectColl(); 
+            DetectColl(); 
 
             // Check if death
         }
 
         public void DetectColl()
         {
+            List<Entity> dead_Badguy = new List<Entity>();
+            List<Entity> dead_playerBullet = new List<Entity>();
             // loop through
             // Entities vs. player
-            foreach (Entity enemy in current_Enemies)
-            {
-                if (enemy.hitbox.IntersectsWith(player.hitbox))
-                {
-                    player.Hit();
-                }
-            }
+            //foreach (Entity enemy in current_Enemies)
+            //{
+            //    if (enemy.hitbox.IntersectsWith(player.hitbox))
+            //    {
+            //        player.Hit();
+            //    }
+            //}
             // Player Bullets vs. entities
             foreach (Entity bullet in player_fire)
             {
@@ -114,10 +116,19 @@ namespace Model
                 {
                     if (bullet.hitbox.IntersectsWith(enemy.hitbox))
                     {
-                        enemy.Hit();
+                        dead_playerBullet.Add(bullet);
+                        bullet.Hit();
+                        if (enemy.Hit() == true)
+                            dead_Badguy.Add(enemy);
+                       
                     }
                 }
             }
+            foreach (Entity e in dead_Badguy)
+                current_Enemies.Remove(e);
+            
+            foreach (Bullet b in dead_playerBullet)
+                player_fire.Remove(b);
         }
 
         //-----------  Load - Save  ------------//

@@ -24,10 +24,18 @@ namespace SpaceAce
         public Image i;
         public Entity e;
 
-        public void update()
-        {   
-            Canvas.SetTop(i, e.Y);
-            Canvas.SetLeft(i, e.X);
+        public bool update()
+        {
+            if (e != null)
+            {
+                if (e.alive == true)
+                {
+                    Canvas.SetTop(i, e.Y);
+                    Canvas.SetLeft(i, e.X);
+                    return true;
+                }
+            }
+            return false;
         
         }
     }
@@ -104,10 +112,11 @@ namespace SpaceAce
 
         public void Timer_Tick(object sender, EventArgs e)
         {
+            List<Icon> dead = new List<Icon>();
             cltr.player.UpdatePosition(); // Update the Player Positions
             cltr.UpdateWorld();           // Update the Model
             SpawnEntities();              // Spawn Entities
-
+            
             if (cltr.player.FiredABullet == true)
             {
                 MakeBullet(Id.player);
@@ -115,7 +124,20 @@ namespace SpaceAce
             }
             // Update GUI
             foreach (Icon ic in icons)
-                ic.update();
+            {
+                if (ic.update() == false)
+                {
+                    dead.Add(ic);
+                    WorldCanvas.Children.Remove(ic.i);
+                }
+                    
+            }
+
+            foreach (Icon ic in dead)
+            {
+                icons.Remove(ic);
+            }
+
             // Update Score GUI
             labelScore.Content = "Score: " + cltr.score;
             ++cltr.score;// Delete later

@@ -20,15 +20,18 @@ namespace Model
 
         public override bool Hit()
         {
-            throw new NotImplementedException();
+            alive = false;
+            return true;
         }
 
         public override void UpdatePosition()
         {
             //TODO: move bullet in correct direction
             X += 15 * direction;
+            hitbox.X = Convert.ToInt32(X);
+            
             //throw new NotImplementedException();
-           
+
         }
 
         public override string Serialize()
