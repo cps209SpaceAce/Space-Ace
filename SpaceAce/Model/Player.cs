@@ -128,12 +128,12 @@ namespace Model
         public static Entity Deserialize(string code, GameController game)
         {
             string[] des = code.Split(',');
-            //Player p = new Player(new Point(Convert.ToInt32( des[0]), Convert.ToInt32(des[1])), Convert.ToInt32(des[3]), Convert.ToInt32(des[4]), game);
+            Player p = new Player(Convert.ToInt32( des[0]), Convert.ToInt32(des[1]), Convert.ToInt32(des[3]), Convert.ToInt32(des[4]), game);
             //if()
             return null;
         }
 
-        public override Entity Deserialize(string code)
+        public static Player Deserialize(string code)
         {
             throw new NotImplementedException();
         }
