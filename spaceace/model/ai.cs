@@ -13,7 +13,7 @@ namespace Model
         public pattern Flightpath;
 
         
-        public AI(Point location, pattern flightpath) : base(location)
+        public AI(double X, double Y, pattern flightpath) : base(X,Y)
         {
         }
         
@@ -22,15 +22,15 @@ namespace Model
             throw new NotImplementedException();
         }
 
-        public override Point UpdatePosition() 
+        public override void UpdatePosition() 
         {
-            loc.X = Convert.ToInt32(loc.X - (1 * speed));
-            return loc;
+            X = Convert.ToInt32(X - (1 * speed));
+         
         }
 
         public override string Serialize() 
         {
-            return "ai" + "," + loc.X + "," + loc.Y; //JOANNA: x,y only for now;
+            return "ai" + "," + X + "," + Y; //JOANNA: x,y only for now;
         }
 
         public override Entity Deserialize(string code)
@@ -40,26 +40,26 @@ namespace Model
     }
     public class Formation : AI
     {
-        public int original_Y;
+        public double original_Y;
 
-        public Formation(Point location, pattern f) : base(location,f)
+        public Formation(double X, double Y, pattern f) : base(X,Y,f)
         {
-            this.original_Y = loc.Y;
+            this.original_Y = Y;
         }
 
-        public override Point UpdatePosition()
+        public override void UpdatePosition()
         {
             //TODO: move ship in a Pattern
             throw new NotImplementedException();
             switch (this.Flightpath)
             {
                 case pattern.Sin:
-                    loc.X = Convert.ToInt32(loc.X - (1 * speed));
-                    loc.Y = Convert.ToInt32(Math.Sin(loc.X)) + original_Y;
+                    X = Convert.ToInt32(X - (1 * speed));
+                    Y = Convert.ToInt32(Math.Sin(X)) + original_Y;
                     break;
                 case pattern.Cos:
-                    loc.X = Convert.ToInt32(loc.X - (1 * speed));
-                    loc.Y = Convert.ToInt32(Math.Cos(loc.X)) + original_Y;
+                    X = Convert.ToInt32(X - (1 * speed));
+                    Y = Convert.ToInt32(Math.Cos(X)) + original_Y;
                     break;
                 case pattern.Tan:
                     break;
@@ -70,7 +70,7 @@ namespace Model
 
         public override string Serialize()
         {
-            return "formation" + "," + loc.X + "," + loc.Y; //JOANNA: x,y only for now
+            return "formation" + "," + X + "," + Y; //JOANNA: x,y only for now
         }
 
         public override Entity Deserialize(string code)
@@ -82,11 +82,11 @@ namespace Model
     {
         private Player target;
 
-        public Tracker( Point location, pattern flightPath) : base( location, flightPath)
+        public Tracker(double X, double Y, pattern flightPath) : base( X,Y, flightPath)
         {
         }
 
-        public override Point UpdatePosition()
+        public override void UpdatePosition()
         {
             //TODO: Track player
             throw new NotImplementedException();
@@ -94,7 +94,7 @@ namespace Model
 
         public override string Serialize()
         {
-            return "tracker" + "," + loc.X + "," + loc.Y; //JOANNA: x,y only for now;
+            return "tracker" + "," + X + "," + Y; //JOANNA: x,y only for now;
         }
 
         public override Entity Deserialize(string code)

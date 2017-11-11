@@ -50,25 +50,35 @@ namespace Model
         public double base_Speed;
         public int score;
 
-        public GameController()
+        public GameController(Difficulty passDiff)
         {
-            player = new Player(new Point(50,350), 3,3, this);// Flags?
+            player = new Player(50,350, 3,3, this);// Flags?
             //TODO: load level/save data from GameData
             // OR
             //TODO: get enemies for level from Level
+            enemie_Que = Levels.Level1();
+            difficulty = passDiff;
+
         }
 
-        public void UpdateWorld(PlayerAction actionMove, PlayerAction other)// Each tick of timer will call this.
+        public void UpdateWorld()// Each tick of timer will call this.
         {
+
             // Update each entity
-            foreach (Entity ent in current_Enemies)
-            {
-                ent.UpdatePosition();
-            }
-            foreach (Entity playerBullet in player_fire)
-            {
-                playerBullet.UpdatePosition();
-            }
+            
+                foreach (Entity ent in current_Enemies)
+                {
+                    if(ent != null)
+                    ent.UpdatePosition();
+                }
+            
+            
+                foreach (Entity playerBullet in player_fire)
+                {
+                    if(playerBullet != null)
+                    playerBullet.UpdatePosition();
+                }
+            
 
             player.UpdatePosition();//actionMove, other
 
@@ -155,7 +165,7 @@ namespace Model
             //TODO: read from file and create entities with the specifications found in the file
 
             //Returns new GameController class with all the specifications in the file
-            return new GameController();
+            return new GameController(Difficulty.Easy);
         }
 
     }

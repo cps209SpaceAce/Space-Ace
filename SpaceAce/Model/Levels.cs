@@ -11,12 +11,12 @@ namespace Model
 
         // This is a level class
 
-        public List<Entity> Level1()
+        public static List<Entity> Level1()
         {
             //TODO Create list of enemies for level 1
-            AI A  = new AI(new Point(1500, 250), pattern.Straight);
-            AI B = new AI(new Point(1500, 400), pattern.Straight);
-            AI C    = new AI(new Point(1500, 650), pattern.Straight);
+            AI A  = new AI(1000, 250, pattern.Straight);
+            AI B = new AI(1500, 400, pattern.Straight);
+            AI C    = new AI(1500, 650, pattern.Straight);
 
             //
             Difficulty test = Difficulty.Easy;
@@ -26,12 +26,24 @@ namespace Model
                 case Difficulty.Easy:
                     output = new List<Entity>()
                     {
-                        A,B,C,new Asteroid(new Point(GameController.random.Next(0, 700))),null,null,
-                        A,B,C,new Asteroid(new Point(GameController.random.Next(0, 700))),null,null,
-                        A,B,C,new Asteroid(new Point(GameController.random.Next(0, 700))),null,null,
-                        A,B,C,new Asteroid(new Point(GameController.random.Next(0, 700))),null,null,
-                        A,B,C,new Asteroid(new Point(GameController.random.Next(0, 700))),null,null,
-                        A,B,C,new Asteroid(new Point(GameController.random.Next(0, 700))),null,null
+                         new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),
+                        new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),
+                          new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),
+                        new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),
+                          new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),
+                        new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),
+                          new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),
+                        new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),
+                          new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),
+                        new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),
+                          new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),
+                        new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),
+                          new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),
+                        new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),
+                          new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),
+                        new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),
+                          new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),
+                        new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),new AI(1200,GameController.random.Next(0, 700),pattern.Straight),
                     };
                     break;
                 case Difficulty.Medium:
@@ -41,10 +53,10 @@ namespace Model
                         switch (GameController.random.Next(0,5))
                         {
                             case 0:
-                                add = new AI(new Point(GameController.random.Next(0, 700)),pattern.Straight);
+                                add = new AI(1200,GameController.random.Next(0, 700),pattern.Straight);
                                 break;
                             case 1:
-                                add = new Asteroid(new Point(GameController.random.Next(100, 600)));
+                                add = new Asteroid( 1200,GameController.random.Next(100, 600));
                                 break;
                             case 2:
                                 add = A;

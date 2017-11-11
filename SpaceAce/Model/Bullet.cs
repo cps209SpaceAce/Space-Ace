@@ -10,7 +10,8 @@ namespace Model
     public enum ID { Friendly, Hostile }
     public class Bullet : Entity
     {
-        public Bullet(Point loc) : base(loc) { }
+        int direction = 1; // 1:moving right | -1:moving left
+        public Bullet(double X, double Y) : base(X,Y) { }
         //friendly means it does not hit player
         // id determines direction of travel
         public ID id;
@@ -20,15 +21,17 @@ namespace Model
             throw new NotImplementedException();
         }
 
-        public override Point UpdatePosition()
+        public override void UpdatePosition()
         {
             //TODO: move bullet in correct direction
-            throw new NotImplementedException();
+            X += 10 * direction;
+            //throw new NotImplementedException();
+           
         }
 
         public override string Serialize()
         {
-            return "bullet" + "," + loc.X + "," + loc.Y;
+            return "bullet" + "," + X + "," + Y; //JOANNA: x,y only for now
         }
 
         public override Entity Deserialize(string code)

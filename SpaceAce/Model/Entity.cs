@@ -9,27 +9,30 @@ namespace Model
 {
     abstract public class Entity: ISerialiable
     {
-        public Point loc; //JOANNA: turned this to public cause private makes it unavailavble to its own children.
-                          //if you really want it private, please use 'protected'
+         
 
         public double speed;
         //health auto set to 1
         public int health;
+        public bool FiredABullet = false;
 
         public Rectangle hitbox;
+        public double X;
+        public double Y;
 
-        public Entity(Point location)
+        public Entity(double X, double Y)
         {
             this.health = 1;
-            this.loc = location;
-            this.speed = 1;
-            this.hitbox = new Rectangle(loc.X,loc.Y,50,50);
+            this.X = X;
+            this.Y = Y;
+            this.speed = 4;
+            this.hitbox = new Rectangle(Convert.ToInt32(X),Convert.ToInt32(Y),50,50);
         }
         
         //return true if destroyed else return false
         public abstract bool Hit();
 
-        public abstract Point UpdatePosition();
+        public abstract void UpdatePosition();
 
         public abstract string Serialize();
 
@@ -38,8 +41,8 @@ namespace Model
 
     public class Powerup:Entity
     {
-        public Powerup( Point loc, string name) :base(loc) { }
-        public override Point UpdatePosition()
+        public Powerup(double X, double Y, string name) :base(X,Y) { }
+        public override void UpdatePosition()
         {
             throw new NotImplementedException();
         }
@@ -50,7 +53,7 @@ namespace Model
 
         public override string Serialize()
         {
-            return "powerup" + "," + loc.X + "," + loc.Y; 
+            return "powerup" + "," + X + "," + Y; 
             //please provide a way to detect the powerup's type
         }
 
@@ -63,24 +66,24 @@ namespace Model
 
     public class Asteroid : Entity
     {
-        public Asteroid(Point loc) : base(loc)
+        public Asteroid(double X, double Y) : base(X,Y)
         { }
         public override bool Hit()
         { 
             //Asteroid can't be destroyed
             return false;
         }
-        public override Point UpdatePosition()
+        public override void UpdatePosition()
         {
             //TODO: add movment logic: make it move in a straight line
-            loc.X = Convert.ToInt32(loc.X - (1 * speed));
+            X = Convert.ToInt32(X - (1 * speed));
             // Why are we returning a point?
-            return loc;
+            
         }
 
         public override string Serialize()
         {
-            return "asteroid" + "," + loc.X + "," + loc.Y; ;
+            return "asteroid" + "," + X + "," + Y; ;
         }
 
         public override Entity Deserialize(string code)

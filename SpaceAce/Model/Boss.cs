@@ -9,7 +9,7 @@ namespace Model
 {
     public class Boss : Entity, ISerialiable
     {
-        public Boss(Point location, int health) : base(location)
+        public Boss(double X, double Y, int health) : base(X,Y)
         {
         }
 
@@ -18,20 +18,21 @@ namespace Model
             throw new NotImplementedException();
         }
 
-        public override Point UpdatePosition()
+        public override void UpdatePosition()
         {
             //TODO: movement logic for boss
             throw new NotImplementedException();
-            if (loc.X > 950)
+            if (X > 950)
             {
-                loc.X = Convert.ToInt32(loc.X - (1 * speed));
+                X = Convert.ToInt32(X - (1 * speed));
             }
             
         }
 
         public override string Serialize()
         {
-            return "boss" + "," + loc.X + "," + loc.Y; 
+            return "boss" + "," + X + "," + Y; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
+        }
 
         public override Entity Deserialize(string code)
         {

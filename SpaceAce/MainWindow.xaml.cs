@@ -23,6 +23,9 @@ namespace SpaceAce
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public Difficulty menuDiff = Difficulty.Easy;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -40,21 +43,34 @@ namespace SpaceAce
         }
         private void btnNewGame_Click(object sender, RoutedEventArgs e)
         {
-            GameWindow gameWindow = new GameWindow();
+            GameWindow gameWindow = new GameWindow(menuDiff);
             gameWindow.Show();
         }
         private void btnLoadGame_Click(object sender, RoutedEventArgs e)
         {
-            
-            GameWindow gameWindow = new GameWindow();
+            // Not menuDiff
+            GameWindow gameWindow = new GameWindow(menuDiff);
             
             // Load Game
+
             gameWindow.Show();
         }
         private void btnDifficulty_Click(object sender, RoutedEventArgs e)
         {
-            GameWindow gameWindow = new GameWindow();
-            gameWindow.Show();
+            switch (menuDiff)
+            {
+                case Difficulty.Easy:
+                    menuDiff = Difficulty.Medium;
+                    break;
+                case Difficulty.Medium:
+                    menuDiff = Difficulty.Hard;
+                    break;
+                case Difficulty.Hard:
+                    menuDiff = Difficulty.Easy;
+                    break;
+            }
+            btnDifficulty.Content = "Difficulty: " + menuDiff.ToString();
+
         }
 
         private void btnAboutPage_Click(object sender, RoutedEventArgs e)
