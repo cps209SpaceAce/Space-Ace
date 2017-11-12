@@ -33,7 +33,8 @@ namespace Model
             //TODO: move bullet in correct direction
             X += 15 * direction;
             hitbox.X = Convert.ToInt32(X);
-            
+            if (X < 0 || X >1200)
+                alive = false;
             //throw new NotImplementedException();
 
         }

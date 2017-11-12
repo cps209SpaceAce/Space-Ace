@@ -32,6 +32,7 @@ namespace SpaceAce
                 {
                     Canvas.SetTop(i, e.Y);
                     Canvas.SetLeft(i, e.X);
+                    
                     return true;
                 }
             }
@@ -68,34 +69,32 @@ namespace SpaceAce
         //WindowState="Maximized"
         //WindowStyle="None"
 
-        public void Window_Loaded2(Object sender, RoutedEventHandler stuff)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-            // Create Player
             Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "spaceship-hi.png", UriKind.Relative)) };
             WorldCanvas.Children.Add(img);
             img.Width = 50;
-            Canvas.SetLeft(img, 0);
-            Canvas.SetTop(img,0);
-            icons.Add(new Icon() { i = images[0], e = cltr.player });
 
-            // Start Timer
+            Canvas.SetLeft(img, 0);
+            Canvas.SetTop(img, 0);
+            icons.Add(new Icon() { i = img, e = cltr.player });
+
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Tick += Timer_Tick;
-            timer.Interval = new TimeSpan(0, 0, 0,10,10);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             timer.Start();
-
         }
+
 
 
 
         public enum Id { player, computer }
 
-        public void MakeBullet(Id id)
+        public void MakeBullet(Id id, Entity ship)
         {
+            Entity p = ship;
             if (id == Id.player)
             {
-                Player p = cltr.player;
                 double y = p.Y + 10;
                 double x = p.X + 50;
                 Bullet b = new Bullet(x, y);
@@ -107,6 +106,22 @@ namespace SpaceAce
                 WorldCanvas.Children.Add(img);
                 icons.Add(i);
             }
+            else
+            {
+                double y = ship.Y + 10;
+                double x = ship.X - 2;
+                Bullet b = new Bullet(x, y) {direction = -1 };
+                cltr.current_Enemies.Add(b);
+                Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
+                img.Width = 20;
+                Icon i = new Icon() { i = img, e = b };
+                i.update();
+                WorldCanvas.Children.Add(img);
+                icons.Add(i);
+            }
+
+            
+
         }
 
 
@@ -114,14 +129,17 @@ namespace SpaceAce
         {
             List<Icon> dead = new List<Icon>();
             cltr.player.UpdatePosition(); // Update the Player Positions
-            cltr.UpdateWorld();           // Update the Model
+            List<Entity> fired = cltr.UpdateWorld();           // Update the Model. fired: list of ships that fired 
             SpawnEntities();              // Spawn Entities
             
             if (cltr.player.FiredABullet == true)
             {
-                MakeBullet(Id.player);
+                MakeBullet(Id.player,cltr.player);
                 cltr.player.FiredABullet = false;
             }
+
+            foreach (Entity ship in fired)
+                MakeBullet(Id.computer, ship);
             // Update GUI
             foreach (Icon ic in icons)
             {
@@ -167,7 +185,12 @@ namespace SpaceAce
                 
                 img = new Image() { Source = new BitmapImage(new Uri("images/" + pngName, UriKind.Relative)) };
                 WorldCanvas.Children.Add(img);
-                img.Width = 50;
+                //img.Width = 50;
+                
+                
+                img.Width = newEntity.hitbox.Width;
+                img.Height = newEntity.hitbox.Height; //image is same size as hitbox
+                
                 Canvas.SetLeft(img, 0);
                 Canvas.SetTop(img, 0);
                 icons.Add(new Icon() { i = img, e = cltr.current_Enemies[cltr.current_Enemies.Count - 1] });                        
@@ -226,22 +249,7 @@ namespace SpaceAce
 
      
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "spaceship-hi.png", UriKind.Relative)) };
-            WorldCanvas.Children.Add(img);
-            img.Width = 50;
-            
-            Canvas.SetLeft(img, 0);
-            Canvas.SetTop(img, 0);
-            icons.Add(new Icon() { i = img, e = cltr.player });
-
-            timer = new System.Windows.Threading.DispatcherTimer();
-            timer.Tick += Timer_Tick;
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
-            timer.Start();
-        }
-
+    
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
             switch (e.Key)

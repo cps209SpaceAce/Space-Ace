@@ -10,6 +10,7 @@ namespace Model
     public enum pattern { Straight, Sin, Cos, Tan };
     public class AI : Entity
     {
+        public int fireCoolDown = 50;
         public pattern Flightpath;
         
         
@@ -19,6 +20,7 @@ namespace Model
         
         public override bool Hit()
         {
+            
             alive = false;
             return true;
         }
@@ -27,7 +29,17 @@ namespace Model
         {
             X = (X - (0.5 * speed));
             hitbox.X = Convert.ToInt32(X);
-            
+            if (random.Next(0,1000) == 42)
+            {
+                FiredABullet = true; //for testing
+                fireCoolDown = 50;
+            }
+            else
+            {
+                FiredABullet = false;
+            }
+            if (X < 0)
+                alive = false;
 
         }
 
@@ -42,6 +54,7 @@ namespace Model
         public Formation(double X, double Y, pattern f) : base(X,Y,f)
         {
             this.original_Y = Y;
+            this.Flightpath = f;
         }
 
         public override void UpdatePosition()
@@ -50,19 +63,30 @@ namespace Model
             switch (this.Flightpath)
             {
                 case pattern.Sin:
-                    X = Convert.ToInt32(X - (1 * speed));
-                    Y = Convert.ToInt32(Math.Sin(X)) + original_Y;
+                    X = (X - (1 * speed));
+                    Y = (50 * Math.Sin(0.01 * X)) + original_Y;
                     break;
                 case pattern.Cos:
-                    X = Convert.ToInt32(X - (1 * speed));
-                    Y = Convert.ToInt32(Math.Cos(X)) + original_Y;
+                    X = (X - (1 * speed));
+                    Y = (50 * Math.Cos(0.01 * X)) + original_Y;
                     break;
                 case pattern.Tan:
                     break;
+
+            }
+            if (random.Next(0, 1000) == 42)
+            {
+                FiredABullet = true; //for testing
+                fireCoolDown = 50;
+            }
+            else
+            {
+                FiredABullet = false;
             }
             hitbox.X = Convert.ToInt32(X);
             hitbox.Y = Convert.ToInt32(Y);
-            
+            if (X < 0)
+                alive = false;
         }
 
 
@@ -83,6 +107,8 @@ namespace Model
         {
             //TODO: Track player
             throw new NotImplementedException();
+            if (X < 0)
+                alive = false;
         }
 
         public override string Serialize()
