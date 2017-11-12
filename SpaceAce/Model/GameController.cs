@@ -73,15 +73,20 @@ namespace Model
 
         }
 
-        public void UpdateWorld()// Each tick of timer will call this.
+        public List<Entity> UpdateWorld()// Each tick of timer will call this.
         {
-
+           List<Entity> ships_that_fired = new List<Entity>(); //does not include player
+            List<Entity> leftscreen = new List<Entity>(); // list to keep track  of  when entitys leave the playable screen
             // Update each entity
 
             foreach (Entity ent in current_Enemies)
             {
                 if (ent != null)
                     ent.UpdatePosition();
+                if (ent.FiredABullet)
+                    ships_that_fired.Add(ent);
+                if (!ent.alive)
+                    leftscreen.Add(ent);
             }
 
 
@@ -89,16 +94,23 @@ namespace Model
             {
                 if (playerBullet != null)
                     playerBullet.UpdatePosition();
+                if (!playerBullet.alive)
+                    leftscreen.Add(playerBullet);
             }
 
 
             player.UpdatePosition();//actionMove, other
 
-
+            foreach(Entity ship in leftscreen)
+            {
+                ship.alive = false;
+                current_Enemies.Remove(ship);
+            }
             // loop through entites and detect collision
-            DetectColl(); 
+            DetectColl();
 
             // Check if death
+            return ships_that_fired;
         }
 
         public void DetectColl()

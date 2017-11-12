@@ -9,8 +9,8 @@ namespace Model
 {
     abstract public class Entity: ISerialiable
     {
-         
 
+        public static Random random = new Random();
         public double speed;
         //health auto set to 1
         public int health;
@@ -128,8 +128,14 @@ namespace Model
 
     public class Asteroid : Entity
     {
+
         public Asteroid(double X, double Y) : base(X,Y)
-        { }
+        {
+            Size s;
+            int r = random.Next(50,101);
+            s = new Size(r,r);
+            hitbox = new Rectangle(new Point(Convert.ToInt32(X),Convert.ToInt32(Y)), s );   
+        }
         public override bool Hit()
         { 
             //Asteroid can't be destroyed
