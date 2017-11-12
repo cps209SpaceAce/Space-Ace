@@ -63,8 +63,43 @@ namespace SpaceAce
             cltr = new GameController(setDiff);
 
             if (isLoad)
+            {
                 cltr.Load("SaveData.txt");
+                Draw_Load();
+            }
         }
+        public void Draw_Load()
+        {
+            string imgname = "";
+            foreach (Entity ship in cltr.current_Enemies)
+            {
+
+                if (ship is Asteroid)
+                { imgname = "asteroid.png"; }
+                else if (ship is AI)
+                { imgname = "Ship 1.png"; }
+                else if (ship is Bullet)
+                { imgname = "C_bullet.png"; }
+                if (ship != null)
+                {
+                    Image img = new Image() { Source = new BitmapImage(new Uri("images/" + imgname, UriKind.Relative)) };
+                    img.Width = ship.hitbox.Width;
+                    img.Height = ship.hitbox.Height;
+                    WorldCanvas.Children.Add(img);
+                    icons.Add(new Icon() { i = img, e = ship });
+                }
+            }
+            foreach (Entity b in cltr.player_fire)
+            {
+                Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet", UriKind.Relative)) };
+                img.Width = b.hitbox.Width;
+                img.Height = b.hitbox.Height;
+                WorldCanvas.Children.Add(img);
+                icons.Add(new Icon() { i = img, e = b });
+            }
+        }
+
+
         // Don't Delete this VVV
         //WindowState="Maximized"
         //WindowStyle="None"
@@ -112,7 +147,7 @@ namespace SpaceAce
                 double x = ship.X - 2;
                 Bullet b = new Bullet(x, y) {direction = -1 };
                 cltr.current_Enemies.Add(b);
-                Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
+                Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "C_bullet.png", UriKind.Relative)) };
                 img.Width = 20;
                 Icon i = new Icon() { i = img, e = b };
                 i.update();
