@@ -126,9 +126,11 @@ namespace Model
                     {
                         dead_playerBullet.Add(bullet);
                         bullet.Hit();
-                        if (enemy.Hit())
+                        if (enemy.Hit()) {
                             dead_Badguy.Add(enemy);
-                       
+                            score += 50 * 1; // TODO: Based on DIff
+                        }
+
                     }
                 }
             }

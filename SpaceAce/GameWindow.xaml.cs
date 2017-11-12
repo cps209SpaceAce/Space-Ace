@@ -140,7 +140,7 @@ namespace SpaceAce
 
             // Update Score GUI
             labelScore.Content = "Score: " + cltr.score;
-            ++cltr.score;// Delete later
+            
             
             // Update Lives
             // TODO: We can change to images for bonus

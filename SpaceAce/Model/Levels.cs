@@ -16,26 +16,30 @@ namespace Model
             switch (currentDiff)
             {
                 case Difficulty.Easy:
-                    switch (GameController.random.Next(0, 2))
+                    switch (GameController.random.Next(0, 3))
                     {
                         case 0:
-                            output = new AI(1200, GameController.random.Next(0, 700), pattern.Straight);
+                            output = new Asteroid(1200, GameController.random.Next(100, 600));
                             break;
                         case 1:
+                        case 2:
                             output = new AI(1200, GameController.random.Next(0, 700), pattern.Straight);
                             break;
                     }
                     break;
                 case Difficulty.Medium:
                     
-                    switch (GameController.random.Next(0, 1))
+                    switch (GameController.random.Next(0, 3))
                     {
                         case 0:
                             output = new Asteroid(1200, GameController.random.Next(100, 600));
                             break;
                         case 1:
-                            output = new Asteroid(1200, GameController.random.Next(100, 600));
-                            break;       
+                            output = new Formation(1200, GameController.random.Next(100, 600), pattern.Cos);
+                            break;
+                        case 2:
+                            output = new Formation(1200, GameController.random.Next(100, 600), pattern.Sin);
+                            break;
                     }
                     break;
                 case Difficulty.Hard:

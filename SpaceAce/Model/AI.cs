@@ -19,6 +19,7 @@ namespace Model
         
         public override bool Hit()
         {
+            
             alive = false;
             return true;
         }
@@ -42,6 +43,7 @@ namespace Model
         public Formation(double X, double Y, pattern f) : base(X,Y,f)
         {
             this.original_Y = Y;
+            this.Flightpath = f;
         }
 
         public override void UpdatePosition()
@@ -50,15 +52,16 @@ namespace Model
             switch (this.Flightpath)
             {
                 case pattern.Sin:
-                    X = Convert.ToInt32(X - (1 * speed));
-                    Y = Convert.ToInt32(Math.Sin(X)) + original_Y;
+                    X = (X - (1 * speed));
+                    Y = (50 * Math.Sin(0.01 * X)) + original_Y;
                     break;
                 case pattern.Cos:
-                    X = Convert.ToInt32(X - (1 * speed));
-                    Y = Convert.ToInt32(Math.Cos(X)) + original_Y;
+                    X = (X - (1 * speed));
+                    Y = (50 * Math.Cos(0.01 * X)) + original_Y;
                     break;
                 case pattern.Tan:
                     break;
+
             }
             hitbox.X = Convert.ToInt32(X);
             hitbox.Y = Convert.ToInt32(Y);
