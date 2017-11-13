@@ -60,10 +60,8 @@ namespace SpaceAce.UnitTests
             HighScoreManager Test = new HighScoreManager();
             Test.highScores.Add(new HighScore("Bob", Level.Level_1, Difficulty.Easy, 9001, "ship.png"));
             Test.Save();
-            //var fileName = @"C:\somedirectory\somefile.txt";
-            //var fileName = Environment.CurrentDirectory + @"\JSON.txt";
             Assert.IsTrue(File.Exists("JSON.txt"));
-            // Need a test
+
         }
 
         [TestMethod]
@@ -75,17 +73,19 @@ namespace SpaceAce.UnitTests
             Test.Save();
             Test.highScores.Clear();
             Test.Load();
-            Assert.AreEqual(Test.highScores[0], BobTest);
-            //Message: Assert.AreEqual failed. 
-            // Expected:< Bob: Level 1, Easy.Score: 9001 >.
-            // Actual  :< Bob: Level 1, Easy.Score: 9001 >.
+            Assert.IsTrue(Test.highScores[0].Name      == "Bob");
+            Assert.IsTrue(Test.highScores[0].Level     == Level.Level_1 );
+            Assert.IsTrue(Test.highScores[0].Diff      == Difficulty.Easy );
+            Assert.IsTrue(Test.highScores[0].Score     == 9001 );
+            Assert.IsTrue(Test.highScores[0].ShipImage == "ship.png" );
 
-            // Need a test
-
+            
 
         }
 
-
+        // Robert: Add more saves and test Load
+        //         Add better test for Save
+        //         Need more Model Tests
     }
 }
 
