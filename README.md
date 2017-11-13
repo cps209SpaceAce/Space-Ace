@@ -36,7 +36,7 @@ List any major issues.
 * Save/Load - Does not work for Medium Difficulty.
 * Pause - No menu yet
 * High Score Screen - Load and Save are working but not implemented.
-* High Score Load UnitTest - Does work but it says it does not pass. The expected is the same as the result but still not passing.
+* Help Screen: Need to finish instructions.
 
 ## Recording: 
 https://tinyurl.com/cps209-TeamB-Alpha
