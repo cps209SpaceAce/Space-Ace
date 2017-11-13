@@ -25,6 +25,7 @@ List work completed.
 * Player and other Enity movement
 * Collision
 * Easy and Medium
+* Save/Load for Easy
 
 
 ## Known Issues: 
@@ -32,9 +33,10 @@ List any major issues.
 * Bombs - will cause asteroids to be destroyed, but images will freeze were they are.
 * Bombs - Do not give points for kills
 * Bombs - Uses all the bombs instead of one.
-* Save/Load does not work for Medium Difficulty.
-* Not menu for the pause menu
-* High Score Screen is not yet working.
+* Save/Load - Does not work for Medium Difficulty.
+* Pause - No menu yet
+* High Score Screen - Load and Save are working but not implemented.
+* High Score Load UnitTest - Does work but it says it does not pass. The expected is the same as the result but still not passing.
 
 ## Recording: 
 https://tinyurl.com/cps209-TeamB-Alpha
