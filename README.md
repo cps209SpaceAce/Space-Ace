@@ -34,7 +34,6 @@ List any major issues.
 * Bombs - Do not give points for kills
 * Bombs - Uses all the bombs instead of one.
 * Save/Load - Does not work for Medium Difficulty.
-* Pause - No menu yet
 * High Score Screen - Load and Save are working but not implemented.
 * Help Screen: Need to finish instructions.
 
