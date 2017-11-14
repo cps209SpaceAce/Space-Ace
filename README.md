@@ -45,7 +45,7 @@ Provide a table showing how many hours each team member has invested to this poi
 
 | Person| Time Spent (HOURS)  | Time Left (HOURS)|Journal|
 | :---:   | :---:   | :---: | :---:|
-| Noah Mansfield  |18.42|31.58|https://github.com/cps209SpaceAce/Space-Ace/wiki/MansfieldJournal|
-| Joanna Madanat  |18.25|31.75|https://github.com/cps209SpaceAce/Space-Ace/wiki/MadanatJournal|
-| Robert Meyer    |15.45|34.55|https://github.com/cps209SpaceAce/Space-Ace/wiki/MeyerJournal|
+| Noah Mansfield  |18.25|31.75|https://github.com/cps209SpaceAce/Space-Ace/wiki/MansfieldJournal|
+| Joanna Madanat  |15.45|34.55|https://github.com/cps209SpaceAce/Space-Ace/wiki/MadanatJournal|
+| Robert Meyer    |18.42|31.58|https://github.com/cps209SpaceAce/Space-Ace/wiki/MeyerJournal|
 
