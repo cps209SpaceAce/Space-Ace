@@ -33,7 +33,7 @@ namespace SpaceAce
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void btnHighScorePage_Click(object sender, RoutedEventArgs e)

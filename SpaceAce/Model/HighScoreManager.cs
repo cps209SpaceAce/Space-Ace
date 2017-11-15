@@ -18,6 +18,9 @@ namespace Model
         public int Score;         // Final Score
         public string ShipImage;
 
+        public HighScore()
+        {
+        }
 
         public HighScore(string name, Level level, Difficulty diff, int score, string shipimage)
         {
