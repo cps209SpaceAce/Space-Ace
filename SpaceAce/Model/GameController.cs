@@ -82,11 +82,13 @@ namespace Model
             foreach (Entity ent in current_Enemies)
             {
                 if (ent != null)
+                {
                     ent.UpdatePosition();
-                if (ent.FiredABullet)
-                    ships_that_fired.Add(ent);
-                if (!ent.alive)
-                    leftscreen.Add(ent);
+                    if (ent.FiredABullet)
+                        ships_that_fired.Add(ent);
+                    if (!ent.alive)
+                        leftscreen.Add(ent);
+                }
             }
 
 
@@ -161,7 +163,7 @@ namespace Model
         public void Bomb()
         {
             foreach (Entity e in current_Enemies)
-                e.Hit();
+                e.alive = false;
             current_Enemies = new List<Entity>();
         }
 
