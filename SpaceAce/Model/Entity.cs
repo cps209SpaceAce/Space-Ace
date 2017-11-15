@@ -57,6 +57,17 @@ namespace Model
                 }
                 else if(des[0] == "formation")
                 {
+                    pattern flight = pattern.Straight;
+                    if (des[3] == "Cos")
+                        flight = pattern.Cos;
+                    else if (des[3] == "Sin")
+                        flight = pattern.Sin;
+                    else if (des[3] == "Tan")
+                        flight = pattern.Tan;
+                    else if (des[3] == "Straight")
+                        flight = pattern.Straight;
+
+                    return new Formation(Convert.ToInt32(des[1]), Convert.ToInt32(des[2]), flight);
                 }
                 else if(des[0] == "boss")
                 {
