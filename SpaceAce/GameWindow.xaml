@@ -8,7 +8,7 @@
         Title="Space Ace - Game Screen" Height="768" Width="1024" 
         KeyDown="WorldCanvas_KeyDown" KeyUp="Window_KeyUp"
         Loaded="Window_Loaded" Closed="Window_Closed"
-        WindowState="Maximized"
+        WindowState="Maximized" WindowStyle="None"
         >
     <Window.Background>
         <ImageBrush ImageSource="Images\GameScreenBackground.jpg"></ImageBrush>

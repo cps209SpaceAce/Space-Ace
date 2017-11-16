@@ -6,14 +6,18 @@
         xmlns:local="clr-namespace:SpaceAce"
         xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="SpaceAce.HighScoreWindow"
         mc:Ignorable="d"
-        Title="Space Ace - High Scores" Height="768" Width="1024">
+        Title="Space Ace - High Scores" Height="768" Width="1024"
+        WindowState="Maximized" WindowStyle="None"
+    >
     <Window.Background>
         <ImageBrush ImageSource="Images\titleScreenBackground.png"/>
     </Window.Background>
-    <Grid>
-        <Button Content="Close Window" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" >
+        <Grid>
+            <Button Content="Close Window" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
             Margin="720,634,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="Button_Click"/>
-        <ListBox x:Name="lstHighScores" HorizontalAlignment="Left" Height="343" Margin="85,185,147.6,0" VerticalAlignment="Top" Width="785" Background="Black" BorderBrush="#FF00BD1E" Foreground="#FF15DF00" FontSize="20" FontFamily="OCR A Extended">
-        </ListBox>
-    </Grid>
+            <ListBox x:Name="lstHighScores" HorizontalAlignment="Left" Height="343" Margin="85,185,147.6,0" VerticalAlignment="Top" Width="785" Background="Black" BorderBrush="#FF00BD1E" Foreground="#FF15DF00" FontSize="20" FontFamily="OCR A Extended">
+            </ListBox>
+        </Grid>
+    </StackPanel>
 </Window>

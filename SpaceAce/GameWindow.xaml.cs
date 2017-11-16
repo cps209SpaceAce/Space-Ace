@@ -240,44 +240,46 @@ namespace SpaceAce
             if (spawnCounter > 25)
             {
                 spawnCounter = 0;
-                Entity newEntity = Levels.returnCurrentLevelEntity(cltr.difficulty);
+                Entity newEntity = Levels.Level_reuturnEntity(cltr.difficulty, cltr.level);
                 cltr.current_Enemies.Add(newEntity); // Add to Model
-                Image img = null;
+                
                 string pngName = "";
 
                 if (newEntity is Asteroid)
-                { pngName = "asteroid.png"; }
-                else if (newEntity is Formation)
                 {
-                    if (newEntity.Flightpath == pattern.Sin)
-                    {
-                        pngName = "Ship 3.png";
-                    }
-                    else if (newEntity.Flightpath == pattern.Cos)
-                    {
-                        pngName = "Ship 2.png";
-                    }
+                    pngName = "asteroid.png";
+                }
+                else if (newEntity is Formation && newEntity.Flightpath == pattern.Sin)
+                {
+                    pngName = "Ship 2.png";
+                }
+                else if (newEntity is Formation && newEntity.Flightpath == pattern.Cos)
+                {
+                    pngName = "Ship 3.png";
                 }
                 else if (newEntity is AI)
-                { pngName = "Ship 1.png"; }
-                    img = new Image() { Source = new BitmapImage(new Uri("images/" + pngName, UriKind.Relative)) };
-                    WorldCanvas.Children.Add(img);
-                    //img.Width = 50;
+                {
+                    pngName = "Ship 1.png";
+                }
+
+                Image img = new Image() { Source = new BitmapImage(new Uri("images/" + pngName, UriKind.Relative)) };
+                WorldCanvas.Children.Add(img);
+                //img.Width = 50;
 
 
-                    img.Width = newEntity.hitbox.Width;
-                    img.Height = newEntity.hitbox.Height; //image is same size as hitbox
+                img.Width = newEntity.hitbox.Width;
+                img.Height = newEntity.hitbox.Height; //image is same size as hitbox
 
-                    Canvas.SetLeft(img, 0);
-                    Canvas.SetTop(img, 0);
+                Canvas.SetLeft(img, 0);
+                Canvas.SetTop(img, 0);
                 icons.Add(new Icon() { i = img, e = cltr.current_Enemies[cltr.current_Enemies.Count - 1] });
             }
             else
-                {
-                    ++spawnCounter;
-                }
+            {
+                ++spawnCounter;
+            }
        
-                }
+        }
         
 
         private void WorldCanvas_KeyDown(object sender, KeyEventArgs e)

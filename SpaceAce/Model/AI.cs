@@ -20,7 +20,6 @@ namespace Model
         
         public override bool Hit()
         {
-            
             alive = false;
             return true;
         }
