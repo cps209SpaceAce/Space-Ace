@@ -40,7 +40,6 @@ namespace Model
             }
             if (X < 0)
                 alive = false;
-
         }
 
         public override string Serialize() {

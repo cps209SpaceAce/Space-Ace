@@ -19,6 +19,10 @@ namespace SpaceAce
     /// Interaction logic for GameWindow.xaml
     /// </summary>
 
+    // Don't Delete this VVV
+    //WindowState="Maximized"
+    //WindowStyle="None"
+
     public struct Icon
     {
         public Image i;
@@ -100,9 +104,7 @@ namespace SpaceAce
         }
 
 
-        // Don't Delete this VVV
-        //WindowState="Maximized"
-        //WindowStyle="None"
+        
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
