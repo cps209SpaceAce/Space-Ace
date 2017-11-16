@@ -65,7 +65,7 @@ namespace SpaceAce
             InitializeComponent();
             // Load from levels
 
-            cltr = new GameController(setDiff);
+            cltr = new GameController(setDiff, Width, Height);
 
             if (isLoad)
             {
