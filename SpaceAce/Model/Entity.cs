@@ -69,27 +69,29 @@ namespace Model
 
                     return new Formation(Convert.ToInt32(des[1]), Convert.ToInt32(des[2]), flight);
                 }
-                else if(des[0] == "boss")
-                {
-                }
-                else if(des[0] == "powerup")
-                {
-                }
                 else if (des[0] == "ai")
                 {
-                    pattern flight = pattern.Straight;
-                    if (des[3] == "Cos")
-                        flight = pattern.Cos;
-                    else if (des[3] == "Sin")
-                        flight = pattern.Sin;
-                    else if (des[3] == "Tan")
-                        flight = pattern.Tan;
-                    else if (des[3] == "Straight")
-                        flight = pattern.Straight;
-
-                    result = new AI(Convert.ToInt32(des[1]), Convert.ToInt32(des[2]), flight);
+                    result = new AI(Convert.ToInt32(des[1]), Convert.ToInt32(des[2]), pattern.Straight);
                     return result;
                 }
+                else if (des[0] == "mine")
+                {
+                    result = new Mine(Convert.ToInt32(des[1]), Convert.ToInt32(des[2]), pattern.Straight);
+                    return result;
+                }
+                else if (des[0] == "tracker")
+                {
+                    result = new Tracker(Convert.ToInt32(des[1]), Convert.ToInt32(des[2]), pattern.Straight);
+                    return result;
+                }
+                else if (des[0] == "boss")
+                {
+                }
+                else if (des[0] == "powerup")
+                {
+                }
+
+
                 else
                 {
                     throw new Exception("Enemy type Unknown.");

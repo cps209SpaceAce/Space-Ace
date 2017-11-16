@@ -103,7 +103,7 @@ namespace Model
             }
             if (game.down)
             {
-                if (this.Y < 768 - 50)
+                if (this.Y < game.winHeight - 50)
                     Down();
             }
             if (game.left)
@@ -113,7 +113,7 @@ namespace Model
             }
             if (game.right)
             {
-                if (this.X < 1024 - 50)
+                if (this.X < game.winWidth - 50) //fixed this to make more sense because using raw number is just no :L - Joanna
                     Right();
             }
             if (game.fired)

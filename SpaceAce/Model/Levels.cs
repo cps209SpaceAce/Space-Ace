@@ -43,7 +43,19 @@ namespace Model
                     }
                     break;
                 case Difficulty.Hard:
+                    switch (GameController.random.Next(0, 3))
+                    {
+                        case 0:
+                            output = new Tracker(1200, GameController.random.Next(100, 600), pattern.Straight);
+                            break;
+                        case 1:
+                        case 2:
+                            output = new Mine(1200, GameController.random.Next(100, 600), pattern.Straight);
+                            break;
+
+                    }
                     break;
+
             }
             return output;
         }
