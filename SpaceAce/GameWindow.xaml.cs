@@ -257,6 +257,14 @@ namespace SpaceAce
                 {
                     pngName = "Ship 3.png";
                 }
+                else if (newEntity is Mine)
+                {
+                    pngName = "mine.png";
+                }
+                else if (newEntity is Tracker)
+                {
+                    pngName = "Ship 4.png";
+                }
                 else if (newEntity is AI)
                 {
                     pngName = "Ship 1.png";

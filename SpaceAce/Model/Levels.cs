@@ -62,10 +62,10 @@ namespace Model
                     switch (GameController.random.Next(0, 3))
                     {
                         case 0:
-                            output = new Asteroid(1200, GameController.random.Next(100, 600));
+                            output = new Tracker(1200, GameController.random.Next(100, 600), pattern.Straight);
                             break;
                         case 1:
-                            output = new Asteroid(1200, GameController.random.Next(100, 600));
+                            output = new Mine(1200, GameController.random.Next(100, 600), pattern.Straight);
                             break;
                         case 2:
                             output = new Asteroid(1200, GameController.random.Next(100, 600));
