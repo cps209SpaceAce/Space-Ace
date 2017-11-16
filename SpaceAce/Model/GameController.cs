@@ -50,13 +50,20 @@ namespace Model
         public double base_Speed;
         public int score;
 
-        public GameController(Difficulty passDiff)
+        //window information
+        public double winWidth;
+        public double winHeight;
+
+        public GameController(Difficulty passDiff, double windowWidth, double windowHeight)
         {
             player = new Player(50, 350, 3, 3, this);// Flags?
             //TODO: load level/save data from GameData
             // OR
             //TODO: get enemies for level from Level
             difficulty = passDiff;
+
+            winWidth = windowWidth;
+            winHeight = windowHeight;
 
         }
 
@@ -75,7 +82,7 @@ namespace Model
 
         public List<Entity> UpdateWorld()// Each tick of timer will call this.
         {
-           List<Entity> ships_that_fired = new List<Entity>(); //does not include player
+            List<Entity> ships_that_fired = new List<Entity>(); //does not include player
             List<Entity> leftscreen = new List<Entity>(); // list to keep track  of  when entitys leave the playable screen
             // Update each entity
 
@@ -83,6 +90,14 @@ namespace Model
             {
                 if (ent != null)
                 {
+                    //added by Joanna
+                    if (ent is Tracker)
+                        (ent as Tracker).RecieveTrackerData(player.X, player.Y, winWidth / 2 + winWidth / 4); //the 4th quarter of the window
+
+                    if (ent is Mine)
+                        (ent as Mine).RecieveTrackerData(player.X, player.Y); //the 4th quarter of the window
+
+
                     ent.UpdatePosition();
                     if (ent.FiredABullet)
                         ships_that_fired.Add(ent);
@@ -103,7 +118,7 @@ namespace Model
 
             player.UpdatePosition();//actionMove, other
 
-            foreach(Entity ship in leftscreen)
+            foreach (Entity ship in leftscreen)
             {
                 ship.alive = false;
                 current_Enemies.Remove(ship);
@@ -127,7 +142,7 @@ namespace Model
                 {
                     if (player.Hit())
                         Restart();
-                    if(enemy.Hit())
+                    if (enemy.Hit())
                         dead_Badguy.Add(enemy);
                 }
             }
@@ -140,7 +155,8 @@ namespace Model
                     {
                         dead_playerBullet.Add(bullet);
                         bullet.Hit();
-                        if (enemy.Hit()) {
+                        if (enemy.Hit())
+                        {
                             dead_Badguy.Add(enemy);
                             score += 50 * 1; // TODO: Based on DIff
                         }
@@ -150,7 +166,7 @@ namespace Model
             }
             foreach (Entity e in dead_Badguy)
                 current_Enemies.Remove(e);
-            
+
             foreach (Bullet b in dead_playerBullet)
                 player_fire.Remove(b);
         }
