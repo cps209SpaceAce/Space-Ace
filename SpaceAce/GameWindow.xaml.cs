@@ -55,7 +55,8 @@ namespace SpaceAce
         public int spawnCounter = 0;
 
         public bool isPaused = false;
-
+        Button btnQUIT;
+        Button btnSAVE;
         public DispatcherTimer timer;
         public string currentLevel = "Level 1";
 
@@ -71,7 +72,32 @@ namespace SpaceAce
                 cltr.Load("SaveData.txt");
                 Draw_Load();
             }
+
+            // Quit Button
+            btnQUIT = new Button { Content = "QUIT", Width = 150, Height = 50 };
+            Canvas.SetLeft(btnQUIT, 150);
+            Canvas.SetTop(btnQUIT, 50);
+            btnQUIT.Click += btnQUIT_Click;
+
+            // Save
+            btnSAVE = new Button { Content = "SAVE", Width = 150, Height = 50 };
+            Canvas.SetLeft(btnSAVE, 350);
+            Canvas.SetTop(btnSAVE, 50);
+            btnSAVE.Click += btnSAVE_Click;
+
+            // Load ?
         }
+
+        private void btnQUIT_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnSAVE_Click(object sender, RoutedEventArgs e)
+        {
+            cltr.Save("SaveData.txt");
+        }
+
         public void Draw_Load()
         {
             string imgname = "";
@@ -122,7 +148,10 @@ namespace SpaceAce
             timer.Start();
         }
 
-
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            timer.Stop();
+        }
 
 
         public enum Id { player, computer }
@@ -168,7 +197,8 @@ namespace SpaceAce
             cltr.player.UpdatePosition(); // Update the Player Positions
             List<Entity> fired = cltr.UpdateWorld();           // Update the Model. fired: list of ships that fired 
             SpawnEntities();              // Spawn Entities
-            
+
+            Console.WriteLine("GAME IS STILL RUNNING");
             if (cltr.player.FiredABullet == true)
             {
                 MakeBullet(Id.player,cltr.player);
@@ -216,28 +246,39 @@ namespace SpaceAce
                 string pngName = "";
 
                 if (newEntity is Asteroid)
-                    {pngName = "asteroid.png";}
-                else if(newEntity is AI)
-                    {pngName = "Ship 1.png";}
-                
-                img = new Image() { Source = new BitmapImage(new Uri("images/" + pngName, UriKind.Relative)) };
-                WorldCanvas.Children.Add(img);
-                //img.Width = 50;
-                
-                
-                img.Width = newEntity.hitbox.Width;
-                img.Height = newEntity.hitbox.Height; //image is same size as hitbox
-                
-                Canvas.SetLeft(img, 0);
-                Canvas.SetTop(img, 0);
-                icons.Add(new Icon() { i = img, e = cltr.current_Enemies[cltr.current_Enemies.Count - 1] });                        
+                { pngName = "asteroid.png"; }
+                else if (newEntity is Formation)
+                {
+                    if (newEntity.Flightpath == pattern.Sin)
+                    {
+                        pngName = "Ship 3.png";
+                    }
+                    else if (newEntity.Flightpath == pattern.Cos)
+                    {
+                        pngName = "Ship 2.png";
+                    }
+                }
+                else if (newEntity is AI)
+                { pngName = "Ship 1.png"; }
+                    img = new Image() { Source = new BitmapImage(new Uri("images/" + pngName, UriKind.Relative)) };
+                    WorldCanvas.Children.Add(img);
+                    //img.Width = 50;
+
+
+                    img.Width = newEntity.hitbox.Width;
+                    img.Height = newEntity.hitbox.Height; //image is same size as hitbox
+
+                    Canvas.SetLeft(img, 0);
+                    Canvas.SetTop(img, 0);
+                icons.Add(new Icon() { i = img, e = cltr.current_Enemies[cltr.current_Enemies.Count - 1] });
             }
             else
-            {
-                ++spawnCounter;
-            }
-        }
-
+                {
+                    ++spawnCounter;
+                }
+       
+                }
+        
 
         private void WorldCanvas_KeyDown(object sender, KeyEventArgs e)
         {
@@ -247,11 +288,17 @@ namespace SpaceAce
                     if (!isPaused)
                     {
                         timer.Stop();
+                        WorldCanvas.Children.Add(btnQUIT);
+                        WorldCanvas.Children.Add(btnSAVE);
+
                         isPaused = true;
                     }
                     else
                     {
                         timer.Start();
+                        WorldCanvas.Children.Remove(btnQUIT);
+                        WorldCanvas.Children.Remove(btnSAVE);
+
                         isPaused = false;                        
                     }
                     break;
@@ -275,7 +322,8 @@ namespace SpaceAce
                     break;
 
                 case Key.S:
-                    cltr.Save("SaveData.txt"); //added by JOANNA
+                    //  Moved to Pause Menu
+                    //cltr.Save("SaveData.txt"); //added by JOANNA
                     //also, would ctrl be a better name though?
                     break;
 
@@ -291,8 +339,6 @@ namespace SpaceAce
         {
             switch (e.Key)
             {
-                case Key.Escape:
-                    break;
                 case Key.Left:
                     cltr.left = false;
                     break;
@@ -315,5 +361,7 @@ namespace SpaceAce
                     break;
             }
         }
+
+        
     }
 }

@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpaceAce"
         mc:Ignorable="d"
-        Title="Space Ace - Game Screen" Height="768" Width="1024" Loaded="Window_Loaded" KeyDown="WorldCanvas_KeyDown" KeyUp="Window_KeyUp"
+        Title="Space Ace - Game Screen" Height="768" Width="1024" 
+        KeyDown="WorldCanvas_KeyDown" KeyUp="Window_KeyUp"
+        Loaded="Window_Loaded" Closed="Window_Closed"
         WindowState="Maximized"
         >
     <Window.Background>

@@ -15,7 +15,7 @@ namespace Model
         //health auto set to 1
         public int health;
         public bool FiredABullet = false;
-
+        public pattern Flightpath;
         public Rectangle hitbox;
         public double X;
         public double Y;
