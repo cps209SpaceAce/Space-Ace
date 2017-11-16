@@ -48,7 +48,7 @@ namespace SpaceAce
     {
         public List<Icon> icons = new List<SpaceAce.Icon>();
 
-        public GameController cltr;
+        public GameController gameCtrl;
 
         public List<Image> images = new List<Image>();
 
@@ -65,11 +65,11 @@ namespace SpaceAce
             InitializeComponent();
             // Load from levels
 
-            cltr = new GameController(setDiff, Width, Height);
+            gameCtrl = new GameController(setDiff, Width, Height);
 
             if (isLoad)
             {
-                cltr.Load("SaveData.txt");
+                gameCtrl.Load("SaveData.txt");
                 Draw_Load();
             }
 
@@ -95,13 +95,13 @@ namespace SpaceAce
 
         private void btnSAVE_Click(object sender, RoutedEventArgs e)
         {
-            cltr.Save("SaveData.txt");
+            gameCtrl.Save("SaveData.txt");
         }
 
         public void Draw_Load()
         {
             string imgname = "";
-            foreach (Entity ship in cltr.current_Enemies)
+            foreach (Entity ship in gameCtrl.current_Enemies)
             {
 
                 if (ship is Asteroid)
@@ -119,7 +119,7 @@ namespace SpaceAce
                     icons.Add(new Icon() { i = img, e = ship });
                 }
             }
-            foreach (Entity b in cltr.player_fire)
+            foreach (Entity b in gameCtrl.player_fire)
             {
                 Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet", UriKind.Relative)) };
                 img.Width = b.hitbox.Width;
@@ -140,7 +140,7 @@ namespace SpaceAce
 
             Canvas.SetLeft(img, 0);
             Canvas.SetTop(img, 0);
-            icons.Add(new Icon() { i = img, e = cltr.player });
+            icons.Add(new Icon() { i = img, e = gameCtrl.player });
 
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Tick += Timer_Tick;
@@ -164,7 +164,7 @@ namespace SpaceAce
                 double y = p.Y + 10;
                 double x = p.X + 50;
                 Bullet b = new Bullet(x, y);
-                cltr.player_fire.Add(b);
+                gameCtrl.player_fire.Add(b);
                 Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
                 img.Width = 20;
                 Icon i = new Icon() { i = img, e = b };
@@ -177,7 +177,7 @@ namespace SpaceAce
                 double y = ship.Y + 10;
                 double x = ship.X - 2;
                 Bullet b = new Bullet(x, y) {direction = -1 };
-                cltr.current_Enemies.Add(b);
+                gameCtrl.current_Enemies.Add(b);
                 Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "C_bullet.png", UriKind.Relative)) };
                 img.Width = 20;
                 Icon i = new Icon() { i = img, e = b };
@@ -194,15 +194,15 @@ namespace SpaceAce
         public void Timer_Tick(object sender, EventArgs e)
         {
             List<Icon> dead = new List<Icon>();
-            cltr.player.UpdatePosition(); // Update the Player Positions
-            List<Entity> fired = cltr.UpdateWorld();           // Update the Model. fired: list of ships that fired 
+            gameCtrl.player.UpdatePosition(); // Update the Player Positions
+            List<Entity> fired = gameCtrl.UpdateWorld();           // Update the Model. fired: list of ships that fired 
             SpawnEntities();              // Spawn Entities
 
             Console.WriteLine("GAME IS STILL RUNNING");
-            if (cltr.player.FiredABullet == true)
+            if (gameCtrl.player.FiredABullet == true)
             {
-                MakeBullet(Id.player,cltr.player);
-                cltr.player.FiredABullet = false;
+                MakeBullet(Id.player,gameCtrl.player);
+                gameCtrl.player.FiredABullet = false;
             }
 
             foreach (Entity ship in fired)
@@ -224,13 +224,13 @@ namespace SpaceAce
             }
 
             // Update Score GUI
-            labelScore.Content = "Score: " + cltr.score;
+            labelScore.Content = "Score: " + gameCtrl.score;
             
             
             // Update Lives
             // TODO: We can change to images for bonus
-            labelLives.Content = "Lives: " + String.Concat(Enumerable.Repeat("< ", cltr.player.lives));
-            labelBombs.Content = "Bombs: " + cltr.player.bombs;
+            labelLives.Content = "Lives: " + String.Concat(Enumerable.Repeat("< ", gameCtrl.player.lives));
+            labelBombs.Content = "Bombs: " + gameCtrl.player.bombs;
             labelLevel.Content = currentLevel;
         }
 
@@ -240,8 +240,8 @@ namespace SpaceAce
             if (spawnCounter > 25)
             {
                 spawnCounter = 0;
-                Entity newEntity = Levels.Level_reuturnEntity(cltr.difficulty, cltr.level);
-                cltr.current_Enemies.Add(newEntity); // Add to Model
+                Entity newEntity = Levels.Level_reuturnEntity(gameCtrl.difficulty, gameCtrl.level);
+                gameCtrl.current_Enemies.Add(newEntity); // Add to Model
                 
                 string pngName = "";
 
@@ -280,7 +280,7 @@ namespace SpaceAce
 
                 Canvas.SetLeft(img, 0);
                 Canvas.SetTop(img, 0);
-                icons.Add(new Icon() { i = img, e = cltr.current_Enemies[cltr.current_Enemies.Count - 1] });
+                icons.Add(new Icon() { i = img, e = gameCtrl.current_Enemies[gameCtrl.current_Enemies.Count - 1] });
             }
             else
             {
@@ -313,22 +313,22 @@ namespace SpaceAce
                     }
                     break;
                 case Key.Left:
-                    cltr.left = true;
+                    gameCtrl.left = true;
                     break;
                 case Key.Right:
-                    cltr.right = true;
+                    gameCtrl.right = true;
                     break;
                 case Key.Up:
-                    cltr.up = true;
+                    gameCtrl.up = true;
                     break;
                 case Key.Down:
-                    cltr.down = true;
+                    gameCtrl.down = true;
                     break;
                 case Key.Space:
-                    cltr.fired = true;
+                    gameCtrl.fired = true;
                     break;
                 case Key.B:
-                    cltr.bomb = true;
+                    gameCtrl.bomb = true;
                     break;
 
                 case Key.S:
@@ -350,22 +350,22 @@ namespace SpaceAce
             switch (e.Key)
             {
                 case Key.Left:
-                    cltr.left = false;
+                    gameCtrl.left = false;
                     break;
                 case Key.Right:
-                    cltr.right = false;
+                    gameCtrl.right = false;
                     break;
                 case Key.Up:
-                    cltr.up = false;
+                    gameCtrl.up = false;
                     break;
                 case Key.Down:
-                    cltr.down = false;
+                    gameCtrl.down = false;
                     break;
                 case Key.Space:
-                    cltr.fired = false;
+                    gameCtrl.fired = false;
                     break;
                 case Key.B:
-                    cltr.bomb = false;
+                    gameCtrl.bomb = false;
                     break;
                 default:
                     break;
