@@ -195,6 +195,9 @@ namespace Model
 
             using (StreamWriter writer = new StreamWriter(fileName))
             {
+                writer.WriteLine("[defaults]");
+                writer.WriteLine(level + "," + score + "," + base_Speed);
+                writer.WriteLine("[end]");
 
                 if (current_Enemies != null && current_Enemies.Count > 0)
                 {
@@ -227,10 +230,6 @@ namespace Model
                     writer.WriteLine("[end]");
                 }
 
-                writer.WriteLine("[defaults]");
-                writer.WriteLine(level + "," + score + "," + base_Speed);
-                writer.WriteLine("[end]");
-
             }
         }
         public void Load(string fileName)
@@ -244,8 +243,29 @@ namespace Model
                 while (!reader.EndOfStream)
                 {
                     string startLine = reader.ReadLine();
+                    if (startLine == "[defaults]")
+                    {
+                        //2,10,1337
+                        string[] res = reader.ReadLine().Split(',');
+                        Level l = Level.Level_1;
 
-                    if (startLine == "[enemies]")
+                        if (res[0] == "Level_1")
+                            l = Level.Level_1;
+                        else if (res[0] == "Level_2")
+                            l = Level.Level_2;
+                        else if (res[0] == "Boss")
+                            l = Level.Boss;
+
+                        if (l != level)
+                        {
+                            //TODO: figure out why this doesn't reset, - Jo
+                            return; //restarts mode if level saved deosn't match level chosen
+                        }
+
+                        score = Convert.ToInt32(res[1]);
+                        base_Speed = Convert.ToInt32(res[2]);
+                    }
+                    else if (startLine == "[enemies]")
                     {
                         List<Entity> list = new List<Entity>();
 
@@ -291,22 +311,6 @@ namespace Model
                         }
 
                         player_fire = list;
-                    }
-
-                    else if (startLine == "[defaults]")
-                    {
-                        //2,10,1337
-                        string[] res = reader.ReadLine().Split(',');
-
-                        if (res[0] == "Level_1")
-                            level = Level.Level_1;
-                        else if (res[0] == "Level_2")
-                            level = Level.Level_2;
-                        else if (res[0] == "Boss")
-                            level = Level.Boss;
-
-                        score = Convert.ToInt32(res[1]);
-                        base_Speed = Convert.ToInt32(res[2]);
                     }
                 }
             }
