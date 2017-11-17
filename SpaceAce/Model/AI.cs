@@ -12,8 +12,6 @@ namespace Model
     public class AI : Entity
     {
         public int fireCoolDown = 50;
-        public pattern Flightpath;
-
 
         public AI(double X, double Y, pattern flightpath) : base(X, Y)
         {

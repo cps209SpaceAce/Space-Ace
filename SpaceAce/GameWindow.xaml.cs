@@ -44,6 +44,9 @@ namespace SpaceAce
          
         }
     }
+
+    
+
     public partial class GameWindow : Window
     {
         public List<Icon> icons = new List<SpaceAce.Icon>();
@@ -58,7 +61,9 @@ namespace SpaceAce
         Button btnQUIT;
         Button btnSAVE;
         public DispatcherTimer timer;
-        public string currentLevel = "Level 1";
+        public double gameLevelTimer;
+
+        
 
         public GameWindow(Difficulty setDiff, bool isLoad) //Joanna: isLoad checks whether to load game or start new one
         {
@@ -193,12 +198,18 @@ namespace SpaceAce
 
         public void Timer_Tick(object sender, EventArgs e)
         {
-            List<Icon> dead = new List<Icon>();
+            gameLevelTimer += 0.01;
+            List<Icon> dead = new List<Icon>();            
+
             gameCtrl.player.UpdatePosition(); // Update the Player Positions
             List<Entity> fired = gameCtrl.UpdateWorld();           // Update the Model. fired: list of ships that fired 
+
+            
+            CheckGameStatus();
+
             SpawnEntities();              // Spawn Entities
 
-            Console.WriteLine("GAME IS STILL RUNNING");
+            
             if (gameCtrl.player.FiredABullet == true)
             {
                 MakeBullet(Id.player,gameCtrl.player);
@@ -231,9 +242,29 @@ namespace SpaceAce
             // TODO: We can change to images for bonus
             labelLives.Content = "Lives: " + String.Concat(Enumerable.Repeat("< ", gameCtrl.player.lives));
             labelBombs.Content = "Bombs: " + gameCtrl.player.bombs;
-            labelLevel.Content = currentLevel;
+            labelLevel.Content = gameCtrl.level.ToString().Replace("Level_","LEVEL ");
         }
+        private void CheckGameStatus()
+        {
+            if (gameLevelTimer > 50)
+            {
+                gameCtrl.level = Level.Boss;
 
+                if (gameCtrl.gameResult != GameResult.Running || gameLevelTimer > 60)
+                {
+                    
+                    AddScoreWindow addScoreWindow = new AddScoreWindow(gameCtrl); // Need to pass score
+                    addScoreWindow.Show();
+                    this.Close(); // Closing GameWindow
+
+                }
+
+            }
+            else if (gameLevelTimer > 30)
+            {
+                gameCtrl.level = Level.Level_2;
+            }
+        }
         private void SpawnEntities()
         {
 
