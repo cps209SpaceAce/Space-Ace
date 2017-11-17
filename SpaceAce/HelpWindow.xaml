@@ -5,13 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SpaceAce"
         mc:Ignorable="d"
-        Title="Space Ace - Help" Height="768" Width="1024">
+        Title="Space Ace - Help" Height="768" Width="1024"
+        WindowState="Maximized" WindowStyle="None"
+        >
+    
     <Window.Background>
         <ImageBrush ImageSource="Images\titleScreenBackground.png"></ImageBrush>
     </Window.Background>
-    <Grid>
-        <Button Content="Close Window" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" >
+        <Grid>
+            <Button Content="Close Window" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
             Margin="720,634,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="Button_Click"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="331" Width="700" Foreground="White" FontSize="22" Margin="97,157,0,0"><Run Text="&lt;Instructions go here&gt; "/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run Text="but for now,"/><LineBreak/><Run Text="How to play the game according to the save/load programmer:"/><LineBreak/><Run/><LineBreak/><Run Text="Cntrl R+A and hope for the best."/><LineBreak/><Run Text="Pray the code compiles."/></TextBlock>
-    </Grid>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="331" Width="700" Foreground="White" FontSize="22" Margin="97,157,0,0"><Run Text="&lt;Instructions go here&gt; "/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run Text="but for now,"/><LineBreak/><Run Text="How to play the game according to the save/load programmer:"/><LineBreak/><Run/><LineBreak/><Run Text="Cntrl R+A and hope for the best."/><LineBreak/><Run Text="Pray the code compiles."/></TextBlock>
+        </Grid>
+    </StackPanel>
 </Window>

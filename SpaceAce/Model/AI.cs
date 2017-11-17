@@ -12,8 +12,6 @@ namespace Model
     public class AI : Entity
     {
         public int fireCoolDown = 50;
-        public pattern Flightpath;
-
 
         public AI(double X, double Y, pattern flightpath) : base(X, Y)
         {
@@ -68,8 +66,8 @@ namespace Model
                     Y = (50 * Math.Sin(0.01 * X)) + original_Y;
                     break;
                 case pattern.Cos:
-                    X = (X - (1 * speed));
-                    Y = (50 * Math.Cos(0.01 * X)) + original_Y;
+                    X = (X - (0.5 * speed));
+                    Y = (200 * Math.Cos(0.01 * X)) + original_Y;
                     break;
                 case pattern.Tan:
                     break;

@@ -20,6 +20,7 @@ namespace Model
         public double X;
         public double Y;
         public bool alive = true;
+        
 
         public Entity(double X, double Y)
         {

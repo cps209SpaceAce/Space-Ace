@@ -25,6 +25,10 @@ namespace Model
     {
         string Serialize();
     }
+    public enum GameResult
+    {
+        Running, Won, Lost
+    }
 
     public class GameController
     {
@@ -42,7 +46,7 @@ namespace Model
         public List<Entity> enemie_Que = new List<Entity>();
         public Player player;
         public List<Bullet> player_fire = new List<Bullet>();
-
+        public GameResult gameResult;
         //pre-game setup
         public Level level;
         public Difficulty difficulty;
