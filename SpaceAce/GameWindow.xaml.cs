@@ -246,11 +246,11 @@ namespace SpaceAce
         }
         private void CheckGameStatus()
         {
-            if (gameLevelTimer > 50)
+            if (gameLevelTimer > 10)
             {
                 gameCtrl.level = Level.Boss;
 
-                if (gameCtrl.gameResult != GameResult.Running || gameLevelTimer > 60)
+                if (gameCtrl.gameResult != GameResult.Running || gameLevelTimer > 15)
                 {
                     
                     AddScoreWindow addScoreWindow = new AddScoreWindow(gameCtrl); // Need to pass score
@@ -260,7 +260,7 @@ namespace SpaceAce
                 }
 
             }
-            else if (gameLevelTimer > 30)
+            else if (gameLevelTimer > 5)
             {
                 gameCtrl.level = Level.Level_2;
             }

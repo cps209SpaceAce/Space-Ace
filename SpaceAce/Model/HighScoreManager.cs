@@ -10,7 +10,7 @@ namespace Model
 {
 
 
-    class HighScore
+    public class HighScore
     {
         public string Name;       // Name
         public Level Level;       // Last Level Complete
@@ -45,7 +45,7 @@ namespace Model
     }
 
 
-    class HighScoreManager
+    public class HighScoreManager
     {
         // List of HighScores saved
         public List<HighScore> highScores;
@@ -53,6 +53,7 @@ namespace Model
         public HighScoreManager()
         {
             highScores = new List<HighScore>();
+            this.Load();
         }
         /// On startup - Load from JSON file
         /// List of HighScores.
@@ -83,15 +84,15 @@ namespace Model
 
         // After update
         // Saves to JSON File
-        public void Save()
+        public void Save( HighScore newScore)
         {
-            // Convert to json
-            string json = new JavaScriptSerializer().Serialize(highScores);
+            string loadString = File.ReadAllText(Environment.CurrentDirectory + @"/JSON.txt"); 
+            List<HighScore> list = new JavaScriptSerializer().Deserialize<List<HighScore>>(loadString);
+            list.Add(newScore);
 
-            // Write to file
+            string json = new JavaScriptSerializer().Serialize(highScores);
             File.WriteAllText(Environment.CurrentDirectory + @"\JSON.txt", json);
         }
-
 
     }
 

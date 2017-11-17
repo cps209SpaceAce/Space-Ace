@@ -28,7 +28,7 @@ namespace SpaceAce
         public void Window_Loaded(Object sender, RoutedEventArgs stuff)
         {
             hsManager = new HighScoreManager();
-             hsManager.Load(); 
+            hsManager.Load(); 
 
             hsManager.highScores.Add(new HighScore("jo", Level.Boss, Difficulty.Hard, 10000000, "/Images/asteroid.png"));
             for (int i = 0; i < hsManager.highScores.Count; i++)

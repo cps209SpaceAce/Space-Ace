@@ -38,9 +38,8 @@ namespace SpaceAce
 
         private void btnHighScorePage_Click(object sender, RoutedEventArgs e)
         {
-            HighScoreWindow gameWindow = new HighScoreWindow();
-            gameWindow.Window_Loaded(sender, e);
-            gameWindow.Show();
+            HighScoreWindow highScoreWindow = new HighScoreWindow();
+            highScoreWindow.Show();
         }
         private void btnNewGame_Click(object sender, RoutedEventArgs e)
         {
