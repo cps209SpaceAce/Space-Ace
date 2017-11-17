@@ -79,6 +79,7 @@
     <Compile Include="HighScoreWindow.xaml.cs">
       <DependentUpon>HighScoreWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\AI.cs" />
     <Compile Include="UnitTests\Model_tests.cs" />
     <Compile Include="UnitTests\SaveLoadTests.cs" />
     <Page Include="AboutWindow.xaml">
@@ -117,7 +118,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\AI.cs" />
     <Compile Include="Model\Boss.cs" />
     <Compile Include="Model\Bullet.cs" />
     <Compile Include="Model\Entity.cs" />

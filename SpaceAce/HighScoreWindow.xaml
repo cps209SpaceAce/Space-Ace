@@ -8,6 +8,7 @@
         mc:Ignorable="d"
         Title="Space Ace - High Scores" Height="768" Width="1024"
         WindowState="Maximized" WindowStyle="None"
+    Loaded="Window_Loaded"
     >
     <Window.Background>
         <ImageBrush ImageSource="Images\titleScreenBackground.png"/>

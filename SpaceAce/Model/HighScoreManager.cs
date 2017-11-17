@@ -60,6 +60,14 @@ namespace Model
         public void Load()
         {
             // Read JSON File
+
+            if (!File.Exists(Environment.CurrentDirectory + @"/JSON.txt"))
+            {
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(Environment.CurrentDirectory + @"/JSON.txt"))
+                {
+                }
+            }
             string loadString = File.ReadAllText(Environment.CurrentDirectory + @"/JSON.txt");
 
             // Convert to list
@@ -79,7 +87,11 @@ namespace Model
             highScores.Add(newScore);
 
             // Sorts the list by Score
-            highScores = highScores.OrderBy(o => o.Score).ToList();
+            
+        }
+        public void Sort()
+        {
+            highScores = highScores.OrderByDescending(o => o.Score).ToList();
         }
 
         // After update
