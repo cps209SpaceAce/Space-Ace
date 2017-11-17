@@ -84,11 +84,11 @@ namespace Model
 
         // After update
         // Saves to JSON File
-        public void Save( HighScore newScore)
+        public void Save()
         {
-            string loadString = File.ReadAllText(Environment.CurrentDirectory + @"/JSON.txt"); 
-            List<HighScore> list = new JavaScriptSerializer().Deserialize<List<HighScore>>(loadString);
-            list.Add(newScore);
+            //ystring loadString = File.ReadAllText(Environment.CurrentDirectory + @"/JSON.txt"); 
+            //yList<HighScore> list = new JavaScriptSerializer().Deserialize<List<HighScore>>(loadString);
+            //ylist.Add(newScore);
 
             string json = new JavaScriptSerializer().Serialize(highScores);
             File.WriteAllText(Environment.CurrentDirectory + @"\JSON.txt", json);
