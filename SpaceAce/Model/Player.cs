@@ -27,6 +27,7 @@ namespace Model
             this.lives = lives;
             this.bombs = bombs;
             speed = 5;
+            this.hitbox = new Rectangle(Convert.ToInt32(X), Convert.ToInt32(Y), 45, 7);
         }
 
         public void Fire()
@@ -60,8 +61,13 @@ namespace Model
         public override bool Hit()
         {
             //TODO: remove one life(ship destroyed)
+            
             //TODO: return true(ship destroyed)
-            //lives--;
+
+            lives--;
+
+            if(lives == 0)
+                game.gameResult = GameResult.Lost;
 
             return true;
         }
