@@ -69,7 +69,7 @@ namespace SpaceAce
         {
             InitializeComponent();
             // Load from levels
-
+            CanvasBorder.BorderThickness = new Thickness(2);
             gameCtrl = new GameController(setDiff, Width, Height);
 
             if (isLoad)
@@ -244,22 +244,26 @@ namespace SpaceAce
             labelBombs.Content = "Bombs: " + gameCtrl.player.bombs;
             labelLevel.Content = gameCtrl.level.ToString().Replace("Level_","LEVEL ");
         }
+
+
+
         private void CheckGameStatus()
         {
 
-            if (gameLevelTimer > 4)
+            if (gameCtrl.gameResult != GameResult.Running || gameLevelTimer > 5)
+
+            {
+
+                AddScoreWindow addScoreWindow = new AddScoreWindow(gameCtrl); // Need to pass score
+                addScoreWindow.Show();
+                this.Close(); // Closing GameWindow
+
+            }
+            else if (gameLevelTimer > 4)
             {
                 gameCtrl.level = Level.Boss;
 
-                if (gameCtrl.gameResult != GameResult.Running || gameLevelTimer > 5)
-
-                {
-                    
-                    AddScoreWindow addScoreWindow = new AddScoreWindow(gameCtrl); // Need to pass score
-                    addScoreWindow.Show();
-                    this.Close(); // Closing GameWindow
-
-                }
+                
 
             }
             else if (gameLevelTimer > 3)
@@ -268,6 +272,9 @@ namespace SpaceAce
                 gameCtrl.level = Level.Level_2;
             }
         }
+
+
+
         private void SpawnEntities()
         {
 

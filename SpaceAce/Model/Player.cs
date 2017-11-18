@@ -13,6 +13,7 @@ namespace Model
 
     {
         public int cooldown = 0;
+        public int bombCooldown = 0;
         public int lives { get; set; }
         public int bombs { get; set; }
         public powerup powerup { get; set; }
@@ -26,7 +27,6 @@ namespace Model
             this.lives = lives;
             this.bombs = bombs;
             speed = 5;
-            //TODO: setup player
         }
 
         public void Fire()
@@ -34,11 +34,8 @@ namespace Model
             if (cooldown == 0)
             {
                 FiredABullet = true;
-                cooldown = 50; // Rate of fire: bigger = slower.
-            }
-            //TODO: create a bullet object (with id = friendly) at a point infront of the player
-            // with a heading towards th right
-            
+                cooldown = 50;      // Rate of fire: bigger = slower.
+            }            
         }
 
         public void Activate_powerup()
@@ -47,12 +44,17 @@ namespace Model
         }
         public void DropBomb()
         {
-            if (bombs != 0)
-            {
-                game.Bomb();
-                bombs--;
+            if(bombCooldown == 0)
+            {                
+                bombCooldown = 50;
+                if (bombs != 0)
+                {
+                    game.Bomb();
+                    bombs--;
+                }
+
+                // TODO: Add score for kills
             }
-            //TODO: damage all badguys
         }
 
         public override bool Hit()
@@ -60,41 +62,37 @@ namespace Model
             //TODO: remove one life(ship destroyed)
             //TODO: return true(ship destroyed)
             //lives--;
+
             return true;
         }
 
         public void Up()
         {
             Y = Convert.ToInt32(Y - (1 * speed));
-            
-            //TODO: move player up
         }
 
         public void Down()
         {
             Y = Convert.ToInt32(Y + (1 * speed));
-           
-            //TODO: move player down
         }
 
         public void Left()
         {
             X = Convert.ToInt32(X - (1 * speed));
-            
-            //TODO: move player left
         }
 
         public void Right()
         {
             X = Convert.ToInt32(X + (1 * speed));
-            //TODO: move player right
         }
 
-        //handles when the player is idle
         public override void UpdatePosition()
         {
             if(cooldown > 0)
-            cooldown--;
+                cooldown--;
+
+            if (bombCooldown > 0)
+                bombCooldown--;
 
             if (game.up)
             {
@@ -103,7 +101,7 @@ namespace Model
             }
             if (game.down)
             {
-                if (this.Y < game.winHeight - 50)
+                if (this.Y < game.winHeight - 30)
                     Down();
             }
             if (game.left)
@@ -113,7 +111,7 @@ namespace Model
             }
             if (game.right)
             {
-                if (this.X < game.winWidth - 50) //fixed this to make more sense because using raw number is just no :L - Joanna
+                if (this.X < game.winWidth - 50)
                     Right();
             }
             if (game.fired)

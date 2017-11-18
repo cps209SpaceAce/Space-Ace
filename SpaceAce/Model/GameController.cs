@@ -183,7 +183,12 @@ namespace Model
         public void Bomb()
         {
             foreach (Entity e in current_Enemies)
+            {
+                this.score += 50;
                 e.alive = false;
+            }
+                
+            
             current_Enemies = new List<Entity>();
         }
 
