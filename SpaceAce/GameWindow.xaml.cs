@@ -62,8 +62,8 @@ namespace SpaceAce
         Button btnSAVE;
         public DispatcherTimer timer;
         public double gameLevelTimer;
+        public double gamePowerUpTimer;
 
-        
 
         public GameWindow(Difficulty setDiff, bool isLoad) //Joanna: isLoad checks whether to load game or start new one
         {
@@ -199,6 +199,7 @@ namespace SpaceAce
         public void Timer_Tick(object sender, EventArgs e)
         {
             gameLevelTimer += 0.01;
+            gamePowerUpTimer += 0.01;
             List<Icon> dead = new List<Icon>();            
 
             gameCtrl.player.UpdatePosition(); // Update the Player Positions
@@ -206,10 +207,10 @@ namespace SpaceAce
 
             
             CheckGameStatus();
-
             SpawnEntities();              // Spawn Entities
+            SpawnPowerUp();
 
-            
+            // ---- Update New Bullets ---- //
             if (gameCtrl.player.FiredABullet == true)
             {
                 MakeBullet(Id.player,gameCtrl.player);
@@ -218,7 +219,9 @@ namespace SpaceAce
 
             foreach (Entity ship in fired)
                 MakeBullet(Id.computer, ship);
-            // Update GUI
+
+
+            // ---- Update GUI ---- //
             foreach (Icon ic in icons)
             {
                 if (ic.update() == false)
@@ -245,12 +248,15 @@ namespace SpaceAce
             labelLevel.Content = gameCtrl.level.ToString().Replace("Level_","LEVEL ");
         }
 
+        private void SpawnPowerUp()
+        {
 
+        }
 
         private void CheckGameStatus()
         {
 
-            if (gameCtrl.gameResult != GameResult.Running || gameLevelTimer > 5)
+            if (gameCtrl.gameResult != GameResult.Running || gameLevelTimer > 65)
 
             {
 
@@ -259,14 +265,14 @@ namespace SpaceAce
                 this.Close(); // Closing GameWindow
 
             }
-            else if (gameLevelTimer > 4)
+            else if (gameLevelTimer > 60)
             {
                 gameCtrl.level = Level.Boss;
 
                 
 
             }
-            else if (gameLevelTimer > 3)
+            else if (gameLevelTimer > 30)
 
             {
                 gameCtrl.level = Level.Level_2;
