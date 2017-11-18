@@ -152,17 +152,14 @@ namespace Model
         }
         public override bool Hit()
         { 
-            //Asteroid can't be destroyed
             return false;
         }
         public override void UpdatePosition()
         {
-            //TODO: add movment logic: make it move in a straight line
             X = Convert.ToDouble(X - (1 * speed));
-            hitbox.X = Convert.ToInt32(X);
-            
-            // Why are we returning a point?
-
+            hitbox.X = Convert.ToInt32(X);   
+            if (X < 0)
+                alive = false;
         }
 
         public override string Serialize()
