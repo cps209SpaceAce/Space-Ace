@@ -17,7 +17,7 @@
         <Grid>
             <Button Content="Close Window" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
             Margin="720,634,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="Button_Click"/>
-            <ListBox x:Name="lstHighScores" HorizontalAlignment="Left" Height="343" Margin="85,185,147.6,0" VerticalAlignment="Top" Width="785" Background="Black" BorderBrush="#FF00BD1E" Foreground="#FF15DF00" FontSize="20" FontFamily="OCR A Extended">
+            <ListBox x:Name="lstHighScores" HorizontalAlignment="Left" Height="356" Margin="85,185,0,0" VerticalAlignment="Top" Width="785" Background="Black" BorderBrush="#FF00BD1E" Foreground="#FF15DF00" FontSize="20" FontFamily="OCR A Extended">
             </ListBox>
         </Grid>
     </StackPanel>

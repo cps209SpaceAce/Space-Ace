@@ -44,7 +44,8 @@ namespace Model
             else if (Level == Level.Boss)
                 lev = "Boss";
 
-            return Name.PadRight(10) + " - " + lev.PadRight(10) + " - " + Convert.ToString(Diff).PadRight(10) + " - " + Convert.ToString(Score).PadRight(10);
+            string name = Name.PadRight(10);
+            return " " + name.Substring(0, 9) + "   " + lev.PadRight(9) + "   " + Convert.ToString(Diff).PadRight(10) + "   " + Convert.ToString(Score).PadLeft(9);
         }
     }
 
@@ -71,8 +72,8 @@ namespace Model
                 using (StreamWriter sw = File.CreateText(Environment.CurrentDirectory + @"/JSON.txt"))
                 {
                     sw.WriteLine("[");
-                    sw.WriteLine("{\"Name\":\"Rick Astley\",\"Level\":2,\"Diff\":2,\"Score\":80,\"ShipImage\":\"spaceship-hi.png\"},");
-                    sw.WriteLine("{\"Name\":\"Rick Astley\",\"Level\":2,\"Diff\":2,\"Score\":70,\"ShipImage\":\"spaceship-hi.png\"},");
+                    sw.WriteLine("{\"Name\":\"R Astley\",\"Level\":2,\"Diff\":2,\"Score\":80,\"ShipImage\":\"spaceship-hi.png\"},");
+                    sw.WriteLine("{\"Name\":\"R Astley\",\"Level\":2,\"Diff\":2,\"Score\":70,\"ShipImage\":\"spaceship-hi.png\"},");
                     sw.WriteLine("{\"Name\":\"Joanna\",\"Level\":2,\"Diff\":2,\"Score\":1000,\"ShipImage\":\"spaceship-hi.png\"},");
                     sw.WriteLine("{\"Name\":\"Noah\",\"Level\":2,\"Diff\":2,\"Score\":900,\"ShipImage\":\"spaceship-hi.png\"},");
                     sw.WriteLine("{\"Name\":\"Robert\",\"Level\":2,\"Diff\":2,\"Score\":800,\"ShipImage\":\"spaceship-hi.png\"},");
@@ -82,8 +83,8 @@ namespace Model
                     sw.WriteLine("{\"Name\":\"Putin\",\"Level\":2,\"Diff\":2,\"Score\":400,\"ShipImage\":\"spaceship-hi.png\"},");
                     sw.WriteLine("{\"Name\":\"Turnbull\",\"Level\":2,\"Diff\":2,\"Score\":200,\"ShipImage\":\"spaceship-hi.png\"},");
                     sw.WriteLine("{\"Name\":\"Elizabeth II\",\"Level\":2,\"Diff\":2,\"Score\":100,\"ShipImage\":\"spaceship-hi.png\"},");
-                    sw.WriteLine("{\"Name\":\"Rick Astley\",\"Level\":2,\"Diff\":2,\"Score\":90,\"ShipImage\":\"spaceship-hi.png\"},");                    
-                    sw.WriteLine("{\"Name\":\"Rick Astley\",\"Level\":2,\"Diff\":2,\"Score\":60,\"ShipImage\":\"spaceship-hi.png\"}");
+                    sw.WriteLine("{\"Name\":\"R Astley\",\"Level\":2,\"Diff\":2,\"Score\":90,\"ShipImage\":\"spaceship-hi.png\"},");                    
+                    sw.WriteLine("{\"Name\":\"R Astley\",\"Level\":2,\"Diff\":2,\"Score\":60,\"ShipImage\":\"spaceship-hi.png\"}");
 
                     sw.WriteLine("]");
                 }
