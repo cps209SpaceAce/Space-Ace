@@ -75,8 +75,7 @@ namespace SpaceAce
         Button btnQUIT;
         Button btnSAVE;
         public DispatcherTimer timer;
-        public double gameLevelTimer;
-        public double gamePowerUpTimer;
+        
 
 
         public GameWindow(Difficulty setDiff, bool isLoad) //Joanna: isLoad checks whether to load game or start new one
@@ -212,8 +211,8 @@ namespace SpaceAce
 
         public void Timer_Tick(object sender, EventArgs e)
         {
-            gameLevelTimer += 0.01;
-            gamePowerUpTimer += 0.01;
+            gameCtrl.gameLevelTimer += 0.01;
+            gameCtrl.gamePowerUpTimer += 0.01;
             List<Icon> dead = new List<Icon>();            
 
             gameCtrl.player.UpdatePosition(); // Update the Player Positions
@@ -270,7 +269,7 @@ namespace SpaceAce
         private void CheckGameStatus()
         {
 
-            if (gameCtrl.gameResult != GameResult.Running || gameLevelTimer > 65) // IF WON/LOST
+            if (gameCtrl.gameResult != GameResult.Running || gameCtrl.gameLevelTimer > 65) // IF WON/LOST
             {
 
                 gameCtrl.score += gameCtrl.player.bombs * 250;
@@ -294,11 +293,11 @@ namespace SpaceAce
                 this.Close(); // Closing GameWindow
 
             }
-            else if (gameLevelTimer > 60)
+            else if (gameCtrl.gameLevelTimer > 60)
             {
                 gameCtrl.level = Level.Boss;
             }
-            else if (gameLevelTimer > 30)
+            else if (gameCtrl.gameLevelTimer > 30)
             {
                 gameCtrl.level = Level.Level_2;
             }

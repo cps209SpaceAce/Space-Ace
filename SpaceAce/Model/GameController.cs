@@ -52,6 +52,9 @@ namespace Model
         public Difficulty difficulty;
         public double base_Speed;
         public int score;
+        public double gameLevelTimer;
+        public double gamePowerUpTimer;
+
 
         //window information
         public double winWidth;

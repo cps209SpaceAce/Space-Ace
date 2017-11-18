@@ -31,7 +31,15 @@ namespace Model
         public override void UpdatePosition()
         {
             //TODO: move bullet in correct direction
-            X += 15 * direction;
+            if (this.id == ID.Friendly)
+            {
+                X += 15 * direction;
+            }
+            else
+            {
+                X += 7 * direction;
+            }
+            
             hitbox.X = Convert.ToInt32(X);
             if (X < 0 || X >1200)
                 alive = false;
