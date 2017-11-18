@@ -40,7 +40,7 @@ namespace Model
             else if (Level == Level.Boss)
                 lev = "Boss";
 
-            return Name + ": " + lev + ", " + Diff + ". Score: " + Score;
+            return Name.PadRight(10) + " - " + lev.PadRight(10) + " - " + Convert.ToString(Diff).PadRight(10) + " - " + Convert.ToString(Score).PadRight(10);
         }
     }
 
@@ -66,6 +66,22 @@ namespace Model
                 // Create a file to write to.
                 using (StreamWriter sw = File.CreateText(Environment.CurrentDirectory + @"/JSON.txt"))
                 {
+                    sw.WriteLine("[");
+                    sw.WriteLine("{\"Name\":\"Rick Astley\",\"Level\":2,\"Diff\":2,\"Score\":80,\"ShipImage\":\"spaceship-hi.png\"},");
+                    sw.WriteLine("{\"Name\":\"Rick Astley\",\"Level\":2,\"Diff\":2,\"Score\":70,\"ShipImage\":\"spaceship-hi.png\"},");
+                    sw.WriteLine("{\"Name\":\"Joanna\",\"Level\":2,\"Diff\":2,\"Score\":1000,\"ShipImage\":\"spaceship-hi.png\"},");
+                    sw.WriteLine("{\"Name\":\"Noah\",\"Level\":2,\"Diff\":2,\"Score\":900,\"ShipImage\":\"spaceship-hi.png\"},");
+                    sw.WriteLine("{\"Name\":\"Robert\",\"Level\":2,\"Diff\":2,\"Score\":800,\"ShipImage\":\"spaceship-hi.png\"},");
+                    sw.WriteLine("{\"Name\":\"Pettit\",\"Level\":2,\"Diff\":2,\"Score\":700,\"ShipImage\":\"spaceship-hi.png\"},");
+                    sw.WriteLine("{\"Name\":\"Schaub\",\"Level\":2,\"Diff\":2,\"Score\":600,\"ShipImage\":\"spaceship-hi.png\"},");
+                    sw.WriteLine("{\"Name\":\"Knisely\",\"Level\":2,\"Diff\":2,\"Score\":500,\"ShipImage\":\"spaceship-hi.png\"},");
+                    sw.WriteLine("{\"Name\":\"Putin\",\"Level\":2,\"Diff\":2,\"Score\":400,\"ShipImage\":\"spaceship-hi.png\"},");
+                    sw.WriteLine("{\"Name\":\"Turnbull\",\"Level\":2,\"Diff\":2,\"Score\":200,\"ShipImage\":\"spaceship-hi.png\"},");
+                    sw.WriteLine("{\"Name\":\"Elizabeth II\",\"Level\":2,\"Diff\":2,\"Score\":100,\"ShipImage\":\"spaceship-hi.png\"},");
+                    sw.WriteLine("{\"Name\":\"Rick Astley\",\"Level\":2,\"Diff\":2,\"Score\":90,\"ShipImage\":\"spaceship-hi.png\"},");                    
+                    sw.WriteLine("{\"Name\":\"Rick Astley\",\"Level\":2,\"Diff\":2,\"Score\":60,\"ShipImage\":\"spaceship-hi.png\"}");
+
+                    sw.WriteLine("]");
                 }
             }
             string loadString = File.ReadAllText(Environment.CurrentDirectory + @"/JSON.txt");

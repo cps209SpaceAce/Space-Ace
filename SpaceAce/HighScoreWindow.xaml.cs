@@ -28,14 +28,14 @@ namespace SpaceAce
         public void Window_Loaded(Object sender, RoutedEventArgs stuff)
         {
             hsManager = new HighScoreManager();
-            
 
-            hsManager.highScores.Add(new HighScore("jo", Level.Boss, Difficulty.Hard, 10000000, "/Images/asteroid.png"));
+
+            lstHighScores.FontSize = 26;
             hsManager.Sort();
-            for (int i = 0; i < hsManager.highScores.Count; i++)
+            lstHighScores.Items.Add("NAME ----- LEVEL ----- DIfficulty ----- SCORE");
+            for (int i = 0; i < 10; i++)
             {
-                //Image img = new Image() { Source = new BitmapImage(new Uri(hsManager.highScores[i].ShipImage, UriKind.Relative)) };
-
+                
                 lstHighScores.Items.Add(hsManager.highScores[i].ToString()); // add image later
             }
 
