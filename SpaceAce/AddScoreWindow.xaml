@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SpaceAce"
         mc:Ignorable="d"
         Title="Space Ace - " Height="768" Width="1024"
-        WindowState="Maximized" WindowStyle="None"
+        WindowState="Maximized" WindowStyle="None" Loaded="Window_Loaded"
         >
     <Window.Background>
         <ImageBrush ImageSource="Images\titleScreenBackground.png"></ImageBrush>

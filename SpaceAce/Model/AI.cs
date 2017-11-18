@@ -177,6 +177,7 @@ namespace Model
             }
             else
             {
+                
                 //MAke player take damage when it exlodes. - Joanna
                 alive = false;
             }

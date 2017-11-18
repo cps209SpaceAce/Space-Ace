@@ -36,7 +36,21 @@ namespace SpaceAce
                 {
                     Canvas.SetTop(i, e.Y);
                     Canvas.SetLeft(i, e.X);
-                    
+
+                    if (e is Player)
+                    {
+                        Player p = e as Player;
+                        if (p.HitCoolDown % 5 > 0)
+                        {
+                            i.Source = null;
+                        }
+                        else
+                        {
+                            i.Source = new BitmapImage(new Uri("images/" + p.image, UriKind.Relative));
+                        }
+
+                    }
+
                     return true;
                 }
             }

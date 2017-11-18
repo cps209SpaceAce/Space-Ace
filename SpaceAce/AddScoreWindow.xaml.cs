@@ -25,16 +25,7 @@ namespace SpaceAce
         public AddScoreWindow(GameController ctrl)
         {
             ctrlSave = ctrl;
-            //if (ctrl.gameResult == GameResult.Lost)
-            //{
-            //    imgGameResult.Source = new BitmapImage(new Uri("Images/gameover.png", UriKind.Relative));
-            //}
-            
-            //else
-            //{
-            //    ImageSource img = new BitmapImage(new Uri("Images/victory.png", UriKind.Relative));
-            //    imgGameResult.Source = img;
-            //}
+           
             
             
             InitializeComponent();
@@ -50,6 +41,20 @@ namespace SpaceAce
             // Not adding, overriding the first
             // Not sorting by score
             // Need to downgrade level if game over
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (ctrlSave.gameResult == GameResult.Lost)
+            {
+                imgGameResult.Source = new BitmapImage(new Uri("Images/gameover.png", UriKind.Relative));
+            }
+
+            else
+            {
+                ImageSource img = new BitmapImage(new Uri("Images/victory.png", UriKind.Relative));
+                imgGameResult.Source = img;
+            }
         }
     }
 

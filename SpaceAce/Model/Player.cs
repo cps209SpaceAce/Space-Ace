@@ -17,6 +17,8 @@ namespace Model
         public int lives { get; set; }
         public int bombs { get; set; }
         public powerup powerup { get; set; }
+        public int HitCoolDown;
+        public string image = "spaceship-hi.png";
         
 
         private GameController game;
@@ -27,7 +29,7 @@ namespace Model
             this.lives = lives;
             this.bombs = bombs;
             speed = 5;
-            this.hitbox = new Rectangle(Convert.ToInt32(X), Convert.ToInt32(Y), 45, 7);
+            this.hitbox = new Rectangle(Convert.ToInt32(X), Convert.ToInt32(Y), 45, 20); //custom hit box for the player
         }
 
         public void Fire()
@@ -61,10 +63,13 @@ namespace Model
         public override bool Hit()
         {
             //TODO: remove one life(ship destroyed)
-            
-            //TODO: return true(ship destroyed)
 
-            lives--;
+            //TODO: return true(ship destroyed)
+            if (HitCoolDown == 0)
+            {
+                lives--;
+                HitCoolDown = 300;
+            }
 
             if(lives == 0)
                 game.gameResult = GameResult.Lost;
@@ -94,6 +99,9 @@ namespace Model
 
         public override void UpdatePosition()
         {
+            if (HitCoolDown > 0)
+                HitCoolDown--;
+
             if(cooldown > 0)
                 cooldown--;
 
