@@ -53,7 +53,6 @@ namespace Model
         public double base_Speed;
         public int score;
         public double gameLevelTimer;
-        public double gamePowerUpTimer;
 
 
         //window information
@@ -209,7 +208,7 @@ namespace Model
             using (StreamWriter writer = new StreamWriter(fileName))
             {
                 writer.WriteLine("[defaults]");
-                writer.WriteLine(level + "," + score + "," + base_Speed + ","); //add timers
+                writer.WriteLine(level + "," + score + "," + base_Speed + "," + gameLevelTimer); //add timers
                 writer.WriteLine("[end]");
 
                 if (current_Enemies != null && current_Enemies.Count > 0)
@@ -276,7 +275,8 @@ namespace Model
                         }
 
                         score = Convert.ToInt32(res[1]);
-                        base_Speed = Convert.ToInt32(res[2]);
+                        base_Speed = Convert.ToDouble(res[2]);
+                        gameLevelTimer = Convert.ToDouble(res[3]);
                     }
                     else if (startLine == "[enemies]")
                     {
