@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public enum powerup {Power}
+    public enum powerup { Invinsible, Power} // TODO: pick what powerups to put here
     
     public class Player: Entity
 
@@ -19,6 +19,10 @@ namespace Model
         public powerup powerup { get; set; }
         public int HitCoolDown;
         public string image = "spaceship-hi.png";
+
+        public int powerUpCounter = 0;
+        bool isPoweredUp = false;
+        bool isInvinsible = false;
         
 
         private GameController game;
@@ -43,7 +47,7 @@ namespace Model
 
         public void Activate_powerup()
         {
-            //TODO: activate powerup
+            isPoweredUp = true;
         }
         public void DropBomb()
         {
@@ -62,6 +66,9 @@ namespace Model
 
         public override bool Hit()
         {
+            if (isInvinsible)
+                return false; //invinsibility
+
             //TODO: remove one life(ship destroyed)
 
             //TODO: return true(ship destroyed)
@@ -135,6 +142,23 @@ namespace Model
             if (game.bomb)
             {
                 DropBomb();
+            }
+
+            if(isPoweredUp)
+            {
+                powerUpCounter++;
+                if (powerup == powerup.Power)
+                    speed = 10;
+                else if (powerup == powerup.Invinsible)
+                    isInvinsible = true;
+
+                if(powerUpCounter >= 5000)
+                {
+                    powerUpCounter = 0;
+                    isInvinsible = false;
+                    speed = 5;
+                    isPoweredUp = false;
+                }
             }
 
             hitbox.X = Convert.ToInt32(X);

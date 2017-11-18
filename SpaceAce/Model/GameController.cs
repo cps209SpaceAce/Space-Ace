@@ -148,6 +148,11 @@ namespace Model
                         Restart();
                     if (enemy.Hit())
                         dead_Badguy.Add(enemy);
+                    if (enemy is Powerup)
+                    {
+                        player.powerup = (enemy as Powerup).type; // Added by Jo
+                        dead_Badguy.Add(enemy);
+                    }
                 }
             }
             //Player Bullets vs. entities
@@ -201,7 +206,7 @@ namespace Model
             using (StreamWriter writer = new StreamWriter(fileName))
             {
                 writer.WriteLine("[defaults]");
-                writer.WriteLine(level + "," + score + "," + base_Speed);
+                writer.WriteLine(level + "," + score + "," + base_Speed + ","); //add timers
                 writer.WriteLine("[end]");
 
                 if (current_Enemies != null && current_Enemies.Count > 0)

@@ -90,6 +90,14 @@ namespace Model
                 }
                 else if (des[0] == "powerup")
                 {
+                    powerup p = powerup.Power;
+                    if (des[3] == "Power")
+                        p = powerup.Power;
+                    else if (des[3] == "Invinsible")
+                        p = powerup.Invinsible;
+
+                        result = new Powerup(Convert.ToDouble(des[1]), Convert.ToDouble(des[2]), p);
+
                 }
 
 
@@ -117,25 +125,24 @@ namespace Model
 
     public class Powerup:Entity
     {
-        public Powerup(double X, double Y, string name) :base(X,Y) { }
+        public powerup type;
+        public Powerup(double X, double Y, powerup type) :base(X,Y) {
+            this.type = type;
+        }
         public override void UpdatePosition()
         {
-            throw new NotImplementedException();
+            X--;
+            if (X < 0)
+                alive = false;
         }
         public override bool Hit()
         {
-            throw new NotImplementedException();
+            return false; //does not take damage
         }
 
         public override string Serialize()
         {
-            return "powerup" + "," + X + "," + Y; 
-            //please provide a way to detect the powerup's type
-        }
-
-        public static Powerup Deserialize(string code)
-        {
-            return null;
+            return "powerup" + "," + X + "," + Y + "," + type; 
         }
     }
     
