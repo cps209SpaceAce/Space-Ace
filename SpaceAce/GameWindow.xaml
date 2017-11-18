@@ -11,17 +11,25 @@
         WindowState="Maximized" WindowStyle="None"
         >
     <Window.Background>
-        <ImageBrush ImageSource="Images\GameScreenBackground.jpg"></ImageBrush>
+        <ImageBrush ImageSource="Images\titleScreenBackground.png"></ImageBrush>
     </Window.Background>
+    
+    
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" >
-        <Grid>
-            <Canvas x:Name="WorldCanvas" HorizontalAlignment="Left" Height="768" Margin="0,0,0,0" VerticalAlignment="Top" Width="1024" KeyDown="WorldCanvas_KeyDown"                
-            >
-                <Label x:Name="labelScore" HorizontalContentAlignment="Right"  FontSize="20" Foreground="White" Content="" Canvas.Left="815" Canvas.Top="10" Height="37" Width="179"/>
-                <Label x:Name="labelLives" FontSize="20" Foreground="White" Content="" Canvas.Left="10" Canvas.Top="10" Height="37" Width="179"/>
-                <Label x:Name="labelBombs" FontSize="20" Foreground="White" Content="" Canvas.Left="10" Canvas.Top="682" Height="37" Width="179"/>
-                <Label x:Name="labelLevel" HorizontalContentAlignment="Right"  FontSize="20" Foreground="White" Content="" Canvas.Left="815" Canvas.Top="682" Height="37" Width="179"/>
-            </Canvas>
-        </Grid>
+        <Border x:Name="CanvasBorder" BorderBrush="White">
+            <Grid>
+                <Canvas x:Name="WorldCanvas" HorizontalAlignment="Left" Height="768" Margin="0,0,0,0" VerticalAlignment="Top" Width="1024" KeyDown="WorldCanvas_KeyDown"                >
+                    <Canvas.Background>
+                        <ImageBrush ImageSource="Images\GameScreenBackground.jpg"/>
+                    </Canvas.Background>
+
+
+                    <Label x:Name="labelScore" HorizontalContentAlignment="Right"  FontSize="20" Foreground="White" Content="" Canvas.Left="815" Canvas.Top="10" Height="37" Width="179"/>
+                    <Label x:Name="labelLives" FontSize="20" Foreground="White" Content="" Canvas.Left="10" Canvas.Top="10" Height="37" Width="179"/>
+                    <Label x:Name="labelBombs" FontSize="20" Foreground="White" Content="" Canvas.Left="10" Canvas.Top="682" Height="37" Width="179"/>
+                    <Label x:Name="labelLevel" HorizontalContentAlignment="Right"  FontSize="20" Foreground="White" Content="" Canvas.Left="815" Canvas.Top="682" Height="37" Width="179"/>
+                </Canvas>
+            </Grid>
+        </Border>
     </StackPanel>
 </Window>

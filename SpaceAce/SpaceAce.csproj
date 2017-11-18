@@ -67,6 +67,9 @@
     <Compile Include="AboutWindow.xaml.cs">
       <DependentUpon>AboutWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddScoreWindow.xaml.cs">
+      <DependentUpon>AddScoreWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
@@ -76,9 +79,14 @@
     <Compile Include="HighScoreWindow.xaml.cs">
       <DependentUpon>HighScoreWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\AI.cs" />
     <Compile Include="UnitTests\Model_tests.cs" />
     <Compile Include="UnitTests\SaveLoadTests.cs" />
     <Page Include="AboutWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddScoreWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -110,7 +118,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\AI.cs" />
     <Compile Include="Model\Boss.cs" />
     <Compile Include="Model\Bullet.cs" />
     <Compile Include="Model\Entity.cs" />
@@ -180,6 +187,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Ship 4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\gameover.png" />
+    <Resource Include="Images\victory.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

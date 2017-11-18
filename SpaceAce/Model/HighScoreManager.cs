@@ -10,7 +10,7 @@ namespace Model
 {
 
 
-    class HighScore
+    public class HighScore
     {
         public string Name;       // Name
         public Level Level;       // Last Level Complete
@@ -45,7 +45,7 @@ namespace Model
     }
 
 
-    class HighScoreManager
+    public class HighScoreManager
     {
         // List of HighScores saved
         public List<HighScore> highScores;
@@ -53,12 +53,21 @@ namespace Model
         public HighScoreManager()
         {
             highScores = new List<HighScore>();
+            this.Load();
         }
         /// On startup - Load from JSON file
         /// List of HighScores.
         public void Load()
         {
             // Read JSON File
+
+            if (!File.Exists(Environment.CurrentDirectory + @"/JSON.txt"))
+            {
+                // Create a file to write to.
+                using (StreamWriter sw = File.CreateText(Environment.CurrentDirectory + @"/JSON.txt"))
+                {
+                }
+            }
             string loadString = File.ReadAllText(Environment.CurrentDirectory + @"/JSON.txt");
 
             // Convert to list
@@ -78,20 +87,24 @@ namespace Model
             highScores.Add(newScore);
 
             // Sorts the list by Score
-            highScores = highScores.OrderBy(o => o.Score).ToList();
+            
+        }
+        public void Sort()
+        {
+            highScores = highScores.OrderByDescending(o => o.Score).ToList();
         }
 
         // After update
         // Saves to JSON File
         public void Save()
         {
-            // Convert to json
-            string json = new JavaScriptSerializer().Serialize(highScores);
+            //ystring loadString = File.ReadAllText(Environment.CurrentDirectory + @"/JSON.txt"); 
+            //yList<HighScore> list = new JavaScriptSerializer().Deserialize<List<HighScore>>(loadString);
+            //ylist.Add(newScore);
 
-            // Write to file
+            string json = new JavaScriptSerializer().Serialize(highScores);
             File.WriteAllText(Environment.CurrentDirectory + @"\JSON.txt", json);
         }
-
 
     }
 

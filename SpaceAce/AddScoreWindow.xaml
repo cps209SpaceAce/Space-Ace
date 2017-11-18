@@ -1,0 +1,27 @@
+﻿<Window x:Class="SpaceAce.AddScoreWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SpaceAce"
+        mc:Ignorable="d"
+        Title="Space Ace - " Height="768" Width="1024"
+        WindowState="Maximized" WindowStyle="None"
+        >
+    <Window.Background>
+        <ImageBrush ImageSource="Images\titleScreenBackground.png"></ImageBrush>
+    </Window.Background>
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" >
+
+        <Grid>
+            <Image Source="Images/victory.png" Width="300" Height="100" x:Name="imgGameResult" Margin="190,147,190.286,644.429"/>
+            <Label Content="Final Score: " Foreground="White" FontSize="30" Margin="319,400,319.286,525.286"/>
+            <TextBox x:Name="txbName" Height="23" TextWrapping="Wrap" Text="" Margin="341,531,342.286,421.429" />
+            <Button Content="Main Menu" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
+             VerticalAlignment="Top" Width="236" Height="50" Click="btnQuit_Click" Margin="287,598,0,0"/>
+            <Label Content="ENTER YOUR NAME"   Foreground="White" FontSize="10" Margin="356,524,356.429,471.286"/>
+        </Grid>
+
+    </StackPanel>
+
+</Window>

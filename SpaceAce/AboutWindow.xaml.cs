@@ -30,7 +30,7 @@ namespace SpaceAce
         }
         
 
-            private void btnQuit_Click(object sender, RoutedEventArgs e)
+        private void btnQuit_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }

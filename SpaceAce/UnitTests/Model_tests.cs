@@ -59,7 +59,7 @@ namespace SpaceAce.UnitTests
         {
             HighScoreManager Test = new HighScoreManager();
             Test.highScores.Add(new HighScore("Bob", Level.Level_1, Difficulty.Easy, 9001, "ship.png"));
-            Test.Save();
+            //Test.Save();
             Assert.IsTrue(File.Exists("JSON.txt"));
 
         }
@@ -70,7 +70,7 @@ namespace SpaceAce.UnitTests
             HighScoreManager Test = new HighScoreManager();
             HighScore BobTest = new HighScore("Bob", Level.Level_1, Difficulty.Easy, 9001, "ship.png");
             Test.highScores.Add(BobTest);
-            Test.Save();
+            //Test.Save();
             Test.highScores.Clear();
             Test.Load();
             Assert.IsTrue(Test.highScores[0].Name      == "Bob");

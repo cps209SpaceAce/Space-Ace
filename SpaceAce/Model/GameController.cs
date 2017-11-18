@@ -25,6 +25,10 @@ namespace Model
     {
         string Serialize();
     }
+    public enum GameResult
+    {
+        Running, Won, Lost
+    }
 
     public class GameController
     {
@@ -42,11 +46,10 @@ namespace Model
         public List<Entity> enemie_Que = new List<Entity>();
         public Player player;
         public List<Bullet> player_fire = new List<Bullet>();
-
+        public GameResult gameResult;
         //pre-game setup
         public Level level;
         public Difficulty difficulty;
-
         public double base_Speed;
         public int score;
 
@@ -65,6 +68,7 @@ namespace Model
             winWidth = windowWidth;
             winHeight = windowHeight;
 
+            
         }
 
         //written by Joanna, i need a blank slate for testing, 
@@ -179,7 +183,12 @@ namespace Model
         public void Bomb()
         {
             foreach (Entity e in current_Enemies)
+            {
+                this.score += 50;
                 e.alive = false;
+            }
+                
+            
             current_Enemies = new List<Entity>();
         }
 
@@ -191,6 +200,9 @@ namespace Model
 
             using (StreamWriter writer = new StreamWriter(fileName))
             {
+                writer.WriteLine("[defaults]");
+                writer.WriteLine(level + "," + score + "," + base_Speed);
+                writer.WriteLine("[end]");
 
                 if (current_Enemies != null && current_Enemies.Count > 0)
                 {
@@ -223,10 +235,6 @@ namespace Model
                     writer.WriteLine("[end]");
                 }
 
-                writer.WriteLine("[defaults]");
-                writer.WriteLine(level + "," + score + "," + base_Speed);
-                writer.WriteLine("[end]");
-
             }
         }
         public void Load(string fileName)
@@ -240,8 +248,29 @@ namespace Model
                 while (!reader.EndOfStream)
                 {
                     string startLine = reader.ReadLine();
+                    if (startLine == "[defaults]")
+                    {
+                        //2,10,1337
+                        string[] res = reader.ReadLine().Split(',');
+                        Level l = Level.Level_1;
 
-                    if (startLine == "[enemies]")
+                        if (res[0] == "Level_1")
+                            l = Level.Level_1;
+                        else if (res[0] == "Level_2")
+                            l = Level.Level_2;
+                        else if (res[0] == "Boss")
+                            l = Level.Boss;
+
+                        if (l != level)
+                        {
+                            //TODO: figure out why this doesn't reset, - Jo
+                            return; //restarts mode if level saved deosn't match level chosen
+                        }
+
+                        score = Convert.ToInt32(res[1]);
+                        base_Speed = Convert.ToInt32(res[2]);
+                    }
+                    else if (startLine == "[enemies]")
                     {
                         List<Entity> list = new List<Entity>();
 
@@ -287,22 +316,6 @@ namespace Model
                         }
 
                         player_fire = list;
-                    }
-
-                    else if (startLine == "[defaults]")
-                    {
-                        //2,10,1337
-                        string[] res = reader.ReadLine().Split(',');
-
-                        if (res[0] == "Level_1")
-                            level = Level.Level_1;
-                        else if (res[0] == "Level_2")
-                            level = Level.Level_2;
-                        else if (res[0] == "Boss")
-                            level = Level.Boss;
-
-                        score = Convert.ToInt32(res[1]);
-                        base_Speed = Convert.ToInt32(res[2]);
                     }
                 }
             }

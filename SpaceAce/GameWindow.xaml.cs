@@ -44,6 +44,9 @@ namespace SpaceAce
          
         }
     }
+
+    
+
     public partial class GameWindow : Window
     {
         public List<Icon> icons = new List<SpaceAce.Icon>();
@@ -58,13 +61,15 @@ namespace SpaceAce
         Button btnQUIT;
         Button btnSAVE;
         public DispatcherTimer timer;
-        public string currentLevel = "Level 1";
+        public double gameLevelTimer;
+        public double gamePowerUpTimer;
+
 
         public GameWindow(Difficulty setDiff, bool isLoad) //Joanna: isLoad checks whether to load game or start new one
         {
             InitializeComponent();
+            CanvasBorder.BorderThickness = new Thickness(2);
             // Load from levels
-
             gameCtrl = new GameController(setDiff, Width, Height);
 
             if (isLoad)
@@ -193,12 +198,19 @@ namespace SpaceAce
 
         public void Timer_Tick(object sender, EventArgs e)
         {
-            List<Icon> dead = new List<Icon>();
+            gameLevelTimer += 0.01;
+            gamePowerUpTimer += 0.01;
+            List<Icon> dead = new List<Icon>();            
+
             gameCtrl.player.UpdatePosition(); // Update the Player Positions
             List<Entity> fired = gameCtrl.UpdateWorld();           // Update the Model. fired: list of ships that fired 
-            SpawnEntities();              // Spawn Entities
 
-            Console.WriteLine("GAME IS STILL RUNNING");
+            
+            CheckGameStatus();
+            SpawnEntities();              // Spawn Entities
+            SpawnPowerUp();
+
+            // ---- Update New Bullets ---- //
             if (gameCtrl.player.FiredABullet == true)
             {
                 MakeBullet(Id.player,gameCtrl.player);
@@ -207,7 +219,9 @@ namespace SpaceAce
 
             foreach (Entity ship in fired)
                 MakeBullet(Id.computer, ship);
-            // Update GUI
+
+
+            // ---- Update GUI ---- //
             foreach (Icon ic in icons)
             {
                 if (ic.update() == false)
@@ -231,8 +245,52 @@ namespace SpaceAce
             // TODO: We can change to images for bonus
             labelLives.Content = "Lives: " + String.Concat(Enumerable.Repeat("< ", gameCtrl.player.lives));
             labelBombs.Content = "Bombs: " + gameCtrl.player.bombs;
-            labelLevel.Content = currentLevel;
+            labelLevel.Content = gameCtrl.level.ToString().Replace("Level_","LEVEL ");
         }
+
+        private void SpawnPowerUp()
+        {
+
+        }
+
+        private void CheckGameStatus()
+        {
+
+            if (gameCtrl.gameResult != GameResult.Running || gameLevelTimer > 65) // IF WON/LOST
+            {
+
+                gameCtrl.score += gameCtrl.player.bombs * 250;
+                gameCtrl.score += gameCtrl.player.lives * 300;
+                switch (gameCtrl.difficulty)
+                {
+                    case Difficulty.Easy:
+                        break;
+                    case Difficulty.Medium:
+                        gameCtrl.score = Convert.ToInt32(gameCtrl.score * 1.2);
+                        break;
+                    case Difficulty.Hard:
+                        gameCtrl.score = Convert.ToInt32(gameCtrl.score * 1.5);
+                        break;
+                }
+                if (gameCtrl.gameResult == GameResult.Won)
+                    gameCtrl.score += 1000;
+
+                AddScoreWindow addScoreWindow = new AddScoreWindow(gameCtrl); // Need to pass score
+                addScoreWindow.Show();
+                this.Close(); // Closing GameWindow
+
+            }
+            else if (gameLevelTimer > 60)
+            {
+                gameCtrl.level = Level.Boss;
+            }
+            else if (gameLevelTimer > 30)
+            {
+                gameCtrl.level = Level.Level_2;
+            }
+        }
+
+
 
         private void SpawnEntities()
         {

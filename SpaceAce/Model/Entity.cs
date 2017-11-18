@@ -46,13 +46,13 @@ namespace Model
             if (type == "enemy") {
                 if (des[0] == "bullet")
                 {
-                    result = new Bullet(Convert.ToInt32(des[1]), Convert.ToInt32(des[2]));
+                    result = new Bullet(Convert.ToDouble(des[1]), Convert.ToDouble(des[2]));
                     (result as Bullet).direction = -1;
                     return result;
                 }
                 else if (des[0] == "asteroid")
                 {
-                    result = new Asteroid(Convert.ToInt32(des[2]), Convert.ToInt32(des[3]));
+                    result = new Asteroid(Convert.ToDouble(des[2]), Convert.ToDouble(des[3]));
                     (result as Asteroid).health = Convert.ToInt32(des[1]);
                     return result;
                 }
@@ -68,21 +68,21 @@ namespace Model
                     else if (des[3] == "Straight")
                         flight = pattern.Straight;
 
-                    return new Formation(Convert.ToInt32(des[1]), Convert.ToInt32(des[2]), flight);
+                    return new Formation(Convert.ToDouble(des[1]), Convert.ToDouble(des[2]), flight);
                 }
                 else if (des[0] == "ai")
                 {
-                    result = new AI(Convert.ToInt32(des[1]), Convert.ToInt32(des[2]), pattern.Straight);
+                    result = new AI(Convert.ToDouble(des[1]), Convert.ToDouble(des[2]), pattern.Straight);
                     return result;
                 }
                 else if (des[0] == "mine")
                 {
-                    result = new Mine(Convert.ToInt32(des[1]), Convert.ToInt32(des[2]), pattern.Straight);
+                    result = new Mine(Convert.ToDouble(des[1]), Convert.ToDouble(des[2]), pattern.Straight);
                     return result;
                 }
                 else if (des[0] == "tracker")
                 {
-                    result = new Tracker(Convert.ToInt32(des[1]), Convert.ToInt32(des[2]), pattern.Straight);
+                    result = new Tracker(Convert.ToDouble(des[1]), Convert.ToDouble(des[2]), pattern.Straight);
                     return result;
                 }
                 else if (des[0] == "boss")
@@ -101,7 +101,7 @@ namespace Model
             }
             else if(type == "player")
             {
-                result = new Player(Convert.ToInt32(des[0]), Convert.ToInt32(des[1]), Convert.ToInt32(des[3]), Convert.ToInt32(des[4]), game);
+                result = new Player(Convert.ToDouble(des[0]), Convert.ToDouble(des[1]), Convert.ToInt32(des[3]), Convert.ToInt32(des[4]), game);
                 if (des[2] == "Power")
                     (result as Player).powerup = powerup.Power;
             }
@@ -152,17 +152,14 @@ namespace Model
         }
         public override bool Hit()
         { 
-            //Asteroid can't be destroyed
             return false;
         }
         public override void UpdatePosition()
         {
-            //TODO: add movment logic: make it move in a straight line
-            X = Convert.ToInt32(X - (1 * speed));
-            hitbox.X = Convert.ToInt32(X);
-            
-            // Why are we returning a point?
-
+            X = Convert.ToDouble(X - (1 * speed));
+            hitbox.X = Convert.ToInt32(X);   
+            if (X < 0)
+                alive = false;
         }
 
         public override string Serialize()
