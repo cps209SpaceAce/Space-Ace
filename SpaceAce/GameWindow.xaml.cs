@@ -212,7 +212,7 @@ namespace SpaceAce
         public void Timer_Tick(object sender, EventArgs e)
         {
             gameCtrl.gameLevelTimer += 0.01;
-            gameCtrl.gamePowerUpTimer += 0.01;
+            gameCtrl.player.powerUpCounter += 0.01;
             List<Icon> dead = new List<Icon>();            
 
             gameCtrl.player.UpdatePosition(); // Update the Player Positions

@@ -45,7 +45,7 @@ namespace Model
                 lev = "Boss";
 
             string name = Name.PadRight(10);
-            return " " + name.Substring(0, 9) + "   " + lev.PadRight(9) + "   " + Convert.ToString(Diff).PadRight(10) + "   " + Convert.ToString(Score).PadLeft(9);
+            return " " + name.Substring(0, 9) + "   " + lev.PadRight(9) + "   " + Convert.ToString(Diff).PadRight(10) + "   " + Convert.ToString(Score).PadLeft(8);
         }
     }
 

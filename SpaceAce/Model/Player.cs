@@ -20,7 +20,7 @@ namespace Model
         public int HitCoolDown;
         public string image = "spaceship-hi.png";
 
-        public int powerUpCounter = 0;
+        public double powerUpCounter = 0;
         public bool isPoweredUp = false;
         bool isInvinsible = false;
 
