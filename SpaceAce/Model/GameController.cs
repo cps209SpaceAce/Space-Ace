@@ -50,7 +50,6 @@ namespace Model
         //pre-game setup
         public Level level;
         public Difficulty difficulty;
-
         public double base_Speed;
         public int score;
 
@@ -69,6 +68,7 @@ namespace Model
             winWidth = windowWidth;
             winHeight = windowHeight;
 
+            
         }
 
         //written by Joanna, i need a blank slate for testing, 

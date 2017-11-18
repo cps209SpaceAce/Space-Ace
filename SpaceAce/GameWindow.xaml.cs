@@ -68,8 +68,8 @@ namespace SpaceAce
         public GameWindow(Difficulty setDiff, bool isLoad) //Joanna: isLoad checks whether to load game or start new one
         {
             InitializeComponent();
-            // Load from levels
             CanvasBorder.BorderThickness = new Thickness(2);
+            // Load from levels
             gameCtrl = new GameController(setDiff, Width, Height);
 
             if (isLoad)
@@ -256,9 +256,24 @@ namespace SpaceAce
         private void CheckGameStatus()
         {
 
-            if (gameCtrl.gameResult != GameResult.Running || gameLevelTimer > 65)
-
+            if (gameCtrl.gameResult != GameResult.Running || gameLevelTimer > 65) // IF WON/LOST
             {
+
+                gameCtrl.score += gameCtrl.player.bombs * 250;
+                gameCtrl.score += gameCtrl.player.lives * 300;
+                switch (gameCtrl.difficulty)
+                {
+                    case Difficulty.Easy:
+                        break;
+                    case Difficulty.Medium:
+                        gameCtrl.score = Convert.ToInt32(gameCtrl.score * 1.2);
+                        break;
+                    case Difficulty.Hard:
+                        gameCtrl.score = Convert.ToInt32(gameCtrl.score * 1.5);
+                        break;
+                }
+                if (gameCtrl.gameResult == GameResult.Won)
+                    gameCtrl.score += 1000;
 
                 AddScoreWindow addScoreWindow = new AddScoreWindow(gameCtrl); // Need to pass score
                 addScoreWindow.Show();
@@ -268,12 +283,8 @@ namespace SpaceAce
             else if (gameLevelTimer > 60)
             {
                 gameCtrl.level = Level.Boss;
-
-                
-
             }
             else if (gameLevelTimer > 30)
-
             {
                 gameCtrl.level = Level.Level_2;
             }
