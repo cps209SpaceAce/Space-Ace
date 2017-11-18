@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public enum powerup { Invinsible, Power} // TODO: pick what powerups to put here
-    
-    public class Player: Entity
+    public enum powerup { Invinsible, Power } // TODO: pick what powerups to put here
+
+    public class Player : Entity
 
     {
         public int cooldown = 0;
@@ -21,13 +21,13 @@ namespace Model
         public string image = "spaceship-hi.png";
 
         public int powerUpCounter = 0;
-        bool isPoweredUp = false;
+        public bool isPoweredUp = false;
         bool isInvinsible = false;
-        
+
 
         private GameController game;
 
-        public Player(double X, double Y, int lives, int bombs, GameController flags):base(X,Y)
+        public Player(double X, double Y, int lives, int bombs, GameController flags) : base(X, Y)
         {
             game = flags;
             this.lives = lives;
@@ -42,17 +42,29 @@ namespace Model
             {
                 FiredABullet = true;
                 cooldown = 50;      // Rate of fire: bigger = slower.
-            }            
+            }
         }
 
         public void Activate_powerup()
         {
             isPoweredUp = true;
+
+            if (powerup == powerup.Power)
+                speed = 10;
+            else if (powerup == powerup.Invinsible)
+                isInvinsible = true;
+        }
+        void Deactivate_Powerup()
+        {
+            powerUpCounter = 0;
+            isInvinsible = false;
+            speed = 5;
+            isPoweredUp = false;
         }
         public void DropBomb()
         {
-            if(bombCooldown == 0)
-            {                
+            if (bombCooldown == 0)
+            {
                 bombCooldown = 50;
                 if (bombs != 0)
                 {
@@ -78,7 +90,7 @@ namespace Model
                 HitCoolDown = 300;
             }
 
-            if(lives == 0)
+            if (lives == 0)
                 game.gameResult = GameResult.Lost;
 
             return true;
@@ -109,7 +121,7 @@ namespace Model
             if (HitCoolDown > 0)
                 HitCoolDown--;
 
-            if(cooldown > 0)
+            if (cooldown > 0)
                 cooldown--;
 
             if (bombCooldown > 0)
@@ -144,21 +156,11 @@ namespace Model
                 DropBomb();
             }
 
-            if(isPoweredUp)
-            {
+            if (isPoweredUp) {
                 powerUpCounter++;
-                if (powerup == powerup.Power)
-                    speed = 10;
-                else if (powerup == powerup.Invinsible)
-                    isInvinsible = true;
 
-                if(powerUpCounter >= 5000)
-                {
-                    powerUpCounter = 0;
-                    isInvinsible = false;
-                    speed = 5;
-                    isPoweredUp = false;
-                }
+                if (powerUpCounter >= 5000) 
+                    Deactivate_Powerup();      
             }
 
             hitbox.X = Convert.ToInt32(X);
@@ -167,7 +169,7 @@ namespace Model
         }
         public override string Serialize()
         {
-            return X + "," + Y + "," + powerup + "," + lives + "," + bombs;
+            return X + "," + Y + "," + powerup + "," + lives + "," + bombs + "," + isPoweredUp + "," + powerUpCounter;
         }
     }
 }

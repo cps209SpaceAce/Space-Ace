@@ -112,6 +112,15 @@ namespace Model
                 result = new Player(Convert.ToDouble(des[0]), Convert.ToDouble(des[1]), Convert.ToInt32(des[3]), Convert.ToInt32(des[4]), game);
                 if (des[2] == "Power")
                     (result as Player).powerup = powerup.Power;
+                else if (des[2] == "Invinsible")
+                    (result as Player).powerup = powerup.Invinsible;
+
+                if (des[5] == "True")
+                    (result as Player).isPoweredUp = true;
+                else
+                    (result as Player).isPoweredUp = false;
+
+                (result as Player).powerUpCounter = Convert.ToInt32(des[6]);
             }
             else if(type == "playerBullet")
             {
