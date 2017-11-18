@@ -21,7 +21,7 @@ namespace Model
         public string image = "spaceship-hi.png";
 
         public int powerUpCounter = 0;
-        bool isPoweredUp = false;
+        public bool isPoweredUp = false;
         bool isInvinsible = false;
         
 
@@ -167,7 +167,7 @@ namespace Model
         }
         public override string Serialize()
         {
-            return X + "," + Y + "," + powerup + "," + lives + "," + bombs;
+            return X + "," + Y + "," + powerup + "," + lives + "," + bombs + "," + isPoweredUp + "," + powerUpCounter;
         }
     }
 }
