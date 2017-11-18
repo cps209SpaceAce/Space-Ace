@@ -24,7 +24,11 @@ namespace Model
 
         public HighScore(string name, Level level, Difficulty diff, int score, string shipimage)
         {
-            Name = name;
+            if (name == "")
+                Name = "Unknown";
+            else
+                Name = name;
+
             Level = level;
             Diff = diff;
             Score = score;

@@ -33,7 +33,7 @@ namespace SpaceAce
             lstHighScores.FontSize = 26;
             hsManager.Sort();
             lstHighScores.Items.Add("NAME ----- LEVEL ----- DIfficulty ----- SCORE");
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < hsManager.highScores.Count; i++)
             {
                 
                 lstHighScores.Items.Add(hsManager.highScores[i].ToString()); // add image later
