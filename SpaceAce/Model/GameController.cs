@@ -54,15 +54,17 @@ namespace Model
         public int score;
         public double gameLevelTimer;
         public double spawnPowerUpTimer;
+       
 
         //window information
         public double winWidth;
         public double winHeight;
         public SoundManager soundPlayer;
 
-        public GameController(Difficulty passDiff, double windowWidth, double windowHeight)
+        public GameController(Difficulty passDiff, double windowWidth, double windowHeight, bool isCheating)
         {
             player = new Player(50, 350, 3, 3, this);// Flags?
+            player.cheating = isCheating;
             //TODO: load level/save data from GameData
             // OR
             //TODO: get enemies for level from Level
@@ -83,10 +85,7 @@ namespace Model
             enemie_Que = new List<Entity>();
         }
 
-        public void Restart()
-        {
-
-        }
+    
 
         public List<Entity> UpdateWorld()// Each tick of timer will call this.
         {
@@ -150,7 +149,7 @@ namespace Model
                 {
                     if (player.HitPlayer(enemy))
                     {
-                        Restart();
+                        
                         soundPlayer.PlayNoise(SoundType.HurtPlayer);
                     }
                         
@@ -177,6 +176,10 @@ namespace Model
                             soundPlayer.PlayNoise(SoundType.HurtEnemy);
                             dead_Badguy.Add(enemy);
                             score += 50 * 1; // TODO: Based on DIff
+                            if (enemy is Powerup)
+                            {
+                                player.powerup = (enemy as Powerup).type; // Added by Jo // copyed cheater
+                            }
                         }
 
                     }

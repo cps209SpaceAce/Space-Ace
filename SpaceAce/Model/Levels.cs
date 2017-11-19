@@ -18,7 +18,7 @@ namespace Model
             switch (GameController.random.Next(2, 3))
             {
                 case 0:
-                    output = new Powerup(spawn_X, GameController.random.Next(100, 600), PowerUp.Invinsible);
+                    output = new Powerup(spawn_X, GameController.random.Next(100, 600), PowerUp.invincibility);
                     break;
                 case 1:
                     output = new Powerup(spawn_X, GameController.random.Next(100, 600), PowerUp.Power);

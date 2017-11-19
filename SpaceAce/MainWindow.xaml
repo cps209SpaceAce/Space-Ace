@@ -27,6 +27,7 @@
                 Margin="492,590,0,0" VerticalAlignment="Top" Width="117" Height="50" Click="btnHelpPage_Click"/>
             <Button Content="About" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
                 Margin="372,590,0,0" VerticalAlignment="Top" Width="117" Height="50" Click="btnAboutPage_Click"/>
+            <Button x:Name="cheating" Background="DarkGray" Margin="815,645,10.2,0.2" Content="Cheat: false" Click="cheating_Click"/>
 
             <Button Content="Quit" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
                 Margin="373,645,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="btnQuit_Click"/>

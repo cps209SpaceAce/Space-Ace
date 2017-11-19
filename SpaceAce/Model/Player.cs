@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public enum PowerUp { Empty,Invinsible, Power, ExtraLife } // TODO: pick what powerups to put here
+    public enum PowerUp { Empty, invincibility, Power, ExtraLife } // TODO: pick what powerups to put here
 
     public class Player : Entity
 
@@ -23,6 +23,7 @@ namespace Model
         public double powerUpCounter = 0;
         public bool isPoweredUp = false;
         bool isInvinsible = false;
+        public bool cheating = false;
 
 
         private GameController game;
@@ -56,7 +57,7 @@ namespace Model
 
             if (powerup == PowerUp.Power)
                 speed = 10;
-            else if (powerup == PowerUp.Invinsible)
+            else if (powerup == PowerUp.invincibility)
                 isInvinsible = true;
             else if (powerup == PowerUp.ExtraLife) { 
                 ++lives;
@@ -90,12 +91,17 @@ namespace Model
         public override bool Hit()
         {
             if (isInvinsible)
+            {
                 return false; //invinsibility
-
+            }
+            if (cheating)
+            {
+                return false;
+            }
             //TODO: remove one life(ship destroyed)
 
             //TODO: return true(ship destroyed)
-            if (HitCoolDown == 0)
+            if (HitCoolDown == 0  && !cheating)
             {
                 lives--;
                 HitCoolDown = 300;

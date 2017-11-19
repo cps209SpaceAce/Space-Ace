@@ -75,13 +75,14 @@ namespace SpaceAce
         public DispatcherTimer timer;
         public SoundManager soundPlayer;
 
-
-        public GameWindow(Difficulty setDiff, bool isLoad) //Joanna: isLoad checks whether to load game or start new one
+        
+        public GameWindow(Difficulty setDiff, bool isLoad, bool ischeating) //Joanna: isLoad checks whether to load game or start new one
         {
             InitializeComponent();
             CanvasBorder.BorderThickness = new Thickness(2);
             // Load from levels
-            gameCtrl = new GameController(setDiff, Width, Height);
+            gameCtrl = new GameController(setDiff, Width, Height, ischeating);
+            
 
             if (isLoad)
             {
@@ -278,7 +279,7 @@ namespace SpaceAce
                 string pngName = "";
                 switch((newEntity as Powerup).type)
                 {
-                    case PowerUp.Invinsible:
+                    case PowerUp.invincibility:
                         pngName = "shield.png";
                         break;
                     case PowerUp.Power:

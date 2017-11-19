@@ -21,9 +21,10 @@ namespace SpaceAce
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
     public partial class MainWindow : Window
     {
-
+        public bool isCheating = false;
         public Difficulty menuDiff = Difficulty.Easy;
 
 
@@ -44,6 +45,8 @@ namespace SpaceAce
             
         }
 
+       
+
         private void btnHighScorePage_Click(object sender, RoutedEventArgs e)
         {
             HighScoreWindow highScoreWindow = new HighScoreWindow();
@@ -51,13 +54,13 @@ namespace SpaceAce
         }
         private void btnNewGame_Click(object sender, RoutedEventArgs e)
         {
-            GameWindow gameWindow = new GameWindow(menuDiff, false);
+            GameWindow gameWindow = new GameWindow(menuDiff, false, isCheating);
             gameWindow.Show();
         }
         private void btnLoadGame_Click(object sender, RoutedEventArgs e)
         {
             // Not menuDiff
-            GameWindow gameWindow = new GameWindow(menuDiff, true);
+            GameWindow gameWindow = new GameWindow(menuDiff, true, isCheating);
             
             // Load Game
 
@@ -96,6 +99,20 @@ namespace SpaceAce
         private void btnQuit_Click(object sender, RoutedEventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
+        }
+
+        private void cheating_Click(object sender, RoutedEventArgs e)
+        {
+            if (isCheating)
+            {
+                isCheating = false;
+                cheating.Content = "Cheat: false";
+            }
+            else
+            {
+                isCheating = true;
+                cheating.Content = "Cheat: true";
+            }
         }
     }
 }
