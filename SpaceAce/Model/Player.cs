@@ -95,14 +95,14 @@ namespace Model
             {
                 return false; //invinsibility
             }
-            if (cheating == true)
+            if (cheating)
             {
                 return false;
             }
             //TODO: remove one life(ship destroyed)
 
             //TODO: return true(ship destroyed)
-            if (HitCoolDown == 0  && !cheating)
+            if (HitCoolDown == 0 )
             {
                 lives--;
                 HitCoolDown = 300;
@@ -126,7 +126,10 @@ namespace Model
             if (isInvinsible)
                 return false; //invinsibility
 
-            
+            if (cheating)
+            {
+                return false;
+            }
             //TODO: remove one life(ship destroyed)
 
             //TODO: return true(ship destroyed)
