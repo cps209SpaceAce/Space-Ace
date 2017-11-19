@@ -91,14 +91,11 @@ namespace Model
 
         public override bool Hit()
         {
-            if (isInvinsible)
+            if (isInvinsible || cheating)
             {
                 return false; //invinsibility
             }
-            if (cheating == true)
-            {
-                return false;
-            }
+
             //TODO: remove one life(ship destroyed)
 
             //TODO: return true(ship destroyed)

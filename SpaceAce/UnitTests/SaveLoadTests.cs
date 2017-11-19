@@ -10,12 +10,9 @@ using Model;
 
 namespace SpaceAce.UnitTests
 {
-
     [TestClass]
     public class LoadSaveTests
     {
-
-
         [TestMethod]
         public void Save_CurrentEnemies_Success()
         {
