@@ -154,7 +154,8 @@ namespace Model
         }
         public override bool Hit()
         {
-            return false; //does not take damage
+            alive = false;
+            return true; //does not take damage
         }
 
         public override string Serialize()
