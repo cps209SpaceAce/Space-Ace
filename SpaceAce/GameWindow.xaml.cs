@@ -228,7 +228,17 @@ namespace SpaceAce
 
             
             CheckGameStatus();
-            SpawnEntities();              // Spawn Entities
+            if(gameCtrl.gameLevelTimer < 60)
+            {
+                SpawnEntities();              // Spawn Entities
+            }
+            else
+            {
+                // First Time Spawn Boss
+                Boss bob = new Boss(1000, 350, 1000);
+                bob.UpdatePosition();
+            }
+            
             SpawnPowerUp();
 
             // ---- Update New Bullets ---- //
