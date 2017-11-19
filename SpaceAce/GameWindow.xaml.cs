@@ -128,6 +128,31 @@ namespace SpaceAce
                 { imgname = "Ship 1.png"; }
                 else if (ship is Bullet)
                 { imgname = "C_bullet.png"; }
+                else if (ship is Mine)
+                { imgname = "mine.png"; }
+                else if (ship is Powerup)
+                {
+                    Powerup power = ship as Powerup;
+                    switch (power.type)
+                    {
+                        case PowerUp.ExtraLife:
+                            { imgname = "Powerup\\life.png"; }
+                            break;
+                        case PowerUp.Invicible:
+                            { imgname = "Powerup\\shield.png"; }
+                            break;
+                        case PowerUp.Power:
+                            { imgname = "Powerup\\power.png"; }
+                            break;
+                        default:
+                            { imgname = "Powerup\\star.png"; }
+                            break;
+
+                    }
+
+                }
+                
+                
                 if (ship != null)
                 {
                     Image img = new Image() { Source = new BitmapImage(new Uri("images/" + imgname, UriKind.Relative)) };
@@ -304,8 +329,8 @@ namespace SpaceAce
 
                 Image img = new Image() { Source = new BitmapImage(new Uri("Images/PowerUp/" + pngName, UriKind.Relative)) };
                 WorldCanvas.Children.Add(img);
-                img.Width = newEntity.hitbox.Width - 10;
-                img.Height = newEntity.hitbox.Height - 10; //image is same size as hitbox
+                img.Width = newEntity.hitbox.Width;
+                img.Height = newEntity.hitbox.Height; //image is same size as hitbox
 
                 Canvas.SetLeft(img, 0);
                 Canvas.SetTop(img, 0);

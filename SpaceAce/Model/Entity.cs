@@ -142,6 +142,7 @@ namespace Model
         public PowerUp type;
         public Powerup(double X, double Y, PowerUp type) :base(X,Y) {
             this.type = type;
+            this.hitbox = new Rectangle(Convert.ToInt32(X), Convert.ToInt32(Y), 40, 40);
         }
         public override void UpdatePosition()
         {
