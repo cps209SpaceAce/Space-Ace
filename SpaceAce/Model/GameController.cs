@@ -82,7 +82,6 @@ namespace Model
         public GameController()
         {
             player = new Player(50, 350, 3, 3, this);
-            enemie_Que = new List<Entity>();
         }
 
     
@@ -158,6 +157,10 @@ namespace Model
                     if (enemy is Powerup)
                     {
                         player.powerup = (enemy as Powerup).type; // Added by Jo
+
+                        if ((enemy as Powerup).type == PowerUp.ExtraLife)
+                            player.Activate_powerup();
+
                         dead_Badguy.Add(enemy);
                     }
                 }
@@ -230,14 +233,6 @@ namespace Model
                     writer.WriteLine("[end]");
                 }
 
-                if (enemie_Que != null && enemie_Que.Count > 0)
-                {
-                    writer.WriteLine("[queuedEnemies]");
-                    for (int i = 0; i < enemie_Que.Count; i++)
-                        writer.WriteLine(enemie_Que[i].Serialize());
-                    writer.WriteLine("[end]");
-                }
-
                 if (player != null)
                 {
                     writer.WriteLine("[player]");
@@ -270,20 +265,13 @@ namespace Model
                     {
                         //2,10,1337
                         string[] res = reader.ReadLine().Split(',');
-                        Level l = Level.Level_1;
 
                         if (res[0] == "Level_1")
-                            l = Level.Level_1;
+                            level = Level.Level_1;
                         else if (res[0] == "Level_2")
-                            l = Level.Level_2;
+                            level = Level.Level_2;
                         else if (res[0] == "Boss")
-                            l = Level.Boss;
-
-                        if (l != level)
-                        {
-                            //TODO: figure out why this doesn't reset, - Jo
-                            return; //restarts mode if level saved deosn't match level chosen
-                        }
+                            level = Level.Boss;
 
                         score = Convert.ToInt32(res[1]);
                         base_Speed = Convert.ToDouble(res[2]);
@@ -301,20 +289,6 @@ namespace Model
                         }
 
                         current_Enemies = list;
-                    }
-
-                    else if (startLine == "[queuedEnemies]")
-                    {
-                        List<Entity> list = new List<Entity>();
-
-                        string line = reader.ReadLine();
-                        while (line != "[end]")
-                        {
-                            list.Add(Entity.Deserialize(line, "enemy", this));
-                            line = reader.ReadLine();
-                        }
-
-                        enemie_Que = list;
                     }
 
                     else if (startLine == "[player]")

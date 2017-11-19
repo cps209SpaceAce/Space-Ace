@@ -18,7 +18,7 @@ namespace Model
     {
         public SoundManager()
         {
-            
+
         }
 
         public void PlayNoise(SoundType type)
@@ -44,14 +44,10 @@ namespace Model
                 case SoundType.HurtEnemy:
                     noisePlayer = new SoundPlayer(SpaceAce.Properties.Resources.damage);
                     break;
-                    
+
             }
             noisePlayer.Stream.Position = 0;
             noisePlayer.Play();
         }
-        
-
-
-
     }
 }
