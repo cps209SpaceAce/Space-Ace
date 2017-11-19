@@ -80,6 +80,7 @@
       <DependentUpon>HighScoreWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\AI.cs" />
+    <Compile Include="Model\SoundManager.cs" />
     <Compile Include="UnitTests\Model_tests.cs" />
     <Compile Include="UnitTests\SaveLoadTests.cs" />
     <Page Include="AboutWindow.xaml">
@@ -198,6 +199,30 @@
     <Resource Include="Images\PowerUP\power.png" />
     <Resource Include="Images\PowerUP\shield.png" />
     <Resource Include="Images\PowerUP\star.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\powerup.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shoot1.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shoot2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bomb.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\damage.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\death.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\hurtplayer.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

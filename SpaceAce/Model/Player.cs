@@ -51,6 +51,8 @@ namespace Model
                 return;
 
             isPoweredUp = true;
+            SoundManager playSound = new SoundManager();
+            playSound.PlayNoise(SoundType.PowerUp);
 
             if (powerup == PowerUp.Power)
                 speed = 10;

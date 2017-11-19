@@ -13,15 +13,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using Model;
+using System.Media;
+
 namespace SpaceAce
 {
     /// <summary>
     /// Interaction logic for GameWindow.xaml
     /// </summary>
-
-    // Don't Delete this VVV
-    //WindowState="Maximized"
-    //WindowStyle="None"
 
     public struct Icon
     {
@@ -75,7 +73,7 @@ namespace SpaceAce
         Button btnQUIT;
         Button btnSAVE;
         public DispatcherTimer timer;
-        
+        public SoundManager soundPlayer;
 
 
         public GameWindow(Difficulty setDiff, bool isLoad) //Joanna: isLoad checks whether to load game or start new one
@@ -160,6 +158,10 @@ namespace SpaceAce
             Canvas.SetTop(img, 0);
             icons.Add(new Icon() { i = img, e = gameCtrl.player });
 
+            soundPlayer = new SoundManager();
+
+
+
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Tick += Timer_Tick;
             timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
@@ -179,6 +181,7 @@ namespace SpaceAce
             Entity p = ship;
             if (id == Id.player)
             {
+                soundPlayer.PlayNoise(SoundType.Shoot1);
                 double y = p.Y + 10;
                 double x = p.X + 50;
                 Bullet b = new Bullet(x, y);
@@ -192,6 +195,7 @@ namespace SpaceAce
             }
             else
             {
+                soundPlayer.PlayNoise(SoundType.Shoot2);
                 double y = ship.Y + 10;
                 double x = ship.X - 2;
                 Bullet b = new Bullet(x, y) {direction = -1 };
@@ -436,12 +440,6 @@ namespace SpaceAce
                 case Key.X:
                     gameCtrl.player.Activate_powerup();
                     break;
-                case Key.S:
-                    //  Moved to Pause Menu
-                    //cltr.Save("SaveData.txt"); //added by JOANNA
-                    //also, would ctrl be a better name though?
-                    break;
-
                 default:
                     break;
             }

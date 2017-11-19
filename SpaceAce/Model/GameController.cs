@@ -58,6 +58,7 @@ namespace Model
         //window information
         public double winWidth;
         public double winHeight;
+        public SoundManager soundPlayer;
 
         public GameController(Difficulty passDiff, double windowWidth, double windowHeight)
         {
@@ -69,8 +70,9 @@ namespace Model
 
             winWidth = windowWidth;
             winHeight = windowHeight;
+            soundPlayer = new SoundManager();
 
-            
+
         }
 
         //written by Joanna, i need a blank slate for testing, 
@@ -147,7 +149,11 @@ namespace Model
                 if (enemy.hitbox.IntersectsWith(player.hitbox))
                 {
                     if (player.HitPlayer(enemy))
+                    {
                         Restart();
+                        soundPlayer.PlayNoise(SoundType.HurtPlayer);
+                    }
+                        
                     if (enemy.Hit())
                         dead_Badguy.Add(enemy);
                     if (enemy is Powerup)
@@ -168,6 +174,7 @@ namespace Model
                         bullet.Hit();
                         if (enemy.Hit())
                         {
+                            soundPlayer.PlayNoise(SoundType.HurtEnemy);
                             dead_Badguy.Add(enemy);
                             score += 50 * 1; // TODO: Based on DIff
                         }
@@ -189,6 +196,7 @@ namespace Model
         /// </summary>
         public void Bomb()
         {
+            soundPlayer.PlayNoise(SoundType.Bomb);
             foreach (Entity e in current_Enemies)
             {
                 this.score += 50;

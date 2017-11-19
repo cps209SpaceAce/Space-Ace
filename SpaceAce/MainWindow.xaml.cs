@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Drawing;
 using Model;
-
+using System.Media;
 
 namespace SpaceAce
 {
@@ -26,9 +26,17 @@ namespace SpaceAce
 
         public Difficulty menuDiff = Difficulty.Easy;
 
+
+
+
         public MainWindow()
         {
             InitializeComponent();
+            //using (var soundPlayer = new SoundPlayer(SpaceAce.Properties.Resources.mainMenu))
+            //{
+            //    soundPlayer.Play();
+            //}
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
