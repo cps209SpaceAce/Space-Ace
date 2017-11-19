@@ -181,7 +181,9 @@ namespace Model
                             score += 50 * 1; // TODO: Based on DIff
                             if (enemy is Powerup)
                             {
-                                player.powerup = (enemy as Powerup).type; // Added by Jo // copyed cheater
+                                player.powerup = (enemy as Powerup).type; // Added by Jo // copyed Noah
+                                if ((enemy as Powerup).type == PowerUp.ExtraLife)
+                                    player.Activate_powerup();
                             }
                         }
 

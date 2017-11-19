@@ -95,7 +95,7 @@ namespace Model
             {
                 return false; //invinsibility
             }
-            if (cheating)
+            if (cheating == true)
             {
                 return false;
             }

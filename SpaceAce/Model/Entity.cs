@@ -92,7 +92,7 @@ namespace Model
                     if (des[3] == "Power")
                         p = PowerUp.Power;
                     else if (des[3] == "Invinsible")
-                        p = PowerUp.Invinsible;
+                        p = PowerUp.invincibility;
                     else if (des[3] == "ExtraLife")
                         p = PowerUp.ExtraLife;
 
@@ -116,7 +116,7 @@ namespace Model
                 if (des[2] == "Power")
                     (result as Player).powerup = PowerUp.Power;
                 else if (des[2] == "Invinsible")
-                    (result as Player).powerup = PowerUp.Invinsible;
+                    (result as Player).powerup = PowerUp.invincibility;
                 else if (des[3] == "ExtraLife")
                     (result as Player).powerup = PowerUp.ExtraLife;
 
@@ -154,7 +154,8 @@ namespace Model
         }
         public override bool Hit()
         {
-            return false; //does not take damage
+            alive = false;
+            return true; //does not take damage
         }
 
         public override string Serialize()
