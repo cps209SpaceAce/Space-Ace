@@ -99,7 +99,7 @@ namespace Model
             //TODO: remove one life(ship destroyed)
 
             //TODO: return true(ship destroyed)
-            if (HitCoolDown == 0  && !cheating)
+            if (HitCoolDown == 0)
             {
                 lives--;
                 HitCoolDown = 300;
@@ -120,10 +120,12 @@ namespace Model
                 return false;
             }
 
-            if (isInvinsible)
+            if (isInvinsible || cheating)
+            {
                 return false; //invinsibility
+            }
 
-            
+
             //TODO: remove one life(ship destroyed)
 
             //TODO: return true(ship destroyed)
