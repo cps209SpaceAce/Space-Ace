@@ -1,4 +1,4 @@
-# SpaceAce - Team B - Alpha
+# SpaceAce - Team B - Beta
 
 ## Instructions: 
 Brief instructions on how to play your game.
@@ -30,12 +30,8 @@ List work completed.
 
 ## Known Issues: 
 List any major issues.
-* Bombs - will cause asteroids to be destroyed, but images will freeze were they are.
-* Bombs - Do not give points for kills
-* Bombs - Uses all the bombs instead of one.
-* Save/Load - Does not work for Medium Difficulty.
-* High Score Screen - Load and Save are working but not implemented.
-* Help Screen: Need to finish instructions.
+* Hitboxes - Bit bigger than objects.
+* Sounds - Cut eachother off. (And no theme music)
 
 ## Recording: 
 https://tinyurl.com/cps209-TeamB-Alpha
