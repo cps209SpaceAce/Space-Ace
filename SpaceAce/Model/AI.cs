@@ -140,6 +140,11 @@ namespace Model
                 alive = false;
 
         }
+        public override string Serialize()
+        {
+            return "tracker" + "," + X + "," + Y + "," + Flightpath;
+        }
+
     }
     public class Mine : AI
     {
