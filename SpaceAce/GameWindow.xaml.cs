@@ -96,7 +96,7 @@ namespace SpaceAce
             btnQUIT.Click += btnQUIT_Click;
 
             // Save
-            btnSAVE = new Button { Content = "SAVE", Width = 150, Height = 50 };
+            btnSAVE = new Button { Content = "SAVE & QUIT", Width = 150, Height = 50 };
             Canvas.SetLeft(btnSAVE, 350);
             Canvas.SetTop(btnSAVE, 50);
             btnSAVE.Click += btnSAVE_Click;
@@ -112,6 +112,7 @@ namespace SpaceAce
         private void btnSAVE_Click(object sender, RoutedEventArgs e)
         {
             gameCtrl.Save("SaveData.txt");
+            this.Close();
         }
 
         public void Draw_Load()
