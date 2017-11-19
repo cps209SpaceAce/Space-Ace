@@ -93,7 +93,7 @@ namespace Model
         {
             if (isInvinsible || cheating)
             {
-                return false; //invinsibility
+                return false; 
             }
 
             //TODO: remove one life(ship destroyed)

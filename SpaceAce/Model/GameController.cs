@@ -73,8 +73,6 @@ namespace Model
             winWidth = windowWidth;
             winHeight = windowHeight;
             soundPlayer = new SoundManager();
-
-
         }
 
         //written by Joanna, i need a blank slate for testing, 
