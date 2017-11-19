@@ -85,22 +85,23 @@ namespace Model
                     result = new Tracker(Convert.ToDouble(des[1]), Convert.ToDouble(des[2]), pattern.Straight);
                     return result;
                 }
-                else if (des[0] == "boss")
-                {
-                }
                 else if (des[0] == "powerup")
                 {
-                    PowerUp p = PowerUp.Power;
+                    PowerUp p = PowerUp.Empty;
+
                     if (des[3] == "Power")
                         p = PowerUp.Power;
                     else if (des[3] == "Invinsible")
                         p = PowerUp.Invinsible;
+                    else if (des[3] == "ExtraLife")
+                        p = PowerUp.ExtraLife;
 
-                        result = new Powerup(Convert.ToDouble(des[1]), Convert.ToDouble(des[2]), p);
+                    result = new Powerup(Convert.ToDouble(des[1]), Convert.ToDouble(des[2]), p);
 
                 }
-
-
+                else if (des[0] == "boss")
+                {
+                }
                 else
                 {
                     throw new Exception("Enemy type Unknown.");
@@ -110,17 +111,21 @@ namespace Model
             else if(type == "player")
             {
                 result = new Player(Convert.ToDouble(des[0]), Convert.ToDouble(des[1]), Convert.ToInt32(des[3]), Convert.ToInt32(des[4]), game);
+                (result as Player).powerup = PowerUp.Empty;
+
                 if (des[2] == "Power")
                     (result as Player).powerup = PowerUp.Power;
                 else if (des[2] == "Invinsible")
                     (result as Player).powerup = PowerUp.Invinsible;
+                else if (des[3] == "ExtraLife")
+                    (result as Player).powerup = PowerUp.ExtraLife;
 
                 if (des[5] == "True")
                     (result as Player).isPoweredUp = true;
                 else
                     (result as Player).isPoweredUp = false;
 
-                (result as Player).powerUpCounter = Convert.ToInt32(des[6]);
+                (result as Player).powerUpCounter = Convert.ToDouble(des[6]);
             }
             else if(type == "playerBullet")
             {

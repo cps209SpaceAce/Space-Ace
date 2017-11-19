@@ -32,6 +32,7 @@ namespace Model
             game = flags;
             this.lives = lives;
             this.bombs = bombs;
+            powerup = PowerUp.Empty;
             speed = 5;
             this.hitbox = new Rectangle(Convert.ToInt32(X), Convert.ToInt32(Y), 45, 20); //custom hit box for the player
         }
