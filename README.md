@@ -7,6 +7,7 @@ Brief instructions on how to play your game.
 3. Fire at ship and avoid asteroids to get through the levels.
 4. The more ships you shoot the more points you get.
 5. Don't touch any enemies ship, asteroids, or enemy fire.
+6. Shoot powerups to use them.
 
 ### Controls
 | KEY     | Action  |
@@ -14,8 +15,8 @@ Brief instructions on how to play your game.
 | Arrows  | Move your ship |
 |SPACE    | Fire|
 |B        | Use a bomb|
-|S        | Save the Game|
-|ESC      | Pause the Game|
+|ESC      | Pause the Game and bring up pause menu|
+
 
 
 ## Work Completed: 
