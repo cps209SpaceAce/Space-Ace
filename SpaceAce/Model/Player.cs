@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public enum powerup { Invinsible, Power } // TODO: pick what powerups to put here
+    public enum PowerUp { Empty,Invinsible, Power, ExtraLife } // TODO: pick what powerups to put here
 
     public class Player : Entity
 
@@ -16,7 +16,7 @@ namespace Model
         public int bombCooldown = 0;
         public int lives { get; set; }
         public int bombs { get; set; }
-        public powerup powerup { get; set; }
+        public PowerUp powerup { get; set; }
         public int HitCoolDown;
         public string image = "spaceship-hi.png";
 
@@ -47,12 +47,21 @@ namespace Model
 
         public void Activate_powerup()
         {
+            if (powerup == PowerUp.Empty)
+                return;
+
             isPoweredUp = true;
 
-            if (powerup == powerup.Power)
+            if (powerup == PowerUp.Power)
                 speed = 10;
-            else if (powerup == powerup.Invinsible)
+            else if (powerup == PowerUp.Invinsible)
                 isInvinsible = true;
+            else if (powerup == PowerUp.ExtraLife) { 
+                ++lives;
+                isPoweredUp = false;
+                powerup = PowerUp.Empty;
+            }
+
         }
         void Deactivate_Powerup()
         {
@@ -81,6 +90,34 @@ namespace Model
             if (isInvinsible)
                 return false; //invinsibility
 
+            //TODO: remove one life(ship destroyed)
+
+            //TODO: return true(ship destroyed)
+            if (HitCoolDown == 0)
+            {
+                lives--;
+                HitCoolDown = 300;
+            }
+
+            if (lives == 0)
+                game.gameResult = GameResult.Lost;
+
+            return true;
+        }
+
+        public bool HitPlayer(Entity ent)
+        {
+
+            if (ent is Powerup)
+            {
+                powerup = (ent as Powerup).type;
+                return false;
+            }
+
+            if (isInvinsible)
+                return false; //invinsibility
+
+            
             //TODO: remove one life(ship destroyed)
 
             //TODO: return true(ship destroyed)
@@ -158,7 +195,7 @@ namespace Model
 
             if (isPoweredUp) {
                 powerUpCounter++;
-
+                Console.WriteLine("I AM POWERED UP");
                 if (powerUpCounter >= 5000) 
                     Deactivate_Powerup();      
             }

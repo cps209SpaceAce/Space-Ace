@@ -174,7 +174,7 @@ namespace SpaceAce.UnitTests
 
             Assert.IsTrue(ctrl.player.X == 40);
             Assert.IsTrue(ctrl.player.Y == 30);
-            Assert.IsTrue(ctrl.player.powerup == powerup.Power);
+            Assert.IsTrue(ctrl.player.powerup == PowerUp.Power);
             Assert.IsTrue(ctrl.player.lives == 4);
             Assert.IsTrue(ctrl.player.bombs == 8);
 
@@ -302,7 +302,7 @@ namespace SpaceAce.UnitTests
             Assert.IsTrue(ctrl.level == Level.Level_2);
             Assert.IsTrue(ctrl.player.X == 40);
             Assert.IsTrue(ctrl.player.Y == 30);
-            Assert.IsTrue(ctrl.player.powerup == powerup.Power);
+            Assert.IsTrue(ctrl.player.powerup == PowerUp.Power);
             Assert.IsTrue(ctrl.player.lives == 4);
             Assert.IsTrue(ctrl.player.bombs == 8);
 

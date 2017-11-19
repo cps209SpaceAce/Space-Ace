@@ -192,6 +192,13 @@
     <Resource Include="Images\gameover.png" />
     <Resource Include="Images\victory.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\PowerUP\bullets.png" />
+    <Resource Include="Images\PowerUP\life.png" />
+    <Resource Include="Images\PowerUP\power.png" />
+    <Resource Include="Images\PowerUP\shield.png" />
+    <Resource Include="Images\PowerUP\star.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

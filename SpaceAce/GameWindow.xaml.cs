@@ -212,7 +212,10 @@ namespace SpaceAce
         public void Timer_Tick(object sender, EventArgs e)
         {
             gameCtrl.gameLevelTimer += 0.01;
+            // Check if power up is being used
             gameCtrl.player.powerUpCounter += 0.01;
+            gameCtrl.spawnPowerUpTimer += 0.01;
+
             List<Icon> dead = new List<Icon>();            
 
             gameCtrl.player.UpdatePosition(); // Update the Player Positions
@@ -263,7 +266,36 @@ namespace SpaceAce
 
         private void SpawnPowerUp()
         {
+            if(gameCtrl.spawnPowerUpTimer > 5)
+            {
 
+                Entity newEntity = Levels.Level_returnPowerUp();
+                gameCtrl.current_Enemies.Add(newEntity);
+                string pngName = "";
+                switch((newEntity as Powerup).type)
+                {
+                    case PowerUp.Invinsible:
+                        pngName = "shield.png";
+                        break;
+                    case PowerUp.Power:
+                        pngName = "star.png";
+                        break;
+                    case PowerUp.ExtraLife:
+                        pngName = "life.png";
+                        break;
+                }
+
+
+                Image img = new Image() { Source = new BitmapImage(new Uri("Images/PowerUp/" + pngName, UriKind.Relative)) };
+                WorldCanvas.Children.Add(img);
+                img.Width = newEntity.hitbox.Width - 10;
+                img.Height = newEntity.hitbox.Height - 10; //image is same size as hitbox
+
+                Canvas.SetLeft(img, 0);
+                Canvas.SetTop(img, 0);
+                icons.Add(new Icon() { i = img, e = gameCtrl.current_Enemies[gameCtrl.current_Enemies.Count - 1] });
+                gameCtrl.spawnPowerUpTimer = 0;
+            }
         }
 
         private void CheckGameStatus()
@@ -401,7 +433,9 @@ namespace SpaceAce
                 case Key.B:
                     gameCtrl.bomb = true;
                     break;
-
+                case Key.X:
+                    gameCtrl.player.Activate_powerup();
+                    break;
                 case Key.S:
                     //  Moved to Pause Menu
                     //cltr.Save("SaveData.txt"); //added by JOANNA

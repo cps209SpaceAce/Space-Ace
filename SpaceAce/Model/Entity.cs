@@ -90,11 +90,11 @@ namespace Model
                 }
                 else if (des[0] == "powerup")
                 {
-                    powerup p = powerup.Power;
+                    PowerUp p = PowerUp.Power;
                     if (des[3] == "Power")
-                        p = powerup.Power;
+                        p = PowerUp.Power;
                     else if (des[3] == "Invinsible")
-                        p = powerup.Invinsible;
+                        p = PowerUp.Invinsible;
 
                         result = new Powerup(Convert.ToDouble(des[1]), Convert.ToDouble(des[2]), p);
 
@@ -111,9 +111,9 @@ namespace Model
             {
                 result = new Player(Convert.ToDouble(des[0]), Convert.ToDouble(des[1]), Convert.ToInt32(des[3]), Convert.ToInt32(des[4]), game);
                 if (des[2] == "Power")
-                    (result as Player).powerup = powerup.Power;
+                    (result as Player).powerup = PowerUp.Power;
                 else if (des[2] == "Invinsible")
-                    (result as Player).powerup = powerup.Invinsible;
+                    (result as Player).powerup = PowerUp.Invinsible;
 
                 if (des[5] == "True")
                     (result as Player).isPoweredUp = true;
@@ -134,8 +134,8 @@ namespace Model
 
     public class Powerup:Entity
     {
-        public powerup type;
-        public Powerup(double X, double Y, powerup type) :base(X,Y) {
+        public PowerUp type;
+        public Powerup(double X, double Y, PowerUp type) :base(X,Y) {
             this.type = type;
         }
         public override void UpdatePosition()
@@ -143,6 +143,9 @@ namespace Model
             X--;
             if (X < 0)
                 alive = false;
+
+            hitbox.X = Convert.ToInt32(X);
+            hitbox.Y = Convert.ToInt32(Y);
         }
         public override bool Hit()
         {

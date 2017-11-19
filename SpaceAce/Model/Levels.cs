@@ -9,7 +9,28 @@ namespace Model
 
     class Levels
     {
-    public int spawn_X = 600;    
+       
+        public static Entity Level_returnPowerUp()
+        {
+            Powerup output = null;
+            int spawn_X = 1000;
+
+            switch (GameController.random.Next(2, 3))
+            {
+                case 0:
+                    output = new Powerup(spawn_X, GameController.random.Next(100, 600), PowerUp.Invinsible);
+                    break;
+                case 1:
+                    output = new Powerup(spawn_X, GameController.random.Next(100, 600), PowerUp.Power);
+                    break;
+                case 2:
+                    output = new Powerup(spawn_X, GameController.random.Next(100, 600), PowerUp.ExtraLife);
+                    break;
+            }
+
+            return output;
+        }
+
 
         // This is a level class
         public static Entity Level_reuturnEntity(Difficulty currentDiff, Level level)

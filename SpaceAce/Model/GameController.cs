@@ -53,7 +53,7 @@ namespace Model
         public double base_Speed;
         public int score;
         public double gameLevelTimer;
-
+        public double spawnPowerUpTimer;
 
         //window information
         public double winWidth;
@@ -146,7 +146,7 @@ namespace Model
             {
                 if (enemy.hitbox.IntersectsWith(player.hitbox))
                 {
-                    if (player.Hit())
+                    if (player.HitPlayer(enemy))
                         Restart();
                     if (enemy.Hit())
                         dead_Badguy.Add(enemy);
