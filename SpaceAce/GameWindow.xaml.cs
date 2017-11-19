@@ -125,11 +125,16 @@ namespace SpaceAce
                 if (ship is Asteroid)
                 { imgname = "asteroid.png"; }
                 else if (ship is AI)
-                { imgname = "Ship 1.png"; }
+                { 
+                    if (ship is Mine)
+                        { imgname = "mine.png"; }
+                    else if (ship is Tracker)
+                        { imgname = "ship 4.png"; }
+                    else
+                        imgname = "Ship 1.png"; }
                 else if (ship is Bullet)
                 { imgname = "C_bullet.png"; }
-                else if (ship is Mine)
-                { imgname = "mine.png"; }
+               
                 else if (ship is Powerup)
                 {
                     Powerup power = ship as Powerup;
