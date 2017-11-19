@@ -290,7 +290,7 @@ namespace SpaceAce
                 string pngName = "";
                 switch((newEntity as Powerup).type)
                 {
-                    case PowerUp.invincibility:
+                    case PowerUp.Invicible:
                         pngName = "shield.png";
                         break;
                     case PowerUp.Power:

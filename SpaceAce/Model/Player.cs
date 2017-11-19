@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public enum PowerUp { Empty, invincibility, Power, ExtraLife } // TODO: pick what powerups to put here
+    public enum PowerUp { Empty, Invicible, Power, ExtraLife } // TODO: pick what powerups to put here
 
     public class Player : Entity
 
@@ -58,7 +58,7 @@ namespace Model
 
             if (powerup == PowerUp.Power)
                 speed = 10;
-            else if (powerup == PowerUp.invincibility)
+            else if (powerup == PowerUp.Invicible)
                 isInvinsible = true;
             else if (powerup == PowerUp.ExtraLife) { 
                 ++lives;
