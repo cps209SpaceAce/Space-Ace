@@ -8,7 +8,7 @@
         Title="Space Ace - Help" Height="768" Width="1024"
         WindowState="Maximized" WindowStyle="None"
         >
-    
+
     <Window.Background>
         <ImageBrush ImageSource="Images\titleScreenBackground.png"></ImageBrush>
     </Window.Background>
@@ -16,7 +16,18 @@
         <Grid>
             <Button Content="Close Window" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
             Margin="720,634,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="Button_Click"/>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="331" Width="700" Foreground="White" FontSize="22" Margin="97,157,0,0"><Run Text="&lt;Instructions go here&gt; "/><LineBreak/><Run/><LineBreak/><Run/><LineBreak/><Run Text="but for now,"/><LineBreak/><Run Text="How to play the game according to the save/load programmer:"/><LineBreak/><Run/><LineBreak/><Run Text="Cntrl R+A and hope for the best."/><LineBreak/><Run Text="Pray the code compiles."/></TextBlock>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="477" Width="447" Foreground="White" FontSize="22" Margin="499,10,0,0"><Run Text="Pick a difficulty from the Title Screen. (Easy by Default)"/><LineBreak/><Run/><LineBreak/><Run Text="Choose New Game or Load Game."/><LineBreak/><Run/><LineBreak/><Run Text="Fire at ship and avoid asteroids to get through the levels."/><LineBreak/><Run/><LineBreak/><Run Text="The more ships you shoot the more points you get."/><LineBreak/><Run/><LineBreak/><Run Text="Don't touch any enemies ship, asteroids, or enemy fire."/></TextBlock>
+            <Image Source="Images/Menu/arrow.png" HorizontalAlignment="Left" Height="137" Margin="76,59,0,0" VerticalAlignment="Top" Width="158"/>
+            <Image Source="Images/Menu/space.png" HorizontalAlignment="Left" Height="131" Margin="66,180,0,0" VerticalAlignment="Top" Width="168"/>
+            <Image Source="Images/Menu/x.png" HorizontalAlignment="Left" Height="100" Margin="96,228,0,0" VerticalAlignment="Top" Width="100"/>
+            <Image Source="Images/Menu/esc.png" HorizontalAlignment="Left" Height="100" Margin="96,430,0,0" VerticalAlignment="Top" Width="100"/>
+            <Image Source="Images/Menu/b.jpg" HorizontalAlignment="Left" Height="74" Margin="112,333,0,0" VerticalAlignment="Top" Width="70"/>
+            <Label FontSize="30" Foreground="White" Content="Movement" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,106,0,0"/>
+            <Label FontSize="30" Foreground="White" Content="Shoot" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,180,0,0"/>
+            <Label FontSize="30" Foreground="White" Content="PowerUp" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,250,0,0"/>
+            <Label FontSize="30" Foreground="White" Content="Bomb" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,358,0,0"/>
+            <Label FontSize="30" Foreground="White" Content="Pause Menu" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,457,0,0"/>
+            
         </Grid>
     </StackPanel>
 </Window>
