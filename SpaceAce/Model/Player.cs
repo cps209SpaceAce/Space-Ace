@@ -91,18 +91,15 @@ namespace Model
 
         public override bool Hit()
         {
-            if (isInvinsible)
+            if (isInvinsible || cheating)
             {
                 return false; //invinsibility
             }
-            if (cheating)
-            {
-                return false;
-            }
+
             //TODO: remove one life(ship destroyed)
 
             //TODO: return true(ship destroyed)
-            if (HitCoolDown == 0 )
+            if (HitCoolDown == 0  && !cheating)
             {
                 lives--;
                 HitCoolDown = 300;
@@ -126,10 +123,7 @@ namespace Model
             if (isInvinsible)
                 return false; //invinsibility
 
-            if (cheating)
-            {
-                return false;
-            }
+            
             //TODO: remove one life(ship destroyed)
 
             //TODO: return true(ship destroyed)
