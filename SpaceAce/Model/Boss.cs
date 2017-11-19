@@ -9,8 +9,11 @@ namespace Model
 {
     public class Boss : Entity, ISerialiable
     {
+
+        private double actionTimer;
         public Boss(double X, double Y, int health) : base(X,Y)
         {
+            actionTimer = 0;
         }
 
         public override bool Hit()
@@ -21,13 +24,16 @@ namespace Model
         public override void UpdatePosition()
         {
             //TODO: movement logic for boss
-            throw new NotImplementedException();
+            actionTimer += 0.01;
             if (X > 950)
             {
                 X = Convert.ToInt32(X - (1 * speed));
             }
+
+            
             
         }
+
 
         public override string Serialize()
         {
