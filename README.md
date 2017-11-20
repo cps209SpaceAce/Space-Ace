@@ -36,6 +36,7 @@ List any major issues.
 
 ## Recording: 
 https://tinyurl.com/cps209-TeamB-Alpha
+
 https://tinyurl.com/cps209-TeamB-Beta
 
 ## Expenses: 
