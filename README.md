@@ -34,6 +34,7 @@ List any major issues.
 * Hitboxes - Bit bigger than objects.
 * Sounds - Cut eachother off. (And no theme music)
 * Formations - Same image as normal
+* Mines - Don't do damage
 
 ## Recording: 
 https://tinyurl.com/cps209-TeamB-Alpha
