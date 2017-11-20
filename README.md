@@ -36,6 +36,7 @@ List any major issues.
 
 ## Recording: 
 https://tinyurl.com/cps209-TeamB-Alpha
+https://tinyurl.com/cps209-TeamB-Beta
 
 ## Expenses: 
 Provide a table showing how many hours each team member has invested to this point, how many hours they have remaining out of their individual time budget, and link to each team member’s journal.
