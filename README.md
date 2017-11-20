@@ -22,11 +22,15 @@ Brief instructions on how to play your game.
 ## Work Completed: 
 List work completed.
 * Title Screen
+* Help Screen
+* About Screen
 * Animation
 * Player and other Enity movement
 * Collision
-* Easy and Medium
-* Save/Load for Easy
+* Difficulty
+* Cheat Mode
+* Sound
+* Save/Load
 
 
 ## Known Issues: 
@@ -35,6 +39,7 @@ List any major issues.
 * Sounds - Cut eachother off. (And no theme music)
 * Formations - Same image as normal
 * Mines - Don't do damage
+* Save/Load - Do not save whether cheating
 
 ## Recording: 
 https://tinyurl.com/cps209-TeamB-Alpha
