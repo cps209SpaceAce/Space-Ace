@@ -22,27 +22,39 @@ Brief instructions on how to play your game.
 ## Work Completed: 
 List work completed.
 * Title Screen
+* Help Screen
+* About Screen
+* High Score Screen and Scoring
 * Animation
 * Player and other Enity movement
 * Collision
-* Easy and Medium
-* Save/Load for Easy
+* Difficulty
+* Cheat Mode
+* Sound
+* Save/Load
+* Player Death
+* 1 Power Up
 
 
 ## Known Issues: 
 List any major issues.
 * Hitboxes - Bit bigger than objects.
 * Sounds - Cut eachother off. (And no theme music)
+* Formations - Same image as normal
+* Mines - Don't do damage
+* Save/Load - Do not save whether cheating
 
 ## Recording: 
 https://tinyurl.com/cps209-TeamB-Alpha
+
+https://tinyurl.com/cps209-TeamB-Beta
 
 ## Expenses: 
 Provide a table showing how many hours each team member has invested to this point, how many hours they have remaining out of their individual time budget, and link to each team member’s journal.
 
 | Person| Time Spent (HOURS)  | Time Left (HOURS)|Journal|
 | :---:   | :---:   | :---: | :---:|
-| Noah Mansfield  |18.25|31.75|https://github.com/cps209SpaceAce/Space-Ace/wiki/MansfieldJournal|
-| Joanna Madanat  |15.45|34.55|https://github.com/cps209SpaceAce/Space-Ace/wiki/MadanatJournal|
-| Robert Meyer    |18.42|31.58|https://github.com/cps209SpaceAce/Space-Ace/wiki/MeyerJournal|
+| Noah Mansfield  |20.83|29.17|https://github.com/cps209SpaceAce/Space-Ace/wiki/MansfieldJournal|
+| Joanna Madanat  |21.38|28.61|https://github.com/cps209SpaceAce/Space-Ace/wiki/MadanatJournal|
+| Robert Meyer    |31|19|https://github.com/cps209SpaceAce/Space-Ace/wiki/MeyerJournal|
 

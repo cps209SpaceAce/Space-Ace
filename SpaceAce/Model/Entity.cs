@@ -9,7 +9,7 @@ namespace Model
 {
     abstract public class Entity: ISerialiable
     {
-
+        
         public static Random random = new Random();
         public double speed;
         //health auto set to 1

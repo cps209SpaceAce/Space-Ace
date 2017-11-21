@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public enum pattern { Straight, Sin, Cos, Tan };
+    public enum pattern { Straight, Sin, Cos, Tan ,Sindown};
     public class AI : Entity
     {
         public int fireCoolDown = 50;
@@ -170,7 +170,7 @@ namespace Model
             //Based on Steering behariors: Seek            
             hitbox.X = Convert.ToInt32(X);
             hitbox.Y = Convert.ToInt32(Y);
-            if (Math.Abs(X - target.X) > 50 || Math.Abs(target.Y - Y) > 50)
+            if (Math.Abs(X - target.X) > 50 || Math.Abs(target.Y - Y) > 50) //remove the if statment
             {
                 Vector currentPos = new Vector(X, Y);
                 Vector desiredVel = target - currentPos;
@@ -182,9 +182,10 @@ namespace Model
             }
             else
             {
-                
+
                 //MAke player take damage when it exlodes. - Joanna
-                alive = false;
+
+                alive = false; //remove later
             }
         }
 

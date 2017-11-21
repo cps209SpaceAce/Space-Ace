@@ -29,8 +29,10 @@ namespace Model
             {
                 X = Convert.ToInt32(X - (1 * speed));
             }
+            // after x == 950 ... change y V^
 
-            
+                // action == 1 
+                //bossShoot(x,y,type)
             
         }
 
