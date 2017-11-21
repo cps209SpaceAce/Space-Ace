@@ -42,6 +42,7 @@ namespace Model
         public bool right = false;
 
         //lists of moving objects
+        // add a boss var
         public List<Entity> current_Enemies = new List<Entity>();
         public List<Entity> enemie_Que = new List<Entity>();
         public Player player;

@@ -213,6 +213,9 @@ namespace SpaceAce
             Entity p = ship;
             if (id == Id.player)
             {
+                //if(flag triple == true)
+                // call make tripleshot
+                // return
                 soundPlayer.PlayNoise(SoundType.Shoot1);
                 double y = p.Y + 10;
                 double x = p.X + 50;

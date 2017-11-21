@@ -106,12 +106,12 @@ namespace SpaceAce
             if (isCheating)
             {
                 isCheating = false;
-                cheating.Content = "Cheat: false";
+                cheating.Content = "Cheat: false"; // False
             }
             else
             {
                 isCheating = true;
-                cheating.Content = "Cheat: true";
+                cheating.Content = "Cheat: true"; // True
             }
         }
     }
