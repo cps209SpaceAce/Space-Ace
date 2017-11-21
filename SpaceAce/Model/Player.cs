@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public enum PowerUp { Empty, Invicible, Power, ExtraLife } // TODO: pick what powerups to put here
+    public enum PowerUp { Empty, Invincible, ExtraSpeed, ExtraLife, ExtraBomb, TripleShot, RapidFire } // TODO: pick what powerups to put here
     
     public class Player : Entity
 
@@ -22,6 +22,7 @@ namespace Model
         public PowerUp powerup { get; set; }
         public int HitCoolDown;
         public string image = "spaceship-hi.png";
+        double baseSpeed;
 
         public double powerUpCounter = 0;
         public bool isPoweredUp = false;
@@ -38,6 +39,7 @@ namespace Model
             this.bombs = bombs;
             powerup = PowerUp.Empty;
             speed = 5;
+            baseSpeed = speed;
             this.hitbox = new Rectangle(Convert.ToInt32(X), Convert.ToInt32(Y), 45, 20); //custom hit box for the player
         }
 
@@ -59,23 +61,34 @@ namespace Model
             SoundManager playSound = new SoundManager();
             playSound.PlayNoise(SoundType.PowerUp);
 
-            if (powerup == PowerUp.Power)
-                speed = 10;
-            else if (powerup == PowerUp.Invicible)
+            if (powerup == PowerUp.ExtraSpeed)
+                speed = baseSpeed*2;
+            else if (powerup == PowerUp.Invincible)
                 isInvinsible = true;
             else if (powerup == PowerUp.ExtraLife) { 
                 ++lives;
                 isPoweredUp = false;
-                powerup = PowerUp.Empty;
             }
+            else if (powerup == PowerUp.ExtraBomb)
+            {
+                ++bombs;
+                isPoweredUp = false;
+            }
+            else if (powerup == PowerUp.RapidFire)
+                rapid_fire = true;
+            else if (powerup == PowerUp.TripleShot)
+                triple = true;
 
+            powerup = PowerUp.Empty;
         }
         void Deactivate_Powerup()
         {
             powerUpCounter = 0;
             isInvinsible = false;
-            speed = 5;
+            speed = baseSpeed;
             isPoweredUp = false;
+            triple = false;
+            rapid_fire = false;
         }
         public void DropBomb()
         {
@@ -206,7 +219,7 @@ namespace Model
 
             if (isPoweredUp) {
                 powerUpCounter++;
-                Console.WriteLine("I AM POWERED UP");
+                //Console.WriteLine("I AM POWERED UP");
                 if (powerUpCounter >= 5000) 
                     Deactivate_Powerup();      
             }
@@ -217,7 +230,7 @@ namespace Model
         }
         public override string Serialize()
         {
-            return X + "," + Y + "," + powerup + "," + lives + "," + bombs + "," + isPoweredUp + "," + powerUpCounter;// + "," cheating
+            return X + "," + Y + "," + powerup + "," + lives + "," + bombs + "," + isPoweredUp + "," + powerUpCounter + "," + cheating;
         }
     }
 }

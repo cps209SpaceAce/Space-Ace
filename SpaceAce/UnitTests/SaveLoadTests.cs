@@ -60,7 +60,7 @@ namespace SpaceAce.UnitTests
                 reader.ReadLine();
 
                 Assert.IsTrue(reader.ReadLine() == "[player]");
-                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0");
+                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False");
                 Assert.IsTrue(reader.ReadLine() == "[end]");
 
                 Assert.IsTrue(reader.ReadLine() == "[playerBullets]");
@@ -92,7 +92,7 @@ public void Save_PlayerData_Success()
         reader.ReadLine();
 
         Assert.IsTrue(reader.ReadLine() == "[player]");
-        Assert.IsTrue(reader.ReadLine() == "40,50,Empty,100,60,True,3.44");
+        Assert.IsTrue(reader.ReadLine() == "40,50,Empty,100,60,True,3.44,False");
         Assert.IsTrue(reader.ReadLine() == "[end]");
     }
 }
@@ -116,7 +116,7 @@ public void Save_GameControllerData_Success()
         Assert.IsTrue(reader.ReadLine() == "[end]");
 
         Assert.IsTrue(reader.ReadLine() == "[player]");
-        Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0");
+        Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False");
         Assert.IsTrue(reader.ReadLine() == "[end]");
 
     }
@@ -139,7 +139,7 @@ public void Save_Defaults_Success()
         Assert.IsTrue(reader.ReadLine() == "[end]");
 
         Assert.IsTrue(reader.ReadLine() == "[player]");
-        Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0");
+        Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False");
         Assert.IsTrue(reader.ReadLine() == "[end]");
 
     }
@@ -157,7 +157,7 @@ public void Load_Player_Success()
     {
 
         writer.WriteLine("[player]");
-        writer.WriteLine("40,30,Power,4,8, False, 2.34");
+        writer.WriteLine("40,30,ExtraSpeed,4,8, False, 2.34, False");
         writer.WriteLine("[end]");
     }
 
@@ -165,7 +165,8 @@ public void Load_Player_Success()
 
     Assert.IsTrue(ctrl.player.X == 40);
     Assert.IsTrue(ctrl.player.Y == 30);
-    Assert.IsTrue(ctrl.player.powerup == PowerUp.Power);
+            Assert.IsTrue(ctrl.player.cheating == false);
+            Assert.IsTrue(ctrl.player.powerup == PowerUp.ExtraSpeed);
     Assert.IsTrue(ctrl.player.lives == 4);
     Assert.IsTrue(ctrl.player.bombs == 8);
 
@@ -258,7 +259,7 @@ public void Load_FullGame_Success()
         writer.WriteLine("[end]");
 
         writer.WriteLine("[player]");
-        writer.WriteLine("40,30,Power,4,8, False, 1.6");
+        writer.WriteLine("40,30,ExtraSpeed,4,8, False, 1.6, False");
         writer.WriteLine("[end]");
     }
 
@@ -271,9 +272,10 @@ public void Load_FullGame_Success()
     Assert.IsTrue(ctrl.level == Level.Level_2);
     Assert.IsTrue(ctrl.player.X == 40);
     Assert.IsTrue(ctrl.player.Y == 30);
-    Assert.IsTrue(ctrl.player.powerup == PowerUp.Power);
+    Assert.IsTrue(ctrl.player.powerup == PowerUp.ExtraSpeed);
     Assert.IsTrue(ctrl.player.lives == 4);
     Assert.IsTrue(ctrl.player.bombs == 8);
+    Assert.IsTrue(ctrl.player.cheating == false);
 
     Assert.IsTrue(ctrl.current_Enemies.Count == 4);
     Assert.IsTrue(ctrl.current_Enemies[0].X == 30);

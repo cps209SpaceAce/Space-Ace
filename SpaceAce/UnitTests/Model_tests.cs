@@ -17,12 +17,13 @@ namespace SpaceAce.UnitTests
         public void Make_NewGame()
         {
         GameController gc = new GameController(Difficulty.Easy, 768, 1024, false);//Level.Level_1,Difficulty.Easy
-            Assert.IsTrue(gc.difficulty == Difficulty.Easy);
+
+        Assert.IsTrue(gc.difficulty == Difficulty.Easy);
         Assert.IsTrue(gc.level == Level.Level_1);
         Assert.IsTrue(gc.enemie_Que != null);
         Assert.IsTrue(gc.player.lives == 3);
         Assert.IsTrue(gc.player.bombs == 3);
-        Assert.IsTrue(gc.base_Speed == 1);
+        //Assert.IsTrue(gc.base_Speed == 1);
         }
 
         [TestMethod]
@@ -70,14 +71,14 @@ namespace SpaceAce.UnitTests
             HighScoreManager Test = new HighScoreManager();
             HighScore BobTest = new HighScore("Bob", Level.Level_1, Difficulty.Easy, 9001, "ship.png");
             Test.highScores.Add(BobTest);
-            //Test.Save();
+            Test.Save();
             Test.highScores.Clear();
             Test.Load();
-            Assert.IsTrue(Test.highScores[0].Name      == "Bob");
-            Assert.IsTrue(Test.highScores[0].Level     == Level.Level_1 );
-            Assert.IsTrue(Test.highScores[0].Diff      == Difficulty.Easy );
-            Assert.IsTrue(Test.highScores[0].Score     == 9001 );
-            Assert.IsTrue(Test.highScores[0].ShipImage == "ship.png" );
+            Assert.IsTrue(Test.highScores[Test.highScores.Count-1].Name      == "Bob");
+            Assert.IsTrue(Test.highScores[Test.highScores.Count - 1].Level     == Level.Level_1 );
+            Assert.IsTrue(Test.highScores[Test.highScores.Count - 1].Diff      == Difficulty.Easy );
+            Assert.IsTrue(Test.highScores[Test.highScores.Count - 1].Score     == 9001 );
+            Assert.IsTrue(Test.highScores[Test.highScores.Count - 1].ShipImage == "ship.png" );
 
             
 

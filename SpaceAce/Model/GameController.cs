@@ -51,11 +51,11 @@ namespace Model
         //pre-game setup
         public Level level;
         public Difficulty difficulty;
-        public double base_Speed;
+        //public double base_Speed; //does anyone use basespeed anymore?
         public int score;
         public double gameLevelTimer;
         public double spawnPowerUpTimer;
-       
+
 
         //window information
         public double winWidth;
@@ -83,7 +83,7 @@ namespace Model
             player = new Player(50, 350, 3, 3, this);
         }
 
-    
+
 
         public List<Entity> UpdateWorld()// Each tick of timer will call this.
         {
@@ -147,17 +147,18 @@ namespace Model
                 {
                     if (player.HitPlayer(enemy))
                     {
-                        
+
                         soundPlayer.PlayNoise(SoundType.HurtPlayer);
                     }
-                        
+
                     if (enemy.Hit())
                         dead_Badguy.Add(enemy);
                     if (enemy is Powerup)
                     {
                         player.powerup = (enemy as Powerup).type; // Added by Jo
 
-                        if ((enemy as Powerup).type == PowerUp.ExtraLife)
+                        if ((enemy as Powerup).type == PowerUp.ExtraLife ||
+                            (enemy as Powerup).type == PowerUp.ExtraBomb )
                             player.Activate_powerup();
 
                         dead_Badguy.Add(enemy);
@@ -209,8 +210,8 @@ namespace Model
                 this.score += 50;
                 e.alive = false;
             }
-                
-            
+
+
             current_Enemies = new List<Entity>();
         }
 
@@ -257,63 +258,66 @@ namespace Model
             current_Enemies.Clear();
             player_fire.Clear();
 
-            using (StreamReader reader = new StreamReader(fileName))
-            {
-                while (!reader.EndOfStream)
+            if (!File.Exists(fileName)) {
+                using (File.Create(fileName)) ;
+            }
+
+
+                using (StreamReader reader = new StreamReader(fileName))
                 {
-                    string startLine = reader.ReadLine();
-                    if (startLine == "[defaults]")
+                    while (!reader.EndOfStream)
                     {
-                        //2,10,1337
-                        string[] res = reader.ReadLine().Split(',');
-
-                        if (res[0] == "Level_1")
-                            level = Level.Level_1;
-                        else if (res[0] == "Level_2")
-                            level = Level.Level_2;
-                        else if (res[0] == "Boss")
-                            level = Level.Boss;
-
-                        score = Convert.ToInt32(res[1]);
-                        base_Speed = Convert.ToDouble(res[2]);
-                        gameLevelTimer = Convert.ToDouble(res[3]);
-                    }
-                    else if (startLine == "[enemies]")
-                    {
-                        List<Entity> list = new List<Entity>();
-
-                        string line = reader.ReadLine();
-                        while (line != "[end]")
+                        string startLine = reader.ReadLine();
+                        if (startLine == "[defaults]")
                         {
-                            list.Add(Entity.Deserialize(line, "enemy", this));
-                            line = reader.ReadLine();
+                            string[] res = reader.ReadLine().Split(',');
+
+                            if (res[0] == "Level_1")
+                                level = Level.Level_1;
+                            else if (res[0] == "Level_2")
+                                level = Level.Level_2;
+                            else if (res[0] == "Boss")
+                                level = Level.Boss;
+
+                            score = Convert.ToInt32(res[1]);
+                            base_Speed = Convert.ToDouble(res[2]);
+                            gameLevelTimer = Convert.ToDouble(res[3]);
+                        }
+                        else if (startLine == "[enemies]")
+                        {
+                            List<Entity> list = new List<Entity>();
+
+                            string line = reader.ReadLine();
+                            while (line != "[end]")
+                            {
+                                list.Add(Entity.Deserialize(line, "enemy", this));
+                                line = reader.ReadLine();
+                            }
+
+                            current_Enemies = list;
                         }
 
-                        current_Enemies = list;
-                    }
-
-                    else if (startLine == "[player]")
-                    {
-                        string line = reader.ReadLine();
-                        player = Entity.Deserialize(line, "player", this) as Player;
-                    }
-
-                    else if (startLine == "[playerBullets]")
-                    {
-                        List<Bullet> list = new List<Bullet>();
-
-                        string line = reader.ReadLine();
-                        while (line != "[end]")
+                        else if (startLine == "[player]")
                         {
-                            list.Add(Entity.Deserialize(line, "playerBullet", this) as Bullet);
-                            line = reader.ReadLine();
+                            string line = reader.ReadLine();
+                            player = Entity.Deserialize(line, "player", this) as Player;
                         }
 
-                        player_fire = list;
+                        else if (startLine == "[playerBullets]")
+                        {
+                            List<Bullet> list = new List<Bullet>();
+
+                            string line = reader.ReadLine();
+                            while (line != "[end]")
+                            {
+                                list.Add(Entity.Deserialize(line, "playerBullet", this) as Bullet);
+                                line = reader.ReadLine();
+                            }
+
+                            player_fire = list;
+                        }
                     }
                 }
-            }
         }
-
     }
 }

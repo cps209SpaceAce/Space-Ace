@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public enum pattern { Straight, Sin, Cos, Tan ,Sindown};
+    public enum pattern { Straight, Sin, Cos, Tan, Sindown };
     public class AI : Entity
     {
         public int fireCoolDown = 50;
@@ -170,23 +170,15 @@ namespace Model
             //Based on Steering behariors: Seek            
             hitbox.X = Convert.ToInt32(X);
             hitbox.Y = Convert.ToInt32(Y);
-            if (Math.Abs(X - target.X) > 50 || Math.Abs(target.Y - Y) > 50) //remove the if statment
-            {
-                Vector currentPos = new Vector(X, Y);
-                Vector desiredVel = target - currentPos;
-                desiredVel.Normalize();
-                desiredVel *= maxSpeed;
-                Vector steering = desiredVel - velocity;
-                velocity = steering + velocity;
-                X += (int)velocity.X; Y += (int)velocity.Y;
-            }
-            else
-            {
 
-                //MAke player take damage when it exlodes. - Joanna
+            Vector currentPos = new Vector(X, Y);
+            Vector desiredVel = target - currentPos;
+            desiredVel.Normalize();
+            desiredVel *= maxSpeed;
+            Vector steering = desiredVel - velocity;
+            velocity = steering + velocity;
+            X += (int)velocity.X; Y += (int)velocity.Y;
 
-                alive = false; //remove later
-            }
         }
 
         public override string Serialize()

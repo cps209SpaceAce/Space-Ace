@@ -143,10 +143,10 @@ namespace SpaceAce
                         case PowerUp.ExtraLife:
                             { imgname = "Powerup\\life.png"; }
                             break;
-                        case PowerUp.Invicible:
+                        case PowerUp.Invincible:
                             { imgname = "Powerup\\shield.png"; }
                             break;
-                        case PowerUp.Power:
+                        case PowerUp.ExtraSpeed:
                             { imgname = "Powerup\\power.png"; }
                             break;
                         default:
@@ -402,10 +402,10 @@ namespace SpaceAce
                 string pngName = "";
                 switch((newEntity as Powerup).type)
                 {
-                    case PowerUp.Invicible:
+                    case PowerUp.Invincible:
                         pngName = "shield.png";
                         break;
-                    case PowerUp.Power:
+                    case PowerUp.ExtraSpeed:
                         pngName = "star.png";
                         break;
                     case PowerUp.ExtraLife:
