@@ -40,6 +40,7 @@ namespace Model
         public bool down = false;
         public bool left = false;
         public bool right = false;
+        public double base_Speed = 1;
 
         //lists of moving objects
         // add a boss var

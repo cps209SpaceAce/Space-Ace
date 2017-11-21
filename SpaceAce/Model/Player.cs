@@ -13,7 +13,7 @@ namespace Model
 
     {
         public bool wanderingbullets =false; // flag for sin and cos bullets. currently broken 
-        public bool triple = true;//flag for triple shot
+        public bool triple = false;//flag for triple shot
         public bool rapid_fire = false; //flag to engage rapid fire mode by reducing the cooldown
         public int cooldown = 0;
         public int bombCooldown = 0;
@@ -45,7 +45,7 @@ namespace Model
 
         public void Fire()
         {
-            if (cooldown == 0)
+            if (cooldown == 0 || (rapid_fire && cooldown < 25))
             {
                 FiredABullet = true;
                 cooldown = 50;      // Rate of fire: bigger = slower.
