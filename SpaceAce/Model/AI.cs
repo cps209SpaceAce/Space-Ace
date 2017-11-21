@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public enum pattern { Straight, Sin, Cos, Tan };
+    public enum pattern { Straight, Sin, Cos, Tan ,Sindown};
     public class AI : Entity
     {
         public int fireCoolDown = 50;

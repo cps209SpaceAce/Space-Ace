@@ -210,15 +210,22 @@ namespace SpaceAce
 
         public void MakeBullet(Id id, Entity ship)
         {
-            Entity p = ship;
+            
             if (id == Id.player)
             {
-                //if(flag triple == true)
-                // call make tripleshot
-                // return
+                if (((Player)ship).triple)
+                {
+                    Make_TripleShot(ship);
+                    return;
+                }
+                if (((Player)ship).wanderingbullets)
+                {
+                    Make_HelixShot(ship);//broken: Noah Mansfield
+                    return;
+                }
                 soundPlayer.PlayNoise(SoundType.Shoot1);
-                double y = p.Y + 10;
-                double x = p.X + 50;
+                double y = ship.Y + 10;
+                double x = ship.X + 50;
                 Bullet b = new Bullet(x, y);
                 gameCtrl.player_fire.Add(b);
                 Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
@@ -247,6 +254,78 @@ namespace SpaceAce
 
         }
 
+        public void Make_TripleShot(Entity p)
+        {
+
+            if (p is Player)
+            {
+                soundPlayer.PlayNoise(SoundType.Shoot1);
+                double x = p.X + 50, y = p.Y + 10;
+                Slanted_Bullet up = new Slanted_Bullet(x, y, -1);
+                Slanted_Bullet down = new Slanted_Bullet(x, y, 1);
+                Bullet normal = new Bullet(x, y);
+                up.direction = 1;
+                down.direction = 1;
+                normal.direction = 1;
+                Image img_up = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
+                Image img_down = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
+                Image img_normal = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
+                img_up.Width = 20;
+                img_down.Width = 20;
+                img_normal.Width = 20;
+                Icon i_up = new Icon() { i = img_up, e = up };
+                Icon i_down = new Icon() { i = img_down, e = down };
+                Icon i_normal = new Icon() { i = img_normal, e = normal };
+                gameCtrl.player_fire.Add(up);
+                gameCtrl.player_fire.Add(down);
+                gameCtrl.player_fire.Add(normal);
+                icons.Add(i_up);
+                icons.Add(i_down);
+                icons.Add(i_normal);
+                WorldCanvas.Children.Add(img_up);
+                WorldCanvas.Children.Add(img_down);
+                WorldCanvas.Children.Add(img_normal);
+                i_up.update();
+                i_down.update();
+                i_normal.update();
+
+            }
+
+
+
+
+        }
+
+        public void Make_HelixShot(Entity ship) //broken: Noah Mansfield
+        {
+            if (ship is Player)
+            {
+                soundPlayer.PlayNoise(SoundType.Shoot1);
+                double y = ship.Y + 10;
+                double x = ship.X + 50;
+
+                Wandering_Bullet b_cos = new Wandering_Bullet(x, y, pattern.Sin);
+                Wandering_Bullet b_sin = new Wandering_Bullet(x, y, pattern.Sin);
+                gameCtrl.player_fire.Add(b_cos);
+                gameCtrl.player_fire.Add(b_sin);
+
+                Image img_cos = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
+                Image img_sin = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
+                img_sin.Width = 20;
+                img_cos.Width = 20;
+
+                Icon i_cos = new Icon() { i = img_cos, e = b_cos };
+                Icon i_sin = new Icon() { i = img_sin, e = b_sin };
+                i_cos.update();
+                i_sin.update();
+
+                WorldCanvas.Children.Add(img_cos);
+                WorldCanvas.Children.Add(img_sin);
+                icons.Add(i_cos);
+                icons.Add(i_sin);
+
+            }
+        }
 
         public void Timer_Tick(object sender, EventArgs e)
         {

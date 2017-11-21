@@ -8,10 +8,13 @@ using System.Threading.Tasks;
 namespace Model
 {
     public enum PowerUp { Empty, Invicible, Power, ExtraLife } // TODO: pick what powerups to put here
-
+    
     public class Player : Entity
 
     {
+        public bool wanderingbullets =false; // flag for sin and cos bullets. currently broken 
+        public bool triple = true;//flag for triple shot
+        public bool rapid_fire = false; //flag to engage rapid fire mode by reducing the cooldown
         public int cooldown = 0;
         public int bombCooldown = 0;
         public int lives { get; set; }
