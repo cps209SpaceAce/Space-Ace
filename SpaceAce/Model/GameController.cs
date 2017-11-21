@@ -52,7 +52,7 @@ namespace Model
         //pre-game setup
         public Level level;
         public Difficulty difficulty;
-        //public double base_Speed; //does anyone use basespeed anymore?
+        public double base_Speed; //does anyone use basespeed anymore?
         public int score;
         public double gameLevelTimer;
         public double spawnPowerUpTimer;
