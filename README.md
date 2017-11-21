@@ -24,6 +24,7 @@ List work completed.
 * Title Screen
 * Help Screen
 * About Screen
+* High Score Screen and Scoring
 * Animation
 * Player and other Enity movement
 * Collision
@@ -31,6 +32,8 @@ List work completed.
 * Cheat Mode
 * Sound
 * Save/Load
+* Player Death
+* 1 Power Up
 
 
 ## Known Issues: 
