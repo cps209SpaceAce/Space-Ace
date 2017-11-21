@@ -70,218 +70,252 @@ namespace SpaceAce.UnitTests
                 Assert.IsTrue(reader.ReadLine() == "[end]");
             }
         }
-    
 
 
-[TestMethod]
-public void Save_PlayerData_Success()
-{
-    GameController ctrl = new GameController();
-    ctrl.player = new Player(40, 50, 100, 60, ctrl);
-    ctrl.player.powerUpCounter = 3.44;
-    ctrl.player.isPoweredUp = true;
+
+        [TestMethod]
+        public void Save_PlayerData_Success()
+        {
+            GameController ctrl = new GameController();
+            ctrl.player = new Player(40, 50, 100, 60, ctrl);
+            ctrl.player.powerUpCounter = 3.44;
+            ctrl.player.isPoweredUp = true;
 
 
-    ctrl.Save("TestSave.txt");
+            ctrl.Save("TestSave.txt");
 
 
-    using (StreamReader reader = new StreamReader("TestSave.txt"))
-    {
-        reader.ReadLine();
-        reader.ReadLine();
-        reader.ReadLine();
+            using (StreamReader reader = new StreamReader("TestSave.txt"))
+            {
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
 
-        Assert.IsTrue(reader.ReadLine() == "[player]");
-        Assert.IsTrue(reader.ReadLine() == "40,50,Empty,100,60,True,3.44,False");
-        Assert.IsTrue(reader.ReadLine() == "[end]");
-    }
-}
-
-
-[TestMethod]
-public void Save_GameControllerData_Success()
-{
-    GameController ctrl = new GameController();
-    ctrl.level = Level.Level_1;
-    ctrl.base_Speed = 100;
-    ctrl.score = 9001;
-    ctrl.gameLevelTimer = 99.9;
-
-    ctrl.Save("TestSave.txt");
-
-    using (StreamReader reader = new StreamReader("TestSave.txt"))
-    {
-        Assert.IsTrue(reader.ReadLine() == "[defaults]");
-        Assert.IsTrue(reader.ReadLine() == "Level_1,9001,100,99.9");
-        Assert.IsTrue(reader.ReadLine() == "[end]");
-
-        Assert.IsTrue(reader.ReadLine() == "[player]");
-        Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False");
-        Assert.IsTrue(reader.ReadLine() == "[end]");
-
-    }
-
-}
-
-[TestMethod]
-public void Save_Defaults_Success()
-{
-    GameController ctrl = new GameController();
-
-    ctrl.Save("TestSave.txt");
+                Assert.IsTrue(reader.ReadLine() == "[player]");
+                Assert.IsTrue(reader.ReadLine() == "40,50,Empty,100,60,True,3.44,False");
+                Assert.IsTrue(reader.ReadLine() == "[end]");
+            }
+        }
 
 
-    using (StreamReader reader = new StreamReader("TestSave.txt"))
-    {
+        [TestMethod]
+        public void Save_GameControllerData_Success()
+        {
+            GameController ctrl = new GameController();
+            ctrl.level = Level.Level_1;
+            ctrl.base_Speed = 100;
+            ctrl.score = 9001;
+            ctrl.gameLevelTimer = 99.9;
 
-        Assert.IsTrue(reader.ReadLine() == "[defaults]");
-        Assert.IsTrue(reader.ReadLine() == "Level_1,0,0,0");
-        Assert.IsTrue(reader.ReadLine() == "[end]");
+            ctrl.Save("TestSave.txt");
 
-        Assert.IsTrue(reader.ReadLine() == "[player]");
-        Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False");
-        Assert.IsTrue(reader.ReadLine() == "[end]");
+            using (StreamReader reader = new StreamReader("TestSave.txt"))
+            {
+                Assert.IsTrue(reader.ReadLine() == "[defaults]");
+                Assert.IsTrue(reader.ReadLine() == "Level_1,9001,100,99.9");
+                Assert.IsTrue(reader.ReadLine() == "[end]");
 
-    }
-}
+                Assert.IsTrue(reader.ReadLine() == "[player]");
+                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False");
+                Assert.IsTrue(reader.ReadLine() == "[end]");
 
-//******************************************************************************* LOAD VV
+            }
 
-[TestMethod]
-public void Load_Player_Success()
-{
-    GameController ctrl = new GameController();
+        }
+
+        [TestMethod]
+        public void Save_Defaults_Success()
+        {
+            GameController ctrl = new GameController();
+
+            ctrl.Save("TestSave.txt");
 
 
-    using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
-    {
+            using (StreamReader reader = new StreamReader("TestSave.txt"))
+            {
 
-        writer.WriteLine("[player]");
-        writer.WriteLine("40,30,ExtraSpeed,4,8, False, 2.34, False");
-        writer.WriteLine("[end]");
-    }
+                Assert.IsTrue(reader.ReadLine() == "[defaults]");
+                Assert.IsTrue(reader.ReadLine() == "Level_1,0,0,0");
+                Assert.IsTrue(reader.ReadLine() == "[end]");
 
-    ctrl.Load("TestLoad.txt");
+                Assert.IsTrue(reader.ReadLine() == "[player]");
+                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False");
+                Assert.IsTrue(reader.ReadLine() == "[end]");
 
-    Assert.IsTrue(ctrl.player.X == 40);
-    Assert.IsTrue(ctrl.player.Y == 30);
+            }
+        }
+
+        //******************************************************************************* LOAD VV
+
+        [TestMethod]
+        public void Load_Player_Success()
+        {
+            GameController ctrl = new GameController();
+
+
+            using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
+            {
+
+                writer.WriteLine("[player]");
+                writer.WriteLine("40,30,ExtraSpeed,4,8, False, 2.34, False");
+                writer.WriteLine("[end]");
+            }
+
+            ctrl.Load("TestLoad.txt");
+
+            Assert.IsTrue(ctrl.player.X == 40);
+            Assert.IsTrue(ctrl.player.Y == 30);
             Assert.IsTrue(ctrl.player.cheating == false);
             Assert.IsTrue(ctrl.player.powerup == PowerUp.ExtraSpeed);
-    Assert.IsTrue(ctrl.player.lives == 4);
-    Assert.IsTrue(ctrl.player.bombs == 8);
+            Assert.IsTrue(ctrl.player.lives == 4);
+            Assert.IsTrue(ctrl.player.bombs == 8);
 
-}
+        }
 
-[TestMethod]
-public void Load_Enemies_Success()
-{
-    GameController ctrl = new GameController();
+        [TestMethod]
+        public void Load_Enemies_Success()
+        {
+            GameController ctrl = new GameController();
 
-    using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
-    {
+            using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
+            {
 
-        writer.WriteLine("[enemies]");
-        writer.WriteLine("asteroid,100,40,50");
-        writer.WriteLine("asteroid,100,30,20");
-        writer.WriteLine("[end]");
+                writer.WriteLine("[enemies]");
+                writer.WriteLine("asteroid,100,40,50");
+                writer.WriteLine("asteroid,100,30,20");
+                writer.WriteLine("[end]");
+            }
+            ctrl.Load("TestLoad.txt");
+
+            Assert.IsTrue(ctrl.current_Enemies.Count == 2);
+            Assert.IsTrue(ctrl.current_Enemies[0].health == 100);
+            Assert.IsTrue(ctrl.current_Enemies[0].X == 40);
+            Assert.IsTrue(ctrl.current_Enemies[0].Y == 50);
+
+        }
+
+
+        [TestMethod]
+        public void Load_PlayerBullets_Success()
+        {
+            GameController ctrl = new GameController();
+
+            using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
+            {
+                writer.WriteLine("[playerBullets]");
+                writer.WriteLine("bullet,40,50");
+                writer.WriteLine("bullet,30,20");
+                writer.WriteLine("bullet,10,5");
+                writer.WriteLine("bullet,3,2");
+                writer.WriteLine("[end]");
+            }
+            ctrl.Load("TestLoad.txt");
+
+            Assert.IsTrue(ctrl.player_fire.Count == 4);
+            Assert.IsTrue(ctrl.player_fire[0].X == 40);
+            Assert.IsTrue(ctrl.player_fire[0].Y == 50);
+
+            Assert.IsTrue(ctrl.player_fire[1].X == 30);
+            Assert.IsTrue(ctrl.player_fire[1].Y == 20);
+
+        }
+
+        [TestMethod]
+        public void Load_Defaults_Success()
+        {
+            GameController ctrl = new GameController();
+
+            using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
+            {
+                writer.WriteLine("[defaults]");
+                writer.WriteLine("Level_2,1337,10,92.1");
+                writer.WriteLine("[end]");
+            }
+            ctrl.Load("TestLoad.txt");
+
+            Assert.IsTrue(ctrl.score == 1337);
+            Assert.IsTrue(ctrl.base_Speed == 10);
+            Assert.IsTrue(ctrl.gameLevelTimer == 92.1);
+            Assert.IsTrue(ctrl.level == Level.Level_2);
+
+        }
+
+        [TestMethod]
+        public void Load_FullGame_Success()
+        {
+            GameController ctrl = new GameController();
+
+            using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
+            {
+                writer.WriteLine("[defaults]");
+                writer.WriteLine("Level_2,1337,10,92.1");
+                writer.WriteLine("[end]");
+
+                writer.WriteLine("[enemies]");
+                writer.WriteLine("asteroid,1,30,20");
+                writer.WriteLine("ai,200,600,Cos");
+                writer.WriteLine("bullet,20,20");
+                writer.WriteLine("formation,80,80,Cos");
+                writer.WriteLine("ai,80,80,Cos");
+                writer.WriteLine("tracker,80,80");
+                writer.WriteLine("powerup,80,80,Power");
+                writer.WriteLine("mine,80,80");
+                writer.WriteLine("[end]");
+
+                writer.WriteLine("[player]");
+                writer.WriteLine("40,30,ExtraSpeed,4,8, False, 1.6, False");
+                writer.WriteLine("[end]");
+            }
+
+            ctrl.Load("TestLoad.txt");
+
+            Assert.IsTrue(ctrl.base_Speed == 10);
+            Assert.IsTrue(ctrl.gameLevelTimer == 92.1);
+
+            Assert.IsTrue(ctrl.score == 1337);
+            Assert.IsTrue(ctrl.level == Level.Level_2);
+            Assert.IsTrue(ctrl.player.X == 40);
+            Assert.IsTrue(ctrl.player.Y == 30);
+            Assert.IsTrue(ctrl.player.powerup == PowerUp.ExtraSpeed);
+            Assert.IsTrue(ctrl.player.lives == 4);
+            Assert.IsTrue(ctrl.player.bombs == 8);
+            Assert.IsTrue(ctrl.player.cheating == false);
+
+            Assert.IsTrue(ctrl.current_Enemies.Count == 8);
+            Assert.IsTrue(ctrl.current_Enemies[0].X == 30);
+            Assert.IsTrue(ctrl.current_Enemies[0].Y == 20);
+
+        }
+
+
+        [TestMethod]
+        public void Load_UnknownEntity_Excepttion()
+        {
+            GameController ctrl = new GameController();
+
+            using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
+            {
+                writer.WriteLine("[defaults]");
+                writer.WriteLine("Level_2,1337,10,92.1");
+                writer.WriteLine("[end]");
+
+                writer.WriteLine("[enemies]");
+                writer.WriteLine("unknown,1,30,20");
+                writer.WriteLine("[end]");
+            }
+
+            try
+            {
+                ctrl.Load("TestLoad.txt");
+                Assert.Fail();
+            }
+            catch(Exception e)
+            {
+                Assert.IsTrue(e.Message == "Enemy type Unknown.");
+            }
+
+        }
     }
-    ctrl.Load("TestLoad.txt");
 
-    Assert.IsTrue(ctrl.current_Enemies.Count == 2);
-    Assert.IsTrue(ctrl.current_Enemies[0].health == 100);
-    Assert.IsTrue(ctrl.current_Enemies[0].X == 40);
-    Assert.IsTrue(ctrl.current_Enemies[0].Y == 50);
-
-}
-
-
-[TestMethod]
-public void Load_PlayerBullets_Success()
-{
-    GameController ctrl = new GameController();
-
-    using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
-    {
-        writer.WriteLine("[playerBullets]");
-        writer.WriteLine("bullet,40,50");
-        writer.WriteLine("bullet,30,20");
-        writer.WriteLine("bullet,10,5");
-        writer.WriteLine("bullet,3,2");
-        writer.WriteLine("[end]");
-    }
-    ctrl.Load("TestLoad.txt");
-
-    Assert.IsTrue(ctrl.player_fire.Count == 4);
-    Assert.IsTrue(ctrl.player_fire[0].X == 40);
-    Assert.IsTrue(ctrl.player_fire[0].Y == 50);
-
-    Assert.IsTrue(ctrl.player_fire[1].X == 30);
-    Assert.IsTrue(ctrl.player_fire[1].Y == 20);
-
-}
-
-[TestMethod]
-public void Load_Defaults_Success()
-{
-    GameController ctrl = new GameController();
-
-    using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
-    {
-        writer.WriteLine("[defaults]");
-        writer.WriteLine("Level_2,1337,10,92.1");
-        writer.WriteLine("[end]");
-    }
-    ctrl.Load("TestLoad.txt");
-
-    Assert.IsTrue(ctrl.score == 1337);
-    Assert.IsTrue(ctrl.base_Speed == 10);
-    Assert.IsTrue(ctrl.gameLevelTimer == 92.1);
-    Assert.IsTrue(ctrl.level == Level.Level_2);
-
-}
-
-[TestMethod]
-public void Load_FullGame_Success()
-{
-    GameController ctrl = new GameController();
-
-    using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
-    {
-        writer.WriteLine("[defaults]");
-        writer.WriteLine("Level_2,1337,10,92.1");
-        writer.WriteLine("[end]");
-
-        writer.WriteLine("[enemies]");
-        writer.WriteLine("asteroid,1,30,20");
-        writer.WriteLine("ai,200,600,Cos");
-        writer.WriteLine("ai,20,20,Cos");
-        writer.WriteLine("ai,80,80,Cos");
-        writer.WriteLine("[end]");
-
-        writer.WriteLine("[player]");
-        writer.WriteLine("40,30,ExtraSpeed,4,8, False, 1.6, False");
-        writer.WriteLine("[end]");
-    }
-
-    ctrl.Load("TestLoad.txt");
-
-    Assert.IsTrue(ctrl.base_Speed == 10);
-    Assert.IsTrue(ctrl.gameLevelTimer == 92.1);
-
-    Assert.IsTrue(ctrl.score == 1337);
-    Assert.IsTrue(ctrl.level == Level.Level_2);
-    Assert.IsTrue(ctrl.player.X == 40);
-    Assert.IsTrue(ctrl.player.Y == 30);
-    Assert.IsTrue(ctrl.player.powerup == PowerUp.ExtraSpeed);
-    Assert.IsTrue(ctrl.player.lives == 4);
-    Assert.IsTrue(ctrl.player.bombs == 8);
-    Assert.IsTrue(ctrl.player.cheating == false);
-
-    Assert.IsTrue(ctrl.current_Enemies.Count == 4);
-    Assert.IsTrue(ctrl.current_Enemies[0].X == 30);
-    Assert.IsTrue(ctrl.current_Enemies[0].Y == 20);
-
-}
-    }
 
 }

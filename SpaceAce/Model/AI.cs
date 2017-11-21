@@ -142,7 +142,7 @@ namespace Model
         }
         public override string Serialize() //Noah added it
         {
-            return "tracker" + "," + X + "," + Y + "," + Flightpath;
+            return "tracker" + "," + X + "," + Y;
         }
 
     }
