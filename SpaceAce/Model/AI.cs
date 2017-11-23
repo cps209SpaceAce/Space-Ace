@@ -118,12 +118,12 @@ namespace Model
             if (X <= stopPosition) //initial positioning
                 X = stopPosition;
             else
-                X--;
+                X = (X - (0.5 * speed));
 
             if (Y < pY)
-                Y++;
+                Y = (Y + (0.5 * speed));
             else if (Y > pY)
-                Y--;
+                Y = (Y - (0.5 * speed));
 
             if (random.Next(0, 1000) == 64)
             {

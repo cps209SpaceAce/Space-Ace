@@ -202,11 +202,6 @@ namespace Model
         {
             return "asteroid" + "," + health + "," + X + "," + Y;
         }
-
-        public static Entity Deserialize(string code)
-        {
-            return null;
-        }
     }
 
 

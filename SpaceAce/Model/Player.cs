@@ -26,7 +26,7 @@ namespace Model
 
         public double powerUpCounter = 0;
         public bool isPoweredUp = false;
-        bool isInvinsible = false;
+        public bool isInvinsible = false;
         public bool cheating = false;
 
 

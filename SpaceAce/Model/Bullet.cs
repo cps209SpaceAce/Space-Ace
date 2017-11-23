@@ -51,11 +51,6 @@ namespace Model
         {
             return "bullet" + "," + X + "," + Y; //JOANNA: x,y only for now
         }
-
-        public static Bullet Deserialize(string code)
-        {
-            return null;
-        }
     }
 
     public class Slanted_Bullet : Bullet

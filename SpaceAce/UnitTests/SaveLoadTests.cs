@@ -14,12 +14,17 @@ namespace SpaceAce.UnitTests
     public class LoadSaveTests
     {
         [TestMethod]
-        public void Save_CurrentEnemies_Success()
+        public void Save_Enemies_Success()
         {
             GameController ctrl = new GameController();
             List<Entity> enemies = new List<Entity>();
             enemies.Add(new Asteroid(30, 20));
             enemies.Add(new Asteroid(10, 10));
+            enemies.Add(new Formation(10, 10, pattern.Tan));
+            enemies.Add(new Mine(10, 10, pattern.Straight));
+            enemies.Add(new Tracker(10, 10, pattern.Straight));
+            enemies.Add(new Powerup(10, 10, PowerUp.TripleShot));
+            enemies.Add(new AI(10, 10, pattern.Straight));
 
             ctrl.current_Enemies = enemies;
 
@@ -35,6 +40,11 @@ namespace SpaceAce.UnitTests
                 Assert.IsTrue(reader.ReadLine() == "[enemies]");
                 Assert.IsTrue(reader.ReadLine() == "asteroid,1,30,20");
                 Assert.IsTrue(reader.ReadLine() == "asteroid,1,10,10");
+                Assert.IsTrue(reader.ReadLine() == "formation,10,10,Tan");
+                Assert.IsTrue(reader.ReadLine() == "mine,10,10");
+                Assert.IsTrue(reader.ReadLine() == "tracker,10,10");
+                Assert.IsTrue(reader.ReadLine() == "powerup,10,10,TripleShot");
+                Assert.IsTrue(reader.ReadLine() == "ai,10,10,Straight");
                 Assert.IsTrue(reader.ReadLine() == "[end]");
             }
         }
@@ -157,7 +167,7 @@ namespace SpaceAce.UnitTests
             {
 
                 writer.WriteLine("[player]");
-                writer.WriteLine("40,30,ExtraSpeed,4,8, False, 2.34, False");
+                writer.WriteLine("40,30,ExtraSpeed,4,8,False,2.34,True");
                 writer.WriteLine("[end]");
             }
 
@@ -165,7 +175,7 @@ namespace SpaceAce.UnitTests
 
             Assert.IsTrue(ctrl.player.X == 40);
             Assert.IsTrue(ctrl.player.Y == 30);
-            Assert.IsTrue(ctrl.player.cheating == false);
+            Assert.IsTrue(ctrl.player.cheating == true);
             Assert.IsTrue(ctrl.player.powerup == PowerUp.ExtraSpeed);
             Assert.IsTrue(ctrl.player.lives == 4);
             Assert.IsTrue(ctrl.player.bombs == 8);
@@ -258,12 +268,12 @@ namespace SpaceAce.UnitTests
                 writer.WriteLine("formation,80,80,Cos");
                 writer.WriteLine("ai,80,80,Cos");
                 writer.WriteLine("tracker,80,80");
-                writer.WriteLine("powerup,80,80,Power");
+                writer.WriteLine("powerup,80,80,RapidFire");
                 writer.WriteLine("mine,80,80");
                 writer.WriteLine("[end]");
 
                 writer.WriteLine("[player]");
-                writer.WriteLine("40,30,ExtraSpeed,4,8, False, 1.6, False");
+                writer.WriteLine("40,30,RapidFire,4,8,True, 1.6, False");
                 writer.WriteLine("[end]");
             }
 
@@ -276,9 +286,10 @@ namespace SpaceAce.UnitTests
             Assert.IsTrue(ctrl.level == Level.Level_2);
             Assert.IsTrue(ctrl.player.X == 40);
             Assert.IsTrue(ctrl.player.Y == 30);
-            Assert.IsTrue(ctrl.player.powerup == PowerUp.ExtraSpeed);
+            Assert.IsTrue(ctrl.player.powerup == PowerUp.RapidFire);
             Assert.IsTrue(ctrl.player.lives == 4);
             Assert.IsTrue(ctrl.player.bombs == 8);
+            Assert.IsTrue(ctrl.player.isPoweredUp == true);
             Assert.IsTrue(ctrl.player.cheating == false);
 
             Assert.IsTrue(ctrl.current_Enemies.Count == 8);
