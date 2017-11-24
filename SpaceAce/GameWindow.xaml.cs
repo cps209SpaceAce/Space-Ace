@@ -125,11 +125,18 @@ namespace SpaceAce
                 if (ship is Asteroid)
                 { imgname = "asteroid.png"; }
                 else if (ship is AI)
-                { 
+                {
                     if (ship is Mine)
-                        { imgname = "mine.png"; }
+                    { imgname = "mine.png"; }
                     else if (ship is Tracker)
-                        { imgname = "ship 4.png"; }
+                    { imgname = "ship 4.png"; }
+                    else if (ship is Formation)
+                    {
+                        if (ship.Flightpath == pattern.Sin)
+                            imgname = "ship 2.png";
+                        else
+                            imgname = "ship 3.png";
+                    }
                     else
                         imgname = "Ship 1.png"; }
                 else if (ship is Bullet)
@@ -141,16 +148,16 @@ namespace SpaceAce
                     switch (power.type)
                     {
                         case PowerUp.ExtraLife:
-                            { imgname = "Powerup\\life.png"; }
+                            { imgname = "Powerup/life.png"; }
                             break;
                         case PowerUp.Invincible:
-                            { imgname = "Powerup\\shield.png"; }
+                            { imgname = "Powerup/shield.png"; }
                             break;
                         case PowerUp.ExtraSpeed:
-                            { imgname = "Powerup\\power.png"; }
+                            { imgname = "Powerup/power.png"; }
                             break;
                         default:
-                            { imgname = "Powerup\\star.png"; }
+                            { imgname = "Powerup/star.png"; }
                             break;
 
                     }
@@ -481,13 +488,12 @@ namespace SpaceAce
                 {
                     pngName = "asteroid.png";
                 }
-                else if (newEntity is Formation && newEntity.Flightpath == pattern.Sin)
+                else if (newEntity is Formation)
                 {
+                    if(((Formation)newEntity).Flightpath == pattern.Sin)
                     pngName = "Ship 2.png";
-                }
-                else if (newEntity is Formation && newEntity.Flightpath == pattern.Cos)
-                {
-                    pngName = "Ship 3.png";
+                    else
+                        pngName = "Ship 3.png";
                 }
                 else if (newEntity is Mine)
                 {
