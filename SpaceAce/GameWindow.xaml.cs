@@ -296,7 +296,7 @@ namespace SpaceAce
 
         }
 
-        public void Make_HelixShot(Entity ship) //broken: Noah Mansfield
+        public void Make_HelixShot(Entity ship) //Working: Noah Mansfield
         {
             if (ship is Player)
             {

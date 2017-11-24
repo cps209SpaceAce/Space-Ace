@@ -83,7 +83,7 @@ namespace Model
 
     }
 
-    public class Wandering_Bullet:Bullet //broken: Noah Mansfield
+    public class Wandering_Bullet:Bullet //Working: Noah Mansfield
     {
         public pattern path;
         double original_Y;
