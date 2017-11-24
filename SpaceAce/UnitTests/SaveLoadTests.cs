@@ -18,8 +18,9 @@ namespace SpaceAce.UnitTests
         {
             GameController ctrl = new GameController();
             List<Entity> enemies = new List<Entity>();
-            enemies.Add(new Asteroid(30, 20));
-            enemies.Add(new Asteroid(10, 10));
+            Asteroid a = new Asteroid(30, 20);
+            a.health = 1;
+            enemies.Add(a);
             enemies.Add(new Formation(10, 10, pattern.Tan));
             enemies.Add(new Mine(10, 10, pattern.Straight));
             enemies.Add(new Tracker(10, 10, pattern.Straight));
@@ -42,7 +43,6 @@ namespace SpaceAce.UnitTests
 
                 Assert.IsTrue(reader.ReadLine() == "[enemies]");
                 Assert.IsTrue(reader.ReadLine() == "asteroid,1,30,20");
-                Assert.IsTrue(reader.ReadLine() == "asteroid,1,10,10");
                 Assert.IsTrue(reader.ReadLine() == "formation,10,10,Tan");
                 Assert.IsTrue(reader.ReadLine() == "mine,10,10");
                 Assert.IsTrue(reader.ReadLine() == "tracker,10,10");

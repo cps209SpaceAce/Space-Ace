@@ -33,8 +33,11 @@ namespace SpaceAce.UnitTests
         public void Hit_Asteroid_Success()
         {
             Asteroid test = new Asteroid(10, 10);
-
+            test.health = 2;
             Assert.IsFalse(test.Hit());
+            Assert.IsTrue(test.Hit());
+            Assert.IsTrue(test.alive == false);
+
         }
 
         [TestMethod]
@@ -451,7 +454,7 @@ namespace SpaceAce.UnitTests
             test.UpdatePosition();
 
             Assert.IsTrue(test.X > 20);
-            Assert.IsTrue(test.Y > 20);
+            Assert.IsTrue(test.Y < 20);
         }
 
         [TestMethod]
@@ -467,17 +470,15 @@ namespace SpaceAce.UnitTests
         [TestMethod]
         public void UpdatePosition_WanderingBullet_OutofBounds_Despawn()
         {
-            Wandering_Bullet test = new Wandering_Bullet(20, 20, pattern.Sin);
+            Wandering_Bullet test = new Wandering_Bullet(9000, 20, pattern.Sin);
             test.id = ID.Hostile;
-
-            test.X = 1201;
             test.UpdatePosition();
 
             Assert.IsTrue(test.alive == false);
 
             test.alive = true;
 
-            test.X = -2000;
+            test = new Wandering_Bullet(-9000, 20, pattern.Sin);
             test.UpdatePosition();
 
             Assert.IsTrue(test.alive == false);
