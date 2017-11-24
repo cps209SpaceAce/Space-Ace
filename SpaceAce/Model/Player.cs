@@ -12,7 +12,7 @@ namespace Model
     public class Player : Entity
 
     {
-        public bool wanderingbullets =false; // flag for sin and cos bullets. currently broken 
+        public bool wanderingbullets =true; // flag for sin and cos bullets. currently broken 
         public bool triple = false;//flag for triple shot
         public bool rapid_fire = false; //flag to engage rapid fire mode by reducing the cooldown
         public int cooldown = 0;

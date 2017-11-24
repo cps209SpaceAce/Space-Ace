@@ -304,18 +304,19 @@ namespace SpaceAce
                 double y = ship.Y + 10;
                 double x = ship.X + 50;
 
-                Wandering_Bullet b_cos = new Wandering_Bullet(x, y, pattern.Sin);
                 Wandering_Bullet b_sin = new Wandering_Bullet(x, y, pattern.Sin);
-                gameCtrl.player_fire.Add(b_cos);
+                Wandering_Bullet b_sindown = new Wandering_Bullet(x, y, pattern.Sindown);
+               
                 gameCtrl.player_fire.Add(b_sin);
+                gameCtrl.player_fire.Add(b_sindown);
 
                 Image img_cos = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
                 Image img_sin = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
                 img_sin.Width = 20;
                 img_cos.Width = 20;
 
-                Icon i_cos = new Icon() { i = img_cos, e = b_cos };
-                Icon i_sin = new Icon() { i = img_sin, e = b_sin };
+                Icon i_cos = new Icon() { i = img_cos, e = b_sin };
+                Icon i_sin = new Icon() { i = img_sin, e = b_sindown };
                 i_cos.update();
                 i_sin.update();
 

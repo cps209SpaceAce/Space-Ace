@@ -87,11 +87,15 @@ namespace Model
     {
         public pattern path;
         double original_Y;
-        
+        double x_axis = 0;
+        double original_X;
+     
         public Wandering_Bullet(double X, double Y, pattern path) : base(X, Y)
         {
             this.path = path;
             original_Y = Y;
+            original_X = X;
+            
             
         }
         public override void UpdatePosition()
@@ -99,12 +103,14 @@ namespace Model
             switch (this.path) //copyed from Robert's formation class
             {
                 case pattern.Sin:
-                    X = (X + 5 + (15 * direction));
-                    Y = ((50 * Math.Sin(0.01 * X)) + original_Y);
+                    x_axis = (x_axis + (15 * direction));
+                    Y = ((50 * Math.Sin(0.01 * x_axis)) + original_Y);
+                    X = original_X + x_axis;
                     break;
                 case pattern.Sindown:
-                    X = (X + (15 * direction));
-                    Y = ((50 * Math.Cos(0.01 * X)) + original_Y);
+                    x_axis = (x_axis + (15 * direction));
+                    Y = ((50 * Math.Sin(0.01 * x_axis)) * (-1) + original_Y);
+                    X = original_X + x_axis;
                     break;
                 case pattern.Tan:
                     break;
