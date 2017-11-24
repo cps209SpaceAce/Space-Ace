@@ -36,6 +36,9 @@ namespace SpaceAce.UnitTests
                 reader.ReadLine();
                 reader.ReadLine();
                 reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
 
                 Assert.IsTrue(reader.ReadLine() == "[enemies]");
                 Assert.IsTrue(reader.ReadLine() == "asteroid,1,30,20");
@@ -46,6 +49,50 @@ namespace SpaceAce.UnitTests
                 Assert.IsTrue(reader.ReadLine() == "powerup,10,10,TripleShot");
                 Assert.IsTrue(reader.ReadLine() == "ai,10,10,Straight");
                 Assert.IsTrue(reader.ReadLine() == "[end]");
+            }
+        }
+
+        [TestMethod]
+        public void Save_Enemies_NoEnemies_EOF()
+        {
+            GameController ctrl = new GameController();
+            List<Entity> enemies = new List<Entity>();
+
+            ctrl.current_Enemies = enemies;
+
+            ctrl.Save("TestSave.txt");
+
+            using (StreamReader reader = new StreamReader("TestSave.txt"))
+            {
+                Assert.IsTrue(reader.ReadLine() == "[defaults]");
+                Assert.IsTrue(reader.ReadLine() == "Level_1,0,0,0");
+                Assert.IsTrue(reader.ReadLine() == "[end]");
+                Assert.IsTrue(reader.ReadLine() == "[player]");
+                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False");
+                Assert.IsTrue(reader.ReadLine() == "[end]");
+
+                Assert.IsTrue(reader.EndOfStream);
+            }
+        }
+
+        [TestMethod]
+        public void Save_Enemies_NullList_Skip()
+        {
+            GameController ctrl = new GameController();
+            ctrl.current_Enemies = null;
+
+            ctrl.Save("TestSave.txt");
+
+            using (StreamReader reader = new StreamReader("TestSave.txt"))
+            {
+                Assert.IsTrue(reader.ReadLine() == "[defaults]");
+                Assert.IsTrue(reader.ReadLine() == "Level_1,0,0,0");
+                Assert.IsTrue(reader.ReadLine() == "[end]");
+                Assert.IsTrue(reader.ReadLine() == "[player]");
+                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False");
+                Assert.IsTrue(reader.ReadLine() == "[end]");
+
+                Assert.IsTrue(reader.EndOfStream);
             }
         }
 
@@ -81,6 +128,50 @@ namespace SpaceAce.UnitTests
             }
         }
 
+        [TestMethod]
+        public void Save_PlayerBullets_NoBullets_EOF()
+        {
+            GameController ctrl = new GameController();
+            List<Bullet> playerBullets = new List<Bullet>();
+
+            ctrl.player_fire = playerBullets;
+
+            ctrl.Save("TestSave.txt");
+
+
+            using (StreamReader reader = new StreamReader("TestSave.txt"))
+            {
+                Assert.IsTrue(reader.ReadLine() == "[defaults]");
+                Assert.IsTrue(reader.ReadLine() == "Level_1,0,0,0");
+                Assert.IsTrue(reader.ReadLine() == "[end]");
+                Assert.IsTrue(reader.ReadLine() == "[player]");
+                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False");
+                Assert.IsTrue(reader.ReadLine() == "[end]");
+
+                Assert.IsTrue(reader.EndOfStream);
+            }
+        }
+
+        [TestMethod]
+        public void Save_PlayerBullets_NullList_Exception()
+        {
+            GameController ctrl = new GameController();
+
+            ctrl.player_fire = null;
+
+            using (StreamReader reader = new StreamReader("TestSave.txt"))
+            {
+                Assert.IsTrue(reader.ReadLine() == "[defaults]");
+                Assert.IsTrue(reader.ReadLine() == "Level_1,0,0,0");
+                Assert.IsTrue(reader.ReadLine() == "[end]");
+                Assert.IsTrue(reader.ReadLine() == "[player]");
+                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False");
+                Assert.IsTrue(reader.ReadLine() == "[end]");
+
+                Assert.IsTrue(reader.EndOfStream);
+            }
+
+        }
 
 
         [TestMethod]
@@ -238,7 +329,7 @@ namespace SpaceAce.UnitTests
             using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
             {
                 writer.WriteLine("[defaults]");
-                writer.WriteLine("Level_2,1337,10,92.1");
+                writer.WriteLine("Boss,1337,10,92.1");
                 writer.WriteLine("[end]");
             }
             ctrl.Load("TestLoad.txt");
@@ -246,7 +337,7 @@ namespace SpaceAce.UnitTests
             Assert.IsTrue(ctrl.score == 1337);
             Assert.IsTrue(ctrl.base_Speed == 10);
             Assert.IsTrue(ctrl.gameLevelTimer == 92.1);
-            Assert.IsTrue(ctrl.level == Level.Level_2);
+            Assert.IsTrue(ctrl.level == Level.Boss);
 
         }
 
@@ -258,7 +349,7 @@ namespace SpaceAce.UnitTests
             using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
             {
                 writer.WriteLine("[defaults]");
-                writer.WriteLine("Level_2,1337,10,92.1");
+                writer.WriteLine("Level_1,1337,10,92.1");
                 writer.WriteLine("[end]");
 
                 writer.WriteLine("[enemies]");
@@ -283,7 +374,7 @@ namespace SpaceAce.UnitTests
             Assert.IsTrue(ctrl.gameLevelTimer == 92.1);
 
             Assert.IsTrue(ctrl.score == 1337);
-            Assert.IsTrue(ctrl.level == Level.Level_2);
+            Assert.IsTrue(ctrl.level == Level.Level_1);
             Assert.IsTrue(ctrl.player.X == 40);
             Assert.IsTrue(ctrl.player.Y == 30);
             Assert.IsTrue(ctrl.player.powerup == PowerUp.RapidFire);
@@ -320,12 +411,23 @@ namespace SpaceAce.UnitTests
                 ctrl.Load("TestLoad.txt");
                 Assert.Fail();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Assert.IsTrue(e.Message == "Enemy type Unknown.");
             }
 
         }
+
+        [TestMethod]
+        public void Load_NoFile()
+        {
+            File.Delete("TestLoad.txt");
+            GameController ctrl = new GameController();
+            ctrl.Load("TestLoad.txt");
+
+            Assert.IsTrue(File.Exists("TestLoad.txt"));
+        }
+
     }
 
 
