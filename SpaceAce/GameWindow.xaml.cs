@@ -279,7 +279,7 @@ namespace SpaceAce
             Bullet b = new Bullet(x, y);
             b.direction = -1;
             gameCtrl.player_fire.Add(b);
-            Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
+            Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "C_bullet.png", UriKind.Relative)) };
             img.Width = 20;
             Icon i = new Icon() { i = img, e = b };
             i.update();

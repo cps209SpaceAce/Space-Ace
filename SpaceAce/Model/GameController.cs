@@ -109,12 +109,16 @@ namespace Model
                     if (ent is Mine)
                         (ent as Mine).RecieveTrackerData(player.X, player.Y); //the 4th quarter of the window
 
-
-                    ent.UpdatePosition();
-                    if (ent.FiredABullet)
-                        ships_that_fired.Add(ent);
-                    if (!ent.alive)
-                        leftscreen.Add(ent);
+                    if (ent is Boss)
+                        (ent as Boss).RecieveTrackerData(player.X, player.Y);
+                    
+                    
+                        ent.UpdatePosition();
+                        if (ent.FiredABullet)
+                            ships_that_fired.Add(ent);
+                        if (!ent.alive)
+                            leftscreen.Add(ent);
+                    
                 }
             }
 
@@ -215,6 +219,11 @@ namespace Model
             {
                 this.score += 50;
                 e.alive = false;
+                if (e is Boss)
+                {
+                    e.alive = true;
+                    e.Hit(); //damage the boss
+                }
             }
 
 

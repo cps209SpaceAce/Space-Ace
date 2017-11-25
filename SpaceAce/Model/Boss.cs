@@ -12,6 +12,8 @@ namespace Model
     {
         public double bullet_x = 750;
         public double bullet_y = 300;
+        public double p_x = 0;
+        public double p_y = 0;
         public string img = "ship 2.png";
         public State state;
         public int cooldown = 0;
@@ -26,6 +28,12 @@ namespace Model
             this.hitbox = new Rectangle(Convert.ToInt32(X), Convert.ToInt32(Y), 500, 300);
             
             //this.player = player;
+        }
+
+        public void RecieveTrackerData(double X, double Y)
+        {
+            p_x = X;
+            p_y = Y;
         }
 
         public override bool Hit()
