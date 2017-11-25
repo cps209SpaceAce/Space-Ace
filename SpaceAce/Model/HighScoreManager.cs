@@ -20,6 +20,10 @@ namespace Model
 
         public HighScore()
         {
+            Name = "Unknown";
+            Score = 0;
+            Diff = Difficulty.Easy;
+            Level = Level.Level_1;
         }
 
         public HighScore(string name, Level level, Difficulty diff, int score, string shipimage)

@@ -623,5 +623,42 @@ namespace SpaceAce.UnitTests
             Assert.IsTrue(ctrl.player.bombs == 7);
 
         }
+
+        //insanity ensues past this point as i try to test RNGs, 
+        //feel free to delete them if they're too wrong
+        //just write a comment saying: Jo.. just no.
+        [TestMethod]
+        public void FireBullet_AI_Success()
+        {
+            AI test = new AI(1000, 1000, pattern.Straight);
+            while (!test.FiredABullet)
+                test.UpdatePosition();
+
+            Assert.IsTrue(test.FiredABullet);
+            Assert.IsTrue(test.fireCoolDown == 50);
+        }
+        [TestMethod]
+        public void FiredBullet_Formation_Success()
+        {
+            Formation test = new Formation(1000, 1000, pattern.Straight);
+            while (!test.FiredABullet)
+                test.UpdatePosition();
+
+            Assert.IsTrue(test.FiredABullet);
+            Assert.IsTrue(test.fireCoolDown == 50);
+        }
+        [TestMethod]
+        public void FiredBullet_Tracker_Success()
+        {
+            Tracker test = new Tracker(1000, 1000, pattern.Straight);
+            test.RecieveTrackerData(0, 0, 300);
+            while (!test.FiredABullet)
+                test.UpdatePosition();
+
+            Assert.IsTrue(test.FiredABullet);
+            Assert.IsTrue(test.fireCoolDown == 50);
+        }
+
+
     }
 }
