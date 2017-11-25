@@ -69,6 +69,9 @@ namespace SpaceAce
 
         public int spawnCounter = 0;
 
+        bool boss = false;
+        
+
         public bool isPaused = false;
         Button btnQUIT;
         Button btnSAVE;
@@ -189,6 +192,7 @@ namespace SpaceAce
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            
             Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "spaceship-hi.png", UriKind.Relative)) };
             WorldCanvas.Children.Add(img);
             img.Width = 50;
@@ -355,9 +359,18 @@ namespace SpaceAce
             }
             else
             {
-                // First Time Spawn Boss
-                Boss bob = new Boss(1000, 350, 1000);
-                bob.UpdatePosition();
+                //if (!boss)
+                //{
+                //    // First Time Spawn Boss
+                //    Boss big_boss = new Boss(1000, 350, 1000);
+                //    Image boss_image = new Image() { Source = new BitmapImage(new Uri("Images/"+big_boss.img, UriKind.Relative)) };
+                //    boss_image.Width = big_boss.hitbox.Width;
+                //    boss_image.Height = big_boss.hitbox.Height;
+                //    gameCtrl.current_Enemies.Add(big_boss);
+                //    icons.Add(new Icon {e = big_boss, i = boss_image });
+                //    boss = true;
+                //}
+                
             }
             
             SpawnPowerUp();
@@ -437,7 +450,7 @@ namespace SpaceAce
         private void CheckGameStatus()
         {
 
-            if (gameCtrl.gameResult != GameResult.Running || gameCtrl.gameLevelTimer > 65) // IF WON/LOST
+            if (gameCtrl.gameResult != GameResult.Running || gameCtrl.Boss_is_dead) // IF WON/LOST
             {
 
                 gameCtrl.score += gameCtrl.player.bombs * 250;
@@ -476,10 +489,10 @@ namespace SpaceAce
         private void SpawnEntities()
         {
 
-            if (spawnCounter > 25)
+            if (spawnCounter > 25 && !boss)
             {
                 spawnCounter = 0;
-                Entity newEntity = Levels.Level_reuturnEntity(gameCtrl.difficulty, gameCtrl.level);
+                Entity newEntity = Levels.Level_reuturnEntity(gameCtrl.difficulty, Level.Boss);
                 gameCtrl.current_Enemies.Add(newEntity); // Add to Model
                 
                 string pngName = "";
@@ -490,8 +503,8 @@ namespace SpaceAce
                 }
                 else if (newEntity is Formation)
                 {
-                    if(((Formation)newEntity).Flightpath == pattern.Sin)
-                    pngName = "Ship 2.png";
+                    if (((Formation)newEntity).Flightpath == pattern.Sin)
+                        pngName = "Ship 2.png";
                     else
                         pngName = "Ship 3.png";
                 }
@@ -506,6 +519,11 @@ namespace SpaceAce
                 else if (newEntity is AI)
                 {
                     pngName = "Ship 1.png";
+                }
+                else if (newEntity is Boss)
+                {
+                    pngName = "UFO.png";
+                    boss = true;
                 }
 
                 Image img = new Image() { Source = new BitmapImage(new Uri("images/" + pngName, UriKind.Relative)) };
@@ -522,6 +540,7 @@ namespace SpaceAce
             }
             else
             {
+                
                 ++spawnCounter;
             }
        

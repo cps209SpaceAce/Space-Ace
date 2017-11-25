@@ -166,7 +166,16 @@ namespace Model
 
         public static Entity returnLevel_Boss(Difficulty currentDiff)
         {
-            return new Asteroid(1200, 350);
+            switch (currentDiff)
+            {
+                case Difficulty.Easy:
+                    return new Boss_Easy(1200, 200, 30);
+                case Difficulty.Medium:
+                    return new Boss(1200, 200, 50);//TODO: add Boss_Medium
+                case Difficulty.Hard:
+                    return new Boss(1200, 200, 70);// TODO: add Boss_Hard
+            }
+            return new Boss(1200, 200, 30);
         }
     }
 }

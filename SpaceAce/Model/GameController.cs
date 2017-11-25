@@ -48,6 +48,7 @@ namespace Model
         public List<Entity> enemie_Que = new List<Entity>();
         public Player player;
         public List<Bullet> player_fire = new List<Bullet>();
+        public bool Boss_is_dead = false;
         public GameResult gameResult;
         //pre-game setup
         public Level level;
