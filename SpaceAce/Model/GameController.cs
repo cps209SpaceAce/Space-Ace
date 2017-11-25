@@ -83,6 +83,11 @@ namespace Model
         public GameController()
         {
             player = new Player(50, 350, 3, 3, this);
+            soundPlayer = new SoundManager();
+            winWidth = 2000;
+            winHeight = 2000;
+            difficulty = Difficulty.Easy;
+            player.cheating = false;
         }
 
 
@@ -159,8 +164,7 @@ namespace Model
                     {
                         player.powerup = (enemy as Powerup).type; // Added by Jo
 
-                        if ((enemy as Powerup).type == PowerUp.ExtraLife ||
-                            (enemy as Powerup).type == PowerUp.ExtraBomb )
+                        if ((enemy as Powerup).type == PowerUp.ExtraLife || (enemy as Powerup).type == PowerUp.ExtraBomb )
                             player.Activate_powerup();
 
                         dead_Badguy.Add(enemy);
@@ -184,7 +188,7 @@ namespace Model
                             if (enemy is Powerup)
                             {
                                 player.powerup = (enemy as Powerup).type; // Added by Jo // copyed Noah
-                                if ((enemy as Powerup).type == PowerUp.ExtraLife)
+                                if ((enemy as Powerup).type == PowerUp.ExtraLife || (enemy as Powerup).type == PowerUp.ExtraBomb)
                                     player.Activate_powerup();
                             }
                         }
@@ -229,14 +233,6 @@ namespace Model
                 writer.WriteLine(level + "," + score + "," + base_Speed + "," + gameLevelTimer); //add timers
                 writer.WriteLine("[end]");
 
-                if (current_Enemies != null && current_Enemies.Count > 0)
-                {
-                    writer.WriteLine("[enemies]");
-                    for (int i = 0; i < current_Enemies.Count; ++i)
-                        writer.WriteLine(current_Enemies[i].Serialize());
-                    writer.WriteLine("[end]");
-                }
-
                 if (player != null)
                 {
                     writer.WriteLine("[player]");
@@ -244,7 +240,18 @@ namespace Model
                     writer.WriteLine("[end]");
                 }
 
-                if (player_fire != null && player_fire.Count > 0)
+                if (current_Enemies == null || player_fire == null)
+                    return;
+
+                if (current_Enemies.Count > 0)
+                {
+                    writer.WriteLine("[enemies]");
+                    for (int i = 0; i < current_Enemies.Count; ++i)
+                        writer.WriteLine(current_Enemies[i].Serialize());
+                    writer.WriteLine("[end]");
+                }
+
+                if (player_fire.Count > 0)
                 {
                     writer.WriteLine("[playerBullets]");
                     for (int i = 0; i < player_fire.Count; ++i)

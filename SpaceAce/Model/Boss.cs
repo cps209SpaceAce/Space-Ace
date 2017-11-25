@@ -129,12 +129,36 @@ namespace Model
 
         public override string Serialize()
         {
-            return "boss" + "," + X + "," + Y; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
+            return "boss" + "," + X + "," + Y + "," + health; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
+        }
+    }
+
+    public class Suzan : Boss 
+        //Just like how the game spawn asteroids and enemies, what if the game spawns
+        //only one of each type of boss
+        // - Jo
+    {
+
+        private double actionTimer;
+        public string name = "suzan";
+        public Suzan(double X, double Y, int health) : base(X, Y, health)
+        {
+            actionTimer = 0;
         }
 
-        public static Boss Deserialize(string code)
+        public override bool Hit()
         {
-            return null;
+            throw new NotImplementedException();
+        }
+
+        public override void UpdatePosition()
+        {
+        }
+
+
+        public override string Serialize()
+        {
+            return "boss" + "," + name + "," + X + "," + Y + "," + health ; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
         }
     }
 }
