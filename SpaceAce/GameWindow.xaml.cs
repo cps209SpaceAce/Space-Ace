@@ -248,6 +248,12 @@ namespace SpaceAce
             }
             else
             {
+                if (ship is Boss)
+                {
+                    Make_Boss_Bullet((Boss)ship);
+                    return;
+                }
+
                 soundPlayer.PlayNoise(SoundType.Shoot2);
                 double y = ship.Y + 10;
                 double x = ship.X - 2;
@@ -263,6 +269,22 @@ namespace SpaceAce
 
             
 
+        }
+
+        public void Make_Boss_Bullet(Boss boss)
+        {
+            
+            double y = boss.bullet_y;
+            double x = boss.bullet_x;
+            Bullet b = new Bullet(x, y);
+            b.direction = -1;
+            gameCtrl.player_fire.Add(b);
+            Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
+            img.Width = 20;
+            Icon i = new Icon() { i = img, e = b };
+            i.update();
+            WorldCanvas.Children.Add(img);
+            icons.Add(i);
         }
 
         public void Make_TripleShot(Entity p)

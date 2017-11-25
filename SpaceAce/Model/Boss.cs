@@ -10,6 +10,8 @@ namespace Model
     public enum State { Start, Mid, End }
     public class Boss : Entity, ISerialiable
     {
+        public double bullet_x = 750;
+        public double bullet_y = 300;
         public string img = "ship 2.png";
         public State state;
         public int cooldown = 0;
@@ -22,7 +24,7 @@ namespace Model
             max = health;
             actionTimer = 0;
             this.hitbox = new Rectangle(Convert.ToInt32(X), Convert.ToInt32(Y), 500, 300);
-            state = State.Start;
+            
             //this.player = player;
         }
 
@@ -76,7 +78,8 @@ namespace Model
         
         
         public Boss_Easy(double X, double Y, int health) : base(X, Y,health)
-        { 
+        {
+            state = State.Start;
         }
 
        
@@ -120,7 +123,7 @@ namespace Model
 
         private void start()
         {
-
+            FiredABullet = true;
         }
 
         private void mid() { }
