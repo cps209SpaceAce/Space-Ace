@@ -140,36 +140,66 @@ namespace Model
 
         public override string Serialize()
         {
-            return "boss" + "," + X + "," + Y + "," + health; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
+            return "boss,easy_Boss" + "," + X + "," + Y + "," + health; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
         }
     }
 
-    public class Suzan : Boss 
-        //Just like how the game spawn asteroids and enemies, what if the game spawns
-        //only one of each type of boss
-        // - Jo
+    public class Diff_Yet_To_be_Determined_Boss : Boss //Jo's Boss, WIP
     {
-
-        private double actionTimer;
-        public string name = "suzan";
-        public Suzan(double X, double Y, int health) : base(X, Y, health)
+        public Diff_Yet_To_be_Determined_Boss(double X, double Y, int health) : base(X, Y, health)
         {
-            actionTimer = 0;
         }
 
-        public override bool Hit()
-        {
-            throw new NotImplementedException();
-        }
 
         public override void UpdatePosition()
         {
+            if (cooldown > 0)
+                cooldown--;
+            //TODO: movement logic for boss
+            actionTimer += 0.01;
+            if (X > 750)
+            {
+                X = Convert.ToInt32(X - (1 * speed));
+
+            }
+
+            switch (state)
+            {
+                case State.Start:
+                    start();
+                    if (health > (max / 2))
+                        state = State.Mid;
+                    break;
+                case State.Mid:
+                    mid();
+                    if (health > (max / .75f))
+                        state = State.End;
+                    break;
+                case State.End:
+                    End();
+                    break;
+
+            }
+            // after x == 950 ... change y V^
+
+            // action == 1 
+            //bossShoot(x,y,type)
+            hitbox.X = Convert.ToInt32(X);
+            hitbox.Y = Convert.ToInt32(Y);
         }
 
+        private void start()
+        {
+            FiredABullet = true;
+        }
+
+        private void mid() { }
+
+        private void End() { }
 
         public override string Serialize()
         {
-            return "boss" + "," + name + "," + X + "," + Y + "," + health ; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
+            return "boss" + "," + X + "," + Y + "," + health; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
         }
     }
 }
