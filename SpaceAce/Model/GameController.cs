@@ -110,7 +110,7 @@ namespace Model
                         (ent as Mine).RecieveTrackerData(player.X, player.Y); //the 4th quarter of the window
 
                     if (ent is Boss)
-                        (ent as Boss).RecieveTrackerData(player.X, player.Y);
+                        (ent as Boss).RecieveTrackerData(player.X, player.Y, winHeight, winWidth );
                     
                     
                         ent.UpdatePosition();

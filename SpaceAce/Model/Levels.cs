@@ -171,7 +171,7 @@ namespace Model
                 case Difficulty.Easy:
                     return new Boss_Easy(1200, 200, 30);
                 case Difficulty.Medium:
-                    return new Boss(1200, 200, 50);//TODO: add Boss_Medium
+                    return new Boss_Medium(1200, 200, 50);//TODO: add Boss_Medium
                 case Difficulty.Hard:
                     return new Boss(1200, 200, 70);// TODO: add Boss_Hard
             }
