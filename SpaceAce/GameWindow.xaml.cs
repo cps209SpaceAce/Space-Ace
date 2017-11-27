@@ -570,7 +570,7 @@ namespace SpaceAce
             if (spawnCounter > 25 && !boss)
             {
                 spawnCounter = 0;
-                Entity newEntity = Levels.Level_reuturnEntity(gameCtrl.difficulty, gameCtrl.level);
+                Entity newEntity = Levels.Level_reuturnEntity(gameCtrl.difficulty, gameCtrl.level, gameCtrl.winWidth, gameCtrl.winHeight);
                 gameCtrl.current_Enemies.Add(newEntity); // Add to Model
                 
                 

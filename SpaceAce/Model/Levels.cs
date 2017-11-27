@@ -34,7 +34,7 @@ namespace Model
 
 
         // This is a level class
-        public static Entity Level_reuturnEntity(Difficulty currentDiff, Level level)
+        public static Entity Level_reuturnEntity(Difficulty currentDiff, Level level, double winWidth, double winHeight)
         {
             Entity output = null;
 
@@ -48,7 +48,7 @@ namespace Model
             }
             else if (level == Level.Boss)
             {
-                return returnLevel_Boss(currentDiff);
+                return returnLevel_Boss(currentDiff, winWidth, winHeight);
             }
 
             return output;
@@ -165,18 +165,18 @@ namespace Model
 
         }
 
-        public static Entity returnLevel_Boss(Difficulty currentDiff)
+        public static Entity returnLevel_Boss(Difficulty currentDiff, double winWidth, double winHeight)
         {
             switch (currentDiff)
             {
                 case Difficulty.Easy:
-                    return new Boss_Easy(1200, 200, 30);
+                    return new Boss_Easy(1200, 200, 30, winWidth, winHeight);
                 case Difficulty.Medium:
-                    return new Boss_Medium(1200, 200, 30);//TODO: add Boss_Medium
+                    return new Boss_Medium(1200, 200, 30, winWidth, winHeight);//TODO: add Boss_Medium
                 case Difficulty.Hard:
-                    return new Boss_Hard(1200, 300, 30);// TODO: add Boss_Hard
+                    return new Boss_Hard(1200, 300, 30, winWidth, winHeight);// TODO: add Boss_Hard
             }
-            return new Boss(1200, 300, 30);
+            return new Boss(1200, 300, 30, winWidth, winHeight);
         }
     }
 

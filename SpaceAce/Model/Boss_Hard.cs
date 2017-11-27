@@ -16,7 +16,7 @@ namespace Model
         double x_axis = 0;
         Direction dir = Direction.Left;
 
-        public Boss_Hard(double X, double Y, int health) : base(X, Y, health)
+        public Boss_Hard(double X, double Y, int health, double winWidth, double winHeight) : base(X, Y, health, winWidth, winHeight)
         {
             state = State.Start;
             og_X = 924;

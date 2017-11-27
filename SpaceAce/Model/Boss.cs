@@ -24,18 +24,18 @@ namespace Model
         public int cooldown = 0;
         protected double actionTimer;
         public float max;
-        //public Player player;
 
         public double windowHeight;
         public double windowWidth;
-        public Boss(double X, double Y, int health) : base(X, Y)
+        public Boss(double X, double Y, int health, double winWidth, double winHeight) : base(X, Y)
         {
             this.health = health;
             max = health;
             actionTimer = 0;
             this.hitbox = new Rectangle(Convert.ToInt32(X), Convert.ToInt32(Y), 500, 300);
 
-            //this.player = player;
+            windowHeight = winHeight;
+            windowWidth = winWidth;
         }
 
         public void RecieveTrackerData(double X, double Y)

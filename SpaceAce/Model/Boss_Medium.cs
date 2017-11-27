@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Model;
 namespace Model
 {
-    public enum MState { Start, Mid, End, EasyAttack }
+    public enum MState { Start, Mid, End, Attack }
 
     public class Boss_Medium : Boss //Jo's Boss, WIP
     {
@@ -15,7 +15,10 @@ namespace Model
         int shootTimer = 0;
         bool shoot = false;
         bool goingBack = false;
-        public Boss_Medium(double X, double Y, int health) : base(X, Y, health)
+        bool isEntering = true;
+        int reset = 60;
+
+        public Boss_Medium(double X, double Y, int health, double winWidth, double winHeight) : base(X, Y, health, winWidth, winHeight)
         {
             currentState = MState.Start;
         }
@@ -23,34 +26,41 @@ namespace Model
 
         public override void UpdatePosition()
         {
+            if (isEntering && X > windowWidth / 2)
+            {
+                X = Convert.ToInt32(X - speed);
+                return;
+            }
+            isEntering = false;
+
             if (cooldown > 0)
                 cooldown--;
-
+            //TODO: movement logic for boss
             actionTimer += 0.01;
-
-
 
             switch (currentState)
             {
                 case MState.Start:
                     start();
                     if (health < (max / 2))
+                    {
                         currentState = MState.Mid;
-                    else
-                        if (random.Next(0, 500) == 4)
-                        currentState = MState.EasyAttack;
-
+                        speed += 5;
+                    }
                     break;
                 case MState.Mid:
                     mid();
                     if (health < (max / .75f))
+                    {
                         currentState = MState.End;
+                        speed += 5;
+                    }
                     break;
                 case MState.End:
                     End();
                     break;
 
-                case MState.EasyAttack:
+                case MState.Attack:
                     Attack();
                     break;
             }
@@ -59,54 +69,60 @@ namespace Model
             hitbox.Y = Convert.ToInt32(Y);
         }
 
-        private void start() //todo: continue stat machine
+        private void start()
         {
-            if (X > windowWidth / 2 + windowWidth / 4)
-                X = Convert.ToInt32(X - speed);
-            else
+            if (Y < 0 || Y > windowHeight - hitbox.Y)
             {
-                if (Y < 0 || Y > windowHeight - hitbox.Y)
-                {
-                    dir *= -1;
-                }
-                Y = Convert.ToInt32(Y + (dir * speed));
+                dir *= -1;
             }
+            Y = Convert.ToInt32(Y + (dir * speed));
 
 
-            if (!shoot && random.Next(0, 100) == 2)
-                shoot = true;
+            Shoot();
 
-            if (shoot)
-            {
-                FiredABullet = true;
-                shootTimer++;
-
-                if (shootTimer >= 50)
-                {
-                    shoot = false;
-                    shootTimer = 0;
-                    FiredABullet = false;
-                }
-
-            }
+            if (random.Next(0, 1000) == 4)
+              currentState = MState.Attack;
         }
 
-        private void mid() {}
+        private void mid()
+        {
+            if(Y + hitbox.Y/2> p_y)
+                Y = Convert.ToInt32(Y - speed);
+            if(Y + hitbox.Y / 2 < p_y)
+                Y = Convert.ToInt32(Y + speed);
 
-        private void End() { }
+            Shoot();
+
+            if (random.Next(0, 1000) == 4)
+                currentState = MState.Attack;
+        }
+
+        private void End()
+        {
+            if (Y > p_y)
+                Y = Convert.ToInt32(Y - speed);
+            else if (Y < p_y)
+                Y = Convert.ToInt32(Y + speed);
+            
+
+            Shoot();
+
+            if (random.Next(0, 1000) == 4)
+                currentState = MState.Attack;
+        }
 
         private void Attack()
         {
             if (!goingBack && X > 0)
             {
-                X = Convert.ToInt32(X - speed);
+                X = Convert.ToInt32(X - speed - 2);
                 return;
             }
             goingBack = true;
 
 
-            if (X <= windowWidth / 2 + windowWidth / 4)
-                X = Convert.ToInt32(X + speed);
+            if (X <= windowWidth / 2)
+                X = Convert.ToInt32(X + speed + 2);
             else
             {
                 goingBack = false;
@@ -114,6 +130,19 @@ namespace Model
             }
         }
 
+        void Shoot()
+        {
+
+            if (cooldown == 0)
+            {
+                action = true;
+                FiredABullet = true;
+                bullet_y = Y + hitbox.Y/2;
+                cooldown = reset;
+            }
+            else
+                FiredABullet = false;
+        }
 
         public override string Serialize()
         {

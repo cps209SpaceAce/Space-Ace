@@ -100,12 +100,12 @@ namespace Model
                 {
                     //added by Joanna
                     if (ent is Tracker)
-                        (ent as Tracker).RecieveTrackerData(player.X, player.Y, winWidth / 2 + winWidth / 4); //the 4th quarter of the window
+                        (ent as Tracker).RecieveTrackerData(player.X, player.Y, winWidth / 2 + winWidth / 4); 
 
                     if (ent is Mine)
-                        (ent as Mine).RecieveTrackerData(player.X, player.Y); //the 4th quarter of the window
+                        (ent as Mine).RecieveTrackerData(player.X, player.Y);
                     if (ent is Boss)
-                        (ent as Boss).RecieveTrackerData(player.X, player.Y); //the 4th quarter of the window
+                        (ent as Boss).RecieveTrackerData(player.X, player.Y);
 
                     ent.UpdatePosition();
 
