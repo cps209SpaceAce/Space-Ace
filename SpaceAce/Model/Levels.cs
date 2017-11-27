@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using Model;
 namespace Model
 {
 
@@ -173,9 +174,9 @@ namespace Model
                 case Difficulty.Medium:
                     return new Boss_Medium(1200, 200, 50);//TODO: add Boss_Medium
                 case Difficulty.Hard:
-                    return new Boss(1200, 200, 70);// TODO: add Boss_Hard
+                    return new Boss_Hard(1200, 300, 70);// TODO: add Boss_Hard
             }
-            return new Boss(1200, 200, 30);
+            return new Boss(1200, 300, 30);
         }
     }
 }

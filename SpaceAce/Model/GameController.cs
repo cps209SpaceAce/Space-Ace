@@ -229,6 +229,7 @@ namespace Model
         /// </summary>
         public void Bomb()
         {
+            Entity boss = null;
             soundPlayer.PlayNoise(SoundType.Bomb);
             foreach (Entity e in current_Enemies)
             {
@@ -238,11 +239,14 @@ namespace Model
                 {
                     e.alive = true;
                     e.Hit(); //damage the boss
+                    boss = e;
                 }
             }
 
 
             current_Enemies = new List<Entity>();
+            if(boss != null)
+                current_Enemies.Add(boss);
         }
 
         //-----------  Load - Save  ------------//

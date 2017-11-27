@@ -111,8 +111,7 @@ namespace Model
                     Y = ((50 * Math.Sin(0.01 * x_axis)) * (-1) + original_Y);
                     X = original_X + x_axis;
                     break;
-                case pattern.Tan:
-                    break;
+                
 
             }
             hitbox.X = Convert.ToInt32(X);
