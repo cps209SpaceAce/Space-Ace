@@ -192,7 +192,8 @@ namespace SpaceAce
 
             soundPlayer = new SoundManager();
 
-
+            pbar_gamestatus.Minimum = 0;
+            pbar_gamestatus.Maximum = 15;
 
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Tick += Timer_Tick;
@@ -338,8 +339,8 @@ namespace SpaceAce
 
             gameCtrl.player.UpdatePosition(); // Update the Player Positions
             List<Entity> fired = gameCtrl.UpdateWorld();           // Update the Model. fired: list of ships that fired 
-
             
+
             CheckGameStatus();
             if(gameCtrl.gameLevelTimer < 60)
             {
@@ -453,13 +454,20 @@ namespace SpaceAce
                 this.Close(); // Closing GameWindow
 
             }
-            else if (gameCtrl.gameLevelTimer > 60)
-            {
-                gameCtrl.level = Level.Boss;
-            }
             else if (gameCtrl.gameLevelTimer > 30)
             {
+                //pbar_gamestatus.Value = gameCtrl.gameLevelTimer; == boss health 0/30
+                gameCtrl.level = Level.Boss;
+            }
+            else if (gameCtrl.gameLevelTimer > 15)
+            {
+                pbar_gamestatus.Value = gameCtrl.gameLevelTimer - 15;
                 gameCtrl.level = Level.Level_2;
+            }
+            else
+            {
+                pbar_gamestatus.Value = gameCtrl.gameLevelTimer;
+
             }
         }
 

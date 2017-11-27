@@ -13,8 +13,8 @@
     <Window.Background>
         <ImageBrush ImageSource="Images\titleScreenBackground.png"></ImageBrush>
     </Window.Background>
-    
-    
+
+
     <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" >
         <Border x:Name="CanvasBorder" BorderBrush="White">
             <Grid>
@@ -26,8 +26,9 @@
 
                     <Label x:Name="labelScore" HorizontalContentAlignment="Right"  FontSize="20" Foreground="White" Content="" Canvas.Left="815" Canvas.Top="10" Height="37" Width="179"/>
                     <Label x:Name="labelLives" FontSize="20" Foreground="White" Content="" Canvas.Left="10" Canvas.Top="10" Height="37" Width="179"/>
-                    <Label x:Name="labelBombs" FontSize="20" Foreground="White" Content="" Canvas.Left="10" Canvas.Top="682" Height="37" Width="179"/>
-                    <Label x:Name="labelLevel" HorizontalContentAlignment="Right"  FontSize="20" Foreground="White" Content="" Canvas.Left="815" Canvas.Top="682" Height="37" Width="179"/>
+                    <Label x:Name="labelBombs" FontSize="20" Foreground="White" Content="" Canvas.Left="10" Canvas.Top="721" Height="37" Width="179"/>
+                    <Label x:Name="labelLevel" HorizontalContentAlignment="Right"  FontSize="20" Foreground="White" Content="" Canvas.Left="815" Canvas.Top="721" Height="37" Width="179"/>
+                    <ProgressBar x:Name="pbar_gamestatus" BorderThickness="1" Background="Transparent" Height="37" Width="580" Canvas.Left="216" Canvas.Top="721"/>
                 </Canvas>
             </Grid>
         </Border>
