@@ -178,7 +178,7 @@ namespace SpaceAce.UnitTests
         public void Save_PlayerData_Success()
         {
             GameController ctrl = new GameController();
-            ctrl.player = new Player(40, 50, 100, 60, ctrl);
+            ctrl.player = new Player(40, 50, 100, 60, ctrl, "player1.png");
             ctrl.player.powerUpCounter = 3.44;
             ctrl.player.isPoweredUp = true;
 
