@@ -500,13 +500,22 @@ namespace SpaceAce
                 switch((newEntity as Powerup).type)
                 {
                     case PowerUp.Invincible:
+                        pngName = "star.png";
+                        break;                    
+                    case PowerUp.ExtraLife:
+                        pngName = "life.png";
+                        break;
+                    case PowerUp.ExtraBomb:
                         pngName = "shield.png";
                         break;
                     case PowerUp.ExtraSpeed:
-                        pngName = "star.png";
+                        pngName = "power.png";
                         break;
-                    case PowerUp.ExtraLife:
-                        pngName = "life.png";
+                    case PowerUp.RapidFire:
+                        pngName = "bullets.png";
+                        break;
+                    case PowerUp.TripleShot:
+                        pngName = "bullets2.png";
                         break;
                 }
 
@@ -601,14 +610,7 @@ namespace SpaceAce
                 {
                     pngName = "asteroid.png";
                 }
-                else if (newEntity is Formation && (newEntity as Formation).Flightpath == pattern.Sin)
-                {
-                    pngName = "Ship 2.png";
-
-
-                    // NOT WORKING
-                }
-                else if (newEntity is Formation && (newEntity as Formation).Flightpath == pattern.Cos)
+                else if (newEntity is Formation)
                 {
                     pngName = "Ship 3.png";
 
