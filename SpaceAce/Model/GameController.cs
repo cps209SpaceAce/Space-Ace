@@ -107,10 +107,26 @@ namespace Model
                         (ent as Boss).RecieveTrackerData(player.X, player.Y); //the 4th quarter of the window
 
                     ent.UpdatePosition();
-                    if (ent.FiredABullet)
-                        ships_that_fired.Add(ent);
-                    if (!ent.alive)
-                        leftscreen.Add(ent);
+
+                    if (ent is Boss)
+                    {
+
+                        if ((ent as Boss).action)
+                        {
+                            (ent as Boss).action = false;
+                            ships_that_fired.Add(ent);
+                        }
+                    }
+
+                    else
+                    {
+                        
+
+                        if (ent.FiredABullet)
+                            ships_that_fired.Add(ent);
+                        if (!ent.alive)
+                            leftscreen.Add(ent);
+                    }
                 }
             }
 
@@ -153,9 +169,11 @@ namespace Model
 
                         soundPlayer.PlayNoise(SoundType.HurtPlayer);
                     }
-
-                    if (enemy.Hit())
-                        dead_Badguy.Add(enemy);
+                    if (!(enemy is Boss))
+                    {
+                        if (enemy.Hit())
+                            dead_Badguy.Add(enemy);
+                    }
                     if (enemy is Powerup)
                     {
                         player.powerup = (enemy as Powerup).type; // Added by Jo

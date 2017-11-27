@@ -243,6 +243,8 @@ namespace SpaceAce
                 if (ship is Boss)
                 {
                     Boss s = (Boss)ship;
+                    if (s.fired_slanted_targeted_shot)
+                        Make_Boss_slantedshot(s);
                     if (s.wall)
                         Make_bosswall(s);
                     if(s.FiredABullet)
@@ -269,7 +271,25 @@ namespace SpaceAce
         }
 
 
-
+        public void Make_Boss_slantedshot(Boss boss)
+        {
+            double slope = (boss.Y - boss.p_y) / (boss.X - boss.p_x);
+            Bullet b = new Slanted_Bullet(boss.X, boss.Y, slope) {id = ID.Hostile };
+            if (boss.p_x > boss.X)
+            {
+                b.direction = 1;
+               
+            }
+            else
+            {
+                b.direction = -1;
+                (b as Slanted_Bullet).slope *= -1;
+            }
+            Image i = new Image() { Source = new BitmapImage(new Uri("images/" + "C_bullet.png", UriKind.Relative)), Width = 20, Height = 20 };
+            WorldCanvas.Children.Add(i);
+            icons.Add(new Icon() { i = i, e = b });
+            gameCtrl.current_Enemies.Add(b);
+        }
         public void Make_bosswall(Boss ship)
         {
             double by = ship.p_y;
@@ -360,7 +380,7 @@ namespace SpaceAce
                 double x = ship.X + 50;
 
                 Wandering_Bullet b_cos = new Wandering_Bullet(x, y, pattern.Sin);
-                Wandering_Bullet b_sin = new Wandering_Bullet(x, y, pattern.Sin);
+                Wandering_Bullet b_sin = new Wandering_Bullet(x, y, pattern.Sindown);
                 gameCtrl.player_fire.Add(b_cos);
                 gameCtrl.player_fire.Add(b_sin);
 
@@ -531,7 +551,7 @@ namespace SpaceAce
         private void SpawnEntities()
         {
 
-            if (spawnCounter > 25)
+            if (spawnCounter > 25 && !boss)
             {
                 spawnCounter = 0;
                 Entity newEntity = Levels.Level_reuturnEntity(gameCtrl.difficulty, gameCtrl.level);
