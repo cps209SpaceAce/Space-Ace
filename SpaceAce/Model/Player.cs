@@ -15,7 +15,7 @@ namespace Model
     {
         public bool wanderingbullets =false; // flag for sin and cos bullets. currently broken 
         public bool triple = false;//flag for triple shot
-        public bool rapid_fire = false; //flag to engage rapid fire mode by reducing the cooldown
+        public bool rapid_fire = true; //flag to engage rapid fire mode by reducing the cooldown
         public int cooldown = 0;
         public int bombCooldown = 0;
         public int lives { get; set; }
@@ -27,7 +27,7 @@ namespace Model
 
         public double powerUpCounter = 0;
         public bool isPoweredUp = false;
-        bool isInvinsible = false;
+        public bool isInvinsible = false;
         public bool cheating = false;
 
 

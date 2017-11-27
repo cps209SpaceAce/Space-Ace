@@ -118,12 +118,12 @@ namespace Model
             if (X <= stopPosition) //initial positioning
                 X = stopPosition;
             else
-                X--;
+                X = (X - (0.5 * speed));
 
             if (Y < pY)
-                Y++;
+                Y = (Y + (0.5 * speed));
             else if (Y > pY)
-                Y--;
+                Y = (Y - (0.5 * speed));
 
             if (random.Next(0, 1000) == 64)
             {
@@ -136,13 +136,11 @@ namespace Model
             }
             hitbox.X = Convert.ToInt32(X);
             hitbox.Y = Convert.ToInt32(Y);
-            if (X < 0)
-                alive = false;
 
         }
         public override string Serialize() //Noah added it
         {
-            return "tracker" + "," + X + "," + Y + "," + Flightpath;
+            return "tracker" + "," + X + "," + Y;
         }
 
     }

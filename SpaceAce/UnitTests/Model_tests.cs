@@ -87,6 +87,25 @@ namespace SpaceAce.UnitTests
         // Robert: Add more saves and test Load
         //         Add better test for Save
         //         Need more Model Tests
+
+
+            [TestMethod]
+            public void  HighScore_ToString()
+            {
+            HighScore h = new HighScore();
+            h.Name = "ha";
+            Assert.IsTrue(h.ToString() == " ha          Level 1     Easy                0");
+
+            h = new HighScore("Jojo", Level.Level_2, Difficulty.Hard, 90,  "nothing.jpg");
+            Assert.IsTrue(h.ToString() == " Jojo        Level 2     Hard               90");
+
+            h.Diff = Difficulty.Medium;
+            h.Level = Level.Boss;
+            Assert.IsTrue(h.ToString() == " Jojo        Boss        Medium             90");
+
+            h = new HighScore("", Level.Level_2, Difficulty.Hard, 90, "nothing.jpg");
+            Assert.IsTrue(h.Name == "Unknown");
+        }
     }
 }
 

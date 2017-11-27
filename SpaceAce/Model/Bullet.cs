@@ -43,18 +43,12 @@ namespace Model
             hitbox.X = Convert.ToInt32(X);
             if (X < 0 || X > 1200)
                 alive = false;
-            //throw new NotImplementedException();
 
         }
 
         public override string Serialize()
         {
             return "bullet" + "," + X + "," + Y; //JOANNA: x,y only for now
-        }
-
-        public static Bullet Deserialize(string code)
-        {
-            return null;
         }
     }
 
@@ -88,15 +82,19 @@ namespace Model
 
     }
 
-    public class Wandering_Bullet:Bullet //broken: Noah Mansfield
+    public class Wandering_Bullet:Bullet //Working: Noah Mansfield
     {
         public pattern path;
         double original_Y;
-        
+        double x_axis = 0;
+        double original_X;
+     
         public Wandering_Bullet(double X, double Y, pattern path) : base(X, Y)
         {
             this.path = path;
             original_Y = Y;
+            original_X = X;
+            
             
         }
         public override void UpdatePosition()
@@ -104,15 +102,16 @@ namespace Model
             switch (this.path) //copyed from Robert's formation class
             {
                 case pattern.Sin:
-                    X = (X + 5 + (15 * direction));
-                    Y = ((50 * Math.Sin(0.01 * X)) + original_Y);
+                    x_axis = (x_axis + (15 * direction));
+                    Y = ((50 * Math.Sin(0.01 * x_axis)) + original_Y);
+                    X = original_X + x_axis;
                     break;
                 case pattern.Sindown:
-                    X = (X + (15 * direction));
-                    Y = ((50 * Math.Cos(0.01 * X)) + original_Y);
+                    x_axis = (x_axis + (15 * direction));
+                    Y = ((50 * Math.Sin(0.01 * x_axis)) * (-1) + original_Y);
+                    X = original_X + x_axis;
                     break;
-                case pattern.Tan:
-                    break;
+                
 
             }
             hitbox.X = Convert.ToInt32(X);

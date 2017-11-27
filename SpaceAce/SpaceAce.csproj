@@ -80,7 +80,12 @@
       <DependentUpon>HighScoreWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Model\AI.cs" />
+    <Compile Include="Model\Boss_Easy.cs" />
+    <Compile Include="Model\Boss_Hard.cs" />
+    <Compile Include="Model\Boss_Medium.cs" />
     <Compile Include="Model\SoundManager.cs" />
+    <Compile Include="UnitTests\EntityTests.cs" />
+    <Compile Include="UnitTests\LevelTests.cs" />
     <Compile Include="UnitTests\Model_tests.cs" />
     <Compile Include="UnitTests\SaveLoadTests.cs" />
     <Page Include="AboutWindow.xaml">
@@ -238,17 +243,10 @@
     <Resource Include="Images\Menu\space.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\PlayerShips\player1.png" />
-    <Resource Include="Images\PlayerShips\player2.png" />
-    <Resource Include="Images\PlayerShips\player3.png" />
-    <Resource Include="Images\PlayerShips\player4.png" />
-    <Resource Include="Images\PlayerShips\player5.png" />
+    <Resource Include="Images\mothership.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Menu\down.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Menu\up.png" />
+    <Resource Include="Images\UFO.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

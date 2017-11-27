@@ -186,9 +186,24 @@ namespace Model
             int r = random.Next(50, 101);
             s = new Size(r, r);
             hitbox = new Rectangle(new Point(Convert.ToInt32(X), Convert.ToInt32(Y)), s);
+
+            if (r < 60)
+                health = 1;
+            else if (r >= 60 && r < 80)
+                health = 3;
+            else if (r >= 80)
+                health = 7;
+            
+            
         }
         public override bool Hit()
         {
+            health--;
+            if (health == 0)
+            {
+                alive = false;
+                return true;
+            }
             return false;
         }
         public override void UpdatePosition()
@@ -202,11 +217,6 @@ namespace Model
         public override string Serialize()
         {
             return "asteroid" + "," + health + "," + X + "," + Y;
-        }
-
-        public static Entity Deserialize(string code)
-        {
-            return null;
         }
     }
 
