@@ -569,6 +569,7 @@ namespace SpaceAce
                 
                 gameCtrl.level = Level.Level_2;
             }
+            gameCtrl.level = Level.Transition;
             
 
             if (BossIsSpawned)

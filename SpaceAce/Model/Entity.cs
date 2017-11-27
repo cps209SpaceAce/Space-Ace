@@ -191,7 +191,9 @@ namespace Model
                     (result as Player).cheating = false;
 
                 (result as Player).powerUpCounter = Convert.ToDouble(des[6]);
-                (result as Player).image = des[7];
+                (result as Player).image = des[8];
+
+                return result;
 
             }
             else if (type == "playerBullet")
