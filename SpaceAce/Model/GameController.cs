@@ -104,13 +104,30 @@ namespace Model
 
                     if (ent is Mine)
                         (ent as Mine).RecieveTrackerData(player.X, player.Y); //the 4th quarter of the window
-
+                    if (ent is Boss)
+                        (ent as Boss).RecieveTrackerData(player.X, player.Y); //the 4th quarter of the window
 
                     ent.UpdatePosition();
-                    if (ent.FiredABullet)
-                        ships_that_fired.Add(ent);
-                    if (!ent.alive)
-                        leftscreen.Add(ent);
+
+                    if (ent is Boss)
+                    {
+
+                        if ((ent as Boss).action)
+                        {
+                            (ent as Boss).action = false;
+                            ships_that_fired.Add(ent);
+                        }
+                    }
+
+                    else
+                    {
+                        
+
+                        if (ent.FiredABullet)
+                            ships_that_fired.Add(ent);
+                        if (!ent.alive)
+                            leftscreen.Add(ent);
+                    }
                 }
             }
 
@@ -156,9 +173,11 @@ namespace Model
                         Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
 
                     }
-
-                    if (enemy.Hit())
-                        dead_Badguy.Add(enemy);
+                    if (!(enemy is Boss))
+                    {
+                        if (enemy.Hit())
+                            dead_Badguy.Add(enemy);
+                    }
                     if (enemy is Powerup)
                     {
                         player.powerup = (enemy as Powerup).type; // Added by Jo
@@ -213,19 +232,28 @@ namespace Model
         /// </summary>
         public void Bomb()
         {
+            Entity b = null;
             var sound = new MediaPlayer();
             sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\bomb.wav", UriKind.Absolute));
             Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
 
-
             foreach (Entity e in current_Enemies)
             {
+
                 this.score += 50;
                 e.alive = false;
+                if (e is Boss)
+                {
+                    e.alive = true;
+                    if (!e.Hit())
+                        b = e;
+                }
             }
 
 
             current_Enemies = new List<Entity>();
+            if (b != null)
+                current_Enemies.Add(b);
         }
 
         //-----------  Load - Save  ------------//

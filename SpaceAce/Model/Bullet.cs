@@ -70,8 +70,8 @@ namespace Model
             }
             else
             {
-                X += 7 * direction;
-                Y += 5 * slope;
+                X += 15 * direction;
+                Y += 15 * slope;
             }
 
             hitbox.X = Convert.ToInt32(X);
@@ -108,7 +108,7 @@ namespace Model
                     break;
                 case pattern.Sindown:
                     x_axis = (x_axis + (15 * direction));
-                    Y = ((50 * Math.Sin(0.01 * x_axis)) * (-1) + original_Y);
+                    Y = ((-50 * Math.Sin(0.01 * x_axis)) + original_Y);
                     X = original_X + x_axis;
                     break;
                 

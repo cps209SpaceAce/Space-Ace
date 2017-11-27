@@ -73,8 +73,7 @@ namespace SpaceAce
         Button btnQUIT;
         Button btnSAVE;
         public DispatcherTimer timer;
-        MediaPlayer gameMusic;
-        public bool BossIsSpawned = false;
+        public bool boss = false;
 
 
         public GameWindow(Difficulty setDiff, bool isLoad, bool ischeating, string shipIMG) //Joanna: isLoad checks whether to load game or start new one
@@ -249,11 +248,22 @@ namespace SpaceAce
             }
             else
             {
+
+                if (ship is Boss)
+                {
+                    Boss s = (Boss)ship;
+                    if (s.fired_slanted_targeted_shot)
+                        Make_Boss_slantedshot(s);
+                    if (s.wall)
+                        Make_bosswall(s);
+                    if (s.FiredABullet)
+                        Make_Boss_Bullet(s);
+                    return;
+                }
+
                 var sound = new MediaPlayer();
                 sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\Shoot2.wav", UriKind.Absolute));
                 Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
-
-
 
                 double y = ship.Y + 10;
                 double x = ship.X - 2;
@@ -270,6 +280,65 @@ namespace SpaceAce
             
 
         }
+
+
+        public void Make_Boss_slantedshot(Boss boss)
+        {
+            double slope = (boss.Y - boss.p_y) / (boss.X - boss.p_x);
+            Bullet b = new Slanted_Bullet(boss.X, boss.Y, slope) {id = ID.Hostile };
+            if (boss.p_x > boss.X)
+            {
+                b.direction = 1;
+               
+            }
+            else
+            {
+                b.direction = -1;
+                (b as Slanted_Bullet).slope *= -1;
+            }
+            Image i = new Image() { Source = new BitmapImage(new Uri("images/" + "C_bullet.png", UriKind.Relative)), Width = 20, Height = 20 };
+            WorldCanvas.Children.Add(i);
+            icons.Add(new Icon() { i = i, e = b });
+            gameCtrl.current_Enemies.Add(b);
+        }
+        public void Make_bosswall(Boss ship)
+        {
+            double by = ship.p_y;
+            by = by -100;
+            for (int i = 0; i < 10; i++)
+            {
+                Entity a1 = new Asteroid(700, by+(i*20));
+                a1.health = 2;
+                a1.hitbox.Width = 20;
+                a1.hitbox.Height = 20;
+                gameCtrl.current_Enemies.Add(a1);
+                Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "asteroid.png", UriKind.Relative)) };
+                img.Width = 20;
+                img.Height = 20;
+                WorldCanvas.Children.Add(img);
+                icons.Add(new Icon() {e = a1, i = img });
+            }
+
+          
+
+        }
+
+        public void Make_Boss_Bullet(Boss boss)
+        {
+            
+            double y = boss.bullet_y;
+            double x = boss.bullet_x;
+            Bullet b = new Bullet(x, y);
+            b.direction = -1;
+            gameCtrl.current_Enemies.Add(b);
+            Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "C_bullet.png", UriKind.Relative)) };
+            img.Width = 20;
+            Icon i = new Icon() { i = img, e = b };
+            i.update();
+            WorldCanvas.Children.Add(img);
+            icons.Add(i);
+        }
+
 
         public void Make_TripleShot(Entity p)
         {
@@ -328,7 +397,7 @@ namespace SpaceAce
                 double x = ship.X + 50;
 
                 Wandering_Bullet b_cos = new Wandering_Bullet(x, y, pattern.Sin);
-                Wandering_Bullet b_sin = new Wandering_Bullet(x, y, pattern.Sin);
+                Wandering_Bullet b_sin = new Wandering_Bullet(x, y, pattern.Sindown);
                 gameCtrl.player_fire.Add(b_cos);
                 gameCtrl.player_fire.Add(b_sin);
 
@@ -366,8 +435,11 @@ namespace SpaceAce
             CheckGameStatus();
             if(!BossIsSpawned)
             {
+                gameCtrl.level = Level.Boss;
                 SpawnEntities();              // Spawn Entities
+
             }
+            
             
             
             SpawnPowerUp();
@@ -493,7 +565,7 @@ namespace SpaceAce
         private void SpawnEntities()
         {
 
-            if (spawnCounter > 25)
+            if (spawnCounter > 25 && !boss)
             {
                 spawnCounter = 0;
                 Entity newEntity = Levels.Level_reuturnEntity(gameCtrl.difficulty, gameCtrl.level);
@@ -506,14 +578,14 @@ namespace SpaceAce
                 {
                     pngName = "asteroid.png";
                 }
-                else if (newEntity is Formation && newEntity.Flightpath == pattern.Sin)
+                else if (newEntity is Formation && (newEntity as Formation).Flightpath == pattern.Sin)
                 {
                     pngName = "Ship 2.png";
 
 
                     // NOT WORKING
                 }
-                else if (newEntity is Formation && newEntity.Flightpath == pattern.Cos)
+                else if (newEntity is Formation && (newEntity as Formation).Flightpath == pattern.Cos)
                 {
                     pngName = "Ship 3.png";
 
@@ -541,6 +613,11 @@ namespace SpaceAce
                 else if (newEntity is AI)
                 {
                     pngName = "Ship 1.png";
+                }
+                else if (newEntity is Boss)
+                {
+                    pngName = "UFO.png";
+                    boss = true;
                 }
 
                 Image img = new Image() { Source = new BitmapImage(new Uri("images/" + pngName, UriKind.Relative)) };
