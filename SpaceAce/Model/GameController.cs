@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
 using System.Windows.Media.Imaging;
+using System.Windows.Media;
+using System.Windows;
 
 namespace Model
 {
@@ -62,7 +64,7 @@ namespace Model
         //window information
         public double winWidth;
         public double winHeight;
-        public SoundManager soundPlayer;
+        
 
         public GameController(Difficulty passDiff, double windowWidth, double windowHeight, bool isCheating, string shipIMG)
         {
@@ -75,7 +77,6 @@ namespace Model
 
             winWidth = windowWidth;
             winHeight = windowHeight;
-            soundPlayer = new SoundManager();
         }
 
         //written by Joanna, i need a blank slate for testing, 
@@ -150,7 +151,10 @@ namespace Model
                     if (player.HitPlayer(enemy))
                     {
 
-                        soundPlayer.PlayNoise(SoundType.HurtPlayer);
+                        var sound = new MediaPlayer();
+                        sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\hurtplayer.wav", UriKind.Absolute));
+                        Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
+
                     }
 
                     if (enemy.Hit())
@@ -178,7 +182,10 @@ namespace Model
                         bullet.Hit();
                         if (enemy.Hit())
                         {
-                            soundPlayer.PlayNoise(SoundType.HurtEnemy);
+                            var sound = new MediaPlayer();
+                            sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\damage.wav", UriKind.Absolute));
+                            Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
+
                             dead_Badguy.Add(enemy);
                             score += 50 * 1; // TODO: Based on DIff
                             if (enemy is Powerup)
@@ -206,7 +213,11 @@ namespace Model
         /// </summary>
         public void Bomb()
         {
-            soundPlayer.PlayNoise(SoundType.Bomb);
+            var sound = new MediaPlayer();
+            sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\bomb.wav", UriKind.Absolute));
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
+
+
             foreach (Entity e in current_Enemies)
             {
                 this.score += 50;

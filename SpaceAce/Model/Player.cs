@@ -4,6 +4,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Model
@@ -60,8 +62,11 @@ namespace Model
                 return;
 
             isPoweredUp = true;
-            SoundManager playSound = new SoundManager();
-            playSound.PlayNoise(SoundType.PowerUp);
+
+            var sound = new MediaPlayer();
+            sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\PowerUp.wav", UriKind.Absolute));
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
+
 
             if (powerup == PowerUp.ExtraSpeed)
                 speed = baseSpeed*2;

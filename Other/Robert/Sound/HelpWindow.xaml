@@ -1,0 +1,31 @@
+﻿<Window x:Class="SpaceAce.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SpaceAce"
+        mc:Ignorable="d"
+        Title="Space Ace - Help" Height="768" Width="1024"
+        WindowState="Maximized" WindowStyle="None"
+        >
+
+    <Window.Background>
+        <ImageBrush ImageSource="Images\titleScreenBackground.png"></ImageBrush>
+    </Window.Background>
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" >
+        <Grid>
+            <Button Content="Close Window" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
+            Margin="720,634,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="Button_Click"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="477" Width="447" Foreground="White" FontSize="22" Margin="499,10,0,0"><Run Text="Pick a difficulty from the Title Screen. (Easy by Default)"/><LineBreak/><Run/><LineBreak/><Run Text="Choose New Game or Load Game."/><LineBreak/><Run/><LineBreak/><Run Text="Fire at ship and avoid asteroids to get through the levels."/><LineBreak/><Run/><LineBreak/><Run Text="The more ships you shoot the more points you get."/><LineBreak/><Run/><LineBreak/><Run Text="Don't touch any enemies ship, asteroids, or enemy fire."/></TextBlock>
+            <Image Source="Images/Menu/arrow.png" HorizontalAlignment="Left" Height="137" Margin="76,59,0,0" VerticalAlignment="Top" Width="158"/>
+            <Image Source="Images/Menu/space.png" HorizontalAlignment="Left" Height="131" Margin="66,180,0,0" VerticalAlignment="Top" Width="168"/>
+            <Image Source="Images/Menu/esc.png" HorizontalAlignment="Left" Height="100" Margin="98,354,0,0" VerticalAlignment="Top" Width="100"/>
+            <Image Source="Images/Menu/b.jpg" HorizontalAlignment="Left" Height="74" Margin="112,255,0,0" VerticalAlignment="Top" Width="70"/>
+            <Label FontSize="30" Foreground="White" Content="Movement" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,106,0,0"/>
+            <Label FontSize="30" Foreground="White" Content="Shoot" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,180,0,0"/>
+            <Label FontSize="30" Foreground="White" Content="Bomb" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,273,0,0"/>
+            <Label FontSize="30" Foreground="White" Content="Pause Menu" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,375,0,0"/>
+            
+        </Grid>
+    </StackPanel>
+</Window>

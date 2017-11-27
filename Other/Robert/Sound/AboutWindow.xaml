@@ -1,0 +1,26 @@
+﻿<Window x:Class="SpaceAce.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SpaceAce"
+        mc:Ignorable="d"
+        Title="Space Ace - About" Height="768" Width="1024"
+        WindowState="Maximized" WindowStyle="None"
+        >
+    <Window.Background>
+        <ImageBrush ImageSource="Images\titleScreenBackground.png"></ImageBrush>
+    </Window.Background>
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" >
+        <Grid>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="94" Width="346" Foreground="White" FontSize="24" Margin="167,484,0,0"><Run Text="Robert Meyer"/><LineBreak/><Run FontSize="22" Text="Student from Australia but lacks an Australian accent."/><LineBreak/><InlineUIContainer/><LineBreak/></TextBlock>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="94" Width="346" Foreground="White" FontSize="24" Margin="526,142,0,0"><Run Text="Joa"/><Run Text="nna"/><Run Text=" Al "/><Run Text="M"/><InlineUIContainer/><Run Text="adanat Jaar"/><LineBreak/><Run FontSize="22" Text="Student from Jordan, likes planes, spaceships, and feathers."/><LineBreak/><InlineUIContainer>
+            </InlineUIContainer><LineBreak/></TextBlock>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="94" Width="346" Foreground="White" FontSize="24" Margin="315,305,0,0"><Run Text="Noah Mansfield"/><LineBreak/><Run FontSize="22" Text="Town student that can watch movies on weekends."/></TextBlock>
+
+            <Button Content="Close Window" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
+            Margin="720,634,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="btnQuit_Click"/>
+            <Label Content="Meet the team:" Foreground="#FFB6B6B6" Margin="57,40,675.6,616.4" FontSize="36" Background="{x:Null}"/>
+        </Grid>
+    </StackPanel>
+</Window>

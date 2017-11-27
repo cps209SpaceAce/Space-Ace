@@ -26,6 +26,7 @@ namespace SpaceAce
     {
         public bool isCheating = false;
         public Difficulty menuDiff = Difficulty.Easy;
+        MediaPlayer mainSound;
 
         int shipIndex = 0;
         List<string> shipIMGS = new List<string>()
@@ -42,11 +43,16 @@ namespace SpaceAce
         public MainWindow()
         {
             InitializeComponent();
-            //using (var soundPlayer = new SoundPlayer(SpaceAce.Properties.Resources.mainMenu))
-            //{
-            //    soundPlayer.Play();
-            //}
-
+            
+            
+            mainSound = new MediaPlayer();
+            mainSound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\mainMenu.wav", UriKind.Absolute));
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => mainSound.Play()));
+            
+           
+            Console.WriteLine(System.Environment.CurrentDirectory);
+            Console.WriteLine(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9));
+            Console.WriteLine(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\mainMenu.wav");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -63,12 +69,14 @@ namespace SpaceAce
         }
         private void btnNewGame_Click(object sender, RoutedEventArgs e)
         {
+            mainSound.Stop();
             GameWindow gameWindow = new GameWindow(menuDiff, false, isCheating, shipIMGS[shipIndex]);
             gameWindow.Show();
         }
         private void btnLoadGame_Click(object sender, RoutedEventArgs e)
         {
             // Not menuDiff
+            mainSound.Stop();
             GameWindow gameWindow = new GameWindow(menuDiff, true, isCheating , shipIMGS[shipIndex]);
             
             // Load Game

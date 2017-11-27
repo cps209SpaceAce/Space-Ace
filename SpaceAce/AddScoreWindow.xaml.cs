@@ -22,6 +22,7 @@ namespace SpaceAce
     {
 
         public GameController ctrlSave;
+        MediaPlayer ResultSound;
         public AddScoreWindow(GameController ctrl)
         {
             ctrlSave = ctrl;
@@ -29,6 +30,22 @@ namespace SpaceAce
             
             
             InitializeComponent();
+
+            if(ctrlSave.gameResult == GameResult.Lost)
+            {
+                ResultSound = new MediaPlayer();
+                ResultSound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\loseMusic.wav", UriKind.Absolute));
+                Application.Current.Dispatcher.BeginInvoke(new Action(() => ResultSound.Play()));
+
+            }
+            else
+            {
+                ResultSound = new MediaPlayer();
+                ResultSound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\WinMusic.wav", UriKind.Absolute));
+                Application.Current.Dispatcher.BeginInvoke(new Action(() => ResultSound.Play()));
+
+            }
+
         }
 
         private void btnQuit_Click(object sender, RoutedEventArgs e)
@@ -37,6 +54,7 @@ namespace SpaceAce
             HighScoreManager sc = new HighScoreManager();
             sc.Update(new HighScore(txbName.Text, ctrlSave.level, ctrlSave.difficulty, ctrlSave.score, "spaceship-hi.png"));
             sc.Save();
+            ResultSound.Stop();
             Close();
             // Not adding, overriding the first
             // Not sorting by score
@@ -48,12 +66,14 @@ namespace SpaceAce
             if (ctrlSave.gameResult == GameResult.Lost)
             {
                 imgGameResult.Source = new BitmapImage(new Uri("Images/gameover.png", UriKind.Relative));
+                
             }
 
             else
             {
                 ImageSource img = new BitmapImage(new Uri("Images/victory.png", UriKind.Relative));
                 imgGameResult.Source = img;
+                
             }
         }
     }

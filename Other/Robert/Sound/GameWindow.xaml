@@ -1,0 +1,36 @@
+﻿<Window x:Class="SpaceAce.GameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SpaceAce"
+        mc:Ignorable="d"
+        Title="Space Ace - Game Screen" Height="768" Width="1024" 
+        KeyDown="WorldCanvas_KeyDown" KeyUp="Window_KeyUp"
+        Loaded="Window_Loaded" Closed="Window_Closed"
+        WindowState="Maximized" WindowStyle="None"
+        >
+    <Window.Background>
+        <ImageBrush ImageSource="Images\titleScreenBackground.png"></ImageBrush>
+    </Window.Background>
+
+
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" >
+        <Border x:Name="CanvasBorder" BorderBrush="White">
+            <Grid>
+                <Canvas x:Name="WorldCanvas" HorizontalAlignment="Left" Height="768" Margin="0,0,0,0" VerticalAlignment="Top" Width="1024" KeyDown="WorldCanvas_KeyDown"                >
+                    <Canvas.Background>
+                        <ImageBrush ImageSource="Images\GameScreenBackground.jpg"/>
+                    </Canvas.Background>
+
+
+                    <Label x:Name="labelScore" HorizontalContentAlignment="Right"  FontSize="20" Foreground="White" Content="" Canvas.Left="815" Canvas.Top="10" Height="37" Width="179"/>
+                    <Label x:Name="labelLives" FontSize="20" Foreground="White" Content="" Canvas.Left="10" Canvas.Top="10" Height="37" Width="179"/>
+                    <Label x:Name="labelBombs" FontSize="20" Foreground="White" Content="" Canvas.Left="10" Canvas.Top="721" Height="37" Width="179"/>
+                    <Label x:Name="labelLevel" HorizontalContentAlignment="Right"  FontSize="20" Foreground="White" Content="" Canvas.Left="815" Canvas.Top="721" Height="37" Width="179"/>
+                    <ProgressBar x:Name="pbar_gamestatus" BorderThickness="1" Background="Transparent" Height="37" Width="580" Canvas.Left="216" Canvas.Top="721"/>
+                </Canvas>
+            </Grid>
+        </Border>
+    </StackPanel>
+</Window>

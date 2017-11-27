@@ -72,6 +72,15 @@ namespace SpaceAce.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream BossMusic {
+            get {
+                return ResourceManager.GetStream("BossMusic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream button {
             get {
                 return ResourceManager.GetStream("button", resourceCulture);
@@ -90,9 +99,36 @@ namespace SpaceAce.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream GameMusic {
+            get {
+                return ResourceManager.GetStream("GameMusic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream hurtplayer {
             get {
                 return ResourceManager.GetStream("hurtplayer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream LoseMusic {
+            get {
+                return ResourceManager.GetStream("LoseMusic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream mainMenu {
+            get {
+                return ResourceManager.GetStream("mainMenu", resourceCulture);
             }
         }
         
@@ -120,6 +156,15 @@ namespace SpaceAce.Properties {
         internal static System.IO.UnmanagedMemoryStream shoot2 {
             get {
                 return ResourceManager.GetStream("shoot2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream WinMusic {
+            get {
+                return ResourceManager.GetStream("WinMusic", resourceCulture);
             }
         }
     }

@@ -121,14 +121,26 @@
   <data name="bomb" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bomb.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="BossMusic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BossMusic.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="button" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\button.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="damage" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\damage.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="GameMusic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\GameMusic.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="hurtplayer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\hurtplayer.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="LoseMusic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LoseMusic.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mainMenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\mainMenu.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="powerup" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\powerup.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -138,5 +150,8 @@
   </data>
   <data name="shoot2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\shoot2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="WinMusic" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\WinMusic.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

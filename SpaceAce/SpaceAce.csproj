@@ -83,7 +83,6 @@
     <Compile Include="Model\Boss_Easy.cs" />
     <Compile Include="Model\Boss_Hard.cs" />
     <Compile Include="Model\Boss_Medium.cs" />
-    <Compile Include="Model\SoundManager.cs" />
     <Compile Include="UnitTests\EntityTests.cs" />
     <Compile Include="UnitTests\LevelTests.cs" />
     <Compile Include="UnitTests\Model_tests.cs" />
@@ -258,6 +257,21 @@
   <ItemGroup>
     <Resource Include="Images\Menu\down.png" />
     <Resource Include="Images\Menu\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mainMenu.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\GameMusic.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LoseMusic.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WinMusic.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BossMusic.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

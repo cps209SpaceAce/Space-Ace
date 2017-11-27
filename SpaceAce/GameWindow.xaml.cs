@@ -73,12 +73,19 @@ namespace SpaceAce
         Button btnQUIT;
         Button btnSAVE;
         public DispatcherTimer timer;
-        public SoundManager soundPlayer;
+        MediaPlayer gameMusic;
+        public bool BossIsSpawned = false;
 
-        
+
         public GameWindow(Difficulty setDiff, bool isLoad, bool ischeating, string shipIMG) //Joanna: isLoad checks whether to load game or start new one
         {
             InitializeComponent();
+
+            gameMusic = new MediaPlayer();
+            gameMusic.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\GameMusic.wav", UriKind.Absolute));
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => gameMusic.Play()));
+
+
             CanvasBorder.BorderThickness = new Thickness(2);
             // Load from levels
             gameCtrl = new GameController(setDiff, Width, Height, ischeating, shipIMG);
@@ -190,8 +197,6 @@ namespace SpaceAce
             Canvas.SetTop(img, 0);
             icons.Add(new Icon() { i = img, e = gameCtrl.player });
 
-            soundPlayer = new SoundManager();
-
             pbar_gamestatus.Minimum = 0;
             pbar_gamestatus.Maximum = 15;
 
@@ -203,6 +208,7 @@ namespace SpaceAce
 
         private void Window_Closed(object sender, EventArgs e)
         {
+            gameMusic.Stop();
             timer.Stop();
         }
 
@@ -224,7 +230,12 @@ namespace SpaceAce
                     Make_HelixShot(ship);//broken: Noah Mansfield
                     return;
                 }
-                soundPlayer.PlayNoise(SoundType.Shoot1);
+
+                var sound = new MediaPlayer();
+                sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\Shoot1.wav", UriKind.Absolute));
+                Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
+
+                
                 double y = ship.Y + 10;
                 double x = ship.X + 50;
                 Bullet b = new Bullet(x, y);
@@ -238,7 +249,12 @@ namespace SpaceAce
             }
             else
             {
-                soundPlayer.PlayNoise(SoundType.Shoot2);
+                var sound = new MediaPlayer();
+                sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\Shoot2.wav", UriKind.Absolute));
+                Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
+
+
+
                 double y = ship.Y + 10;
                 double x = ship.X - 2;
                 Bullet b = new Bullet(x, y) {direction = -1 };
@@ -260,7 +276,10 @@ namespace SpaceAce
 
             if (p is Player)
             {
-                soundPlayer.PlayNoise(SoundType.Shoot1);
+                var sound = new MediaPlayer();
+                sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\Shoot1.wav", UriKind.Absolute));
+                Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
+
                 double x = p.X + 50, y = p.Y + 10;
                 Slanted_Bullet up = new Slanted_Bullet(x, y, -1);
                 Slanted_Bullet down = new Slanted_Bullet(x, y, 1);
@@ -301,7 +320,10 @@ namespace SpaceAce
         {
             if (ship is Player)
             {
-                soundPlayer.PlayNoise(SoundType.Shoot1);
+                var sound = new MediaPlayer();
+                sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\Shoot1.wav", UriKind.Absolute));
+                Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
+
                 double y = ship.Y + 10;
                 double x = ship.X + 50;
 
@@ -342,16 +364,11 @@ namespace SpaceAce
             
 
             CheckGameStatus();
-            if(gameCtrl.gameLevelTimer < 60)
+            if(!BossIsSpawned)
             {
                 SpawnEntities();              // Spawn Entities
             }
-            else
-            {
-                // First Time Spawn Boss
-                Boss bob = new Boss(1000, 350, 1000);
-                bob.UpdatePosition();
-            }
+            
             
             SpawnPowerUp();
 
@@ -448,7 +465,7 @@ namespace SpaceAce
                 }
                 if (gameCtrl.gameResult == GameResult.Won)
                     gameCtrl.score += 1000;
-
+                gameMusic.Stop();
                 AddScoreWindow addScoreWindow = new AddScoreWindow(gameCtrl); // Need to pass score
                 addScoreWindow.Show();
                 this.Close(); // Closing GameWindow
@@ -482,6 +499,7 @@ namespace SpaceAce
                 Entity newEntity = Levels.Level_reuturnEntity(gameCtrl.difficulty, gameCtrl.level);
                 gameCtrl.current_Enemies.Add(newEntity); // Add to Model
                 
+                
                 string pngName = "";
 
                 if (newEntity is Asteroid)
@@ -491,10 +509,16 @@ namespace SpaceAce
                 else if (newEntity is Formation && newEntity.Flightpath == pattern.Sin)
                 {
                     pngName = "Ship 2.png";
+
+
+                    // NOT WORKING
                 }
                 else if (newEntity is Formation && newEntity.Flightpath == pattern.Cos)
                 {
                     pngName = "Ship 3.png";
+
+
+                    // NOT WORKING
                 }
                 else if (newEntity is Mine)
                 {
@@ -503,6 +527,16 @@ namespace SpaceAce
                 else if (newEntity is Tracker)
                 {
                     pngName = "Ship 4.png";
+                }
+                else if(newEntity is Boss)
+                {
+                    gameMusic.Stop();
+                    gameMusic.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\BossMusic.wav", UriKind.Absolute));
+                    Application.Current.Dispatcher.BeginInvoke(new Action(() => gameMusic.Play()));
+
+                    BossIsSpawned = true;
+
+                    pngName = "Ship 2.png";
                 }
                 else if (newEntity is AI)
                 {

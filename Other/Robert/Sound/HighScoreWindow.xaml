@@ -1,0 +1,24 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SpaceAce"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" x:Class="SpaceAce.HighScoreWindow"
+        mc:Ignorable="d"
+        Title="Space Ace - High Scores" Height="768" Width="1024"
+        WindowState="Maximized" WindowStyle="None"
+    Loaded="Window_Loaded"
+    >
+    <Window.Background>
+        <ImageBrush ImageSource="Images\titleScreenBackground.png"/>
+    </Window.Background>
+    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Orientation="Vertical" >
+        <Grid>
+            <Button Content="Close Window" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
+            Margin="720,634,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="Button_Click"/>
+            <ListBox x:Name="lstHighScores" HorizontalAlignment="Left" Height="356" Margin="85,185,0,0" VerticalAlignment="Top" Width="785" Background="Black" BorderBrush="#FF00BD1E" Foreground="#FF15DF00" FontSize="20" FontFamily="OCR A Extended">
+            </ListBox>
+        </Grid>
+    </StackPanel>
+</Window>
