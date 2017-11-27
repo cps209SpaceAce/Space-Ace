@@ -13,7 +13,7 @@ namespace Model
     public enum MedimBossState { Start, Mid, End, Attack, Retreat }
     public class Boss : Entity, ISerialiable
     {
-        public bool targeted_slant_shot = false;
+        public bool fired_slanted_targeted_shot;
         public bool action = false;
         public bool wall = false; // attack for boss creates a wall of small asteroids
         public double bullet_x = 750;
@@ -39,13 +39,12 @@ namespace Model
             //this.player = player;
         }
 
-        public void RecieveTrackerData(double X, double Y, double windowWidth, double windowHeight)
+        public void RecieveTrackerData(double X, double Y)
         {
             p_x = X;
             p_y = Y;
 
-            this.windowWidth = windowWidth;
-            this.windowHeight = windowHeight;
+            
         }
 
         public override bool Hit()

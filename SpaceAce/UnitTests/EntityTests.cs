@@ -80,7 +80,7 @@ namespace SpaceAce.UnitTests
         public void Hit_Player_Success()
         {
             GameController g = new GameController();
-            Player test = new Player(10, 10, 3, 5, g);
+            Player test = new Player(10, 10, 3, 5, g, "ship_image");
 
             test.cheating = true;
             Assert.IsFalse(test.Hit());
@@ -107,7 +107,7 @@ namespace SpaceAce.UnitTests
             GameController game = new GameController();
             game.winHeight = 200;
             game.winWidth = 200;
-            Player test = new Player(20, 20, 3, 5, game);
+            Player test = new Player(20, 20, 3, 5, game, "player1.png");
 
             test.cooldown = 20;
             test.bombCooldown = 20;
@@ -154,7 +154,7 @@ namespace SpaceAce.UnitTests
         [TestMethod]
         public void Activate_PowerUp_RapidFire_Success()
         {
-            Player test = new Player(10, 10, 3, 5, new GameController());
+            Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerup = PowerUp.RapidFire;
 
             test.Activate_powerup();
@@ -169,7 +169,7 @@ namespace SpaceAce.UnitTests
         [TestMethod]
         public void Activate_PowerUp_ExtraBomb_Success()
         {
-            Player test = new Player(10, 10, 3, 5, new GameController());
+            Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerup = PowerUp.ExtraBomb;
 
             test.Activate_powerup();
@@ -184,7 +184,7 @@ namespace SpaceAce.UnitTests
         [TestMethod]
         public void Activate_PowerUp_ExtraLife_Success()
         {
-            Player test = new Player(10, 10, 3, 5, new GameController());
+            Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerup = PowerUp.ExtraLife;
 
             test.Activate_powerup();
@@ -198,7 +198,7 @@ namespace SpaceAce.UnitTests
         [TestMethod]
         public void Activate_PowerUp_Triple_Success()
         {
-            Player test = new Player(10, 10, 3, 5, new GameController());
+            Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerup = PowerUp.TripleShot;
 
             test.Activate_powerup();
@@ -212,7 +212,7 @@ namespace SpaceAce.UnitTests
         [TestMethod]
         public void Activate_PowerUp_Empty_Success()
         {
-            Player test = new Player(10, 10, 3, 5, new GameController());
+            Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerup = PowerUp.Empty;
 
             test.Activate_powerup();
@@ -225,7 +225,7 @@ namespace SpaceAce.UnitTests
         [TestMethod]
         public void Activate_PowerUp_ExtraSpeed_Success()
         {
-            Player test = new Player(10, 10, 3, 5, new GameController());
+            Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerup = PowerUp.ExtraSpeed;
 
             test.Activate_powerup();
@@ -239,7 +239,7 @@ namespace SpaceAce.UnitTests
         [TestMethod]
         public void Activate_PowerUp_Invincible_Success()
         {
-            Player test = new Player(10, 10, 3, 5, new GameController());
+            Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerup = PowerUp.Invincible;
 
             test.Activate_powerup();
@@ -253,7 +253,7 @@ namespace SpaceAce.UnitTests
         [TestMethod]
         public void Deactivate_Powerup_Success()
         {
-            Player test = new Player(10, 10, 3, 5, new GameController());
+            Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerUpCounter = 400;
             test.rapid_fire = true;
             test.isInvinsible = true;
@@ -519,7 +519,7 @@ namespace SpaceAce.UnitTests
             GameController game = new GameController();
             game.current_Enemies = enemies;
 
-            Player test = new Player(10, 10, 4, 5, game);
+            Player test = new Player(10, 10, 4, 5, game, "player1.png");
             test.DropBomb();
 
             Assert.IsTrue(test.bombs == 4);
@@ -533,7 +533,7 @@ namespace SpaceAce.UnitTests
         public void Player_HitPlayer_Success()
         {
             GameController g = new GameController();
-            Player p = new Player(10, 10, 1, 5, g);
+            Player p = new Player(10, 10, 1, 5, g, "player1.png");
 
             Assert.IsFalse(p.HitPlayer(new Powerup(10, 10, PowerUp.ExtraBomb)));
 
@@ -555,7 +555,7 @@ namespace SpaceAce.UnitTests
         [TestMethod]
         public void Player_Fire_Success()
         {
-            Player p = new Player(10, 10, 3, 4, new GameController());
+            Player p = new Player(10, 10, 3, 4, new GameController(), "player1.png");
             p.Fire();
 
             Assert.IsTrue(p.FiredABullet == true);

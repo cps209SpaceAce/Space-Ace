@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace Model
 {
@@ -13,7 +14,7 @@ namespace Model
 
     {
         public bool wanderingbullets =false; // flag for sin and cos bullets. currently broken 
-        public bool triple = true;//flag for triple shot
+        public bool triple = false;//flag for triple shot
         public bool rapid_fire = true; //flag to engage rapid fire mode by reducing the cooldown
         public int cooldown = 0;
         public int bombCooldown = 0;
@@ -32,8 +33,9 @@ namespace Model
 
         private GameController game;
 
-        public Player(double X, double Y, int lives, int bombs, GameController flags) : base(X, Y)
+        public Player(double X, double Y, int lives, int bombs, GameController flags, string shipIMG) : base(X, Y)
         {
+            image = shipIMG;
             game = flags;
             this.lives = lives;
             this.bombs = bombs;

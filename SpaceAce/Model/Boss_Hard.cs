@@ -20,7 +20,7 @@ namespace Model
         {
             state = State.Start;
             og_X = 924;
-            og_Y = 350;
+            og_Y = 300;
             hitbox.Width = 100;
             hitbox.Height = 100;
         }
@@ -33,12 +33,12 @@ namespace Model
                 cooldown--;
             //TODO: movement logic for boss
             actionTimer += 0.01;
-            if (X > 750 && startflag)//Jo: use the windowHeight/windowWidth variables ^
+            if (X > 924 && startflag)//Jo: use the windowHeight/windowWidth variables ^
             {
                 X = Convert.ToInt32(X - (1 * speed));
                
             }
-            if (X <= 750)
+            if (X <= 924)
                 startflag = false;
 
             if (!startflag)
@@ -46,15 +46,15 @@ namespace Model
                 switch (dir)
                 {
                     case Direction.Left:
-                        x_axis -= 5;
-                        Y = (300 * Math.Sin(x_axis / 147) + og_Y);
+                        x_axis -= 10;
+                        Y = (300 * Math.Sin(x_axis / 147)) + og_Y;
                         X = og_X + x_axis;
                         if (X <= 0)
                             dir = Direction.Right;
                         break;
                     case Direction.Right:
-                        x_axis += 5;
-                        Y = (300 * Math.Sin(x_axis / 147) * (-1) + og_Y);
+                        x_axis += 10;
+                        Y = (-300 * Math.Sin(x_axis / 147)) + og_Y;
                         X = og_X + x_axis;
 
                         if (X >= 924)
@@ -85,31 +85,26 @@ namespace Model
                         break;
 
                 }
-                // after x == 950 ... change y V^
-
-                // action == 1 
-                //bossShoot(x,y,type)
             }
+            // after x == 950 ... change y V^
+
+            // action == 1 
+            //bossShoot(x,y,type)
             hitbox.X = Convert.ToInt32(X);
             hitbox.Y = Convert.ToInt32(Y);
         }
 
         private void start()
         {
-             if (Y < (p_y - 100))
-                Y = (Y + (0.5 * speed));
-            else if (Y > (p_y - 100))
-                Y = (Y - (0.5 * speed));
+            
             if (cooldown == 0)
             {
                 action = true;
-                targeted_slant_shot = true;
-                bullet_y = p_y;
+                fired_slanted_targeted_shot = true;
                 cooldown = reset;
             }
             else
-                targeted_slant_shot = false;
-            
+                fired_slanted_targeted_shot = false;
         }
 
         private void mid()
