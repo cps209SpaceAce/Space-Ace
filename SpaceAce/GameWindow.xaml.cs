@@ -75,7 +75,8 @@ namespace SpaceAce
         public DispatcherTimer timer;
         public bool boss = false;
         MediaPlayer gameMusic;
-        bool BossIsSpawned;
+        public bool BossIsSpawned = false;
+
 
 
         public GameWindow(Difficulty setDiff, bool isLoad, bool ischeating, string shipIMG) //Joanna: isLoad checks whether to load game or start new one
@@ -439,7 +440,6 @@ namespace SpaceAce
             {
                 gameCtrl.level = Level.Boss;
                 SpawnEntities();              // Spawn Entities
-
             }
             
             
@@ -470,7 +470,12 @@ namespace SpaceAce
 
             foreach (Icon ic in dead)
             {
+                if (ic.e is Boss)
+                {
+                    gameCtrl.gameResult = GameResult.Won;
+                }
                 icons.Remove(ic);
+                
             }
 
             // Update Score GUI
@@ -495,13 +500,22 @@ namespace SpaceAce
                 switch((newEntity as Powerup).type)
                 {
                     case PowerUp.Invincible:
+                        pngName = "star.png";
+                        break;                    
+                    case PowerUp.ExtraLife:
+                        pngName = "life.png";
+                        break;
+                    case PowerUp.ExtraBomb:
                         pngName = "shield.png";
                         break;
                     case PowerUp.ExtraSpeed:
-                        pngName = "star.png";
+                        pngName = "power.png";
                         break;
-                    case PowerUp.ExtraLife:
-                        pngName = "life.png";
+                    case PowerUp.RapidFire:
+                        pngName = "bullets.png";
+                        break;
+                    case PowerUp.TripleShot:
+                        pngName = "bullets2.png";
                         break;
                 }
 
@@ -521,7 +535,7 @@ namespace SpaceAce
         private void CheckGameStatus()
         {
 
-            if (gameCtrl.gameResult != GameResult.Running || gameCtrl.gameLevelTimer > 65) // IF WON/LOST
+            if (gameCtrl.gameResult != GameResult.Running) // IF WON/LOST
             {
 
                 gameCtrl.score += gameCtrl.player.bombs * 250;
@@ -547,19 +561,35 @@ namespace SpaceAce
             }
             else if (gameCtrl.gameLevelTimer > 30)
             {
-                //pbar_gamestatus.Value = gameCtrl.gameLevelTimer; == boss health 0/30
+                
                 gameCtrl.level = Level.Boss;
             }
             else if (gameCtrl.gameLevelTimer > 15)
             {
-                pbar_gamestatus.Value = gameCtrl.gameLevelTimer - 15;
+                
                 gameCtrl.level = Level.Level_2;
             }
-            else
-            {
-                pbar_gamestatus.Value = gameCtrl.gameLevelTimer;
+            
 
+            if (BossIsSpawned)
+            {
+                foreach(Entity ent in gameCtrl.current_Enemies)
+                {
+                    if (ent is Boss)
+                        pbar_gamestatus.Value = ent.health / (ent as Boss).max * 15;
+                }
+                
             }
+            else if(gameCtrl.level == Level.Level_1)
+            {
+                
+                pbar_gamestatus.Value = gameCtrl.gameLevelTimer;
+            }
+            else if (gameCtrl.level == Level.Level_2)
+            {
+                pbar_gamestatus.Value = gameCtrl.gameLevelTimer - 15;
+            }
+
         }
 
 
@@ -580,14 +610,7 @@ namespace SpaceAce
                 {
                     pngName = "asteroid.png";
                 }
-                else if (newEntity is Formation && (newEntity as Formation).Flightpath == pattern.Sin)
-                {
-                    pngName = "Ship 2.png";
-
-
-                    // NOT WORKING
-                }
-                else if (newEntity is Formation && (newEntity as Formation).Flightpath == pattern.Cos)
+                else if (newEntity is Formation)
                 {
                     pngName = "Ship 3.png";
 

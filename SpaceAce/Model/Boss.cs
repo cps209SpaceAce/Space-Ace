@@ -30,7 +30,7 @@ namespace Model
         public Boss(double X, double Y, int health, double winWidth, double winHeight) : base(X, Y)
         {
             this.health = health;
-            max = health;
+            this.max = health;
             actionTimer = 0;
             this.hitbox = new Rectangle(Convert.ToInt32(X), Convert.ToInt32(Y), 500, 300);
 
