@@ -13,7 +13,7 @@ namespace Model
     public enum MedimBossState { Start, Mid, End, Attack, Retreat }
     public class Boss : Entity, ISerialiable
     {
-       
+        public bool targeted_slant_shot = false;
         public bool action = false;
         public bool wall = false; // attack for boss creates a wall of small asteroids
         public double bullet_x = 750;

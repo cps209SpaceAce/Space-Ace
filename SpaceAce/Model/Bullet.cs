@@ -54,10 +54,12 @@ namespace Model
 
     public class Slanted_Bullet : Bullet
     {
+        
         public double slope; // segested values: -1 to go up | 1 to go down
         public Slanted_Bullet(double X, double Y, double slope) : base(X, Y)
         {
             this.slope = slope;
+           
         }
 
 
@@ -70,8 +72,9 @@ namespace Model
             }
             else
             {
-                X += 7 * direction;
-                Y += 5 * slope;
+                X += 15 * direction;
+                Y += slope * (15 * -direction);
+                
             }
 
             hitbox.X = Convert.ToInt32(X);

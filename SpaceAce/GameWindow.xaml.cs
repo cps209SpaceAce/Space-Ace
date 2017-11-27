@@ -251,6 +251,8 @@ namespace SpaceAce
                 if (ship is Boss)
                 {
                     Boss s = (Boss)ship;
+                    if (s.targeted_slant_shot)
+                        Make_Boss_Slantedshot(s);
                     if (s.wall)
                         Make_bosswall(s);
                     if(s.FiredABullet)
@@ -272,6 +274,24 @@ namespace SpaceAce
             }
 
             
+
+        }
+
+        public void Make_Boss_Slantedshot(Boss ship)
+        {
+            double px = ship.p_x, py = ship.p_y;
+            double slope = (ship.Y - py) / (ship.X - px);
+            int direction = -1;
+            if (px > ship.X)
+                direction = 1;
+            Bullet b = new Slanted_Bullet(ship.X, ship.Y, (-slope)) { id = ID.Hostile};
+            
+            b.direction = direction;
+            Image i = new Image() { Source = new BitmapImage(new Uri("images/" + "C_bullet.png", UriKind.Relative)), Width = 20, Height = 20 };
+            WorldCanvas.Children.Add(i);
+            gameCtrl.current_Enemies.Add(b);
+            icons.Add(new Icon {i = i, e = b});
+
 
         }
 
