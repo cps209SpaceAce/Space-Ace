@@ -74,6 +74,8 @@ namespace SpaceAce
         Button btnSAVE;
         public DispatcherTimer timer;
         public bool boss = false;
+        MediaPlayer gameMusic;
+        public bool BossIsSpawned = false;
 
 
         public GameWindow(Difficulty setDiff, bool isLoad, bool ischeating, string shipIMG) //Joanna: isLoad checks whether to load game or start new one
