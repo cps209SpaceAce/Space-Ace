@@ -44,7 +44,7 @@ namespace SpaceAce
                         }
                         else
                         {
-                            i.Source = new BitmapImage(new Uri("images/" + p.image, UriKind.Relative));
+                            i.Source = new BitmapImage(new Uri("Images/PlayerShips/" + p.image, UriKind.Relative));
                         }
 
                     }
@@ -76,12 +76,12 @@ namespace SpaceAce
         public SoundManager soundPlayer;
 
         
-        public GameWindow(Difficulty setDiff, bool isLoad, bool ischeating) //Joanna: isLoad checks whether to load game or start new one
+        public GameWindow(Difficulty setDiff, bool isLoad, bool ischeating, string shipIMG) //Joanna: isLoad checks whether to load game or start new one
         {
             InitializeComponent();
             CanvasBorder.BorderThickness = new Thickness(2);
             // Load from levels
-            gameCtrl = new GameController(setDiff, Width, Height, ischeating);
+            gameCtrl = new GameController(setDiff, Width, Height, ischeating, shipIMG);
             
 
             if (isLoad)
@@ -160,7 +160,7 @@ namespace SpaceAce
                 
                 if (ship != null)
                 {
-                    Image img = new Image() { Source = new BitmapImage(new Uri("images/" + imgname, UriKind.Relative)) };
+                    Image img = new Image() { Source = new BitmapImage(new Uri("Images/" + imgname, UriKind.Relative)) };
                     img.Width = ship.hitbox.Width;
                     img.Height = ship.hitbox.Height;
                     WorldCanvas.Children.Add(img);
@@ -182,7 +182,7 @@ namespace SpaceAce
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "spaceship-hi.png", UriKind.Relative)) };
+            Image img = new Image() { Source = new BitmapImage(new Uri("Images/PlayerShips/" + "player1.png", UriKind.Relative)) };
             WorldCanvas.Children.Add(img);
             img.Width = 50;
 

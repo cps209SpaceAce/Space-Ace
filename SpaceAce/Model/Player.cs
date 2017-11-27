@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace Model
 {
@@ -32,8 +33,9 @@ namespace Model
 
         private GameController game;
 
-        public Player(double X, double Y, int lives, int bombs, GameController flags) : base(X, Y)
+        public Player(double X, double Y, int lives, int bombs, GameController flags, string shipIMG) : base(X, Y)
         {
+            image = shipIMG;
             game = flags;
             this.lives = lives;
             this.bombs = bombs;

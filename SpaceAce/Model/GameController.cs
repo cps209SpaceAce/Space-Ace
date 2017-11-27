@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace Model
 {
@@ -63,9 +64,9 @@ namespace Model
         public double winHeight;
         public SoundManager soundPlayer;
 
-        public GameController(Difficulty passDiff, double windowWidth, double windowHeight, bool isCheating)
+        public GameController(Difficulty passDiff, double windowWidth, double windowHeight, bool isCheating, string shipIMG)
         {
-            player = new Player(50, 350, 3, 3, this);// Flags?
+            player = new Player(50, 350, 3, 3, this, shipIMG);// Flags?
             player.cheating = isCheating;
             //TODO: load level/save data from GameData
             // OR
@@ -81,7 +82,7 @@ namespace Model
         //no need to use this for anything else though
         public GameController()
         {
-            player = new Player(50, 350, 3, 3, this);
+            player = new Player(50, 350, 3, 3, this,"ship_image");
         }
 
 

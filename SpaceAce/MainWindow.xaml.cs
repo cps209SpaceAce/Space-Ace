@@ -27,6 +27,15 @@ namespace SpaceAce
         public bool isCheating = false;
         public Difficulty menuDiff = Difficulty.Easy;
 
+        int shipIndex = 0;
+        List<string> shipIMGS = new List<string>()
+        {
+            "player1.png",
+            "player2.png",
+            "player3.png",
+            "player4.png",
+            "player5.png"
+        };
 
 
 
@@ -54,13 +63,13 @@ namespace SpaceAce
         }
         private void btnNewGame_Click(object sender, RoutedEventArgs e)
         {
-            GameWindow gameWindow = new GameWindow(menuDiff, false, isCheating);
+            GameWindow gameWindow = new GameWindow(menuDiff, false, isCheating, shipIMGS[shipIndex]);
             gameWindow.Show();
         }
         private void btnLoadGame_Click(object sender, RoutedEventArgs e)
         {
             // Not menuDiff
-            GameWindow gameWindow = new GameWindow(menuDiff, true, isCheating);
+            GameWindow gameWindow = new GameWindow(menuDiff, true, isCheating , shipIMGS[shipIndex]);
             
             // Load Game
 
@@ -106,13 +115,39 @@ namespace SpaceAce
             if (isCheating)
             {
                 isCheating = false;
-                cheating.Content = "Cheat: false"; // False
+                cheating.Content = "Cheat: False"; // False
             }
             else
             {
                 isCheating = true;
-                cheating.Content = "Cheat: true"; // True
+                cheating.Content = "Cheat: True"; // True
             }
+        }
+
+        private void imgUP_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (shipIndex == shipIMGS.Count - 1)
+            {
+                shipIndex = 0;
+            }
+            else
+            {
+                shipIndex += 1;
+            }   
+            imgSHIP.Source = new BitmapImage(new Uri("images/playerships/" + shipIMGS[shipIndex], UriKind.Relative));
+        }
+
+        private void imgDOWN_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (shipIndex == 0)
+            {
+                shipIndex = shipIMGS.Count - 1;
+            }
+            else
+            {
+                shipIndex -= 1;
+            }
+            imgSHIP.Source = new BitmapImage(new Uri("images/playerships/" + shipIMGS[shipIndex], UriKind.Relative));
         }
     }
 }
