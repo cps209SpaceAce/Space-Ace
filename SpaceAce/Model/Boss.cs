@@ -80,7 +80,7 @@ namespace Model
 
         public override string Serialize()
         {
-            return "boss,base" + "," + X + "," + Y; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
+            return "boss,base" + "," + X + "," + Y +","+ health + "," + state; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
         }
     }
 

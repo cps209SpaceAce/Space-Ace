@@ -117,7 +117,7 @@ namespace Model
 
         public override string Serialize()
         {
-            return "boss,easy" + "," + X + "," + Y + "," + health + "," + state; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
+            return "boss,hard" + "," + X + "," + Y + "," + health + "," + state; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
         }
     }
 }

@@ -79,8 +79,6 @@ namespace Model
             winHeight = windowHeight;
         }
 
-        //written by Joanna, i need a blank slate for testing, 
-        //no need to use this for anything else though
         public GameController()
         {
             player = new Player(50, 350, 3, 3, this,"ship_image");
@@ -98,7 +96,6 @@ namespace Model
             {
                 if (ent != null)
                 {
-                    //added by Joanna
                     if (ent is Tracker)
                         (ent as Tracker).RecieveTrackerData(player.X, player.Y, winWidth / 2 + winWidth / 4); 
 

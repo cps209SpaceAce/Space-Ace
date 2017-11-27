@@ -98,10 +98,66 @@ namespace Model
                         }
                     }
                     result = new Powerup(Convert.ToDouble(des[1]), Convert.ToDouble(des[2]), p);
-
+                    return result;
                 }
                 else if (des[0] == "boss")
                 {
+                    if(des[1] == "base")
+                    {
+                        result = new Boss(Convert.ToDouble( des[2]), Convert.ToDouble(des[3]), Convert.ToInt32(des[4]), game.winWidth, game.winHeight);
+                        foreach (State val in Enum.GetValues(typeof(State)))
+                        {
+                            if (des[5] == val.ToString())
+                            {
+                                (result as Boss).state = val;
+                                break;
+                            }
+
+                            return result;
+                        }
+                    }
+                    else if(des[1]=="easy")
+                    {
+                        result = new Boss_Easy(Convert.ToDouble(des[2]), Convert.ToDouble(des[3]), Convert.ToInt32(des[4]), game.winWidth, game.winHeight);
+                        foreach (State val in Enum.GetValues(typeof(State)))
+                        {
+                            if (des[5] == val.ToString())
+                            {
+                                (result as Boss_Easy).state = val;
+                                break;
+                            }
+
+                            return result;
+                        }
+                    }
+                    else if (des[1] == "medium")
+                    {
+                        result = new Boss_Medium(Convert.ToDouble(des[2]), Convert.ToDouble(des[3]), Convert.ToInt32(des[4]), game.winWidth, game.winHeight);
+                        foreach (MState val in Enum.GetValues(typeof(MState)))
+                        {
+                            if (des[5] == val.ToString())
+                            {
+                                (result as Boss_Medium).currentState = val;
+                                break;
+                            }
+
+                            return result;
+                        }
+                    }
+                    else if (des[1] == "hard")
+                    {
+                        result = new Boss_Hard(Convert.ToDouble(des[2]), Convert.ToDouble(des[3]), Convert.ToInt32(des[4]), game.winWidth, game.winHeight);
+                        foreach (State val in Enum.GetValues(typeof(State)))
+                        {
+                            if (des[5] == val.ToString())
+                            {
+                                (result as Boss_Hard).state = val;
+                                break;
+                            }
+
+                            return result;
+                        }
+                    }
                 }
                 else
                 {

@@ -8,13 +8,13 @@ namespace Model
 {
     public enum MState { Start, Mid, End, Attack }
 
-    public class Boss_Medium : Boss //Jo's Boss, WIP
+    public class Boss_Medium : Boss 
     {
-        MState currentState;
+        public MState currentState;
         int dir = 1;
         int shootTimer = 0;
         bool shoot = false;
-        bool goingBack = false;
+        bool goingBackwards = false;
         bool isEntering = true;
         int reset = 60;
 
@@ -113,19 +113,19 @@ namespace Model
 
         private void Attack()
         {
-            if (!goingBack && X > 0)
+            if (!goingBackwards && X > 0)
             {
                 X = Convert.ToInt32(X - speed - 2);
                 return;
             }
-            goingBack = true;
+            goingBackwards = true;
 
 
             if (X <= windowWidth / 2)
                 X = Convert.ToInt32(X + speed + 2);
             else
             {
-                goingBack = false;
+                goingBackwards = false;
                 currentState = MState.Start;
             }
         }
