@@ -6,17 +6,18 @@ using System.Threading.Tasks;
 using Model;
 namespace Model
 {
+    public enum MState { Start, Mid, End, EasyAttack }
+
     public class Boss_Medium : Boss //Jo's Boss, WIP
     {
-        MedimBossState Mstate;
+        MState currentState;
         int dir = 1;
         int shootTimer = 0;
         bool shoot = false;
-        bool isAttacking = false;
         bool goingBack = false;
         public Boss_Medium(double X, double Y, int health) : base(X, Y, health)
         {
-            Mstate = MedimBossState.Start;
+            currentState = MState.Start;
         }
 
 
@@ -29,31 +30,28 @@ namespace Model
 
 
 
-            switch (Mstate)
+            switch (currentState)
             {
-                case MedimBossState.Start:
+                case MState.Start:
                     start();
                     if (health < (max / 2))
-                        Mstate = MedimBossState.Mid;
+                        currentState = MState.Mid;
                     else
                         if (random.Next(0, 500) == 4)
-                        Mstate = MedimBossState.Attack;
+                        currentState = MState.EasyAttack;
 
                     break;
-                case MedimBossState.Mid:
+                case MState.Mid:
                     mid();
                     if (health < (max / .75f))
-                        Mstate = MedimBossState.End;
+                        currentState = MState.End;
                     break;
-                case MedimBossState.End:
+                case MState.End:
                     End();
                     break;
 
-                case MedimBossState.Attack:
+                case MState.EasyAttack:
                     Attack();
-                    break;
-
-                case MedimBossState.Retreat:
                     break;
             }
 
@@ -80,7 +78,7 @@ namespace Model
 
             if (shoot)
             {
-                //FiredABullet = true;
+                FiredABullet = true;
                 shootTimer++;
 
                 if (shootTimer >= 50)
@@ -93,38 +91,33 @@ namespace Model
             }
         }
 
-        private void mid() { }
+        private void mid() {}
 
         private void End() { }
 
         private void Attack()
         {
-
-            if (isAttacking)//not really using a state machine here.. kinda imbarrassing.
+            if (!goingBack && X > 0)
             {
-                if (!goingBack && X > 0)
-                    X = Convert.ToInt32(X - speed);
-                else
-                    goingBack = true;
+                X = Convert.ToInt32(X - speed);
+                return;
+            }
+            goingBack = true;
 
-                if (goingBack)
-                {
-                    if (X <= windowWidth / 2 + windowWidth / 4)
-                        X = Convert.ToInt32(X + speed);
-                    else
-                    {
-                        isAttacking = false;
-                        goingBack = false;
-                    }
 
-                }
+            if (X <= windowWidth / 2 + windowWidth / 4)
+                X = Convert.ToInt32(X + speed);
+            else
+            {
+                goingBack = false;
+                currentState = MState.Start;
             }
         }
 
 
         public override string Serialize()
         {
-            return "boss,medium" + "," + X + "," + Y + "," + health; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
+            return "boss,medium" + "," + X + "," + Y + "," + health + "," + currentState; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
         }
     }
 }
