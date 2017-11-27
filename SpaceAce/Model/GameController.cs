@@ -114,10 +114,22 @@ namespace Model
                     
                     
                         ent.UpdatePosition();
+                    if (ent is Boss)
+                    {
+                        if ((ent as Boss).action || ent.FiredABullet)
+                        {
+                            ships_that_fired.Add(ent);
+                            (ent as Boss).action = false;
+                        }
+
+                    }
+                    else
+                    {
                         if (ent.FiredABullet)
                             ships_that_fired.Add(ent);
                         if (!ent.alive)
                             leftscreen.Add(ent);
+                    }
                     
                 }
             }
@@ -161,17 +173,19 @@ namespace Model
 
                         soundPlayer.PlayNoise(SoundType.HurtPlayer);
                     }
-
-                    if (enemy.Hit())
-                        dead_Badguy.Add(enemy);
-                    if (enemy is Powerup)
+                    if (!(enemy is Boss))
                     {
-                        player.powerup = (enemy as Powerup).type; // Added by Jo
+                        if (enemy.Hit())
+                            dead_Badguy.Add(enemy);
+                        if (enemy is Powerup)
+                        {
+                            player.powerup = (enemy as Powerup).type; // Added by Jo
 
-                        if ((enemy as Powerup).type == PowerUp.ExtraLife || (enemy as Powerup).type == PowerUp.ExtraBomb )
-                            player.Activate_powerup();
+                            if ((enemy as Powerup).type == PowerUp.ExtraLife || (enemy as Powerup).type == PowerUp.ExtraBomb)
+                                player.Activate_powerup();
 
-                        dead_Badguy.Add(enemy);
+                            dead_Badguy.Add(enemy);
+                        }
                     }
                 }
             }
@@ -186,6 +200,7 @@ namespace Model
                         bullet.Hit();
                         if (enemy.Hit())
                         {
+                            if(enemy is Boss)
                             soundPlayer.PlayNoise(SoundType.HurtEnemy);
                             dead_Badguy.Add(enemy);
                             score += 50 * 1; // TODO: Based on DIff

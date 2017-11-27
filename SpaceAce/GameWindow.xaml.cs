@@ -250,7 +250,11 @@ namespace SpaceAce
             {
                 if (ship is Boss)
                 {
-                    Make_Boss_Bullet((Boss)ship);
+                    Boss s = (Boss)ship;
+                    if (s.wall)
+                        Make_bosswall(s);
+                    if(s.FiredABullet)
+                        Make_Boss_Bullet(s);
                     return;
                 }
 
@@ -271,6 +275,28 @@ namespace SpaceAce
 
         }
 
+        public void Make_bosswall(Boss ship)
+        {
+            double by = ship.p_y;
+            by = by -100;
+            for (int i = 0; i < 10; i++)
+            {
+                Entity a1 = new Asteroid(700, by+(i*20));
+                a1.health = 2;
+                a1.hitbox.Width = 20;
+                a1.hitbox.Height = 20;
+                gameCtrl.current_Enemies.Add(a1);
+                Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "asteroid.png", UriKind.Relative)) };
+                img.Width = 20;
+                img.Height = 20;
+                WorldCanvas.Children.Add(img);
+                icons.Add(new Icon() {e = a1, i = img });
+            }
+
+          
+
+        }
+
         public void Make_Boss_Bullet(Boss boss)
         {
             
@@ -278,7 +304,7 @@ namespace SpaceAce
             double x = boss.bullet_x;
             Bullet b = new Bullet(x, y);
             b.direction = -1;
-            gameCtrl.player_fire.Add(b);
+            gameCtrl.current_Enemies.Add(b);
             Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "C_bullet.png", UriKind.Relative)) };
             img.Width = 20;
             Icon i = new Icon() { i = img, e = b };

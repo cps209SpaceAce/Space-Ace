@@ -8,9 +8,13 @@ using System.Threading.Tasks;
 namespace Model
 {
     public enum State { Start, Mid, End }
+    //public enum BossAction {Fire, Wall }
     public enum MedimBossState { Start, Mid, End, Attack, Retreat }
     public class Boss : Entity, ISerialiable
     {
+       
+        public bool action = false;
+        public bool wall = false; // attack for boss creates a wall of small asteroids
         public double bullet_x = 750;
         public double bullet_y = 300;
         public double p_x = 0;
@@ -83,13 +87,15 @@ namespace Model
 
 
 
-    public class Boss_Easy : Boss
+    public class Boss_Easy : Boss // Noah's Boss
     {
+        int reset = 50;
 
 
         public Boss_Easy(double X, double Y, int health) : base(X, Y, health)
         {
             state = State.Start;
+            
         }
 
 
@@ -110,16 +116,22 @@ namespace Model
             {
                 case State.Start:
                     start();
-                    if (health > (max / 2))
+                    if (health < (max / 2))
+                    {
                         state = State.Mid;
+                        reset = 50;
+                    }
                     break;
                 case State.Mid:
                     mid();
-                    if (health > (max / .75))
+                    if (health < (max / .75))
+                    {
                         state = State.End;
+                        reset = 25;
+                    }
                     break;
                 case State.End:
-                    End();
+                    mid();
                     break;
 
             }
@@ -133,12 +145,42 @@ namespace Model
 
         private void start()
         {
-            FiredABullet = true;
+            if (health < (max / 4 * 3) && state == State.Start)
+            {
+                reset = 25;
+            }
+            
+            
+                if (Y < (p_y - 100))
+                    Y = (Y + (0.5 * speed));
+                else if (Y > (p_y - 100))
+                    Y = (Y - (0.5 * speed));
+                if (cooldown == 0)
+                {
+                    action = true;
+                    FiredABullet = true;
+                    bullet_y = p_y;
+                    cooldown = reset;
+                }
+                else
+                    FiredABullet = false;
+            
         }
 
-        private void mid() { }
+        private void mid()
+        {
+            if (actionTimer > 0.75)
+            {
+                actionTimer = 0;
+                wall = true;
+                action = true;
+            }
+            else
+                wall = false;
+            start();
+        }
 
-        private void End() { }
+     
 
 
         public override string Serialize()
