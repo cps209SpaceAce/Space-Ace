@@ -237,7 +237,7 @@ namespace Model
         }
         public override string Serialize()
         {
-            return X + "," + Y + "," + powerup + "," + lives + "," + bombs + "," + isPoweredUp + "," + powerUpCounter + "," + cheating;
+            return X + "," + Y + "," + powerup + "," + lives + "," + bombs + "," + isPoweredUp + "," + powerUpCounter + "," + cheating + "," + image;
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Model
 
     class Levels
     {
-       
+
         public static Entity Level_returnPowerUp()
         {
             Powerup output = null;
@@ -54,7 +54,7 @@ namespace Model
             return output;
         }
 
-        
+
 
         public static Entity returnLevel_1(Difficulty currentDiff)
         {
@@ -179,4 +179,5 @@ namespace Model
             return new Boss(1200, 300, 30);
         }
     }
+
 }

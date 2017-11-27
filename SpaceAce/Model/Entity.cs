@@ -115,7 +115,6 @@ namespace Model
                 result = new Player(Convert.ToDouble(des[0]), Convert.ToDouble(des[1]), Convert.ToInt32(des[3]), Convert.ToInt32(des[4]), game, "SHIP_IMAGE");
 
 
-
                 foreach (PowerUp val in Enum.GetValues(typeof(PowerUp)))
                 {
                     if (des[2] == val.ToString())
@@ -136,6 +135,8 @@ namespace Model
                     (result as Player).cheating = false;
 
                 (result as Player).powerUpCounter = Convert.ToDouble(des[6]);
+                (result as Player).image = des[7];
+
             }
             else if (type == "playerBullet")
             {
