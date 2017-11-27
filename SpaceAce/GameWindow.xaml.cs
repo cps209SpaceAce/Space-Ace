@@ -44,7 +44,7 @@ namespace SpaceAce
                         }
                         else
                         {
-                            i.Source = new BitmapImage(new Uri("images/" + p.image, UriKind.Relative));
+                            i.Source = new BitmapImage(new Uri("Images/PlayerShips/" + p.image, UriKind.Relative));
                         }
 
                     }
@@ -69,9 +69,6 @@ namespace SpaceAce
 
         public int spawnCounter = 0;
 
-        bool boss = false;
-        
-
         public bool isPaused = false;
         Button btnQUIT;
         Button btnSAVE;
@@ -79,12 +76,12 @@ namespace SpaceAce
         public SoundManager soundPlayer;
 
         
-        public GameWindow(Difficulty setDiff, bool isLoad, bool ischeating) //Joanna: isLoad checks whether to load game or start new one
+        public GameWindow(Difficulty setDiff, bool isLoad, bool ischeating, string shipIMG) //Joanna: isLoad checks whether to load game or start new one
         {
             InitializeComponent();
             CanvasBorder.BorderThickness = new Thickness(2);
             // Load from levels
-            gameCtrl = new GameController(setDiff, Width, Height, ischeating);
+            gameCtrl = new GameController(setDiff, Width, Height, ischeating, shipIMG);
             
 
             if (isLoad)
@@ -128,18 +125,11 @@ namespace SpaceAce
                 if (ship is Asteroid)
                 { imgname = "asteroid.png"; }
                 else if (ship is AI)
-                {
+                { 
                     if (ship is Mine)
-                    { imgname = "mine.png"; }
+                        { imgname = "mine.png"; }
                     else if (ship is Tracker)
-                    { imgname = "ship 4.png"; }
-                    else if (ship is Formation)
-                    {
-                        if (ship.Flightpath == pattern.Sin)
-                            imgname = "ship 2.png";
-                        else
-                            imgname = "ship 3.png";
-                    }
+                        { imgname = "ship 4.png"; }
                     else
                         imgname = "Ship 1.png"; }
                 else if (ship is Bullet)
@@ -151,16 +141,16 @@ namespace SpaceAce
                     switch (power.type)
                     {
                         case PowerUp.ExtraLife:
-                            { imgname = "Powerup/life.png"; }
+                            { imgname = "Powerup\\life.png"; }
                             break;
                         case PowerUp.Invincible:
-                            { imgname = "Powerup/shield.png"; }
+                            { imgname = "Powerup\\shield.png"; }
                             break;
                         case PowerUp.ExtraSpeed:
-                            { imgname = "Powerup/power.png"; }
+                            { imgname = "Powerup\\power.png"; }
                             break;
                         default:
-                            { imgname = "Powerup/star.png"; }
+                            { imgname = "Powerup\\star.png"; }
                             break;
 
                     }
@@ -170,7 +160,7 @@ namespace SpaceAce
                 
                 if (ship != null)
                 {
-                    Image img = new Image() { Source = new BitmapImage(new Uri("images/" + imgname, UriKind.Relative)) };
+                    Image img = new Image() { Source = new BitmapImage(new Uri("Images/" + imgname, UriKind.Relative)) };
                     img.Width = ship.hitbox.Width;
                     img.Height = ship.hitbox.Height;
                     WorldCanvas.Children.Add(img);
@@ -192,8 +182,7 @@ namespace SpaceAce
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
-            Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "spaceship-hi.png", UriKind.Relative)) };
+            Image img = new Image() { Source = new BitmapImage(new Uri("Images/PlayerShips/" + "player1.png", UriKind.Relative)) };
             WorldCanvas.Children.Add(img);
             img.Width = 50;
 
@@ -203,7 +192,8 @@ namespace SpaceAce
 
             soundPlayer = new SoundManager();
 
-
+            pbar_gamestatus.Minimum = 0;
+            pbar_gamestatus.Maximum = 15;
 
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Tick += Timer_Tick;
@@ -248,18 +238,6 @@ namespace SpaceAce
             }
             else
             {
-                if (ship is Boss)
-                {
-                    Boss s = (Boss)ship;
-                    if (s.targeted_slant_shot)
-                        Make_Boss_Slantedshot(s);
-                    if (s.wall)
-                        Make_bosswall(s);
-                    if(s.FiredABullet)
-                        Make_Boss_Bullet(s);
-                    return;
-                }
-
                 soundPlayer.PlayNoise(SoundType.Shoot2);
                 double y = ship.Y + 10;
                 double x = ship.X - 2;
@@ -275,62 +253,6 @@ namespace SpaceAce
 
             
 
-        }
-
-        public void Make_Boss_Slantedshot(Boss ship)
-        {
-            double px = ship.p_x, py = ship.p_y;
-            double slope = (ship.Y - py) / (ship.X - px);
-            int direction = -1;
-            if (px > ship.X)
-                direction = 1;
-            Bullet b = new Slanted_Bullet(ship.X, ship.Y, (-slope)) { id = ID.Hostile};
-            
-            b.direction = direction;
-            Image i = new Image() { Source = new BitmapImage(new Uri("images/" + "C_bullet.png", UriKind.Relative)), Width = 20, Height = 20 };
-            WorldCanvas.Children.Add(i);
-            gameCtrl.current_Enemies.Add(b);
-            icons.Add(new Icon {i = i, e = b});
-
-
-        }
-
-        public void Make_bosswall(Boss ship)
-        {
-            double by = ship.p_y;
-            by = by -100;
-            for (int i = 0; i < 10; i++)
-            {
-                Entity a1 = new Asteroid(700, by+(i*20));
-                a1.health = 2;
-                a1.hitbox.Width = 20;
-                a1.hitbox.Height = 20;
-                gameCtrl.current_Enemies.Add(a1);
-                Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "asteroid.png", UriKind.Relative)) };
-                img.Width = 20;
-                img.Height = 20;
-                WorldCanvas.Children.Add(img);
-                icons.Add(new Icon() {e = a1, i = img });
-            }
-
-          
-
-        }
-
-        public void Make_Boss_Bullet(Boss boss)
-        {
-            
-            double y = boss.bullet_y;
-            double x = boss.bullet_x;
-            Bullet b = new Bullet(x, y);
-            b.direction = -1;
-            gameCtrl.current_Enemies.Add(b);
-            Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "C_bullet.png", UriKind.Relative)) };
-            img.Width = 20;
-            Icon i = new Icon() { i = img, e = b };
-            i.update();
-            WorldCanvas.Children.Add(img);
-            icons.Add(i);
         }
 
         public void Make_TripleShot(Entity p)
@@ -375,7 +297,7 @@ namespace SpaceAce
 
         }
 
-        public void Make_HelixShot(Entity ship) //Working: Noah Mansfield
+        public void Make_HelixShot(Entity ship) //broken: Noah Mansfield
         {
             if (ship is Player)
             {
@@ -383,19 +305,18 @@ namespace SpaceAce
                 double y = ship.Y + 10;
                 double x = ship.X + 50;
 
+                Wandering_Bullet b_cos = new Wandering_Bullet(x, y, pattern.Sin);
                 Wandering_Bullet b_sin = new Wandering_Bullet(x, y, pattern.Sin);
-                Wandering_Bullet b_sindown = new Wandering_Bullet(x, y, pattern.Sindown);
-               
+                gameCtrl.player_fire.Add(b_cos);
                 gameCtrl.player_fire.Add(b_sin);
-                gameCtrl.player_fire.Add(b_sindown);
 
                 Image img_cos = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
                 Image img_sin = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
                 img_sin.Width = 20;
                 img_cos.Width = 20;
 
-                Icon i_cos = new Icon() { i = img_cos, e = b_sin };
-                Icon i_sin = new Icon() { i = img_sin, e = b_sindown };
+                Icon i_cos = new Icon() { i = img_cos, e = b_cos };
+                Icon i_sin = new Icon() { i = img_sin, e = b_sin };
                 i_cos.update();
                 i_sin.update();
 
@@ -418,8 +339,8 @@ namespace SpaceAce
 
             gameCtrl.player.UpdatePosition(); // Update the Player Positions
             List<Entity> fired = gameCtrl.UpdateWorld();           // Update the Model. fired: list of ships that fired 
-
             
+
             CheckGameStatus();
             if(gameCtrl.gameLevelTimer < 60)
             {
@@ -427,18 +348,9 @@ namespace SpaceAce
             }
             else
             {
-                //if (!boss)
-                //{
-                //    // First Time Spawn Boss
-                //    Boss big_boss = new Boss(1000, 350, 1000);
-                //    Image boss_image = new Image() { Source = new BitmapImage(new Uri("Images/"+big_boss.img, UriKind.Relative)) };
-                //    boss_image.Width = big_boss.hitbox.Width;
-                //    boss_image.Height = big_boss.hitbox.Height;
-                //    gameCtrl.current_Enemies.Add(big_boss);
-                //    icons.Add(new Icon {e = big_boss, i = boss_image });
-                //    boss = true;
-                //}
-                
+                // First Time Spawn Boss
+                Boss bob = new Boss(1000, 350, 1000);
+                bob.UpdatePosition();
             }
             
             SpawnPowerUp();
@@ -518,7 +430,7 @@ namespace SpaceAce
         private void CheckGameStatus()
         {
 
-            if (gameCtrl.gameResult != GameResult.Running || gameCtrl.Boss_is_dead) // IF WON/LOST
+            if (gameCtrl.gameResult != GameResult.Running || gameCtrl.gameLevelTimer > 65) // IF WON/LOST
             {
 
                 gameCtrl.score += gameCtrl.player.bombs * 250;
@@ -542,13 +454,20 @@ namespace SpaceAce
                 this.Close(); // Closing GameWindow
 
             }
-            else if (gameCtrl.gameLevelTimer > 60)
-            {
-                gameCtrl.level = Level.Boss;
-            }
             else if (gameCtrl.gameLevelTimer > 30)
             {
+                //pbar_gamestatus.Value = gameCtrl.gameLevelTimer; == boss health 0/30
+                gameCtrl.level = Level.Boss;
+            }
+            else if (gameCtrl.gameLevelTimer > 15)
+            {
+                pbar_gamestatus.Value = gameCtrl.gameLevelTimer - 15;
                 gameCtrl.level = Level.Level_2;
+            }
+            else
+            {
+                pbar_gamestatus.Value = gameCtrl.gameLevelTimer;
+
             }
         }
 
@@ -557,10 +476,10 @@ namespace SpaceAce
         private void SpawnEntities()
         {
 
-            if (spawnCounter > 25 && !boss)
+            if (spawnCounter > 25)
             {
                 spawnCounter = 0;
-                Entity newEntity = Levels.Level_reuturnEntity(gameCtrl.difficulty, Level.Boss);
+                Entity newEntity = Levels.Level_reuturnEntity(gameCtrl.difficulty, gameCtrl.level);
                 gameCtrl.current_Enemies.Add(newEntity); // Add to Model
                 
                 string pngName = "";
@@ -569,12 +488,13 @@ namespace SpaceAce
                 {
                     pngName = "asteroid.png";
                 }
-                else if (newEntity is Formation)
+                else if (newEntity is Formation && newEntity.Flightpath == pattern.Sin)
                 {
-                    if (((Formation)newEntity).Flightpath == pattern.Sin)
-                        pngName = "Ship 2.png";
-                    else
-                        pngName = "Ship 3.png";
+                    pngName = "Ship 2.png";
+                }
+                else if (newEntity is Formation && newEntity.Flightpath == pattern.Cos)
+                {
+                    pngName = "Ship 3.png";
                 }
                 else if (newEntity is Mine)
                 {
@@ -587,11 +507,6 @@ namespace SpaceAce
                 else if (newEntity is AI)
                 {
                     pngName = "Ship 1.png";
-                }
-                else if (newEntity is Boss)
-                {
-                    pngName = "UFO.png";
-                    boss = true;
                 }
 
                 Image img = new Image() { Source = new BitmapImage(new Uri("images/" + pngName, UriKind.Relative)) };
@@ -608,7 +523,6 @@ namespace SpaceAce
             }
             else
             {
-                
                 ++spawnCounter;
             }
        

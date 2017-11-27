@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace Model
 {
@@ -48,7 +49,6 @@ namespace Model
         public List<Entity> enemie_Que = new List<Entity>();
         public Player player;
         public List<Bullet> player_fire = new List<Bullet>();
-        public bool Boss_is_dead = false;
         public GameResult gameResult;
         //pre-game setup
         public Level level;
@@ -64,9 +64,9 @@ namespace Model
         public double winHeight;
         public SoundManager soundPlayer;
 
-        public GameController(Difficulty passDiff, double windowWidth, double windowHeight, bool isCheating)
+        public GameController(Difficulty passDiff, double windowWidth, double windowHeight, bool isCheating, string shipIMG)
         {
-            player = new Player(50, 350, 3, 3, this);// Flags?
+            player = new Player(50, 350, 3, 3, this, shipIMG);// Flags?
             player.cheating = isCheating;
             //TODO: load level/save data from GameData
             // OR
@@ -82,12 +82,7 @@ namespace Model
         //no need to use this for anything else though
         public GameController()
         {
-            player = new Player(50, 350, 3, 3, this);
-            soundPlayer = new SoundManager();
-            winWidth = 2000;
-            winHeight = 2000;
-            difficulty = Difficulty.Easy;
-            player.cheating = false;
+            player = new Player(50, 350, 3, 3, this,"ship_image");
         }
 
 
@@ -109,28 +104,12 @@ namespace Model
                     if (ent is Mine)
                         (ent as Mine).RecieveTrackerData(player.X, player.Y); //the 4th quarter of the window
 
-                    if (ent is Boss)
-                        (ent as Boss).RecieveTrackerData(player.X, player.Y, winHeight, winWidth );
-                    
-                    
-                        ent.UpdatePosition();
-                    if (ent is Boss)
-                    {
-                        if ((ent as Boss).action || ent.FiredABullet)
-                        {
-                            ships_that_fired.Add(ent);
-                            (ent as Boss).action = false;
-                        }
 
-                    }
-                    else
-                    {
-                        if (ent.FiredABullet)
-                            ships_that_fired.Add(ent);
-                        if (!ent.alive)
-                            leftscreen.Add(ent);
-                    }
-                    
+                    ent.UpdatePosition();
+                    if (ent.FiredABullet)
+                        ships_that_fired.Add(ent);
+                    if (!ent.alive)
+                        leftscreen.Add(ent);
                 }
             }
 
@@ -173,19 +152,18 @@ namespace Model
 
                         soundPlayer.PlayNoise(SoundType.HurtPlayer);
                     }
-                    if (!(enemy is Boss))
+
+                    if (enemy.Hit())
+                        dead_Badguy.Add(enemy);
+                    if (enemy is Powerup)
                     {
-                        if (enemy.Hit())
-                            dead_Badguy.Add(enemy);
-                        if (enemy is Powerup)
-                        {
-                            player.powerup = (enemy as Powerup).type; // Added by Jo
+                        player.powerup = (enemy as Powerup).type; // Added by Jo
 
-                            if ((enemy as Powerup).type == PowerUp.ExtraLife || (enemy as Powerup).type == PowerUp.ExtraBomb)
-                                player.Activate_powerup();
+                        if ((enemy as Powerup).type == PowerUp.ExtraLife ||
+                            (enemy as Powerup).type == PowerUp.ExtraBomb )
+                            player.Activate_powerup();
 
-                            dead_Badguy.Add(enemy);
-                        }
+                        dead_Badguy.Add(enemy);
                     }
                 }
             }
@@ -200,14 +178,13 @@ namespace Model
                         bullet.Hit();
                         if (enemy.Hit())
                         {
-                            if(enemy is Boss)
                             soundPlayer.PlayNoise(SoundType.HurtEnemy);
                             dead_Badguy.Add(enemy);
                             score += 50 * 1; // TODO: Based on DIff
                             if (enemy is Powerup)
                             {
                                 player.powerup = (enemy as Powerup).type; // Added by Jo // copyed Noah
-                                if ((enemy as Powerup).type == PowerUp.ExtraLife || (enemy as Powerup).type == PowerUp.ExtraBomb)
+                                if ((enemy as Powerup).type == PowerUp.ExtraLife)
                                     player.Activate_powerup();
                             }
                         }
@@ -229,24 +206,15 @@ namespace Model
         /// </summary>
         public void Bomb()
         {
-            Entity boss = null;
             soundPlayer.PlayNoise(SoundType.Bomb);
             foreach (Entity e in current_Enemies)
             {
                 this.score += 50;
                 e.alive = false;
-                if (e is Boss)
-                {
-                    e.alive = true;
-                    e.Hit(); //damage the boss
-                    boss = e;
-                }
             }
 
 
             current_Enemies = new List<Entity>();
-            if(boss != null)
-                current_Enemies.Add(boss);
         }
 
         //-----------  Load - Save  ------------//
@@ -261,17 +229,7 @@ namespace Model
                 writer.WriteLine(level + "," + score + "," + base_Speed + "," + gameLevelTimer); //add timers
                 writer.WriteLine("[end]");
 
-                if (player != null)
-                {
-                    writer.WriteLine("[player]");
-                    writer.WriteLine(player.Serialize());
-                    writer.WriteLine("[end]");
-                }
-
-                if (current_Enemies == null || player_fire == null)
-                    return;
-
-                if (current_Enemies.Count > 0)
+                if (current_Enemies != null && current_Enemies.Count > 0)
                 {
                     writer.WriteLine("[enemies]");
                     for (int i = 0; i < current_Enemies.Count; ++i)
@@ -279,7 +237,14 @@ namespace Model
                     writer.WriteLine("[end]");
                 }
 
-                if (player_fire.Count > 0)
+                if (player != null)
+                {
+                    writer.WriteLine("[player]");
+                    writer.WriteLine(player.Serialize());
+                    writer.WriteLine("[end]");
+                }
+
+                if (player_fire != null && player_fire.Count > 0)
                 {
                     writer.WriteLine("[playerBullets]");
                     for (int i = 0; i < player_fire.Count; ++i)
