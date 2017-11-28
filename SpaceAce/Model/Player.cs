@@ -91,7 +91,6 @@ namespace Model
         void Deactivate_Powerup()
         {
             powerUpCounter = 0;
-            isInvincible = false;
             speed = baseSpeed;
             isPoweredUp = false;
             triple = false;
@@ -148,7 +147,7 @@ namespace Model
                 return false; //invinsibility
             }
 
-
+            
             //TODO: remove one life(ship destroyed)
 
             //TODO: return true(ship destroyed)
@@ -161,6 +160,7 @@ namespace Model
             if (Lives == 0)
                 game.gameResult = GameResult.Lost;
 
+            Deactivate_Powerup();
             return true;
         }
 
