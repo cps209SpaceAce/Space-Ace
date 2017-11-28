@@ -443,7 +443,7 @@ namespace SpaceAce
             CheckGameStatus();
             if(!BossIsSpawned)
             {
-                gameCtrl.level = Level.Boss;
+              
                 SpawnEntities();              // Spawn Entities
             }
             
