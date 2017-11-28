@@ -227,8 +227,10 @@ namespace Model
             if (isPoweredUp) {
                 powerUpCounter++;
                 //Console.WriteLine("I AM POWERED UP");
-                if (powerUpCounter >= 5000) 
-                    Deactivate_Powerup();      
+                if (powerUpCounter >= 5000) { 
+                    this.isInvincible = false;
+                    this.powerUpCounter = 0;
+                }
             }
 
             hitbox.X = Convert.ToInt32(X);
