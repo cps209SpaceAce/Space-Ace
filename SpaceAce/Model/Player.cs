@@ -169,7 +169,7 @@ namespace Model
             if (Lives == 0)
                 game.gameResult = GameResult.Lost;
 
-            Deactivate_Powerup();
+           Deactivate_Powerup();
             return true;
         }
 

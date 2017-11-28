@@ -129,16 +129,17 @@ namespace SpaceAce
                 if (ship is Asteroid)
                 { imgname = "asteroid.png"; }
                 else if (ship is AI)
-                { 
+                {
                     if (ship is Mine)
-                        { imgname = "mine.png"; }
+                    { imgname = "mine.png"; }
                     else if (ship is Tracker)
-                        { imgname = "ship 4.png"; }
+                    { imgname = "ship 4.png"; }
                     else
-                        imgname = "Ship 1.png"; }
+                        imgname = "Ship 1.png";
+                }
                 else if (ship is Bullet)
                 { imgname = "C_bullet.png"; }
-               
+
                 else if (ship is Powerup)
                 {
                     Powerup power = ship as Powerup;
@@ -159,6 +160,15 @@ namespace SpaceAce
                             // ADD FOR OTHER
                     }
 
+                }
+                else if (ship is Boss)
+                {
+                    if (ship is Boss_Easy)
+                    { imgname = "Powerup\\UFO.png"; }
+                    if (ship is Boss_Medium)
+                    { imgname = "Powerup\\UFO.png"; }
+                    if (ship is Boss_Hard)
+                    { imgname = "Powerup\\UFO.png"; }
                 }
                 
                 

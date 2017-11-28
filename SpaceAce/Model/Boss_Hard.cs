@@ -60,31 +60,18 @@ namespace Model
                         if (X >= 924)
                             dir = Direction.Left;
                         break;
+
                 }
 
-                switch (state)
+                if (cooldown == 0)
                 {
-                    case State.Start:
-                        start();
-                        if (health < (max / 2))
-                        {
-                            state = State.Mid;
-                            reset = 50;
-                        }
-                        break;
-                    case State.Mid:
-                        mid();
-                        if (health < (max / .75))
-                        {
-                            state = State.End;
-                            reset = 25;
-                        }
-                        break;
-                    case State.End:
-                        mid();
-                        break;
-
+                    action = true;
+                    fired_slanted_targeted_shot = true;
+                    cooldown = reset;
                 }
+                else
+                    fired_slanted_targeted_shot = false;
+
             }
             // after x == 950 ... change y V^
 
@@ -94,24 +81,9 @@ namespace Model
             hitbox.Y = Convert.ToInt32(Y);
         }
 
-        private void start()
-        {
-            
-            if (cooldown == 0)
-            {
-                action = true;
-                fired_slanted_targeted_shot = true;
-                cooldown = reset;
-            }
-            else
-                fired_slanted_targeted_shot = false;
-        }
+  
 
-        private void mid()
-        {
-          
-        }
-
+     
 
 
 
