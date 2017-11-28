@@ -640,6 +640,7 @@ namespace SpaceAce
 
 
                     // NOT WORKING
+                    // Noah fix this plz (cus robert broke it)
                 }
                 else if (newEntity is Mine)
                 {
@@ -657,7 +658,13 @@ namespace SpaceAce
 
                     BossIsSpawned = true;
                     gameCtrl.BossIsSpawned = true;
-                    pngName = "Ship 2.png";
+
+                    if(newEntity is Boss_Easy)
+                        pngName = "robertShip.png";
+                    if (newEntity is Boss_Medium)
+                        pngName = "noahShip.png";
+                    if (newEntity is Boss_Hard)
+                        pngName = "JoannaShip.png";
                 }
                 else if (newEntity is AI)
                 {
@@ -667,7 +674,6 @@ namespace SpaceAce
 
                 Image img = new Image() { Source = new BitmapImage(new Uri("images/" + pngName, UriKind.Relative)) };
                 WorldCanvas.Children.Add(img);
-                //img.Width = 50;
 
 
                 img.Width = newEntity.hitbox.Width;
