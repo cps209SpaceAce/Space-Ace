@@ -233,8 +233,8 @@ namespace Model
 
             hitbox.X = Convert.ToInt32(X);
             hitbox.Y = Convert.ToInt32(Y);
-
         }
+
         public override string Serialize()
         {
             return X + "," + Y + "," + powerup + "," + Lives + "," + Bombs + "," + isPoweredUp + "," + powerUpCounter + "," + cheating + "," + image;

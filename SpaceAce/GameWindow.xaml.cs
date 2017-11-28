@@ -46,14 +46,11 @@ namespace SpaceAce
                         {
                             i.Source = new BitmapImage(new Uri("Images/PlayerShips/" + p.image, UriKind.Relative));
                         }
-
                     }
-
                     return true;
                 }
             }
             return false;
-         
         }
     }
 
@@ -130,7 +127,6 @@ namespace SpaceAce
             string imgname = "";
             foreach (Entity ship in gameCtrl.current_Enemies)
             {
-
                 if (ship is Asteroid)
                 { imgname = "asteroid.png"; }
                 else if (ship is AI)
