@@ -34,8 +34,8 @@
                     <Image x:Name="imgSpeed" Height="35" Canvas.Left="427" Canvas.Top="25" Width="35"/>
                     <Image x:Name="imgInvic" Height="35" Canvas.Left="477" Canvas.Top="25" Width="35"/>
                     <Image x:Name="imgRapidShot" Height="35" Canvas.Left="517" Canvas.Top="25" Width="35"/>
-                    <Image x:Name="imgTriShot" Height="35" Canvas.Left="557" Canvas.Top="25" Width="35"/>
-                    <Image x:Name="imgHex" Height="35" Canvas.Left="597" Canvas.Top="25" Width="35"/>
+                    <Image x:Name="imgTriShot" Height="35" Canvas.Left="517" Canvas.Top="25" Width="35"/>
+                    <Image x:Name="imgHex" Height="35" Canvas.Left="517" Canvas.Top="25" Width="35"/>
                     
                 </Canvas>
             </Grid>
