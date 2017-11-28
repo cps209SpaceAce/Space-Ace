@@ -166,11 +166,9 @@ namespace Model
                 {
                     if (player.HitPlayer(enemy))
                     {
-
                         var sound = new MediaPlayer();
                         sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\hurtplayer.wav", UriKind.Absolute));
                         Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
-
                     }
                     if (!(enemy is Boss))
                     {
