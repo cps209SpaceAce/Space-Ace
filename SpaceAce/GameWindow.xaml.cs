@@ -596,14 +596,14 @@ namespace SpaceAce
             }
             else if (gameCtrl.gameLevelTimer > 40)
             {
-                
                 gameCtrl.level = Level.Boss;
             }
-            else if (gameCtrl.gameLevelTimer > 15 && gameCtrl.gameLevelTimer < 25)
+            else if (gameCtrl.gameLevelTimer > 20 && gameCtrl.gameLevelTimer < 35)
             {
                 gameCtrl.level = Level.Level_2;
             }
-            else if(gameCtrl.gameLevelTimer >= 25 && gameCtrl.gameLevelTimer <= 40) //added by jo, to give ssome transition time
+            else if(gameCtrl.gameLevelTimer >= 15 && gameCtrl.gameLevelTimer <= 20 ||
+                    gameCtrl.gameLevelTimer >= 35 && gameCtrl.gameLevelTimer <= 40 ) //added by jo, to give ssome transition time
             {
                 gameCtrl.level = Level.Transition;
             }
@@ -625,7 +625,7 @@ namespace SpaceAce
             }
             else if (gameCtrl.level == Level.Level_2)
             {
-                pbar_gamestatus.Value = gameCtrl.gameLevelTimer - 15;
+                pbar_gamestatus.Value = gameCtrl.gameLevelTimer - 20;
             }
 
             else if (gameCtrl.level == Level.Transition)
