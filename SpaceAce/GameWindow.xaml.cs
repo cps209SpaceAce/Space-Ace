@@ -156,7 +156,7 @@ namespace SpaceAce
                         default:
                             { imgname = "Powerup\\star.png"; }
                             break;
-
+                            // ADD FOR OTHER
                     }
 
                 }
@@ -498,6 +498,11 @@ namespace SpaceAce
                 imgRapidShot.Source = new BitmapImage(new Uri("Images/PowerUp/bullets2.png", UriKind.Relative));
             else
                 imgRapidShot.Source = null;
+            
+            if (gameCtrl.player.wanderingbullets)
+                imgHex.Source = new BitmapImage(new Uri("Images/PowerUp/bullets3.png", UriKind.Relative));
+            else
+                imgHex.Source = null;
 
             if (gameCtrl.player.speed != 5)
                 imgSpeed.Source = new BitmapImage(new Uri("Images/PowerUp/power.png", UriKind.Relative));
@@ -533,6 +538,10 @@ namespace SpaceAce
                     case PowerUp.TripleShot:
                         pngName = "bullets.png";
                         break;
+                    case PowerUp.Helix:
+                        pngName = "bullets3.png";
+                        break;
+
                 }
 
 

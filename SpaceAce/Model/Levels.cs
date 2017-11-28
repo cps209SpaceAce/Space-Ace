@@ -16,7 +16,7 @@ namespace Model
             Powerup output = null;
             int spawn_X = 1000;
 
-            switch (GameController.random.Next(0, 6))
+            switch (GameController.random.Next(0, 7))
             {
                 case 0:
                     output = new Powerup(spawn_X, GameController.random.Next(100, 600), PowerUp.RapidFire);
@@ -35,6 +35,9 @@ namespace Model
                     break;
                 case 5:
                     output = new Powerup(spawn_X, GameController.random.Next(100, 600), PowerUp.Invincible);
+                    break;
+                case 6:
+                    output = new Powerup(spawn_X, GameController.random.Next(100, 600), PowerUp.Helix);
                     break;
             }
 
