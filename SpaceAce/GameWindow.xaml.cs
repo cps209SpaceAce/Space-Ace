@@ -73,7 +73,6 @@ namespace SpaceAce
         Button btnQUIT;
         Button btnSAVE;
         public DispatcherTimer timer;
-        public bool boss = false;
         MediaPlayer gameMusic;
         public bool BossIsSpawned = false;
 
@@ -626,7 +625,7 @@ namespace SpaceAce
         private void SpawnEntities()
         {
 
-            if (spawnCounter > 25 && !boss)
+            if (spawnCounter > 25 && !BossIsSpawned)
             {
                 spawnCounter = 0;
                 Entity newEntity = Levels.Level_reuturnEntity(gameCtrl.difficulty, gameCtrl.level, gameCtrl.winWidth, gameCtrl.winHeight);
@@ -661,7 +660,6 @@ namespace SpaceAce
                     Application.Current.Dispatcher.BeginInvoke(new Action(() => gameMusic.Play()));
 
                     BossIsSpawned = true;
-                    boss = true;
                     pngName = "Ship 2.png";
                 }
                 else if (newEntity is AI)
