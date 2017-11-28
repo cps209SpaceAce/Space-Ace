@@ -86,15 +86,15 @@ namespace SpaceAce.UnitTests
             Assert.IsFalse(test.Hit());
 
             test.cheating = false;
-            test.isInvinsible = true;
+            test.isInvincible = true;
             Assert.IsFalse(test.Hit());
 
-            test.isInvinsible = false;
+            test.isInvincible = false;
             Assert.IsTrue(test.Hit());
-            Assert.IsTrue(test.lives == 2);
+            Assert.IsTrue(test.Lives == 2);
             Assert.IsTrue(test.HitCoolDown == 300);
 
-            test.lives = 0;
+            test.Lives = 0;
 
             Assert.IsTrue(test.Hit());
             Assert.IsTrue(g.gameResult == GameResult.Lost);
@@ -177,7 +177,7 @@ namespace SpaceAce.UnitTests
             Assert.IsTrue(test.powerup == PowerUp.Empty);
             Assert.IsTrue(test.isPoweredUp == false);
             Assert.IsTrue(test.powerUpCounter == 0);
-            Assert.IsTrue(test.bombs == 6);
+            Assert.IsTrue(test.Bombs == 6);
 
         }
 
@@ -192,7 +192,7 @@ namespace SpaceAce.UnitTests
             Assert.IsTrue(test.powerup == PowerUp.Empty);
             Assert.IsTrue(test.isPoweredUp == false);
             Assert.IsTrue(test.powerUpCounter == 0);
-            Assert.IsTrue(test.lives == 4);
+            Assert.IsTrue(test.Lives == 4);
         }
 
         [TestMethod]
@@ -247,7 +247,7 @@ namespace SpaceAce.UnitTests
             Assert.IsTrue(test.powerup == PowerUp.Empty);
             Assert.IsTrue(test.isPoweredUp == true);
             Assert.IsTrue(test.powerUpCounter == 0);
-            Assert.IsTrue(test.isInvinsible == true);
+            Assert.IsTrue(test.isInvincible == true);
         }
 
         [TestMethod]
@@ -256,7 +256,7 @@ namespace SpaceAce.UnitTests
             Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerUpCounter = 400;
             test.rapid_fire = true;
-            test.isInvinsible = true;
+            test.isInvincible = true;
             test.isPoweredUp = true;
             test.triple = true;
             test.speed = 90;
@@ -265,7 +265,7 @@ namespace SpaceAce.UnitTests
             test.UpdatePosition();
 
             Assert.IsTrue(test.powerUpCounter == 0);
-            Assert.IsTrue(test.isInvinsible == false);
+            Assert.IsTrue(test.isInvincible == false);
             Assert.IsTrue(test.isPoweredUp == false);
             Assert.IsTrue(test.rapid_fire == false);
             Assert.IsTrue(test.triple == false);
@@ -522,7 +522,7 @@ namespace SpaceAce.UnitTests
             Player test = new Player(10, 10, 4, 5, game, "player1.png");
             test.DropBomb();
 
-            Assert.IsTrue(test.bombs == 4);
+            Assert.IsTrue(test.Bombs == 4);
             Assert.IsTrue(test.bombCooldown == 50);
 
             Assert.IsTrue(game.current_Enemies.Count == 0);
@@ -537,9 +537,9 @@ namespace SpaceAce.UnitTests
 
             Assert.IsFalse(p.HitPlayer(new Powerup(10, 10, PowerUp.ExtraBomb)));
 
-            p.isInvinsible = true;
+            p.isInvincible = true;
             Assert.IsFalse(p.HitPlayer(new Bullet(10,10)));
-            p.isInvinsible = false;
+            p.isInvincible = false;
 
             p.cheating = true;
             Assert.IsFalse(p.HitPlayer(new Bullet(10, 10)));
@@ -547,7 +547,7 @@ namespace SpaceAce.UnitTests
 
             Assert.IsTrue(p.HitPlayer(new Bullet(10, 10)));
             Assert.IsTrue(p.HitCoolDown == 300);
-            Assert.IsTrue(p.lives == 0);
+            Assert.IsTrue(p.Lives == 0);
             Assert.IsTrue(g.gameResult == GameResult.Lost);
 
         }
@@ -575,8 +575,8 @@ namespace SpaceAce.UnitTests
             GameController ctrl = new GameController();
             ctrl.player.X = 100;
             ctrl.player.Y = 100;
-            ctrl.player.lives = 5;
-            ctrl.player.bombs = 5;
+            ctrl.player.Lives = 5;
+            ctrl.player.Bombs = 5;
 
             List<Entity> en = new List<Entity>();
             en.Add(new AI(10, 10, pattern.Straight));
@@ -619,8 +619,8 @@ namespace SpaceAce.UnitTests
 
             Assert.IsTrue(ctrl.current_Enemies.Count == 2);
             Assert.IsTrue(ctrl.player_fire.Count == 0);
-            Assert.IsTrue(ctrl.player.lives == 6);
-            Assert.IsTrue(ctrl.player.bombs == 7);
+            Assert.IsTrue(ctrl.player.Lives == 6);
+            Assert.IsTrue(ctrl.player.Bombs == 7);
 
         }
 

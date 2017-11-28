@@ -21,8 +21,8 @@ namespace SpaceAce.UnitTests
         Assert.IsTrue(gc.difficulty == Difficulty.Easy);
         Assert.IsTrue(gc.level == Level.Level_1);
         Assert.IsTrue(gc.enemie_Que != null);
-        Assert.IsTrue(gc.player.lives == 3);
-        Assert.IsTrue(gc.player.bombs == 3);
+        Assert.IsTrue(gc.player.Lives == 3);
+        Assert.IsTrue(gc.player.Bombs == 3);
         //Assert.IsTrue(gc.base_Speed == 1);
         }
 

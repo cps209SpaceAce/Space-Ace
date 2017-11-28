@@ -268,8 +268,8 @@ namespace SpaceAce.UnitTests
             Assert.IsTrue(ctrl.player.Y == 30);
             Assert.IsTrue(ctrl.player.cheating == true);
             Assert.IsTrue(ctrl.player.powerup == PowerUp.ExtraSpeed);
-            Assert.IsTrue(ctrl.player.lives == 4);
-            Assert.IsTrue(ctrl.player.bombs == 8);
+            Assert.IsTrue(ctrl.player.Lives == 4);
+            Assert.IsTrue(ctrl.player.Bombs == 8);
 
         }
 
@@ -378,8 +378,8 @@ namespace SpaceAce.UnitTests
             Assert.IsTrue(ctrl.player.X == 40);
             Assert.IsTrue(ctrl.player.Y == 30);
             Assert.IsTrue(ctrl.player.powerup == PowerUp.RapidFire);
-            Assert.IsTrue(ctrl.player.lives == 4);
-            Assert.IsTrue(ctrl.player.bombs == 8);
+            Assert.IsTrue(ctrl.player.Lives == 4);
+            Assert.IsTrue(ctrl.player.Bombs == 8);
             Assert.IsTrue(ctrl.player.isPoweredUp == true);
             Assert.IsTrue(ctrl.player.cheating == false);
 

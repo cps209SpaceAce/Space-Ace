@@ -179,9 +179,9 @@ namespace Model
                     {
                         player.powerup = (enemy as Powerup).type; // Added by Jo
 
-                        if ((enemy as Powerup).type == PowerUp.ExtraLife ||
-                            (enemy as Powerup).type == PowerUp.ExtraBomb )
-                            player.Activate_powerup();
+                        //if ((enemy as Powerup).type == PowerUp.ExtraLife ||
+                        //    (enemy as Powerup).type == PowerUp.ExtraBomb )
+                        player.Activate_powerup();
 
                         dead_Badguy.Add(enemy);
                     }
@@ -207,7 +207,7 @@ namespace Model
                             if (enemy is Powerup)
                             {
                                 player.powerup = (enemy as Powerup).type; // Added by Jo // copyed Noah
-                                if ((enemy as Powerup).type == PowerUp.ExtraLife)
+                                //if ((enemy as Powerup).type == PowerUp.ExtraLife)
                                     player.Activate_powerup();
                             }
                         }

@@ -479,14 +479,35 @@ namespace SpaceAce
             }
 
             // Update Score GUI
-            labelScore.Content = "Score: " + gameCtrl.score;
-            
-            
+
+
+
             // Update Lives
-            // TODO: We can change to images for bonus
-            labelLives.Content = "Lives: " + String.Concat(Enumerable.Repeat("< ", gameCtrl.player.lives));
-            labelBombs.Content = "Bombs: " + gameCtrl.player.bombs;
+            
+            labelScore.Content = "Score: " + gameCtrl.score;
+            labelLives.Content = "Lives: " + String.Concat(Enumerable.Repeat("< ", gameCtrl.player.Lives));
+            labelBombs.Content = "Bombs: " + gameCtrl.player.Bombs;
             labelLevel.Content = gameCtrl.level.ToString().Replace("Level_","LEVEL ");
+
+            if (gameCtrl.player.isInvincible)
+                imgInvic.Source = new BitmapImage(new Uri("Images/PowerUp/star.png", UriKind.Relative));
+            else
+                imgInvic.Source = null;
+
+            if (gameCtrl.player.triple)
+                imgTriShot.Source = new BitmapImage(new Uri("Images/PowerUp/bullets.png", UriKind.Relative));
+            else
+                imgTriShot.Source = null;
+
+            if (gameCtrl.player.rapid_fire)
+                imgRapidShot.Source = new BitmapImage(new Uri("Images/PowerUp/bullets2.png", UriKind.Relative));
+            else
+                imgRapidShot.Source = null;
+
+            if (gameCtrl.player.speed != 5)
+                imgSpeed.Source = new BitmapImage(new Uri("Images/PowerUp/power.png", UriKind.Relative));
+            else
+                imgSpeed.Source = null;
         }
 
         private void SpawnPowerUp()
@@ -512,10 +533,10 @@ namespace SpaceAce
                         pngName = "power.png";
                         break;
                     case PowerUp.RapidFire:
-                        pngName = "bullets.png";
+                        pngName = "bullets2.png";
                         break;
                     case PowerUp.TripleShot:
-                        pngName = "bullets2.png";
+                        pngName = "bullets.png";
                         break;
                 }
 
@@ -538,8 +559,8 @@ namespace SpaceAce
             if (gameCtrl.gameResult != GameResult.Running) // IF WON/LOST
             {
 
-                gameCtrl.score += gameCtrl.player.bombs * 250;
-                gameCtrl.score += gameCtrl.player.lives * 300;
+                gameCtrl.score += gameCtrl.player.Bombs * 250;
+                gameCtrl.score += gameCtrl.player.Lives * 300;
                 switch (gameCtrl.difficulty)
                 {
                     case Difficulty.Easy:
@@ -640,18 +661,14 @@ namespace SpaceAce
                     Application.Current.Dispatcher.BeginInvoke(new Action(() => gameMusic.Play()));
 
                     BossIsSpawned = true;
-
+                    boss = true;
                     pngName = "Ship 2.png";
                 }
                 else if (newEntity is AI)
                 {
                     pngName = "Ship 1.png";
                 }
-                else if (newEntity is Boss)
-                {
-                    pngName = "UFO.png";
-                    boss = true;
-                }
+                
 
                 Image img = new Image() { Source = new BitmapImage(new Uri("images/" + pngName, UriKind.Relative)) };
                 WorldCanvas.Children.Add(img);
@@ -712,9 +729,6 @@ namespace SpaceAce
                     break;
                 case Key.B:
                     gameCtrl.bomb = true;
-                    break;
-                case Key.X:
-                    gameCtrl.player.Activate_powerup();
                     break;
                 default:
                     break;

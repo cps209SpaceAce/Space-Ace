@@ -20,8 +20,8 @@ namespace Model
         public bool rapid_fire = false; //flag to engage rapid fire mode by reducing the cooldown
         public int cooldown = 0;
         public int bombCooldown = 0;
-        public int lives { get; set; }
-        public int bombs { get; set; }
+        public int Lives { get; set; }
+        public int Bombs { get; set; }
         public PowerUp powerup { get; set; }
         public int HitCoolDown;
         public string image = "spaceship-hi.png";
@@ -29,7 +29,7 @@ namespace Model
 
         public double powerUpCounter = 0;
         public bool isPoweredUp = false;
-        public bool isInvinsible = false;
+        public bool isInvincible = false;
         public bool cheating = false;
 
 
@@ -39,8 +39,8 @@ namespace Model
         {
             image = shipIMG;
             game = flags;
-            this.lives = lives;
-            this.bombs = bombs;
+            this.Lives = lives;
+            this.Bombs = bombs;
             powerup = PowerUp.Empty;
             speed = 5;
             baseSpeed = speed;
@@ -71,14 +71,14 @@ namespace Model
             if (powerup == PowerUp.ExtraSpeed)
                 speed = baseSpeed*2;
             else if (powerup == PowerUp.Invincible)
-                isInvinsible = true;
+                isInvincible = true;
             else if (powerup == PowerUp.ExtraLife) { 
-                ++lives;
+                ++Lives;
                 isPoweredUp = false;
             }
             else if (powerup == PowerUp.ExtraBomb)
             {
-                ++bombs;
+                ++Bombs;
                 isPoweredUp = false;
             }
             else if (powerup == PowerUp.RapidFire)
@@ -91,7 +91,7 @@ namespace Model
         void Deactivate_Powerup()
         {
             powerUpCounter = 0;
-            isInvinsible = false;
+            isInvincible = false;
             speed = baseSpeed;
             isPoweredUp = false;
             triple = false;
@@ -102,10 +102,10 @@ namespace Model
             if (bombCooldown == 0)
             {
                 bombCooldown = 50;
-                if (bombs != 0)
+                if (Bombs != 0)
                 {
                     game.Bomb();
-                    bombs--;
+                    Bombs--;
                 }
 
                 // TODO: Add score for kills
@@ -114,7 +114,7 @@ namespace Model
 
         public override bool Hit()
         {
-            if (isInvinsible || cheating)
+            if (isInvincible || cheating)
             {
                 return false; 
             }
@@ -124,11 +124,11 @@ namespace Model
             //TODO: return true(ship destroyed)
             if (HitCoolDown == 0)
             {
-                lives--;
+                Lives--;
                 HitCoolDown = 300;
             }
 
-            if (lives == 0)
+            if (Lives == 0)
                 game.gameResult = GameResult.Lost;
 
             return true;
@@ -143,7 +143,7 @@ namespace Model
                 return false;
             }
 
-            if (isInvinsible || cheating)
+            if (isInvincible || cheating)
             {
                 return false; //invinsibility
             }
@@ -154,11 +154,11 @@ namespace Model
             //TODO: return true(ship destroyed)
             if (HitCoolDown == 0)
             {
-                lives--;
+                Lives--;
                 HitCoolDown = 300;
             }
 
-            if (lives == 0)
+            if (Lives == 0)
                 game.gameResult = GameResult.Lost;
 
             return true;
@@ -237,7 +237,7 @@ namespace Model
         }
         public override string Serialize()
         {
-            return X + "," + Y + "," + powerup + "," + lives + "," + bombs + "," + isPoweredUp + "," + powerUpCounter + "," + cheating + "," + image;
+            return X + "," + Y + "," + powerup + "," + Lives + "," + Bombs + "," + isPoweredUp + "," + powerUpCounter + "," + cheating + "," + image;
         }
     }
 }
