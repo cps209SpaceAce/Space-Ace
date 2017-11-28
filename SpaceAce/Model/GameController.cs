@@ -60,7 +60,7 @@ namespace Model
         public double gameLevelTimer;
         public double spawnPowerUpTimer;
 
-
+        public bool BossIsSpawned = false;
         //window information
         public double winWidth;
         public double winHeight;
@@ -78,6 +78,8 @@ namespace Model
             winWidth = windowWidth;
             winHeight = windowHeight;
         }
+
+        
 
         public GameController()
         {
