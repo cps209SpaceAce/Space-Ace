@@ -10,7 +10,7 @@ using System.Windows.Media.Imaging;
 
 namespace Model
 {
-    public enum PowerUp { Empty, Invincible, ExtraSpeed, ExtraLife, ExtraBomb, TripleShot, RapidFire } // TODO: pick what powerups to put here
+    public enum PowerUp { Empty, Helix, Invincible, ExtraSpeed, ExtraLife, ExtraBomb, TripleShot, RapidFire } // TODO: pick what powerups to put here
     
     public class Player : Entity
 
@@ -82,9 +82,17 @@ namespace Model
                 isPoweredUp = false;
             }
             else if (powerup == PowerUp.RapidFire)
+            {
                 rapid_fire = true;
+            }
             else if (powerup == PowerUp.TripleShot)
+            {
                 triple = true;
+            }
+            else if (powerup == PowerUp.Helix)
+            {
+                wanderingbullets = true;
+            }
 
             powerup = PowerUp.Empty;
         }
@@ -95,6 +103,7 @@ namespace Model
             isPoweredUp = false;
             triple = false;
             rapid_fire = false;
+            wanderingbullets = false;
         }
         public void DropBomb()
         {
@@ -160,7 +169,7 @@ namespace Model
             if (Lives == 0)
                 game.gameResult = GameResult.Lost;
 
-            Deactivate_Powerup();
+           Deactivate_Powerup();
             return true;
         }
 

@@ -129,16 +129,17 @@ namespace SpaceAce
                 if (ship is Asteroid)
                 { imgname = "asteroid.png"; }
                 else if (ship is AI)
-                { 
+                {
                     if (ship is Mine)
-                        { imgname = "mine.png"; }
+                    { imgname = "mine.png"; }
                     else if (ship is Tracker)
-                        { imgname = "ship 4.png"; }
+                    { imgname = "ship 4.png"; }
                     else
-                        imgname = "Ship 1.png"; }
+                        imgname = "Ship 1.png";
+                }
                 else if (ship is Bullet)
                 { imgname = "C_bullet.png"; }
-               
+
                 else if (ship is Powerup)
                 {
                     Powerup power = ship as Powerup;
@@ -156,9 +157,18 @@ namespace SpaceAce
                         default:
                             { imgname = "Powerup\\star.png"; }
                             break;
-
+                            // ADD FOR OTHER
                     }
 
+                }
+                else if (ship is Boss)
+                {
+                    if (ship is Boss_Easy)
+                    { imgname = "Powerup\\UFO.png"; }
+                    if (ship is Boss_Medium)
+                    { imgname = "Powerup\\UFO.png"; }
+                    if (ship is Boss_Hard)
+                    { imgname = "Powerup\\UFO.png"; }
                 }
                 
                 
@@ -220,11 +230,11 @@ namespace SpaceAce
                 if (((Player)ship).triple)
                 {
                     Make_TripleShot(ship);
-                    return;
+                    //return;
                 }
                 if (((Player)ship).wanderingbullets)
                 {
-                    Make_HelixShot(ship);//broken: Noah Mansfield
+                    Make_HelixShot(ship);//Working: Noah Mansfield
                     return;
                 }
 
@@ -433,7 +443,7 @@ namespace SpaceAce
             CheckGameStatus();
             if(!BossIsSpawned)
             {
-                gameCtrl.level = Level.Boss;
+              
                 SpawnEntities();              // Spawn Entities
             }
             
@@ -498,6 +508,11 @@ namespace SpaceAce
                 imgRapidShot.Source = new BitmapImage(new Uri("Images/PowerUp/bullets2.png", UriKind.Relative));
             else
                 imgRapidShot.Source = null;
+            
+            if (gameCtrl.player.wanderingbullets)
+                imgHex.Source = new BitmapImage(new Uri("Images/PowerUp/bullets3.png", UriKind.Relative));
+            else
+                imgHex.Source = null;
 
             if (gameCtrl.player.speed != 5)
                 imgSpeed.Source = new BitmapImage(new Uri("Images/PowerUp/power.png", UriKind.Relative));
@@ -533,6 +548,10 @@ namespace SpaceAce
                     case PowerUp.TripleShot:
                         pngName = "bullets.png";
                         break;
+                    case PowerUp.Helix:
+                        pngName = "bullets3.png";
+                        break;
+
                 }
 
 
@@ -577,14 +596,14 @@ namespace SpaceAce
             }
             else if (gameCtrl.gameLevelTimer > 40)
             {
-                
                 gameCtrl.level = Level.Boss;
             }
-            else if (gameCtrl.gameLevelTimer > 15 && gameCtrl.gameLevelTimer < 25)
+            else if (gameCtrl.gameLevelTimer > 20 && gameCtrl.gameLevelTimer < 35)
             {
                 gameCtrl.level = Level.Level_2;
             }
-            else if(gameCtrl.gameLevelTimer >= 25 && gameCtrl.gameLevelTimer <= 40) //added by jo, to give ssome transition time
+            else if(gameCtrl.gameLevelTimer >= 15 && gameCtrl.gameLevelTimer <= 20 ||
+                    gameCtrl.gameLevelTimer >= 35 && gameCtrl.gameLevelTimer <= 40 ) //added by jo, to give ssome transition time
             {
                 gameCtrl.level = Level.Transition;
             }
@@ -606,7 +625,7 @@ namespace SpaceAce
             }
             else if (gameCtrl.level == Level.Level_2)
             {
-                pbar_gamestatus.Value = gameCtrl.gameLevelTimer - 15;
+                pbar_gamestatus.Value = gameCtrl.gameLevelTimer - 20;
             }
 
             else if (gameCtrl.level == Level.Transition)
@@ -624,6 +643,8 @@ namespace SpaceAce
             {
                 spawnCounter = 0;
                 Entity newEntity = Levels.Level_reuturnEntity(gameCtrl.difficulty, gameCtrl.level, gameCtrl.winWidth, gameCtrl.winHeight);
+                if (newEntity == null)
+                    return;
                 gameCtrl.current_Enemies.Add(newEntity); // Add to Model
                 
                 
@@ -669,8 +690,8 @@ namespace SpaceAce
                 {
                     pngName = "Ship 1.png";
                 }
-                
 
+              
                 Image img = new Image() { Source = new BitmapImage(new Uri("images/" + pngName, UriKind.Relative)) };
                 WorldCanvas.Children.Add(img);
 
