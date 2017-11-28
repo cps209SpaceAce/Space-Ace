@@ -78,8 +78,8 @@ namespace Model
             if (cooldown == 0)
             {
                 action = true;
-                FiredABullet = true;
-                bullet_y = p_y;
+                fired_slanted_targeted_shot = true;
+                //wbullet_y = p_y;
                 cooldown = reset;
             }
             else

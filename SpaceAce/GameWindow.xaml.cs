@@ -288,7 +288,7 @@ namespace SpaceAce
         public void Make_Boss_slantedshot(Boss boss)
         {
             double slope = (boss.Y - boss.p_y) / (boss.X - boss.p_x);
-            Bullet b = new Slanted_Bullet(boss.X, boss.Y, slope) {id = ID.Hostile };
+            Bullet b = new Slanted_Bullet(boss.X, boss.Y + 100, slope) {id = ID.Hostile };
             if (boss.p_x > boss.X)
             {
                 b.direction = 1;
