@@ -45,7 +45,6 @@ namespace Model
                     if (health < (max / 2))
                     {
                         currentState = MState.Mid;
-                        speed += 5;
                     }
                     break;
                 case MState.Mid:
@@ -53,7 +52,6 @@ namespace Model
                     if (health < (max / .75f))
                     {
                         currentState = MState.End;
-                        speed += 5;
                     }
                     break;
                 case MState.End:
@@ -115,14 +113,14 @@ namespace Model
         {
             if (!goingBackwards && X > 0)
             {
-                X = Convert.ToInt32(X - speed - 2);
+                X = Convert.ToInt32(X - speed);
                 return;
             }
             goingBackwards = true;
 
 
             if (X <= windowWidth / 2)
-                X = Convert.ToInt32(X + speed + 2);
+                X = Convert.ToInt32(X + speed);
             else
             {
                 goingBackwards = false;

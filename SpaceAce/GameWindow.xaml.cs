@@ -559,17 +559,20 @@ namespace SpaceAce
                 this.Close(); // Closing GameWindow
 
             }
-            else if (gameCtrl.gameLevelTimer > 30)
+            else if (gameCtrl.gameLevelTimer > 40)
             {
                 
                 gameCtrl.level = Level.Boss;
             }
-            else if (gameCtrl.gameLevelTimer > 15)
+            else if (gameCtrl.gameLevelTimer > 15 && gameCtrl.gameLevelTimer < 25)
             {
                 
                 gameCtrl.level = Level.Level_2;
             }
-            gameCtrl.level = Level.Transition;
+            else if(gameCtrl.gameLevelTimer >= 25 && gameCtrl.gameLevelTimer <= 40) //added by jo, to give ssome transition time
+            {
+                gameCtrl.level = Level.Transition;
+            }
             
 
             if (BossIsSpawned)
@@ -591,6 +594,10 @@ namespace SpaceAce
                 pbar_gamestatus.Value = gameCtrl.gameLevelTimer - 15;
             }
 
+            else if (gameCtrl.level == Level.Transition)
+            {
+                //does something between levels
+            }
         }
 
 
