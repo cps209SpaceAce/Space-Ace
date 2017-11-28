@@ -230,11 +230,11 @@ namespace SpaceAce
                 if (((Player)ship).triple)
                 {
                     Make_TripleShot(ship);
-                    return;
+                    //return;
                 }
                 if (((Player)ship).wanderingbullets)
                 {
-                    Make_HelixShot(ship);//broken: Noah Mansfield
+                    Make_HelixShot(ship);//Working: Noah Mansfield
                     return;
                 }
 
