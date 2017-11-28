@@ -163,7 +163,6 @@ namespace SpaceAce.UnitTests
             Assert.IsTrue(test.isPoweredUp == true);
             Assert.IsTrue(test.powerUpCounter == 0);
             Assert.IsTrue(test.rapid_fire == true);
-
         }
 
         [TestMethod]

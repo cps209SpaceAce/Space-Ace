@@ -46,14 +46,11 @@ namespace SpaceAce
                         {
                             i.Source = new BitmapImage(new Uri("Images/PlayerShips/" + p.image, UriKind.Relative));
                         }
-
                     }
-
                     return true;
                 }
             }
             return false;
-         
         }
     }
 
@@ -129,7 +126,6 @@ namespace SpaceAce
             string imgname = "";
             foreach (Entity ship in gameCtrl.current_Enemies)
             {
-
                 if (ship is Asteroid)
                 { imgname = "asteroid.png"; }
                 else if (ship is AI)
@@ -287,7 +283,7 @@ namespace SpaceAce
         public void Make_Boss_slantedshot(Boss boss)
         {
             double slope = (boss.Y - boss.p_y) / (boss.X - boss.p_x);
-            Bullet b = new Slanted_Bullet(boss.X, boss.Y, slope) {id = ID.Hostile };
+            Bullet b = new Slanted_Bullet(boss.X, boss.Y + 100, slope) {id = ID.Hostile };
             if (boss.p_x > boss.X)
             {
                 b.direction = 1;
