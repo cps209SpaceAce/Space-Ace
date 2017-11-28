@@ -582,7 +582,6 @@ namespace SpaceAce
             }
             else if (gameCtrl.gameLevelTimer > 15 && gameCtrl.gameLevelTimer < 25)
             {
-                
                 gameCtrl.level = Level.Level_2;
             }
             else if(gameCtrl.gameLevelTimer >= 25 && gameCtrl.gameLevelTimer <= 40) //added by jo, to give ssome transition time

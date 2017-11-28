@@ -264,7 +264,7 @@ namespace Model
             using (StreamWriter writer = new StreamWriter(fileName))
             {
                 writer.WriteLine("[defaults]");
-                writer.WriteLine(level + "," + score + "," + base_Speed + "," + gameLevelTimer); //add timers
+                writer.WriteLine(level + "," + score + "," + base_Speed + "," + gameLevelTimer + "," + BossIsSpawned); //add timers
                 writer.WriteLine("[end]");
 
                 if (current_Enemies != null && current_Enemies.Count > 0)
@@ -322,8 +322,13 @@ namespace Model
                             score = Convert.ToInt32(res[1]);
                             base_Speed = Convert.ToDouble(res[2]);
                             gameLevelTimer = Convert.ToDouble(res[3]);
-                        }
-                        else if (startLine == "[enemies]")
+                        if (res[4] == "True")
+                            BossIsSpawned = true;
+                        else
+                            BossIsSpawned = false;
+
+                    }
+                    else if (startLine == "[enemies]")
                         {
                             List<Entity> list = new List<Entity>();
 
