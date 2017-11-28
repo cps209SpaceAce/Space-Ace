@@ -656,6 +656,7 @@ namespace SpaceAce
                     Application.Current.Dispatcher.BeginInvoke(new Action(() => gameMusic.Play()));
 
                     BossIsSpawned = true;
+                    gameCtrl.BossIsSpawned = true;
                     pngName = "Ship 2.png";
                 }
                 else if (newEntity is AI)
