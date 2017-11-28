@@ -35,7 +35,10 @@ namespace SpaceAce
             "player2.png",
             "player3.png",
             "player4.png",
-            "player5.png"
+            "player5.png",
+            "robertShip.png",
+            "noahShip.png",
+            "JoannaShip.png"
         };
 
 

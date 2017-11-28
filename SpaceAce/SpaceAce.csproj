@@ -277,12 +277,21 @@
     <Resource Include="Images\PowerUP\bullets2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\JoannaShip.png" />
-    <Resource Include="Images\noahShip.png" />
-    <Resource Include="Images\robertShip.png" />
+    <Resource Include="Images\PlayerShips\JoannaShip.png" />
+    <Resource Include="Images\PlayerShips\noahShip.png" />
+    <Resource Include="Images\PlayerShips\robertShip.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\PowerUP\bullets3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\robertShip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\noahShip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\JoannaShip.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
