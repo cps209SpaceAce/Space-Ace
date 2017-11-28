@@ -25,14 +25,16 @@
 
 
                     <Label x:Name="labelScore" HorizontalContentAlignment="Right"  FontSize="20" Foreground="White" Content="" Canvas.Left="815" Canvas.Top="10" Height="37" Width="179"/>
-                    <Label x:Name="labelLives" FontSize="20" Foreground="White" Content="" Canvas.Left="10" Canvas.Top="10" Height="37" Width="179"/>
+                    <Label x:Name="labelLives" FontSize="20" Foreground="White" Content="" Canvas.Left="10" Canvas.Top="10" Height="37" Width="346"/>
                     <Label x:Name="labelBombs" FontSize="20" Foreground="White" Content="" Canvas.Left="10" Canvas.Top="721" Height="37" Width="179"/>
                     <Label x:Name="labelLevel" HorizontalContentAlignment="Right"  FontSize="20" Foreground="White" Content="" Canvas.Left="815" Canvas.Top="721" Height="37" Width="179"/>
+                    
                     <ProgressBar x:Name="pbar_gamestatus" BorderThickness="1" Background="Transparent" Height="37" Width="580" Canvas.Left="216" Canvas.Top="721"/>
-                    <Image x:Name="imgSpeed" Height="50" Canvas.Left="10" Canvas.Top="625" Width="50"/>
-                    <Image x:Name="imgTriShot" Height="50" Canvas.Left="70" Canvas.Top="625" Width="50"/>
-                    <Image x:Name="imgRapidShot" Height="50" Canvas.Left="130" Canvas.Top="625" Width="50"/>
-                    <Image x:Name="imgInvic" Height="50" Canvas.Left="190" Canvas.Top="625" Width="50"/>
+                    
+                    <Image x:Name="imgSpeed" Height="35" Canvas.Left="427" Canvas.Top="25" Width="35"/>
+                    <Image x:Name="imgTriShot" Height="35" Canvas.Left="477" Canvas.Top="25" Width="35"/>
+                    <Image x:Name="imgRapidShot" Height="35" Canvas.Left="517" Canvas.Top="25" Width="35"/>
+                    <Image x:Name="imgInvic" Height="35" Canvas.Left="557" Canvas.Top="25" Width="35"/>
 
                 </Canvas>
             </Grid>
