@@ -643,6 +643,8 @@ namespace SpaceAce
             {
                 spawnCounter = 0;
                 Entity newEntity = Levels.Level_reuturnEntity(gameCtrl.difficulty, gameCtrl.level, gameCtrl.winWidth, gameCtrl.winHeight);
+                if (newEntity == null)
+                    return;
                 gameCtrl.current_Enemies.Add(newEntity); // Add to Model
                 
                 
@@ -689,8 +691,7 @@ namespace SpaceAce
                     pngName = "Ship 1.png";
                 }
 
-                if (newEntity == null)
-                    return;
+              
                 Image img = new Image() { Source = new BitmapImage(new Uri("images/" + pngName, UriKind.Relative)) };
                 WorldCanvas.Children.Add(img);
 
