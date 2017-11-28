@@ -48,7 +48,7 @@ namespace Model
 
         public override string Serialize()
         {
-            return "bullet" + "," + X + "," + Y; //JOANNA: x,y only for now
+            return "bullet,normal" + "," + X + "," + Y; //JOANNA: x,y only for now
         }
     }
 
@@ -79,15 +79,18 @@ namespace Model
             if (X < 0 || X > 1200)
                 alive = false;
         }
-
+        public override string Serialize()
+        {
+            return "bullet,slanted" + "," + X + "," + Y + "," + slope; //JOANNA: x,y only for now
+        }
     }
 
     public class Wandering_Bullet:Bullet //Working: Noah Mansfield
     {
         public pattern path;
-        double original_Y;
-        double x_axis = 0;
-        double original_X;
+        public double original_Y;
+        public double x_axis = 0;
+        public double original_X;
      
         public Wandering_Bullet(double X, double Y, pattern path) : base(X, Y)
         {
@@ -118,6 +121,11 @@ namespace Model
             hitbox.Y = Convert.ToInt32(Y);
             if (X < 0 || X > 1200)
                 alive = false;
+        }
+
+        public override string Serialize()
+        {
+            return "bullet,wandering" + "," + X + "," + Y + "," + original_X + "," +original_Y + "," + path + "," + x_axis; //JOANNA: x,y only for now
         }
     }
     //public class Tracking : Bullet

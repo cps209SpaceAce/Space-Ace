@@ -47,9 +47,19 @@ namespace Model
             {
                 if (des[0] == "bullet")
                 {
-                    result = new Bullet(Convert.ToDouble(des[1]), Convert.ToDouble(des[2]));
-                    (result as Bullet).direction = -1;
-                    return result;
+                    if (des[1] == "normal")
+                    {
+                        result = new Bullet(Convert.ToDouble(des[1]), Convert.ToDouble(des[2]));
+                        (result as Bullet).direction = -1;
+                        return result;
+                    }
+                    if (des[1] == "slanted")
+                    {
+                        result = new Slanted_Bullet(Convert.ToDouble(des[2]), Convert.ToDouble(des[3]), Convert.ToDouble(des[4]));
+                        (result as Slanted_Bullet).id = ID.Hostile;
+                        
+                        return result;
+                    }
                 }
                 else if (des[0] == "asteroid")
                 {
@@ -198,9 +208,38 @@ namespace Model
             }
             else if (type == "playerBullet")
             {
-                result = new Bullet(Convert.ToInt32(des[1]), Convert.ToInt32(des[2]));
-                (result as Bullet).direction = 1;
-                return result;
+                if (des[1] == "normal")
+                {
+                    result = new Bullet(Convert.ToInt32(des[2]), Convert.ToInt32(des[3]));
+                    (result as Bullet).direction = 1;
+                    return result;
+                }
+                else if(des[1] == "slanted")
+                {
+                    result = new Slanted_Bullet(Convert.ToDouble(des[2]), Convert.ToDouble(des[3]), Convert.ToDouble(des[4]));
+                    (result as Slanted_Bullet).id = ID.Friendly;
+
+                    return result;
+                }
+                else if(des[1] == "wandering")
+                {
+                    pattern p = pattern.Straight;
+                    foreach (pattern val in Enum.GetValues(typeof(pattern)))
+                    {
+                        if (des[6] == val.ToString())
+                        {
+                            p = val;
+                            break;
+                        }
+                    }
+                    result = new Wandering_Bullet(Convert.ToDouble(des[2]), Convert.ToDouble(des[3]), p);
+                    (result as Wandering_Bullet).id = ID.Friendly;
+                    (result as Wandering_Bullet).original_X = Convert.ToDouble(des[4]);
+                    (result as Wandering_Bullet).original_Y = Convert.ToDouble(des[5]);
+                    (result as Wandering_Bullet).x_axis = Convert.ToDouble(des[7]);
+
+                    return result;
+                }
             }
             return result;
         }
