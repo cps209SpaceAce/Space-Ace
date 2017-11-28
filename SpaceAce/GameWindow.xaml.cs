@@ -688,8 +688,9 @@ namespace SpaceAce
                 {
                     pngName = "Ship 1.png";
                 }
-                
 
+                if (newEntity == null)
+                    return;
                 Image img = new Image() { Source = new BitmapImage(new Uri("images/" + pngName, UriKind.Relative)) };
                 WorldCanvas.Children.Add(img);
 
