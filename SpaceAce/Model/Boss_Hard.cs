@@ -21,8 +21,8 @@ namespace Model
             state = State.Start;
             og_X = 924;
             og_Y = 300;
-            hitbox.Width = 100;
-            hitbox.Height = 100;
+            hitbox.Width = 200;
+            hitbox.Height = 200;
         }
 
 

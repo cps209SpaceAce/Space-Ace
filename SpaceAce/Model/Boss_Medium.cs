@@ -84,7 +84,7 @@ namespace Model
 
         private void mid()
         {
-            if(Y + hitbox.Y/2> p_y)
+            if(Y + hitbox.Y / 2 > p_y)
                 Y = Convert.ToInt32(Y - speed);
             if(Y + hitbox.Y / 2 < p_y)
                 Y = Convert.ToInt32(Y + speed);
@@ -97,12 +97,11 @@ namespace Model
 
         private void End()
         {
-            if (Y > p_y)
+            if (Y + hitbox.Y/2 > p_y)
                 Y = Convert.ToInt32(Y - speed);
-            else if (Y < p_y)
-                Y = Convert.ToInt32(Y + speed);
+            if (Y + hitbox.Y / 2 < p_y)
+                Y = Convert.ToInt32(Y + speed); // fix this it's buggy
             
-
             Shoot();
 
             if (random.Next(0, 1000) == 4)

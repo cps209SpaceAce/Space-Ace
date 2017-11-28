@@ -592,7 +592,6 @@ namespace SpaceAce
             }
             else if (gameCtrl.gameLevelTimer > 15 && gameCtrl.gameLevelTimer < 25)
             {
-                
                 gameCtrl.level = Level.Level_2;
             }
             else if(gameCtrl.gameLevelTimer >= 25 && gameCtrl.gameLevelTimer <= 40) //added by jo, to give ssome transition time
@@ -650,6 +649,7 @@ namespace SpaceAce
 
 
                     // NOT WORKING
+                    // Noah fix this plz (cus robert broke it)
                 }
                 else if (newEntity is Mine)
                 {
@@ -666,7 +666,14 @@ namespace SpaceAce
                     Application.Current.Dispatcher.BeginInvoke(new Action(() => gameMusic.Play()));
 
                     BossIsSpawned = true;
-                    pngName = "Ship 2.png";
+                    gameCtrl.BossIsSpawned = true;
+
+                    if(newEntity is Boss_Easy)
+                        pngName = "robertShip.png";
+                    if (newEntity is Boss_Medium)
+                        pngName = "noahShip.png";
+                    if (newEntity is Boss_Hard)
+                        pngName = "JoannaShip.png";
                 }
                 else if (newEntity is AI)
                 {
@@ -676,7 +683,6 @@ namespace SpaceAce
 
                 Image img = new Image() { Source = new BitmapImage(new Uri("images/" + pngName, UriKind.Relative)) };
                 WorldCanvas.Children.Add(img);
-                //img.Width = 50;
 
 
                 img.Width = newEntity.hitbox.Width;
