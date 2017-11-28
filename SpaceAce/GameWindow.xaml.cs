@@ -230,11 +230,11 @@ namespace SpaceAce
                 if (((Player)ship).triple)
                 {
                     Make_TripleShot(ship);
-                    return;
+                    //return;
                 }
                 if (((Player)ship).wanderingbullets)
                 {
-                    Make_HelixShot(ship);//broken: Noah Mansfield
+                    Make_HelixShot(ship);//Working: Noah Mansfield
                     return;
                 }
 
@@ -443,7 +443,7 @@ namespace SpaceAce
             CheckGameStatus();
             if(!BossIsSpawned)
             {
-                gameCtrl.level = Level.Boss;
+              
                 SpawnEntities();              // Spawn Entities
             }
             
@@ -643,6 +643,8 @@ namespace SpaceAce
             {
                 spawnCounter = 0;
                 Entity newEntity = Levels.Level_reuturnEntity(gameCtrl.difficulty, gameCtrl.level, gameCtrl.winWidth, gameCtrl.winHeight);
+                if (newEntity == null)
+                    return;
                 gameCtrl.current_Enemies.Add(newEntity); // Add to Model
                 
                 
@@ -688,8 +690,8 @@ namespace SpaceAce
                 {
                     pngName = "Ship 1.png";
                 }
-                
 
+              
                 Image img = new Image() { Source = new BitmapImage(new Uri("images/" + pngName, UriKind.Relative)) };
                 WorldCanvas.Children.Add(img);
 
