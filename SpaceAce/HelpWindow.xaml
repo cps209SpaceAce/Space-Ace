@@ -16,16 +16,33 @@
         <Grid>
             <Button Content="Close Window" FontSize="25" Background="DarkGray" HorizontalAlignment="Left" 
             Margin="720,634,0,0" VerticalAlignment="Top" Width="236" Height="50" Click="Button_Click"/>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="477" Width="447" Foreground="White" FontSize="22" Margin="499,10,0,0"><Run Text="Pick a difficulty from the Title Screen. (Easy by Default)"/><LineBreak/><Run/><LineBreak/><Run Text="Choose New Game or Load Game."/><LineBreak/><Run/><LineBreak/><Run Text="Fire at ship and avoid asteroids to get through the levels."/><LineBreak/><Run/><LineBreak/><Run Text="The more ships you shoot the more points you get."/><LineBreak/><Run/><LineBreak/><Run Text="Don't touch any enemies ship, asteroids, or enemy fire."/></TextBlock>
-            <Image Source="Images/Menu/arrow.png" HorizontalAlignment="Left" Height="137" Margin="76,59,0,0" VerticalAlignment="Top" Width="158"/>
-            <Image Source="Images/Menu/space.png" HorizontalAlignment="Left" Height="131" Margin="66,180,0,0" VerticalAlignment="Top" Width="168"/>
-            <Image Source="Images/Menu/esc.png" HorizontalAlignment="Left" Height="100" Margin="98,354,0,0" VerticalAlignment="Top" Width="100"/>
-            <Image Source="Images/Menu/b.jpg" HorizontalAlignment="Left" Height="74" Margin="112,255,0,0" VerticalAlignment="Top" Width="70"/>
-            <Label FontSize="30" Foreground="White" Content="Movement" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,106,0,0"/>
-            <Label FontSize="30" Foreground="White" Content="Shoot" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,180,0,0"/>
-            <Label FontSize="30" Foreground="White" Content="Bomb" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,273,0,0"/>
-            <Label FontSize="30" Foreground="White" Content="Pause Menu" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,375,0,0"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="442" Width="447" Foreground="White" FontSize="22" Margin="499,10,0,0"><Run Text="1. "/><Run Text="Pick a difficulty from the Title Screen. (Easy "/><Run Text="&#x9;"/><Run Text="by Default)"/><LineBreak/><Run/><LineBreak/><Run Text="2. "/><Run Text="Choose New Game or Load Game."/><LineBreak/><Run/><LineBreak/><Run Text="3. "/><Run Text="Fire at ship and avoid asteroids to get "/><Run Text="&#x9;"/><Run Text="through the levels."/><LineBreak/><Run/><LineBreak/><Run Text="4."/><Run Text=" T"/><Run Text="he more ships you shoot the more points "/><Run Text="&#x9;"/><Run Text="you get."/><LineBreak/><Run/><LineBreak/><Run Text="5. "/><Run Text="Don't touch any enemies ship, asteroids, or enemy fire."/><LineBreak/><Run/><LineBreak/><Run Text="6. Hit Power Ups to get a bonus."/></TextBlock>
+            <Image Source="Images/Menu/arrow.png" HorizontalAlignment="Left" Height="137" Margin="76,20,0,0" VerticalAlignment="Top" Width="158"/>
+            <Image Source="Images/Menu/space.png" HorizontalAlignment="Left" Height="59" Margin="66,134,0,0" VerticalAlignment="Top" Width="168"/>
+            <Image Source="Images/Menu/esc.png" HorizontalAlignment="Left" Height="100" Margin="102,272,0,0" VerticalAlignment="Top" Width="100"/>
+            <Image Source="Images/Menu/b.jpg" HorizontalAlignment="Left" Height="74" Margin="114,193,0,0" VerticalAlignment="Top" Width="70"/>
+            <Label FontSize="30" Foreground="White" Content="Movement" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,71,0,0"/>
+            <Label FontSize="30" Foreground="White" Content="Shoot" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,142,0,0"/>
+            <Label FontSize="30" Foreground="White" Content="Bomb" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,218,0,0"/>
+            <Label FontSize="30" Foreground="White" Content="Pause Menu" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="266,305,0,0"/>
+
+
+            <Image HorizontalAlignment="Left" Height="40" Margin="110,410,0,0" VerticalAlignment="Top" Width="40" Source="Images/PowerUp/life.png"/>
+            <Image HorizontalAlignment="Left" Height="40" Margin="110,460,0,0" VerticalAlignment="Top" Width="40" Source="Images/PowerUp/shield.png"/>
+            <Image HorizontalAlignment="Left" Height="40" Margin="110,510,0,0" VerticalAlignment="Top" Width="40" Source="Images/PowerUp/star.png"/>
+            <Image HorizontalAlignment="Left" Height="40" Margin="110,560,0,0" VerticalAlignment="Top" Width="40" Source="Images/PowerUp/power.png"/>
+            <Label FontSize="20" Foreground="White" Content="REPAIR - Lifes + 1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="170,410,0,0" Height="40"/>
+            <Label FontSize="20" Foreground="White" Content="BOMB - Bombs + 1 " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="170,460,0,0" Height="40"/>
+            <Label FontSize="20" Foreground="White" Content="STAR - Take no damage" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="170,510,0,0" Height="40"/>
+            <Label FontSize="20" Foreground="White" Content="SPEED - Move Faster" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="170,560,0,0" Height="40"/>
             
+            <Image HorizontalAlignment="Left" Height="40" Margin="500,470,0,0" VerticalAlignment="Top" Width="40" Source="Images/PowerUp/bullets.png"/>
+            <Image HorizontalAlignment="Left" Height="40" Margin="500,520,0,0" VerticalAlignment="Top" Width="40" Source="Images/PowerUp/bullets2.png"/>
+            <Image HorizontalAlignment="Left" Height="40" Margin="500,570,0,0" VerticalAlignment="Top" Width="40" Source="Images/PowerUp/bullets3.png"/>
+            <Label FontSize="20" Foreground="White" Content="SPREAD SHOT" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="560,470,0,0" Height="40"/>
+            <Label FontSize="20" Foreground="White" Content="RAPID FIRE" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="560,520,0,0" Height="40"/>
+            <Label FontSize="20" Foreground="White" Content="HEX SHOT" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="560,570,0,0" Height="40"/>
+
         </Grid>
     </StackPanel>
 </Window>
