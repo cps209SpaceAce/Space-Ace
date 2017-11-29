@@ -39,15 +39,15 @@ List work completed.
 ## Known Issues: 
 List any major issues.
 * Hitboxes - Bit bigger than objects.
-* Sounds - Cut eachother off. (And no theme music)
-* Formations - Same image as normal
-* Mines - Don't do damage
+* Formations - Same image as normal on Load.
 * Save/Load - Do not save whether cheating
 
 ## Recording: 
 https://tinyurl.com/cps209-TeamB-Alpha
 
 https://tinyurl.com/cps209-TeamB-Beta
+
+https://tinyurl.com/cps209-TeamB-RC
 
 ## Expenses: 
 Provide a table showing how many hours each team member has invested to this point, how many hours they have remaining out of their individual time budget, and link to each team member’s journal.
