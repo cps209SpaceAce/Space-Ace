@@ -84,14 +84,20 @@ namespace Model
             else if (powerup == PowerUp.RapidFire)
             {
                 rapid_fire = true;
+                wanderingbullets = false;
+                triple = false;
             }
             else if (powerup == PowerUp.TripleShot)
             {
                 triple = true;
+                wanderingbullets = false;
+                rapid_fire = false;
             }
             else if (powerup == PowerUp.Helix)
             {
                 wanderingbullets = true;
+                rapid_fire = false;
+                triple = false;
             }
 
             powerup = PowerUp.Empty;
@@ -236,7 +242,7 @@ namespace Model
             if (isPoweredUp) {
                 powerUpCounter++;
                 //Console.WriteLine("I AM POWERED UP");
-                if (powerUpCounter >= 5000) { 
+                if (powerUpCounter >= 1000) { 
                     this.isInvincible = false;
                     this.powerUpCounter = 0;
                 }

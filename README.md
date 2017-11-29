@@ -33,7 +33,7 @@ List work completed.
 * Sound
 * Save/Load
 * Player Death
-* 1 Power Up
+* 7 Power Up
 
 
 ## Known Issues: 
