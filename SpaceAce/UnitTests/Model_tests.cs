@@ -27,22 +27,32 @@ namespace SpaceAce.UnitTests
         }
 
         [TestMethod]
-        public void Invoke_updateWorld() { }
+        public void Invoke_updateWorld() {
+            Assert.Fail();
+        }
 
         [TestMethod]
-        public void Test_Load() { }
+        public void Test_Load() {
+            Assert.Fail();
+        }
 
         [TestMethod]
-        public void Test_save() { }
-        
-        [TestMethod]
-        public void Test_updateplayer() { }
+        public void Test_save() {
+            Assert.Fail();
+        }
 
         [TestMethod]
-        public void Test_collision() { }
+        public void Test_updateplayer() {
+            Assert.Fail();
+        }
+
+        [TestMethod]
+        public void Test_collision() {
+            Assert.Fail();
+        }
 
 
-    
+
 
         [TestMethod]
         public void Update_AddScore_Pass()
