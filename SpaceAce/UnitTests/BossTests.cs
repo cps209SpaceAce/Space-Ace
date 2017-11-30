@@ -15,14 +15,12 @@ namespace SpaceAce.UnitTests
         public void Boss_Hit_Easy_Success()
         {
             Assert.Fail();
-
         }
 
         [TestMethod]
         public void Boss_Hit_Medium_Success()
         {
             Assert.Fail();
-
         }
 
         [TestMethod]
