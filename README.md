@@ -34,13 +34,17 @@ List work completed.
 * Save/Load
 * Player Death
 * 7 Power Up
+* Ship Selection
+* Level Progression
+* 3 Bosses
 
 
 ## Known Issues: 
 List any major issues.
 * Hitboxes - Bit bigger than objects.
 * Formations - Same image as normal on Load.
-* Save/Load - Do not save whether cheating
+* Save/Load - Load does not pass cheating.
+* Save/Load - Loads 2 bosses. One being invisible.
 
 ## Recording: 
 https://tinyurl.com/cps209-TeamB-Alpha
@@ -50,7 +54,7 @@ https://tinyurl.com/cps209-TeamB-Beta
 https://tinyurl.com/cps209-TeamB-RC
 
 ## Expenses: 
-Provide a table showing how many hours each team member has invested to this point, how many hours they have remaining out of their individual time budget, and link to each team member’s journal.
+
 
 | Person| Time Spent (HOURS)  | Time Left (HOURS)|Journal|
 | :---:   | :---:   | :---: | :---:|
