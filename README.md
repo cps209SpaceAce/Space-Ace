@@ -34,27 +34,31 @@ List work completed.
 * Save/Load
 * Player Death
 * 7 Power Up
+* Ship Selection
+* Level Progression
+* 3 Bosses
 
 
 ## Known Issues: 
 List any major issues.
 * Hitboxes - Bit bigger than objects.
-* Sounds - Cut eachother off. (And no theme music)
-* Formations - Same image as normal
-* Mines - Don't do damage
-* Save/Load - Do not save whether cheating
+* Formations - Same image as normal on Load.
+* Save/Load - Load does not pass cheating.
+* Save/Load - Loads 2 bosses. One being invisible.
 
 ## Recording: 
 https://tinyurl.com/cps209-TeamB-Alpha
 
 https://tinyurl.com/cps209-TeamB-Beta
 
+https://tinyurl.com/cps209-TeamB-RC
+
 ## Expenses: 
-Provide a table showing how many hours each team member has invested to this point, how many hours they have remaining out of their individual time budget, and link to each team member’s journal.
+
 
 | Person| Time Spent (HOURS)  | Time Left (HOURS)|Journal|
 | :---:   | :---:   | :---: | :---:|
-| Noah Mansfield  |20.83|29.17|https://github.com/cps209SpaceAce/Space-Ace/wiki/MansfieldJournal|
-| Joanna Madanat  |21.38|28.61|https://github.com/cps209SpaceAce/Space-Ace/wiki/MadanatJournal|
-| Robert Meyer    |31|19|https://github.com/cps209SpaceAce/Space-Ace/wiki/MeyerJournal|
+| Noah Mansfield  |32.1|17.8|https://github.com/cps209SpaceAce/Space-Ace/wiki/MansfieldJournal|
+| Joanna Madanat  |37.5|12.4|https://github.com/cps209SpaceAce/Space-Ace/wiki/MadanatJournal|
+| Robert Meyer    |38.5|11.4|https://github.com/cps209SpaceAce/Space-Ace/wiki/MeyerJournal|
 
