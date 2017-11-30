@@ -188,7 +188,7 @@ namespace Model
                 case Difficulty.Hard:
                     return new Boss_Hard(1200, 300, 30, winWidth, winHeight);// TODO: add Boss_Hard
             }
-            return new Boss(1200, 300, 30, winWidth, winHeight);
+            throw new Exception("It's impossible to get here. Even in unit tests...");
         }
     }
 

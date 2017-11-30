@@ -11,11 +11,9 @@ namespace Model
     public class Boss_Medium : Boss 
     {
         public MState currentState;
-        int dir = 1;
-        int shootTimer = 0;
-        bool shoot = false;
-        bool goingBackwards = false;
-        bool isEntering = true;
+        public int dir = 1;
+        public bool goingBackwards = false;
+        public bool isEntering = true;
         int reset = 60;
 
         public Boss_Medium(double X, double Y, int health, double winWidth, double winHeight) : base(X, Y, health, winWidth, winHeight)
@@ -33,8 +31,6 @@ namespace Model
             }
             isEntering = false;
 
-            if (cooldown > 0)
-                cooldown--;
             //TODO: movement logic for boss
             actionTimer += 0.01;
 
@@ -110,6 +106,8 @@ namespace Model
 
         private void Attack()
         {
+            FiredABullet = false;
+
             if (!goingBackwards && X > 0)
             {
                 X = Convert.ToInt32(X - speed);
@@ -129,21 +127,24 @@ namespace Model
 
         void Shoot()
         {
+            if (cooldown > 0)
+                cooldown--;
 
             if (cooldown == 0)
             {
                 action = true;
                 FiredABullet = true;
-                bullet_y = Y + hitbox.Y/2;
+                bullet_y = Y + hitbox.Y / 2;
                 cooldown = reset;
             }
             else
                 FiredABullet = false;
+            
         }
 
         public override string Serialize()
         {
-            return "boss,medium" + "," + X + "," + Y + "," + health + "," + currentState; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
+            return "boss,medium" + "," + X + "," + Y + "," + health + "," + currentState + "," + isEntering + "," + goingBackwards + "," + dir; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
         }
     }
 }

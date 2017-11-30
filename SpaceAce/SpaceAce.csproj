@@ -83,6 +83,7 @@
     <Compile Include="Model\Boss_Easy.cs" />
     <Compile Include="Model\Boss_Hard.cs" />
     <Compile Include="Model\Boss_Medium.cs" />
+    <Compile Include="UnitTests\BossTests.cs" />
     <Compile Include="UnitTests\EntityTests.cs" />
     <Compile Include="UnitTests\LevelTests.cs" />
     <Compile Include="UnitTests\Model_tests.cs" />

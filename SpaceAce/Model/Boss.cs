@@ -10,7 +10,7 @@ namespace Model
     public enum Direction { Left, Right, Up, Down }
     public enum State { Start, Mid, End }
     //public enum BossAction {Fire, Wall }
-    public class Boss : Entity, ISerialiable
+    abstract public class Boss : Entity, ISerialiable
     {
         public bool fired_slanted_targeted_shot;
         public bool action = false;

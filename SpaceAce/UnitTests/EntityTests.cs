@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
+using System.Windows;
+
 
 namespace SpaceAce.UnitTests
 {
@@ -154,6 +154,9 @@ namespace SpaceAce.UnitTests
         [TestMethod]
         public void Activate_PowerUp_RapidFire_Success()
         {
+            if (Application.Current == null)
+            { new Application { ShutdownMode = ShutdownMode.OnExplicitShutdown }; }
+
             Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerup = PowerUp.RapidFire;
 
@@ -168,6 +171,11 @@ namespace SpaceAce.UnitTests
         [TestMethod]
         public void Activate_PowerUp_ExtraBomb_Success()
         {
+            //taken from StackOverflow to make Application.Current work for the sound functionality
+            //https://stackoverflow.com/questions/14837784/application-current-is-null-when-calling-from-a-unittest
+            if (Application.Current == null)
+            { new Application { ShutdownMode = ShutdownMode.OnExplicitShutdown }; }
+
             Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerup = PowerUp.ExtraBomb;
 
@@ -255,16 +263,12 @@ namespace SpaceAce.UnitTests
             Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerUpCounter = 400;
             test.rapid_fire = true;
-            test.isInvincible = true;
             test.isPoweredUp = true;
             test.triple = true;
             test.speed = 90;
 
-            test.powerUpCounter = 5000;
-            test.UpdatePosition();
+            test.HitPlayer(new AI(10, 10, pattern.Straight));
 
-            Assert.IsTrue(test.powerUpCounter == 0);
-            Assert.IsTrue(test.isInvincible == false);
             Assert.IsTrue(test.isPoweredUp == false);
             Assert.IsTrue(test.rapid_fire == false);
             Assert.IsTrue(test.triple == false);
@@ -297,18 +301,6 @@ namespace SpaceAce.UnitTests
         public void UpdatePosition_Formation_Cos_Success()
         {
             Formation test = new Formation(0, 0, pattern.Cos);
-            test.UpdatePosition();
-            test.UpdatePosition();
-            test.UpdatePosition();
-
-            Assert.IsTrue(test.X != 0);
-            Assert.IsTrue(test.Y != 0);
-        }
-
-        [TestMethod]
-        public void UpdatePosition_Formation_Tan_Success()
-        {
-            Formation test = new Formation(0, 0, pattern.Tan);
             test.UpdatePosition();
             test.UpdatePosition();
             test.UpdatePosition();
@@ -456,15 +448,6 @@ namespace SpaceAce.UnitTests
             Assert.IsTrue(test.Y < 20);
         }
 
-        [TestMethod]
-        public void UpdatePosition_WanderingBullet_Tan_Success()
-        {
-            Wandering_Bullet test = new Wandering_Bullet(20, 20, pattern.Tan);
-            test.UpdatePosition();
-
-            Assert.IsTrue(test.X > 20);
-            Assert.IsTrue(test.Y > 20);
-        }
 
         [TestMethod]
         public void UpdatePosition_WanderingBullet_OutofBounds_Despawn()
@@ -571,6 +554,9 @@ namespace SpaceAce.UnitTests
         [TestMethod]
         public void UpdateWorld_GC_Success()
         {
+            if (Application.Current == null)
+            { new Application { ShutdownMode = ShutdownMode.OnExplicitShutdown }; }
+
             GameController ctrl = new GameController();
             ctrl.player.X = 100;
             ctrl.player.Y = 100;
@@ -616,7 +602,7 @@ namespace SpaceAce.UnitTests
 
             ctrl.UpdateWorld();
 
-            Assert.IsTrue(ctrl.current_Enemies.Count == 2);
+            Assert.IsTrue(ctrl.current_Enemies.Count == 1);
             Assert.IsTrue(ctrl.player_fire.Count == 0);
             Assert.IsTrue(ctrl.player.Lives == 6);
             Assert.IsTrue(ctrl.player.Bombs == 7);

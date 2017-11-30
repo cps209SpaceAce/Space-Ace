@@ -18,6 +18,7 @@ namespace Model
         public bool wanderingbullets =false; // flag for sin and cos bullets. currently broken 
         public bool triple = false;//flag for triple shot
         public bool rapid_fire = false; //flag to engage rapid fire mode by reducing the cooldown
+        public bool extraSpeed = false;
         public int cooldown = 0;
         public int bombCooldown = 0;
         public int Lives { get; set; }
@@ -69,10 +70,14 @@ namespace Model
 
 
             if (powerup == PowerUp.ExtraSpeed)
-                speed = baseSpeed*2;
+            {
+                speed = baseSpeed * 2;
+                extraSpeed = true;
+            }
             else if (powerup == PowerUp.Invincible)
                 isInvincible = true;
-            else if (powerup == PowerUp.ExtraLife) { 
+            else if (powerup == PowerUp.ExtraLife)
+            {
                 ++Lives;
                 isPoweredUp = false;
             }
@@ -110,6 +115,7 @@ namespace Model
             triple = false;
             rapid_fire = false;
             wanderingbullets = false;
+            extraSpeed = false;
         }
         public void DropBomb()
         {
@@ -241,7 +247,6 @@ namespace Model
 
             if (isPoweredUp) {
                 powerUpCounter++;
-                //Console.WriteLine("I AM POWERED UP");
                 if (powerUpCounter >= 1000) { 
                     this.isInvincible = false;
                     this.powerUpCounter = 0;
@@ -254,7 +259,7 @@ namespace Model
 
         public override string Serialize()
         {
-            return X + "," + Y + "," + powerup + "," + Lives + "," + Bombs + "," + isPoweredUp + "," + powerUpCounter + "," + cheating + "," + image;
+            return X + "," + Y + "," + powerup + "," + Lives + "," + Bombs + "," + isPoweredUp + "," + powerUpCounter + "," + cheating + "," + image + "," + triple + "," + wanderingbullets + "," + extraSpeed + "," + rapid_fire;
         }
     }
 }
