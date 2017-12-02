@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public enum pattern { Straight, Sin, Cos, Tan, Sindown };
+    public enum pattern { Straight, Sin, Cos, Sindown };
     public class AI : Entity
     {
         public int fireCoolDown = 50;
@@ -70,8 +70,6 @@ namespace Model
                 case pattern.Cos:
                     X = (X - (0.5 * speed));
                     Y = (200 * Math.Cos(0.01 * X)) + original_Y;
-                    break;
-                case pattern.Tan:
                     break;
 
             }

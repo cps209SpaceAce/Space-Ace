@@ -14,7 +14,7 @@ namespace Model
         double og_X;
         double og_Y;
         double x_axis = 0;
-        Direction dir = Direction.Left;
+        public Direction dir = Direction.Left;
 
         public Boss_Hard(double X, double Y, int health, double winWidth, double winHeight) : base(X, Y, health, winWidth, winHeight)
         {
@@ -89,7 +89,7 @@ namespace Model
 
         public override string Serialize()
         {
-            return "boss,hard" + "," + X + "," + Y + "," + health + "," + state; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
+            return "boss,hard" + "," + X + "," + Y + "," + health + "," + state + "," + dir ; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
         }
     }
 }

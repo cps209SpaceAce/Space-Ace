@@ -15,7 +15,6 @@ namespace Model
         //health auto set to 1
         public int health;
         public bool FiredABullet = false;
-        public pattern Flightpath;
         public Rectangle hitbox;
         public double X;
         public double Y;
@@ -49,7 +48,7 @@ namespace Model
                 {
                     if (des[1] == "normal")
                     {
-                        result = new Bullet(Convert.ToDouble(des[1]), Convert.ToDouble(des[2]));
+                        result = new Bullet(Convert.ToDouble(des[2]), Convert.ToDouble(des[3]));
                         (result as Bullet).direction = -1;
                         return result;
                     }
@@ -57,7 +56,7 @@ namespace Model
                     {
                         result = new Slanted_Bullet(Convert.ToDouble(des[2]), Convert.ToDouble(des[3]), Convert.ToDouble(des[4]));
                         (result as Slanted_Bullet).id = ID.Hostile;
-                        
+
                         return result;
                     }
                 }
@@ -112,61 +111,53 @@ namespace Model
                 }
                 else if (des[0] == "boss")
                 {
-                    if(des[1] == "base")
-                    {
-                        result = new Boss(Convert.ToDouble( des[2]), Convert.ToDouble(des[3]), Convert.ToInt32(des[4]), game.winWidth, game.winHeight);
-                        foreach (State val in Enum.GetValues(typeof(State)))
-                        {
-                            if (des[5] == val.ToString())
-                            {
-                                (result as Boss).state = val;
-                                break;
-                            }
-
-                            return result;
-                        }
-                    }
-                    else if(des[1]=="easy")
+                    if (des[1] == "easy")
                     {
                         result = new Boss_Easy(Convert.ToDouble(des[2]), Convert.ToDouble(des[3]), Convert.ToInt32(des[4]), game.winWidth, game.winHeight);
                         foreach (State val in Enum.GetValues(typeof(State)))
-                        {
                             if (des[5] == val.ToString())
                             {
                                 (result as Boss_Easy).state = val;
                                 break;
                             }
 
-                            return result;
-                        }
+                        return result;
                     }
                     else if (des[1] == "medium")
                     {
                         result = new Boss_Medium(Convert.ToDouble(des[2]), Convert.ToDouble(des[3]), Convert.ToInt32(des[4]), game.winWidth, game.winHeight);
                         foreach (MState val in Enum.GetValues(typeof(MState)))
-                        {
                             if (des[5] == val.ToString())
                             {
                                 (result as Boss_Medium).currentState = val;
                                 break;
                             }
+                        
+                        (result as Boss_Medium).isEntering = Convert.ToBoolean(des[6]);
+                        (result as Boss_Medium).goingBackwards = Convert.ToBoolean(des[7]);
+                        (result as Boss_Medium).dir = Convert.ToInt32(des[8]);
 
-                            return result;
-                        }
+                        return result;
                     }
                     else if (des[1] == "hard")
                     {
                         result = new Boss_Hard(Convert.ToDouble(des[2]), Convert.ToDouble(des[3]), Convert.ToInt32(des[4]), game.winWidth, game.winHeight);
                         foreach (State val in Enum.GetValues(typeof(State)))
-                        {
                             if (des[5] == val.ToString())
                             {
                                 (result as Boss_Hard).state = val;
                                 break;
                             }
-
-                            return result;
+                        
+                        foreach (Direction val in Enum.GetValues(typeof(Direction)))
+                        {
+                            if (des[6] == val.ToString())
+                            {
+                                (result as Boss_Hard).dir = val;
+                                break;
+                            }
                         }
+                        return result;
                     }
                 }
                 else
@@ -177,7 +168,7 @@ namespace Model
             }
             else if (type == "player")
             {
-                
+
                 result = new Player(Convert.ToDouble(des[0]), Convert.ToDouble(des[1]), Convert.ToInt32(des[3]), Convert.ToInt32(des[4]), game, "SHIP_IMAGE");
 
 
@@ -190,19 +181,16 @@ namespace Model
                     }
                 }
 
-                if (des[5] == "True")
-                    (result as Player).isPoweredUp = true;
-                else
-                    (result as Player).isPoweredUp = false;
-
-                if (des[7] == "True")
-                    (result as Player).cheating = true;
-                else
-                    (result as Player).cheating = false;
+                (result as Player).isPoweredUp = Convert.ToBoolean(des[5]);
+                (result as Player).cheating = Convert.ToBoolean(des[7]);
 
                 (result as Player).powerUpCounter = Convert.ToDouble(des[6]);
                 (result as Player).image = des[8];
 
+                (result as Player).triple = Convert.ToBoolean(des[9]);
+                (result as Player).wanderingbullets = Convert.ToBoolean(des[10]);
+                (result as Player).extraSpeed = Convert.ToBoolean(des[11]);
+                (result as Player).rapid_fire = Convert.ToBoolean(des[12]);
                 return result;
 
             }
@@ -214,14 +202,14 @@ namespace Model
                     (result as Bullet).direction = 1;
                     return result;
                 }
-                else if(des[1] == "slanted")
+                else if (des[1] == "slanted")
                 {
                     result = new Slanted_Bullet(Convert.ToDouble(des[2]), Convert.ToDouble(des[3]), Convert.ToDouble(des[4]));
                     (result as Slanted_Bullet).id = ID.Friendly;
 
                     return result;
                 }
-                else if(des[1] == "wandering")
+                else if (des[1] == "wandering")
                 {
                     pattern p = pattern.Straight;
                     foreach (pattern val in Enum.GetValues(typeof(pattern)))
@@ -291,8 +279,8 @@ namespace Model
                 health = 3;
             else if (r >= 80)
                 health = 7;
-            
-            
+
+
         }
         public override bool Hit()
         {
@@ -317,11 +305,4 @@ namespace Model
             return "asteroid" + "," + health + "," + X + "," + Y;
         }
     }
-
-
-
-
-
-
-
 }

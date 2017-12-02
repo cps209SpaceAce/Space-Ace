@@ -43,7 +43,7 @@ namespace Model
         public bool down = false;
         public bool left = false;
         public bool right = false;
-       
+
 
         //lists of moving objects
         // add a boss var
@@ -55,16 +55,16 @@ namespace Model
         //pre-game setup
         public Level level;
         public Difficulty difficulty;
-        public double base_Speed; //does anyone use basespeed anymore?
+        public double base_Speed;
         public int score;
         public double gameLevelTimer;
         public double spawnPowerUpTimer;
-
         public bool BossIsSpawned = false;
+
         //window information
         public double winWidth;
         public double winHeight;
-        
+
 
         public GameController(Difficulty passDiff, double windowWidth, double windowHeight, bool isCheating, string shipIMG)
         {
@@ -79,11 +79,11 @@ namespace Model
             winHeight = windowHeight;
         }
 
-        
+
 
         public GameController()
         {
-            player = new Player(50, 350, 3, 3, this,"ship_image");
+            player = new Player(50, 350, 3, 3, this, "ship.png");
         }
 
 
@@ -99,7 +99,7 @@ namespace Model
                 if (ent != null)
                 {
                     if (ent is Tracker)
-                        (ent as Tracker).RecieveTrackerData(player.X, player.Y, winWidth / 2 + winWidth / 4); 
+                        (ent as Tracker).RecieveTrackerData(player.X, player.Y, winWidth / 2 + winWidth / 4);
 
                     if (ent is Mine)
                         (ent as Mine).RecieveTrackerData(player.X, player.Y);
@@ -120,7 +120,7 @@ namespace Model
 
                     else
                     {
-                        
+
 
                         if (ent.FiredABullet)
                             ships_that_fired.Add(ent);
@@ -207,8 +207,8 @@ namespace Model
                             if (enemy is Powerup)
                             {
                                 player.powerup = (enemy as Powerup).type; // Added by Jo // copyed Noah
-                                //if ((enemy as Powerup).type == PowerUp.ExtraLife)
-                                    player.Activate_powerup();
+                                                                          //if ((enemy as Powerup).type == PowerUp.ExtraLife)
+                                player.Activate_powerup();
                             }
                         }
 
@@ -265,14 +265,6 @@ namespace Model
                 writer.WriteLine(level + "," + score + "," + base_Speed + "," + gameLevelTimer + "," + BossIsSpawned); //add timers
                 writer.WriteLine("[end]");
 
-                if (current_Enemies != null && current_Enemies.Count > 0)
-                {
-                    writer.WriteLine("[enemies]");
-                    for (int i = 0; i < current_Enemies.Count; ++i)
-                        writer.WriteLine(current_Enemies[i].Serialize());
-                    writer.WriteLine("[end]");
-                }
-
                 if (player != null)
                 {
                     writer.WriteLine("[player]");
@@ -288,6 +280,15 @@ namespace Model
                     writer.WriteLine("[end]");
                 }
 
+                if (current_Enemies != null && current_Enemies.Count > 0)
+                {
+                    writer.WriteLine("[enemies]");
+                    for (int i = 0; i < current_Enemies.Count; ++i)
+                        writer.WriteLine(current_Enemies[i].Serialize());
+                    writer.WriteLine("[end]");
+                }
+
+
             }
         }
         public void Load(string fileName)
@@ -296,71 +297,73 @@ namespace Model
             current_Enemies.Clear();
             player_fire.Clear();
 
-            if (!File.Exists(fileName)) {
-                using (File.Create(fileName)) ;
+            if (!File.Exists(fileName))
+            {
+                using (File.Create(fileName))
+                    return;
             }
 
 
-                using (StreamReader reader = new StreamReader(fileName))
+            using (StreamReader reader = new StreamReader(fileName))
+            {
+                while (!reader.EndOfStream)
                 {
-                    while (!reader.EndOfStream)
+                    string startLine = reader.ReadLine();
+                    if (startLine == "[defaults]")
                     {
-                        string startLine = reader.ReadLine();
-                        if (startLine == "[defaults]")
+                        string[] res = reader.ReadLine().Split(',');
+
+                        if (res[0] == "Level_1")
+                            level = Level.Level_1;
+                        else if (res[0] == "Level_2")
+                            level = Level.Level_2;
+                        else if (res[0] == "Boss")
+                            level = Level.Boss;
+
+                        score = Convert.ToInt32(res[1]);
+                        base_Speed = Convert.ToDouble(res[2]);
+                        gameLevelTimer = Convert.ToDouble(res[3]);
+
+                        BossIsSpawned = Convert.ToBoolean(res[4]);
+                        reader.ReadLine(); //[end]
+                    }
+                    else if (startLine == "[player]")
+                    {
+                        string line = reader.ReadLine();
+                        player = Entity.Deserialize(line, "player", this) as Player;
+                        reader.ReadLine(); //[end]
+                    }
+
+                    else if (startLine == "[playerBullets]")
+                    {
+                        List<Bullet> list = new List<Bullet>();
+
+                        string line = reader.ReadLine();
+                        while (line != "[end]")
                         {
-                            string[] res = reader.ReadLine().Split(',');
+                            list.Add(Entity.Deserialize(line, "playerBullet", this) as Bullet);
+                            line = reader.ReadLine();
+                        }
 
-                            if (res[0] == "Level_1")
-                                level = Level.Level_1;
-                            else if (res[0] == "Level_2")
-                                level = Level.Level_2;
-                            else if (res[0] == "Boss")
-                                level = Level.Boss;
-
-                            score = Convert.ToInt32(res[1]);
-                            base_Speed = Convert.ToDouble(res[2]);
-                            gameLevelTimer = Convert.ToDouble(res[3]);
-                        if (res[4] == "True")
-                            BossIsSpawned = true;
-                        else
-                            BossIsSpawned = false;
-
+                        player_fire = list;
                     }
                     else if (startLine == "[enemies]")
+                    {
+                        List<Entity> list = new List<Entity>();
+
+                        string line = reader.ReadLine();
+                        while (line != "[end]")
                         {
-                            List<Entity> list = new List<Entity>();
-
-                            string line = reader.ReadLine();
-                            while (line != "[end]")
-                            {
-                                list.Add(Entity.Deserialize(line, "enemy", this));
-                                line = reader.ReadLine();
-                            }
-
-                            current_Enemies = list;
+                            list.Add(Entity.Deserialize(line, "enemy", this));
+                            line = reader.ReadLine();
                         }
 
-                        else if (startLine == "[player]")
-                        {
-                            string line = reader.ReadLine();
-                            player = Entity.Deserialize(line, "player", this) as Player;
-                        }
-
-                        else if (startLine == "[playerBullets]")
-                        {
-                            List<Bullet> list = new List<Bullet>();
-
-                            string line = reader.ReadLine();
-                            while (line != "[end]")
-                            {
-                                list.Add(Entity.Deserialize(line, "playerBullet", this) as Bullet);
-                                line = reader.ReadLine();
-                            }
-
-                            player_fire = list;
-                        }
+                        current_Enemies = list;
                     }
+                    else throw new Exception("Enemy type Unknown.");
+
                 }
+            }
         }
     }
 }
