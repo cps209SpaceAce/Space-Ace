@@ -4,147 +4,108 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+
 namespace Model
 {
-    public enum MState { Start, Mid, End, Attack }
-
-    public class Boss_Medium : Boss 
+    public class Boss_Medium : Boss // Noah's Boss
     {
-        public MState currentState;
-        public int dir = 1;
-        public bool goingBackwards = false;
-        public bool isEntering = true;
-        int reset = 60;
+        int reset = 50;
+
 
         public Boss_Medium(double X, double Y, int health, double winWidth, double winHeight) : base(X, Y, health, winWidth, winHeight)
         {
-            currentState = MState.Start;
+            state = State.Start;
+
         }
+
 
 
         public override void UpdatePosition()
         {
-            if (isEntering && X > windowWidth / 2)
-            {
-                X = Convert.ToInt32(X - speed);
-                return;
-            }
-            isEntering = false;
-
+            if (cooldown > 0)
+                cooldown--;
             //TODO: movement logic for boss
             actionTimer += 0.01;
-
-            switch (currentState)
+            if (X > 750)//Jo: use the windowHeight/windowWidth variables ^
             {
-                case MState.Start:
+                X = Convert.ToInt32(X - (1 * speed));
+
+            }
+
+            switch (state)
+            {
+                case State.Start:
                     start();
                     if (health < (max / 2))
                     {
-                        currentState = MState.Mid;
+                        state = State.Mid;
+                        reset = 50;
                     }
                     break;
-                case MState.Mid:
+                case State.Mid:
                     mid();
-                    if (health < (max / .75f))
+                    if (health < (max / .75))
                     {
-                        currentState = MState.End;
+                        state = State.End;
+                        reset = 25;
                     }
                     break;
-                case MState.End:
-                    End();
+                case State.End:
+                    mid();
                     break;
 
-                case MState.Attack:
-                    Attack();
-                    break;
             }
+            // after x == 950 ... change y V^
 
+            // action == 1 
+            //bossShoot(x,y,type)
             hitbox.X = Convert.ToInt32(X);
             hitbox.Y = Convert.ToInt32(Y);
         }
 
         private void start()
         {
-            if (Y < 0 || Y > windowHeight - hitbox.Y)
+            if (health < (max / 4 * 3) && state == State.Start)
             {
-                dir *= -1;
+                reset = 25;
             }
-            Y = Convert.ToInt32(Y + (dir * speed));
 
 
-            Shoot();
-
-            if (random.Next(0, 1000) == 4)
-              currentState = MState.Attack;
-        }
-
-        private void mid()
-        {
-            if(Y + hitbox.Y / 2 > p_y)
-                Y = Convert.ToInt32(Y - speed);
-            if(Y + hitbox.Y / 2 < p_y)
-                Y = Convert.ToInt32(Y + speed);
-
-            Shoot();
-
-            if (random.Next(0, 1000) == 4)
-                currentState = MState.Attack;
-        }
-
-        private void End()
-        {
-            if (Y + hitbox.Y/2 > p_y)
-                Y = Convert.ToInt32(Y - speed);
-            if (Y + hitbox.Y / 2 < p_y)
-                Y = Convert.ToInt32(Y + speed); // fix this it's buggy
-            
-            Shoot();
-
-            if (random.Next(0, 1000) == 4)
-                currentState = MState.Attack;
-        }
-
-        private void Attack()
-        {
-            FiredABullet = false;
-
-            if (!goingBackwards && X > 0)
-            {
-                X = Convert.ToInt32(X - speed);
-                return;
-            }
-            goingBackwards = true;
-
-
-            if (X <= windowWidth / 2)
-                X = Convert.ToInt32(X + speed);
-            else
-            {
-                goingBackwards = false;
-                currentState = MState.Start;
-            }
-        }
-
-        void Shoot()
-        {
-            if (cooldown > 0)
-                cooldown--;
-
+            if (Y < (p_y - 100))
+                Y = (Y + (0.5 * speed));
+            else if (Y > (p_y - 100))
+                Y = (Y - (0.5 * speed));
             if (cooldown == 0)
             {
                 action = true;
-                FiredABullet = true;
-                bullet_y = Y + hitbox.Y / 2;
+                fired_slanted_targeted_shot = true;
+                //wbullet_y = p_y;
                 cooldown = reset;
             }
             else
                 FiredABullet = false;
-            
+
         }
+
+        private void mid()
+        {
+            if (actionTimer > 0.75)
+            {
+                actionTimer = 0;
+                wall = true;
+                action = true;
+            }
+            else
+                wall = false;
+            start();
+        }
+
+
+
 
         public override string Serialize()
         {
-            return "boss,medium" + "," + X + "," + Y + "," + health + "," + currentState + "," + isEntering + "," + goingBackwards + "," + dir; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
+            return "boss,Medium" + "," + X + "," + Y + "," + health + "," + state; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
         }
     }
 }

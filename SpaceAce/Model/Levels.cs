@@ -182,11 +182,11 @@ namespace Model
             switch (currentDiff)
             {
                 case Difficulty.Easy:
-                    return new Boss_Medium(1200, 200, 30, winWidth, winHeight);//TODO: add Boss_Medium
-                case Difficulty.Medium:
                     return new Boss_Easy(1200, 200, 30, winWidth, winHeight);
+                case Difficulty.Medium:
+                    return new Boss_Medium(1200, 200, 30, winWidth, winHeight);
                 case Difficulty.Hard:
-                    return new Boss_Hard(1200, 300, 30, winWidth, winHeight);// TODO: add Boss_Hard
+                    return new Boss_Hard(1200, 300, 30, winWidth, winHeight);
             }
             throw new Exception("It's impossible to get here. Even in unit tests...");
         }

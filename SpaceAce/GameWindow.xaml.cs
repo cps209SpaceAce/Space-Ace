@@ -146,29 +146,38 @@ namespace SpaceAce
                     switch (power.type)
                     {
                         case PowerUp.ExtraLife:
-                            { imgname = "Powerup\\life.png"; }
+                            imgname = "Powerup/life.png";
                             break;
                         case PowerUp.Invincible:
-                            { imgname = "Powerup\\shield.png"; }
+                            imgname = "Powerup/star.png";
                             break;
                         case PowerUp.ExtraSpeed:
-                            { imgname = "Powerup\\power.png"; }
+                            imgname = "Powerup/power.png";
                             break;
-                        default:
-                            { imgname = "Powerup\\star.png"; }
+                        case PowerUp.Helix:
+                            imgname = "Powerup/bullets3.png";
                             break;
-                            // ADD FOR OTHER
+                        case PowerUp.TripleShot:
+                            imgname = "Powerup/bullets.png";
+                            break;
+                        case PowerUp.RapidFire:
+                            imgname = "Powerup/bullets2.png";
+                            break;
+                        case PowerUp.ExtraBomb:
+                            imgname = "Powerup/shield.png";
+                            break;
+
                     }
 
                 }
                 else if (ship is Boss)
                 {
                     if (ship is Boss_Easy)
-                    { imgname = "Powerup\\UFO.png"; }
+                    { imgname = "robertShip.png"; }
                     if (ship is Boss_Medium)
-                    { imgname = "Powerup\\UFO.png"; }
+                    { imgname = "noahShip.png"; }
                     if (ship is Boss_Hard)
-                    { imgname = "Powerup\\UFO.png"; }
+                    { imgname = "JoannaShip.png"; }
                 }
                 
                 
@@ -189,6 +198,7 @@ namespace SpaceAce
                 WorldCanvas.Children.Add(img);
                 icons.Add(new Icon() { i = img, e = b });
             }
+            
         }
 
 
@@ -441,9 +451,10 @@ namespace SpaceAce
             
 
             CheckGameStatus();
-            if(!BossIsSpawned)
-            {
-              
+            
+
+            if(!BossIsSpawned || !gameCtrl.BossIsSpawned)
+            {  
                 SpawnEntities();              // Spawn Entities
             }
             
@@ -660,7 +671,7 @@ namespace SpaceAce
 
 
                     // NOT WORKING
-                    // Noah fix this plz (cus robert broke it)
+                    //  fix this plz (cus robert broke it)
                 }
                 else if (newEntity is Mine)
                 {
