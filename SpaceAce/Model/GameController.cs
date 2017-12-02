@@ -325,7 +325,6 @@ namespace Model
                         gameLevelTimer = Convert.ToDouble(res[3]);
 
                         BossIsSpawned = Convert.ToBoolean(res[4]);
-
                         reader.ReadLine(); //[end]
                     }
                     else if (startLine == "[player]")

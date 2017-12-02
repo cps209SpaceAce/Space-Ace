@@ -75,7 +75,10 @@ namespace Model
                 extraSpeed = true;
             }
             else if (powerup == PowerUp.Invincible)
+            { 
                 isInvincible = true;
+                powerUpCounter = 0;
+            }
             else if (powerup == PowerUp.ExtraLife)
             {
                 ++Lives;
@@ -127,8 +130,6 @@ namespace Model
                     game.Bomb();
                     Bombs--;
                 }
-
-                // TODO: Add score for kills
             }
         }
 
@@ -138,10 +139,7 @@ namespace Model
             {
                 return false; 
             }
-
-            //TODO: remove one life(ship destroyed)
-
-            //TODO: return true(ship destroyed)
+            
             if (HitCoolDown == 0)
             {
                 Lives--;
@@ -165,13 +163,9 @@ namespace Model
 
             if (isInvincible || cheating)
             {
-                return false; //invinsibility
+                return false; 
             }
 
-            
-            //TODO: remove one life(ship destroyed)
-
-            //TODO: return true(ship destroyed)
             if (HitCoolDown == 0)
             {
                 Lives--;
@@ -182,7 +176,7 @@ namespace Model
                 game.gameResult = GameResult.Lost;
 
            Deactivate_Powerup();
-            return true;
+           return true;
         }
 
         public void Up()
@@ -247,7 +241,7 @@ namespace Model
 
             if (isPoweredUp) {
                 powerUpCounter++;
-                if (powerUpCounter >= 1000) { 
+                if (powerUpCounter >= 800) { 
                     this.isInvincible = false;
                     this.powerUpCounter = 0;
                 }

@@ -6,10 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
+// Classes and Methods for Creating and Saving HighScores
+
+
 namespace Model
 {
 
-
+    // Each Class is a Single HighScore
+    // HighScoreManager contains a list of these
     public class HighScore
     {
         public string Name;       // Name
@@ -53,7 +57,8 @@ namespace Model
         }
     }
 
-
+    // Manages the List of HighScore
+    // HighScore Window uses this class.
     public class HighScoreManager
     {
         // List of HighScores saved
@@ -114,6 +119,7 @@ namespace Model
             // Sorts the list by Score
             
         }
+        // Sorts the Skist of scores by points.
         public void Sort()
         {
             highScores = highScores.OrderByDescending(o => o.Score).ToList();
@@ -130,9 +136,5 @@ namespace Model
             string json = new JavaScriptSerializer().Serialize(highScores);
             File.WriteAllText(Environment.CurrentDirectory + @"\JSON.txt", json);
         }
-
     }
-
-    // http://matijabozicevic.com/blog/csharp-net-development/csharp-serialize-object-to-json-format-using-javascriptserialization
-    // https://stackoverflow.com/questions/7000811/cannot-find-javascriptserializer-in-net-4-0
 }

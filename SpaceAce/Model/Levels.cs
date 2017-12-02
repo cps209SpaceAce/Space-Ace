@@ -5,9 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using Model;
+
+// This file contains the spawning methods for 
+// Entities and Bosses
+// Power Ups
+
+
 namespace Model
 {
-
+    // Contains the classes for both spawning Powerups, Entities, and Bosses
     class Levels
     {
 
@@ -45,7 +51,7 @@ namespace Model
         }
 
 
-        // This is a level class
+        // This calls a method based on Current Difficaulty and Level
         public static Entity Level_reuturnEntity(Difficulty currentDiff, Level level, double winWidth, double winHeight)
         {
             Entity output = null;
@@ -67,7 +73,7 @@ namespace Model
         }
 
 
-
+        // This method returns Level 1 Entitys based on Current Difficulty
         public static Entity returnLevel_1(Difficulty currentDiff)
         {
             Entity output = null;
@@ -121,7 +127,7 @@ namespace Model
         }
 
 
-
+        // This method returns Level 2 Entitys based on Current Difficulty
         public static Entity returnLevel_2(Difficulty currentDiff)
         {
             Entity output = null;
@@ -176,7 +182,7 @@ namespace Model
             return output;
 
         }
-
+        // This method returns a Boos Entitys based on Current Difficulty
         public static Entity returnLevel_Boss(Difficulty currentDiff, double winWidth, double winHeight)
         {
             switch (currentDiff)

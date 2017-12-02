@@ -127,18 +127,39 @@ namespace SpaceAce
             foreach (Entity ship in gameCtrl.current_Enemies)
             {
                 if (ship is Asteroid)
-                { imgname = "asteroid.png"; }
+                {
+                    imgname = "asteroid.png";
+                }
                 else if (ship is AI)
                 {
                     if (ship is Mine)
-                    { imgname = "mine.png"; }
+                    {
+                        imgname = "mine.png";
+                    }
                     else if (ship is Tracker)
-                    { imgname = "ship 4.png"; }
+                    {
+                        imgname = "ship 4.png";
+                    }
+                    else if (ship is Formation)
+                    {
+                        if ((ship as Formation).Flightpath == pattern.Sin)
+                        {
+                            imgname = "Ship 2.png";
+                        }
+                        else if ((ship as Formation).Flightpath == pattern.Cos)
+                        {
+                            imgname = "Ship 3.png";
+                        }
+                    }
                     else
+                    {
                         imgname = "Ship 1.png";
+                    }
                 }
                 else if (ship is Bullet)
-                { imgname = "C_bullet.png"; }
+                {
+                    imgname = "C_bullet.png";
+                }
 
                 else if (ship is Powerup)
                 {
@@ -240,11 +261,10 @@ namespace SpaceAce
                 if (((Player)ship).triple)
                 {
                     Make_TripleShot(ship);
-                    //return;
                 }
                 if (((Player)ship).wanderingbullets)
                 {
-                    Make_HelixShot(ship);//Working: Noah Mansfield
+                    Make_HelixShot(ship);
                     return;
                 }
 
@@ -493,12 +513,6 @@ namespace SpaceAce
                 icons.Remove(ic);
                 
             }
-
-            // Update Score GUI
-
-
-
-            // Update Lives
             
             labelScore.Content = "Score: " + gameCtrl.score;
             labelLives.Content = "Lives: " + String.Concat(Enumerable.Repeat("< ", gameCtrl.player.Lives));
@@ -569,7 +583,7 @@ namespace SpaceAce
                 Image img = new Image() { Source = new BitmapImage(new Uri("Images/PowerUp/" + pngName, UriKind.Relative)) };
                 WorldCanvas.Children.Add(img);
                 img.Width = newEntity.hitbox.Width;
-                img.Height = newEntity.hitbox.Height; //image is same size as hitbox
+                img.Height = newEntity.hitbox.Height; 
 
                 Canvas.SetLeft(img, 0);
                 Canvas.SetTop(img, 0);
@@ -581,7 +595,7 @@ namespace SpaceAce
         private void CheckGameStatus()
         {
 
-            if (gameCtrl.gameResult != GameResult.Running) // IF WON/LOST
+            if (gameCtrl.gameResult != GameResult.Running)
             {
 
                 gameCtrl.score += gameCtrl.player.Bombs * 250;
@@ -600,9 +614,9 @@ namespace SpaceAce
                 if (gameCtrl.gameResult == GameResult.Won)
                     gameCtrl.score += 1000;
                 gameMusic.Stop();
-                AddScoreWindow addScoreWindow = new AddScoreWindow(gameCtrl); // Need to pass score
+                AddScoreWindow addScoreWindow = new AddScoreWindow(gameCtrl); 
                 addScoreWindow.Show();
-                this.Close(); // Closing GameWindow
+                this.Close();
 
             }
             else if (gameCtrl.gameLevelTimer > 40)
@@ -614,7 +628,7 @@ namespace SpaceAce
                 gameCtrl.level = Level.Level_2;
             }
             else if(gameCtrl.gameLevelTimer >= 15 && gameCtrl.gameLevelTimer <= 20 ||
-                    gameCtrl.gameLevelTimer >= 35 && gameCtrl.gameLevelTimer <= 40 ) //added by jo, to give ssome transition time
+                    gameCtrl.gameLevelTimer >= 35 && gameCtrl.gameLevelTimer <= 40 )
             {
                 gameCtrl.level = Level.Transition;
             }
@@ -641,7 +655,6 @@ namespace SpaceAce
 
             else if (gameCtrl.level == Level.Transition)
             {
-                //does something between levels
             }
         }
 
@@ -667,11 +680,11 @@ namespace SpaceAce
                 }
                 else if (newEntity is Formation)
                 {
-                    pngName = "Ship 3.png";
 
-
-                    // NOT WORKING
-                    //  fix this plz (cus robert broke it)
+                    if((newEntity as Formation).Flightpath == pattern.Sin)
+                        pngName = "Ship 2.png";
+                    else if ((newEntity as Formation).Flightpath == pattern.Cos)
+                        pngName = "Ship 3.png";
                 }
                 else if (newEntity is Mine)
                 {
