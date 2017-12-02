@@ -92,6 +92,8 @@ namespace SpaceAce
             if (isLoad)
             {
                 gameCtrl.Load("SaveData.txt");
+                if (gameCtrl.level == Level.Boss)
+                    gameCtrl.BossIsSpawned = true;
                 Draw_Load();
             }
 
@@ -473,7 +475,7 @@ namespace SpaceAce
             CheckGameStatus();
             
 
-            if(!BossIsSpawned || !gameCtrl.BossIsSpawned)
+            if(!gameCtrl.BossIsSpawned)
             {  
                 SpawnEntities();              // Spawn Entities
             }
