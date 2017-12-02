@@ -66,6 +66,10 @@ namespace SpaceAce.UnitTests
             Test.Update(newScore);
             Assert.IsTrue(Test.highScores.Contains(newScore));
 
+            if (!File.Exists(Environment.CurrentDirectory + @"/JSON.txt"))
+            {
+                File.Delete(Environment.CurrentDirectory + @"/JSON.txt");
+            }
         }
 
         [TestMethod]
@@ -73,9 +77,12 @@ namespace SpaceAce.UnitTests
         {
             HighScoreManager Test = new HighScoreManager();
             Test.highScores.Add(new HighScore("Bob", Level.Level_1, Difficulty.Easy, 9001, "ship.png"));
-            //Test.Save();
             Assert.IsTrue(File.Exists("JSON.txt"));
 
+            if (!File.Exists(Environment.CurrentDirectory + @"/JSON.txt"))
+            {
+                File.Delete(Environment.CurrentDirectory + @"/JSON.txt");
+            }
         }
 
         [TestMethod]
@@ -93,16 +100,14 @@ namespace SpaceAce.UnitTests
             Assert.IsTrue(Test.highScores[Test.highScores.Count - 1].Score     == 9001 );
             Assert.IsTrue(Test.highScores[Test.highScores.Count - 1].ShipImage == "ship.png" );
 
-            
-
+            //Delete File
+            if (!File.Exists(Environment.CurrentDirectory + @"/JSON.txt"))
+            {
+                File.Delete(Environment.CurrentDirectory + @"/JSON.txt");
+            }
         }
-
-        // Robert: Add more saves and test Load
-        //         Add better test for Save
-        //         Need more Model Tests
-
-
-            [TestMethod]
+      
+        [TestMethod]
             public void  HighScore_ToString()
             {
             HighScore h = new HighScore();
