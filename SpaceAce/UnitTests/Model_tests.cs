@@ -44,6 +44,9 @@ namespace SpaceAce.UnitTests
 
     
 
+        // HIGHSCORE TESTS
+        // VS could not find the file so i moved it here.
+
         [TestMethod]
         public void Update_AddScore_Pass()
         {
