@@ -215,7 +215,7 @@ namespace SpaceAce
             }
             foreach (Entity b in gameCtrl.player_fire)
             {
-                Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet", UriKind.Relative)) };
+                Image img = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
                 img.Width = b.hitbox.Width;
                 img.Height = b.hitbox.Height;
                 WorldCanvas.Children.Add(img);
