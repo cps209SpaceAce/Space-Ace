@@ -4,82 +4,118 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
-
 namespace Model
 {
-    public class Boss_Easy : Boss // Noah's Boss
-    {
-        int reset = 50;
+    public enum MState { Start, Mid, Attack }
 
+    public class Boss_Easy : Boss
+    {
+        public MState currentState;
+        public int dir = 1;
+        public bool goingBackwards = false;
+        public bool isEntering = true;
+        int reset = 60;
 
         public Boss_Easy(double X, double Y, int health, double winWidth, double winHeight) : base(X, Y, health, winWidth, winHeight)
         {
-            state = State.Start;
-
+            currentState = MState.Start;
         }
-
 
 
         public override void UpdatePosition()
         {
-            if (cooldown > 0)
-                cooldown--;
+            if (isEntering && X > windowWidth / 2)
+            {
+                X = Convert.ToInt32(X - speed);
+                return;
+            }
+            isEntering = false;
+
             //TODO: movement logic for boss
             actionTimer += 0.01;
-            if (X > 750)//Jo: use the windowHeight/windowWidth variables ^
-            {
-                X = Convert.ToInt32(X - (1 * speed));
 
-            }
-
-            switch (state)
+            switch (currentState)
             {
-                case State.Start:
+                case MState.Start:
                     start();
                     if (health < (max / 2))
                     {
-                        state = State.Mid;
+                        currentState = MState.Mid;
                         reset = 50;
                     }
                     break;
-                case State.Mid:
-                    mid();
-                    if (health < (max / .75))
-                    {
-                        state = State.End;
-                        reset = 25;
-                    }
-                    break;
-                case State.End:
+                case MState.Mid:
                     mid();
                     break;
 
+                case MState.Attack:
+                    Attack();
+                    break;
             }
-            // after x == 950 ... change y V^
 
-            // action == 1 
-            //bossShoot(x,y,type)
             hitbox.X = Convert.ToInt32(X);
             hitbox.Y = Convert.ToInt32(Y);
         }
 
         private void start()
         {
-            if (health < (max / 4 * 3) && state == State.Start)
+            if (Y < 0 || Y > windowHeight - hitbox.Y)
             {
-                reset = 25;
+                dir *= -1;
             }
+            Y = Convert.ToInt32(Y + (dir * speed));
 
 
+            Shoot();
+
+            if (random.Next(0, 1000) == 4)
+                currentState = MState.Attack;
+        }
+
+        private void mid()
+        {
             if (Y < (p_y - 100))
                 Y = (Y + (0.5 * speed));
             else if (Y > (p_y - 100))
                 Y = (Y - (0.5 * speed));
+
+            Shoot();
+
+            if (random.Next(0, 1000) == 4)
+                currentState = MState.Attack;
+        }
+
+        private void Attack()
+        {
+            FiredABullet = false;
+
+            if (!goingBackwards && X > 0)
+            {
+                X = Convert.ToInt32(X - speed);
+                return;
+            }
+            goingBackwards = true;
+
+
+            if (X <= windowWidth / 2)
+                X = Convert.ToInt32(X + speed);
+            else
+            {
+                goingBackwards = false;
+                currentState = MState.Start;
+            }
+        }
+
+        void Shoot()
+        {
+            if (cooldown > 0)
+                cooldown--;
+
             if (cooldown == 0)
             {
                 action = true;
-                fired_slanted_targeted_shot = true;
-                //wbullet_y = p_y;
+                FiredABullet = true;
+                bullet_y = Y + hitbox.Y / 2;
                 cooldown = reset;
             }
             else
@@ -87,25 +123,9 @@ namespace Model
 
         }
 
-        private void mid()
-        {
-            if (actionTimer > 0.75)
-            {
-                actionTimer = 0;
-                wall = true;
-                action = true;
-            }
-            else
-                wall = false;
-            start();
-        }
-
-
-
-
         public override string Serialize()
         {
-            return "boss,easy" + "," + X + "," + Y + "," + health + "," + state; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
+            return "boss,easy" + "," + X + "," + Y + "," + health + "," + currentState + "," + isEntering + "," + goingBackwards + "," + dir; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
         }
     }
 }
