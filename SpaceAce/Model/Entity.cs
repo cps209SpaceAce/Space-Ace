@@ -22,11 +22,11 @@ namespace Model
 
         public Entity(double X, double Y)
         {
-            this.health = 1;
+            health = 1;
             this.X = X;
             this.Y = Y;
-            this.speed = 4;
-            this.hitbox = new Rectangle(Convert.ToInt32(X), Convert.ToInt32(Y), 50, 50);
+            speed = 4;
+            hitbox = new Rectangle(Convert.ToInt32(X), Convert.ToInt32(Y), 50, 50);
         }
 
         //return true if destroyed else return false

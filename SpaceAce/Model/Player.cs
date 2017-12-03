@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace Model
 {
@@ -15,9 +10,9 @@ namespace Model
     public class Player : Entity
 
     {
-        public bool wanderingbullets = false; // flag for sin and cos bullets. currently broken 
-        public bool triple = false;//flag for triple shot
-        public bool rapid_fire = false; //flag to engage rapid fire mode by reducing the cooldown
+        public bool wanderingbullets = false;   // flag for sin and cos bullets. currently broken 
+        public bool triple = false;             //flag for triple shot
+        public bool rapid_fire = false;         //flag to engage rapid fire mode by reducing the cooldown
         public bool extraSpeed = false;
         public int cooldown = 0;
         public int bombCooldown = 0;
@@ -214,22 +209,22 @@ namespace Model
 
             if (game.up)
             {
-                if (this.Y > 0)
+                if (Y > 0)
                     Up();
             }
             if (game.down)
             {
-                if (this.Y < game.winHeight - 30)
+                if (Y < game.winHeight - 30)
                     Down();
             }
             if (game.left)
             {
-                if (this.X > 0)
+                if (X > 0)
                     Left();
             }
             if (game.right)
             {
-                if (this.X < game.winWidth - 50)
+                if (X < game.winWidth - 50)
                     Right();
             }
             if (game.fired)
@@ -246,8 +241,8 @@ namespace Model
                 powerUpCounter++;
                 if (powerUpCounter >= 800)
                 {
-                    this.isInvincible = false;
-                    this.powerUpCounter = 0;
+                    isInvincible = false;
+                    powerUpCounter = 0;
                 }
             }
 
@@ -255,6 +250,7 @@ namespace Model
             hitbox.Y = Convert.ToInt32(Y);
         }
 
+        //Method for loading currently active powerups
         public void LoadPowerups()
         {
             if (extraSpeed)

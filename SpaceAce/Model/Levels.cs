@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 using System.Drawing;
 using Model;
 
-// This file contains the spawning methods for 
-// Entities and Bosses
-// Power Ups
 
+/// <summary>
+///  This file contains the spawning methods for 
+///  Entities and Bosses
+///  Power Ups
+/// </summary>
 
 namespace Model
 {

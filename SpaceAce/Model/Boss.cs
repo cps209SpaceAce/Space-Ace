@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Model
 {
@@ -31,9 +27,9 @@ namespace Model
         public Boss(double X, double Y, int health, double winWidth, double winHeight) : base(X, Y)
         {
             this.health = health;
-            this.max = health;
+            max = health;
             actionTimer = 0;
-            this.hitbox = new Rectangle(Convert.ToInt32(X), Convert.ToInt32(Y), 500, 300);
+            hitbox = new Rectangle(Convert.ToInt32(X), Convert.ToInt32(Y), 500, 300);
 
             windowHeight = winHeight;
             windowWidth = winWidth;
