@@ -57,24 +57,28 @@ namespace Model
             }
         }
 
-        public void Activate_powerup()
+        public void Activate_powerup(bool loaded)
         {
-            if (powerup == PowerUp.Empty)
+            if (!loaded)
+            {
+                if (powerup == PowerUp.Empty)
                 return;
 
-            isPoweredUp = true;
-
-            var sound = new MediaPlayer();
-            sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\PowerUp.wav", UriKind.Absolute));
-            Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
+                isPoweredUp = true;
 
 
-            if (powerup == PowerUp.ExtraSpeed)
+                var sound = new MediaPlayer();
+                sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\PowerUp.wav", UriKind.Absolute));
+                Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
+            }
+
+
+            if (powerup == PowerUp.ExtraSpeed || extraSpeed)
             {
                 speed = baseSpeed * 2;
                 extraSpeed = true;
             }
-            else if (powerup == PowerUp.Invincible)
+            else if (powerup == PowerUp.Invincible || isInvincible)
             { 
                 isInvincible = true;
                 powerUpCounter = 0;
@@ -89,19 +93,19 @@ namespace Model
                 ++Bombs;
                 isPoweredUp = false;
             }
-            else if (powerup == PowerUp.RapidFire)
+            else if (powerup == PowerUp.RapidFire || rapid_fire)
             {
                 rapid_fire = true;
                 wanderingbullets = false;
                 triple = false;
             }
-            else if (powerup == PowerUp.TripleShot)
+            else if (powerup == PowerUp.TripleShot || triple)
             {
                 triple = true;
                 wanderingbullets = false;
                 rapid_fire = false;
             }
-            else if (powerup == PowerUp.Helix)
+            else if (powerup == PowerUp.Helix || wanderingbullets)
             {
                 wanderingbullets = true;
                 rapid_fire = false;
@@ -253,7 +257,7 @@ namespace Model
 
         public override string Serialize()
         {
-            return X + "," + Y + "," + powerup + "," + Lives + "," + Bombs + "," + isPoweredUp + "," + powerUpCounter + "," + cheating + "," + image + "," + triple + "," + wanderingbullets + "," + extraSpeed + "," + rapid_fire;
+            return X + "," + Y + "," + powerup + "," + Lives + "," + Bombs + "," + isPoweredUp + "," + powerUpCounter + "," + cheating + "," + image + "," + triple + "," + wanderingbullets + "," + extraSpeed + "," + rapid_fire + "," + isInvincible;
         }
     }
 }
