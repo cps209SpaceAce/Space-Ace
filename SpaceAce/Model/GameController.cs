@@ -170,7 +170,7 @@ namespace Model
 
                         //if ((enemy as Powerup).type == PowerUp.ExtraLife ||
                         //    (enemy as Powerup).type == PowerUp.ExtraBomb )
-                        player.Activate_powerup();
+                        player.Activate_Powerup();
 
                         dead_Badguy.Add(enemy);
                     }
@@ -197,7 +197,7 @@ namespace Model
                             {
                                 player.powerup = (enemy as Powerup).type;
 
-                                player.Activate_powerup();
+                                player.Activate_Powerup();
                             }
                         }
 

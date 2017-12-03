@@ -52,19 +52,17 @@ namespace Model
             }
         }
 
-        public void Activate_powerup()
+        //Activates powerups to each of their effects
+        public void Activate_Powerup()
         {
-
             if (powerup == PowerUp.Empty)
                 return;
 
             isPoweredUp = true;
 
-
             var sound = new MediaPlayer();
             sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\PowerUp.wav", UriKind.Absolute));
             Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
-
 
             if (powerup == PowerUp.ExtraSpeed)
             {
@@ -107,6 +105,8 @@ namespace Model
 
             powerup = PowerUp.Empty;
         }
+
+        //Powerups lose their effects
         void Deactivate_Powerup()
         {
             powerUpCounter = 0;
@@ -117,6 +117,9 @@ namespace Model
             wanderingbullets = false;
             extraSpeed = false;
         }
+
+        //Dropping a bomb causes all entities in world to be
+        //deleted as well as player losing a bomb
         public void DropBomb()
         {
             if (bombCooldown == 0)
@@ -130,6 +133,8 @@ namespace Model
             }
         }
 
+        //Method determines what happens when player is hit,
+        //invoked by other entities.
         public override bool Hit()
         {
             if (isInvincible || cheating)
@@ -149,9 +154,11 @@ namespace Model
             return true;
         }
 
+        //Method determines outcome of colliding with other entity:
+        //Bullet/Enemy: loses health and goes invinsible for a few seconds
+        //Powerip: gains and activates powerup
         public bool HitPlayer(Entity ent)
         {
-
             if (ent is Powerup)
             {
                 powerup = (ent as Powerup).type;
@@ -176,16 +183,19 @@ namespace Model
             return true;
         }
 
+        //Moves player Up
         public void Up()
         {
             Y = Convert.ToInt32(Y - (1 * speed));
         }
 
+        //Moves player Down
         public void Down()
         {
             Y = Convert.ToInt32(Y + (1 * speed));
         }
 
+        //Moves player Left
         public void Left()
         {
             X = Convert.ToInt32(X - (1 * speed));
@@ -197,6 +207,7 @@ namespace Model
             X = Convert.ToInt32(X + (1 * speed));
         }
 
+        //Updates player's position according to user input
         public override void UpdatePosition()
         {
             if (HitCoolDown > 0)
