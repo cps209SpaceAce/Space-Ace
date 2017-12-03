@@ -10,15 +10,14 @@ namespace Model
     abstract public class Entity : ISerialiable
     {
 
-        public static Random random = new Random();
-        public double speed;
-        //health auto set to 1
-        public int health;
-        public bool FiredABullet = false;
-        public Rectangle hitbox;
-        public double X;
-        public double Y;
-        public bool alive = true;
+        public static Random random = new Random(); //Shared RNG for all Entities in game
+        public double speed;                //Default speed variable
+        public int health;                  //health auto set to 1
+        public bool FiredABullet = false;   //Is true for firing a bullet
+        public Rectangle hitbox;            //Sets entity's hitbox size
+        public double X;                    //X position
+        public double Y;                    //Y position
+        public bool alive = true;           //True if entity is still alive
 
 
         public Entity(double X, double Y)
@@ -35,8 +34,9 @@ namespace Model
 
         public abstract void UpdatePosition();
 
-        public abstract string Serialize();
+        public abstract string Serialize(); //Returns string code of all necessary save data
 
+        //Static method for deserializing string code formed by all Entities' Serialize methods.
         public static Entity Deserialize(string code, string type, GameController game)
         {
             string[] des = code.Split(',');
@@ -77,7 +77,6 @@ namespace Model
                             break;
                         }
                     }
-
                     return new Formation(Convert.ToDouble(des[1]), Convert.ToDouble(des[2]), flight);
                 }
                 else if (des[0] == "ai")
@@ -148,14 +147,14 @@ namespace Model
                                 (result as Boss_Hard).state = val;
                                 break;
                             }
-                        
+
                         foreach (Direction val in Enum.GetValues(typeof(Direction)))
                             if (des[6] == val.ToString())
                             {
                                 (result as Boss_Hard).dir = val;
                                 break;
                             }
-                        
+
 
                         (result as Boss_Hard).x_axis = Convert.ToDouble(des[7]);
                         return result;
@@ -165,13 +164,11 @@ namespace Model
                 {
                     throw new Exception("Enemy type Unknown.");
                 }
-
             }
             else if (type == "player")
             {
 
                 result = new Player(Convert.ToDouble(des[0]), Convert.ToDouble(des[1]), Convert.ToInt32(des[3]), Convert.ToInt32(des[4]), game, "SHIP_IMAGE");
-
 
                 foreach (PowerUp val in Enum.GetValues(typeof(PowerUp)))
                 {
@@ -184,21 +181,16 @@ namespace Model
 
                 (result as Player).isPoweredUp = Convert.ToBoolean(des[5]);
                 (result as Player).cheating = Convert.ToBoolean(des[7]);
-
                 (result as Player).powerUpCounter = Convert.ToDouble(des[6]);
                 (result as Player).image = des[8];
-
                 (result as Player).triple = Convert.ToBoolean(des[9]);
                 (result as Player).wanderingbullets = Convert.ToBoolean(des[10]);
                 (result as Player).extraSpeed = Convert.ToBoolean(des[11]);
                 (result as Player).rapid_fire = Convert.ToBoolean(des[12]);
                 (result as Player).isInvincible = Convert.ToBoolean(des[13]);
-
                 (result as Player).LoadPowerups();
 
-
                 return result;
-
             }
             else if (type == "playerBullet")
             {
@@ -262,12 +254,12 @@ namespace Model
             return true; //does not take damage
         }
 
+        //Serialization method that converts all necessary values into a string
         public override string Serialize()
         {
             return "powerup" + "," + X + "," + Y + "," + type;
         }
     }
-
 
     public class Asteroid : Entity
     {
@@ -306,6 +298,7 @@ namespace Model
                 alive = false;
         }
 
+        //Serialization method that converts all necessary values into a string
         public override string Serialize()
         {
             return "asteroid" + "," + health + "," + X + "," + Y;

@@ -7,7 +7,7 @@ using Model;
 
 namespace Model
 {
-    public class Boss_Medium : Boss // Noah's Boss
+    public class Boss_Medium : Boss 
     {
         int reset = 50;
 
@@ -23,7 +23,6 @@ namespace Model
         {
             if (cooldown > 0)
                 cooldown--;
-            //TODO: movement logic for boss
             actionTimer += 0.01;
             if (X > 750)
             {

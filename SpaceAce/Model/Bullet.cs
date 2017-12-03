@@ -124,7 +124,6 @@ namespace Model
         }
 
         //Serialization method that converts all necessary values into a string
-
         public override string Serialize()
         {
             return "bullet,wandering" + "," + X + "," + Y + "," + original_X + "," +original_Y + "," + path + "," + x_axis; //JOANNA: x,y only for now
