@@ -358,7 +358,7 @@ namespace SpaceAce.UnitTests
                 writer.WriteLine("[end]");
 
                 writer.WriteLine("[player]");
-                writer.WriteLine("40,30,RapidFire,4,8,True,1.6,False,ship.png,False,False,False,False,False");
+                writer.WriteLine("40,30,RapidFire,4,8,True,1.6,False,ship.png,False,False,True,True,True");
                 writer.WriteLine("[end]");
 
                 writer.WriteLine("[playerBullets]");
@@ -397,9 +397,9 @@ namespace SpaceAce.UnitTests
             Assert.IsTrue(ctrl.player.Bombs == 8);
             Assert.IsTrue(ctrl.player.isPoweredUp == true);
             Assert.IsTrue(ctrl.player.triple == false);
-            Assert.IsTrue(ctrl.player.extraSpeed == false);
+            Assert.IsTrue(ctrl.player.extraSpeed == true);
             Assert.IsTrue(ctrl.player.wanderingbullets == false);
-            Assert.IsTrue(ctrl.player.rapid_fire == false);
+            Assert.IsTrue(ctrl.player.rapid_fire == true);
 
 
             Assert.IsTrue(ctrl.current_Enemies.Count == 8);
@@ -412,6 +412,62 @@ namespace SpaceAce.UnitTests
 
         }
 
+
+        [TestMethod]
+        public void Load_TriplePowerup_Success()
+        {
+            GameController ctrl = new GameController();
+
+            using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
+            {
+                writer.WriteLine("[defaults]");
+                writer.WriteLine("Level_1,1337,10,92.1,False");
+                writer.WriteLine("[end]");
+
+                writer.WriteLine("[player]");
+                writer.WriteLine("40,30,Empty,4,8,True,1.6,False,ship.png,True,False,True,False,True");
+                writer.WriteLine("[end]");
+
+            }
+
+            ctrl.Load("TestLoad.txt");
+
+            
+            Assert.IsTrue(ctrl.player.isPoweredUp == true);
+            Assert.IsTrue(ctrl.player.triple == true);
+            Assert.IsTrue(ctrl.player.extraSpeed == true);
+            Assert.IsTrue(ctrl.player.wanderingbullets == false);
+            Assert.IsTrue(ctrl.player.rapid_fire == false);
+
+        }
+
+        [TestMethod]
+        public void Load_HelixPowerup_Success()
+        {
+            GameController ctrl = new GameController();
+
+            using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
+            {
+                writer.WriteLine("[defaults]");
+                writer.WriteLine("Level_1,1337,10,92.1,False");
+                writer.WriteLine("[end]");
+
+                writer.WriteLine("[player]");
+                writer.WriteLine("40,30,Empty,4,8,True,1.6,False,ship.png,False,True,False,False,False");
+                writer.WriteLine("[end]");
+
+            }
+
+            ctrl.Load("TestLoad.txt");
+
+
+            Assert.IsTrue(ctrl.player.isPoweredUp == true);
+            Assert.IsTrue(ctrl.player.triple == false);
+            Assert.IsTrue(ctrl.player.extraSpeed == false);
+            Assert.IsTrue(ctrl.player.wanderingbullets == true);
+            Assert.IsTrue(ctrl.player.rapid_fire == false);
+
+        }
 
         [TestMethod]
         public void Load_UnknownEntity_Excepttion()
@@ -455,18 +511,178 @@ namespace SpaceAce.UnitTests
         }
 
         [TestMethod]
-        public void Save_Boss_Success()
+        public void Save_Boss_Easy_Success()
         {
-            Assert.Fail();
+            GameController ctrl = new GameController();
+            ctrl.level = Level.Boss;
+            ctrl.BossIsSpawned = true;
+            ctrl.current_Enemies.Add(new Boss_Easy(100,20,12,2000,2000));
+
+            ctrl.Save("TestSave.txt");
+
+            using (StreamReader reader = new StreamReader("TestSave.txt"))
+            {
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
+
+                Assert.IsTrue(reader.ReadLine() == "[enemies]");
+                Assert.IsTrue(reader.ReadLine() == "boss,easy,100,20,12,Start,True,False,1");
+                Assert.IsTrue(reader.ReadLine() == "[end]");
+            }
         }
 
         [TestMethod]
-        public void Load_Boss_Success()
+        public void Save_Boss_Medium_Success()
         {
-            Assert.Fail();
+            GameController ctrl = new GameController();
+            ctrl.level = Level.Boss;
+            ctrl.BossIsSpawned = true;
+            ctrl.current_Enemies.Add(new Boss_Medium(100, 20, 12, 2000, 2000));
+
+            ctrl.Save("TestSave.txt");
+
+            using (StreamReader reader = new StreamReader("TestSave.txt"))
+            {
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
+
+                Assert.IsTrue(reader.ReadLine() == "[enemies]");
+                Assert.IsTrue(reader.ReadLine() == "boss,medium,100,20,12,Start");
+                Assert.IsTrue(reader.ReadLine() == "[end]");
+            }
+        }
+
+        [TestMethod]
+        public void Save_Boss_Hard_Success()
+        {
+            GameController ctrl = new GameController();
+            ctrl.level = Level.Boss;
+            ctrl.BossIsSpawned = true;
+            ctrl.current_Enemies.Add(new Boss_Hard(100, 20, 12, 2000, 2000));
+
+            ctrl.Save("TestSave.txt");
+
+            using (StreamReader reader = new StreamReader("TestSave.txt"))
+            {
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
+                reader.ReadLine();
+
+                Assert.IsTrue(reader.ReadLine() == "[enemies]");
+                Assert.IsTrue(reader.ReadLine() == "boss,hard,100,20,12,Start,Left,0");
+                Assert.IsTrue(reader.ReadLine() == "[end]");
+            }
+        }
+
+        [TestMethod]
+        public void Load_Boss_Easy_Success()
+        {
+            GameController ctrl = new GameController();
+
+            using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
+            {
+                writer.WriteLine("[defaults]");
+                writer.WriteLine("Boss,1337,10,92.1,True");
+                writer.WriteLine("[end]");
+                writer.WriteLine("[player]");
+                writer.WriteLine("40,30,RapidFire,4,8,True,1.6,False,ship.png,False,False,False,False,False");
+                writer.WriteLine("[end]");
+
+                writer.WriteLine("[enemies]");
+                writer.WriteLine("boss,easy,100,20,12,Start,True,False,1");
+                writer.WriteLine("[end]");
+            }
+
+            ctrl.Load("TestLoad.txt");
+
+            Assert.IsTrue(ctrl.BossIsSpawned);
+            Assert.IsTrue(ctrl.level == Level.Boss);
+            Assert.IsTrue(ctrl.current_Enemies[0] is Boss_Easy);
+            Assert.IsTrue((ctrl.current_Enemies[0] as Boss_Easy).X == 100);
+            Assert.IsTrue((ctrl.current_Enemies[0] as Boss_Easy).Y == 20);
+            Assert.IsTrue((ctrl.current_Enemies[0] as Boss_Easy).health == 12);
+            Assert.IsTrue((ctrl.current_Enemies[0] as Boss_Easy).currentState == MState.Start);
+            Assert.IsTrue((ctrl.current_Enemies[0] as Boss_Easy).isEntering);
+            Assert.IsFalse((ctrl.current_Enemies[0] as Boss_Easy).goingBackwards);
+            Assert.IsTrue((ctrl.current_Enemies[0] as Boss_Easy).dir == 1);
+
+
+        }
+
+        [TestMethod]
+        public void Load_Boss_Medium_Success()
+        {
+            GameController ctrl = new GameController();
+
+            using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
+            {
+                writer.WriteLine("[defaults]");
+                writer.WriteLine("Boss,1337,10,92.1,True");
+                writer.WriteLine("[end]");
+                writer.WriteLine("[player]");
+                writer.WriteLine("40,30,RapidFire,4,8,True,1.6,False,ship.png,False,False,False,False,False");
+                writer.WriteLine("[end]");
+
+                writer.WriteLine("[enemies]");
+                writer.WriteLine("boss,medium,100,20,12,Start");
+                writer.WriteLine("[end]");
+            }
+
+            ctrl.Load("TestLoad.txt");
+
+            Assert.IsTrue(ctrl.BossIsSpawned);
+            Assert.IsTrue(ctrl.level == Level.Boss);
+            Assert.IsTrue((ctrl.current_Enemies[0] as Boss_Medium).X == 100);
+            Assert.IsTrue((ctrl.current_Enemies[0] as Boss_Medium).Y == 20);
+            Assert.IsTrue(ctrl.current_Enemies[0] is Boss_Medium);
+            Assert.IsTrue((ctrl.current_Enemies[0] as Boss_Medium).health == 12);
+            Assert.IsTrue((ctrl.current_Enemies[0] as Boss_Medium).state == State.Start);
+        }
+
+        [TestMethod]
+        public void Load_Boss_Hard_Success()
+        {
+            GameController ctrl = new GameController();
+
+            using (StreamWriter writer = new StreamWriter("TestLoad.txt"))
+            {
+                writer.WriteLine("[defaults]");
+                writer.WriteLine("Boss,1337,10,92.1,True");
+                writer.WriteLine("[end]");
+                writer.WriteLine("[player]");
+                writer.WriteLine("40,30,RapidFire,4,8,True,1.6,False,ship.png,False,False,False,False,False");
+                writer.WriteLine("[end]");
+
+                writer.WriteLine("[enemies]");
+                writer.WriteLine("boss,hard,100,20,12,Start,Left,0");
+                writer.WriteLine("[end]");
+            }
+
+            ctrl.Load("TestLoad.txt");
+
+            Assert.IsTrue(ctrl.BossIsSpawned);
+            Assert.IsTrue(ctrl.level == Level.Boss);
+            Assert.IsTrue((ctrl.current_Enemies[0] as Boss_Hard).X == 100);
+            Assert.IsTrue((ctrl.current_Enemies[0] as Boss_Hard).Y == 20);
+            Assert.IsTrue(ctrl.current_Enemies[0] is Boss_Hard);
+            Assert.IsTrue((ctrl.current_Enemies[0] as Boss_Hard).health == 12);
+            Assert.IsTrue((ctrl.current_Enemies[0] as Boss_Hard).state == State.Start);
+            Assert.IsTrue((ctrl.current_Enemies[0] as Boss_Hard).x_axis == 0);
+            Assert.IsTrue((ctrl.current_Enemies[0] as Boss_Hard).dir == Direction.Left);
+
         }
 
     }
-
 
 }

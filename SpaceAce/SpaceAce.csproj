@@ -127,7 +127,6 @@
     <Compile Include="Model\Bullet.cs" />
     <Compile Include="Model\Entity.cs" />
     <Compile Include="Model\GameController.cs" />
-    <Compile Include="Model\GameData.cs" />
     <Compile Include="Model\Levels.cs" />
     <Compile Include="Model\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
