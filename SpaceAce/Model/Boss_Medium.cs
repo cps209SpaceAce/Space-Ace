@@ -25,10 +25,10 @@ namespace Model
                 cooldown--;
             //TODO: movement logic for boss
             actionTimer += 0.01;
-            if (X > 750)//Jo: use the windowHeight/windowWidth variables ^
+            if (X > 750)
             {
-                X = Convert.ToInt32(X - (1 * speed));
-
+                X = Convert.ToInt32(X - speed);
+                return;
             }
 
             switch (state)

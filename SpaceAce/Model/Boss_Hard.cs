@@ -13,7 +13,7 @@ namespace Model
         bool startflag = true;
         double og_X;
         double og_Y;
-        double x_axis = 0;
+        public double x_axis = 0;
         public Direction dir = Direction.Left;
 
         public Boss_Hard(double X, double Y, int health, double winWidth, double winHeight) : base(X, Y, health, winWidth, winHeight)
@@ -33,10 +33,9 @@ namespace Model
                 cooldown--;
             //TODO: movement logic for boss
             actionTimer += 0.01;
-            if (X > 924 && startflag)//Jo: use the windowHeight/windowWidth variables ^
+            if (X > 924 && startflag)
             {
                 X = Convert.ToInt32(X - (1 * speed));
-               
             }
             if (X <= 924)
                 startflag = false;
@@ -89,7 +88,7 @@ namespace Model
 
         public override string Serialize()
         {
-            return "boss,hard" + "," + X + "," + Y + "," + health + "," + state + "," + dir ; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
+            return "boss,hard" + "," + X + "," + Y + "," + health + "," + state + "," + dir + "," + x_axis; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
         }
     }
 }

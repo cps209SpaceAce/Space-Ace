@@ -160,7 +160,7 @@ namespace SpaceAce.UnitTests
             Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerup = PowerUp.RapidFire;
 
-            test.Activate_powerup(false);
+            test.Activate_powerup();
 
             Assert.IsTrue(test.powerup == PowerUp.Empty);
             Assert.IsTrue(test.isPoweredUp == true);
@@ -179,7 +179,7 @@ namespace SpaceAce.UnitTests
             Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerup = PowerUp.ExtraBomb;
 
-            test.Activate_powerup(false);
+            test.Activate_powerup();
 
             Assert.IsTrue(test.powerup == PowerUp.Empty);
             Assert.IsTrue(test.isPoweredUp == false);
@@ -194,7 +194,7 @@ namespace SpaceAce.UnitTests
             Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerup = PowerUp.ExtraLife;
 
-            test.Activate_powerup(false);
+            test.Activate_powerup();
 
             Assert.IsTrue(test.powerup == PowerUp.Empty);
             Assert.IsTrue(test.isPoweredUp == false);
@@ -208,7 +208,7 @@ namespace SpaceAce.UnitTests
             Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerup = PowerUp.TripleShot;
 
-            test.Activate_powerup(false);
+            test.Activate_powerup();
 
             Assert.IsTrue(test.powerup == PowerUp.Empty);
             Assert.IsTrue(test.isPoweredUp == true);
@@ -222,7 +222,7 @@ namespace SpaceAce.UnitTests
             Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerup = PowerUp.Empty;
 
-            test.Activate_powerup(false);
+            test.Activate_powerup();
 
             Assert.IsTrue(test.powerup == PowerUp.Empty);
             Assert.IsTrue(test.isPoweredUp == false);
@@ -235,7 +235,7 @@ namespace SpaceAce.UnitTests
             Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerup = PowerUp.ExtraSpeed;
 
-            test.Activate_powerup(false);
+            test.Activate_powerup();
 
             Assert.IsTrue(test.powerup == PowerUp.Empty);
             Assert.IsTrue(test.isPoweredUp == true);
@@ -249,7 +249,7 @@ namespace SpaceAce.UnitTests
             Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
             test.powerup = PowerUp.Invincible;
 
-            test.Activate_powerup(false);
+            test.Activate_powerup();
 
             Assert.IsTrue(test.powerup == PowerUp.Empty);
             Assert.IsTrue(test.isPoweredUp == true);
@@ -602,7 +602,7 @@ namespace SpaceAce.UnitTests
 
             ctrl.UpdateWorld();
 
-            Assert.IsTrue(ctrl.current_Enemies.Count == 1);
+            Assert.IsTrue(ctrl.current_Enemies.Count == 0);
             Assert.IsTrue(ctrl.player_fire.Count == 0);
             Assert.IsTrue(ctrl.player.Lives == 6);
             Assert.IsTrue(ctrl.player.Bombs == 7);

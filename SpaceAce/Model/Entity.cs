@@ -157,6 +157,8 @@ namespace Model
                                 break;
                             }
                         }
+
+                        (result as Boss_Hard).x_axis = Convert.ToDouble(des[7]);
                         return result;
                     }
                 }
@@ -193,7 +195,8 @@ namespace Model
                 (result as Player).rapid_fire = Convert.ToBoolean(des[12]);
                 (result as Player).isInvincible = Convert.ToBoolean(des[13]);
 
-                (result as Player).Activate_powerup(true);
+                (result as Player).LoadPowerups();
+
 
                 return result;
 

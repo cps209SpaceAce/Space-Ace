@@ -11,11 +11,11 @@ using System.Windows.Media.Imaging;
 namespace Model
 {
     public enum PowerUp { Empty, Helix, Invincible, ExtraSpeed, ExtraLife, ExtraBomb, TripleShot, RapidFire } // TODO: pick what powerups to put here
-    
+
     public class Player : Entity
 
     {
-        public bool wanderingbullets =false; // flag for sin and cos bullets. currently broken 
+        public bool wanderingbullets = false; // flag for sin and cos bullets. currently broken 
         public bool triple = false;//flag for triple shot
         public bool rapid_fire = false; //flag to engage rapid fire mode by reducing the cooldown
         public bool extraSpeed = false;
@@ -57,29 +57,27 @@ namespace Model
             }
         }
 
-        public void Activate_powerup(bool loaded)
+        public void Activate_powerup()
         {
-            if (!loaded)
-            {
-                if (powerup == PowerUp.Empty)
+
+            if (powerup == PowerUp.Empty)
                 return;
 
-                isPoweredUp = true;
+            isPoweredUp = true;
 
 
-                var sound = new MediaPlayer();
-                sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\PowerUp.wav", UriKind.Absolute));
-                Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
-            }
+            var sound = new MediaPlayer();
+            sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\PowerUp.wav", UriKind.Absolute));
+            Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
 
 
-            if (powerup == PowerUp.ExtraSpeed || extraSpeed)
+            if (powerup == PowerUp.ExtraSpeed)
             {
                 speed = baseSpeed * 2;
                 extraSpeed = true;
             }
-            else if (powerup == PowerUp.Invincible || isInvincible)
-            { 
+            else if (powerup == PowerUp.Invincible)
+            {
                 isInvincible = true;
                 powerUpCounter = 0;
             }
@@ -93,19 +91,19 @@ namespace Model
                 ++Bombs;
                 isPoweredUp = false;
             }
-            else if (powerup == PowerUp.RapidFire || rapid_fire)
+            else if (powerup == PowerUp.RapidFire)
             {
                 rapid_fire = true;
                 wanderingbullets = false;
                 triple = false;
             }
-            else if (powerup == PowerUp.TripleShot || triple)
+            else if (powerup == PowerUp.TripleShot)
             {
                 triple = true;
                 wanderingbullets = false;
                 rapid_fire = false;
             }
-            else if (powerup == PowerUp.Helix || wanderingbullets)
+            else if (powerup == PowerUp.Helix)
             {
                 wanderingbullets = true;
                 rapid_fire = false;
@@ -141,9 +139,9 @@ namespace Model
         {
             if (isInvincible || cheating)
             {
-                return false; 
+                return false;
             }
-            
+
             if (HitCoolDown == 0)
             {
                 Lives--;
@@ -167,7 +165,7 @@ namespace Model
 
             if (isInvincible || cheating)
             {
-                return false; 
+                return false;
             }
 
             if (HitCoolDown == 0)
@@ -179,8 +177,8 @@ namespace Model
             if (Lives == 0)
                 game.gameResult = GameResult.Lost;
 
-           Deactivate_Powerup();
-           return true;
+            Deactivate_Powerup();
+            return true;
         }
 
         public void Up()
@@ -243,9 +241,11 @@ namespace Model
                 DropBomb();
             }
 
-            if (isPoweredUp) {
+            if (isPoweredUp)
+            {
                 powerUpCounter++;
-                if (powerUpCounter >= 800) { 
+                if (powerUpCounter >= 800)
+                {
                     this.isInvincible = false;
                     this.powerUpCounter = 0;
                 }
@@ -253,6 +253,38 @@ namespace Model
 
             hitbox.X = Convert.ToInt32(X);
             hitbox.Y = Convert.ToInt32(Y);
+        }
+
+        public void LoadPowerups()
+        {
+            if (extraSpeed)
+            {
+                speed = baseSpeed * 2;
+                extraSpeed = true;
+            }
+            if (isInvincible)
+            {
+                isInvincible = true;
+                powerUpCounter = 0;
+            }
+            if (rapid_fire)
+            {
+                rapid_fire = true;
+                wanderingbullets = false;
+                triple = false;
+            }
+            else if (triple)
+            {
+                triple = true;
+                wanderingbullets = false;
+                rapid_fire = false;
+            }
+            else if (wanderingbullets)
+            {
+                wanderingbullets = true;
+                rapid_fire = false;
+                triple = false;
+            }
         }
 
         public override string Serialize()

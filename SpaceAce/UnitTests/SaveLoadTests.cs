@@ -68,7 +68,7 @@ namespace SpaceAce.UnitTests
                 Assert.IsTrue(reader.ReadLine() == "Level_1,0,0,0,False");
                 Assert.IsTrue(reader.ReadLine() == "[end]");
                 Assert.IsTrue(reader.ReadLine() == "[player]");
-                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False,ship.png,False,False,False,False");
+                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False,ship.png,False,False,False,False,False");
                 Assert.IsTrue(reader.ReadLine() == "[end]");
 
                 Assert.IsTrue(reader.EndOfStream);
@@ -89,7 +89,7 @@ namespace SpaceAce.UnitTests
                 Assert.IsTrue(reader.ReadLine() == "Level_1,0,0,0,False");
                 Assert.IsTrue(reader.ReadLine() == "[end]");
                 Assert.IsTrue(reader.ReadLine() == "[player]");
-                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False,ship.png,False,False,False,False");
+                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False,ship.png,False,False,False,False,False");
                 Assert.IsTrue(reader.ReadLine() == "[end]");
 
                 Assert.IsTrue(reader.EndOfStream);
@@ -145,7 +145,7 @@ namespace SpaceAce.UnitTests
                 Assert.IsTrue(reader.ReadLine() == "Level_1,0,0,0,False");
                 Assert.IsTrue(reader.ReadLine() == "[end]");
                 Assert.IsTrue(reader.ReadLine() == "[player]");
-                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False,ship.png,False,False,False,False");
+                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False,ship.png,False,False,False,False,False");
                 Assert.IsTrue(reader.ReadLine() == "[end]");
 
                 Assert.IsTrue(reader.EndOfStream);
@@ -165,7 +165,7 @@ namespace SpaceAce.UnitTests
                 Assert.IsTrue(reader.ReadLine() == "Level_1,0,0,0,False");
                 Assert.IsTrue(reader.ReadLine() == "[end]");
                 Assert.IsTrue(reader.ReadLine() == "[player]");
-                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False,ship.png,False,False,False,False");
+                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False,ship.png,False,False,False,False,False");
                 Assert.IsTrue(reader.ReadLine() == "[end]");
 
                 Assert.IsTrue(reader.EndOfStream);
@@ -193,7 +193,7 @@ namespace SpaceAce.UnitTests
                 reader.ReadLine();
 
                 Assert.IsTrue(reader.ReadLine() == "[player]");
-                Assert.IsTrue(reader.ReadLine() == "40,50,Empty,100,60,True,3.44,False,player1.png,False,False,False,False");
+                Assert.IsTrue(reader.ReadLine() == "40,50,Empty,100,60,True,3.44,False,player1.png,False,False,False,False,False");
                 Assert.IsTrue(reader.ReadLine() == "[end]");
             }
         }
@@ -217,7 +217,7 @@ namespace SpaceAce.UnitTests
                 Assert.IsTrue(reader.ReadLine() == "[end]");
 
                 Assert.IsTrue(reader.ReadLine() == "[player]");
-                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False,ship.png,False,False,False,False");
+                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False,ship.png,False,False,False,False,False");
                 Assert.IsTrue(reader.ReadLine() == "[end]");
 
             }
@@ -240,7 +240,7 @@ namespace SpaceAce.UnitTests
                 Assert.IsTrue(reader.ReadLine() == "[end]");
 
                 Assert.IsTrue(reader.ReadLine() == "[player]");
-                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False,ship.png,False,False,False,False");
+                Assert.IsTrue(reader.ReadLine() == "50,350,Empty,3,3,False,0,False,ship.png,False,False,False,False,False");
                 Assert.IsTrue(reader.ReadLine() == "[end]");
 
             }
@@ -258,7 +258,7 @@ namespace SpaceAce.UnitTests
             {
 
                 writer.WriteLine("[player]");
-                writer.WriteLine("40,30,ExtraSpeed,4,8,False,2.34,True,ship.png,False,False,True,False");
+                writer.WriteLine("40,30,ExtraSpeed,4,8,False,2.34,True,ship.png,False,False,True,False,True");
                 writer.WriteLine("[end]");
             }
 
@@ -271,6 +271,8 @@ namespace SpaceAce.UnitTests
             Assert.IsTrue(ctrl.player.Lives == 4);
             Assert.IsTrue(ctrl.player.Bombs == 8);
             Assert.IsTrue(ctrl.player.extraSpeed == true);
+            Assert.IsTrue(ctrl.player.isInvincible == true);
+
 
         }
 
@@ -356,7 +358,7 @@ namespace SpaceAce.UnitTests
                 writer.WriteLine("[end]");
 
                 writer.WriteLine("[player]");
-                writer.WriteLine("40,30,RapidFire,4,8,True,1.6,False,ship.png,False,False,False,False");
+                writer.WriteLine("40,30,RapidFire,4,8,True,1.6,False,ship.png,False,False,False,False,False");
                 writer.WriteLine("[end]");
 
                 writer.WriteLine("[playerBullets]");
@@ -422,7 +424,7 @@ namespace SpaceAce.UnitTests
                 writer.WriteLine("Level_2,1337,10,92.1,False");
                 writer.WriteLine("[end]");
                 writer.WriteLine("[player]");
-                writer.WriteLine("40,30,RapidFire,4,8,True,1.6,False,ship.png,False,False,False,False");
+                writer.WriteLine("40,30,RapidFire,4,8,True,1.6,False,ship.png,False,False,False,False,False");
                 writer.WriteLine("[end]");
 
                 writer.WriteLine("[enemies]");
