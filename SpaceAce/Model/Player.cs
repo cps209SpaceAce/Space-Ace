@@ -52,7 +52,7 @@ namespace Model
             }
         }
 
-        //Activates powerups to each of their effects
+        //Activates powerups to do each of their effects
         public void Activate_Powerup()
         {
             if (powerup == PowerUp.Empty)
