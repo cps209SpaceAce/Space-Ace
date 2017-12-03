@@ -191,6 +191,7 @@ namespace Model
             X = Convert.ToInt32(X - (1 * speed));
         }
 
+        //Moves player right
         public void Right()
         {
             X = Convert.ToInt32(X + (1 * speed));
