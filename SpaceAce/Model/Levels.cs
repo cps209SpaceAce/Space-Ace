@@ -22,7 +22,7 @@ namespace Model
             Powerup output = null;
             int spawn_X = 1000;
 
-            switch (GameController.random.Next(0, 7))
+            switch (GameController.random.Next(4, 5))
             {
                 case 0:
                     output = new Powerup(spawn_X, GameController.random.Next(100, 600), PowerUp.RapidFire);
@@ -188,9 +188,9 @@ namespace Model
             switch (currentDiff)
             {
                 case Difficulty.Easy:
-                    return new Boss_Medium(1200, 200, 30, winWidth, winHeight);
-                case Difficulty.Medium:
                     return new Boss_Easy(1200, 200, 30, winWidth, winHeight);
+                case Difficulty.Medium:
+                    return new Boss_Medium(1200, 200, 30, winWidth, winHeight);
                 case Difficulty.Hard:
                     return new Boss_Hard(1200, 300, 30, winWidth, winHeight);
             }

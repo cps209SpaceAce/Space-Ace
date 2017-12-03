@@ -114,28 +114,28 @@ namespace Model
                     if (des[1] == "easy")
                     {
                         result = new Boss_Easy(Convert.ToDouble(des[2]), Convert.ToDouble(des[3]), Convert.ToInt32(des[4]), game.winWidth, game.winHeight);
-                        foreach (State val in Enum.GetValues(typeof(State)))
+                        foreach (MState val in Enum.GetValues(typeof(MState)))
                             if (des[5] == val.ToString())
                             {
-                                (result as Boss_Easy).state = val;
+                                (result as Boss_Easy).currentState = val;
                                 break;
                             }
+
+                        (result as Boss_Easy).isEntering = Convert.ToBoolean(des[6]);
+                        (result as Boss_Easy).goingBackwards = Convert.ToBoolean(des[7]);
+                        (result as Boss_Easy).dir = Convert.ToInt32(des[8]);
 
                         return result;
                     }
                     else if (des[1] == "medium")
                     {
                         result = new Boss_Medium(Convert.ToDouble(des[2]), Convert.ToDouble(des[3]), Convert.ToInt32(des[4]), game.winWidth, game.winHeight);
-                        foreach (MState val in Enum.GetValues(typeof(MState)))
+                        foreach (State val in Enum.GetValues(typeof(State)))
                             if (des[5] == val.ToString())
                             {
-                                (result as Boss_Medium).currentState = val;
+                                (result as Boss_Medium).state = val;
                                 break;
                             }
-
-                        (result as Boss_Medium).isEntering = Convert.ToBoolean(des[6]);
-                        (result as Boss_Medium).goingBackwards = Convert.ToBoolean(des[7]);
-                        (result as Boss_Medium).dir = Convert.ToInt32(des[8]);
 
                         return result;
                     }
@@ -191,6 +191,10 @@ namespace Model
                 (result as Player).wanderingbullets = Convert.ToBoolean(des[10]);
                 (result as Player).extraSpeed = Convert.ToBoolean(des[11]);
                 (result as Player).rapid_fire = Convert.ToBoolean(des[12]);
+                (result as Player).isInvincible = Convert.ToBoolean(des[13]);
+
+                (result as Player).Activate_powerup(true);
+
                 return result;
 
             }

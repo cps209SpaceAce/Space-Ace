@@ -195,9 +195,9 @@ namespace SpaceAce
                 }
                 else if (ship is Boss)
                 {
-                    if (ship is Boss_Easy)
-                    { imgname = "noahShip.png"; }
                     if (ship is Boss_Medium)
+                    { imgname = "noahShip.png"; }
+                    if (ship is Boss_Easy)
                     { imgname = "robertShip.png"; }
                     if (ship is Boss_Hard)
                     { imgname = "JoannaShip.png"; }
@@ -705,9 +705,9 @@ namespace SpaceAce
                     BossIsSpawned = true;
                     gameCtrl.BossIsSpawned = true;
 
-                    if(newEntity is Boss_Easy)
+                    if(newEntity is Boss_Medium)
                         pngName = "noahShip.png";
-                    if (newEntity is Boss_Medium)                        
+                    if (newEntity is Boss_Easy)                        
                         pngName = "robertShip.png";
                     if (newEntity is Boss_Hard)
                         pngName = "JoannaShip.png";
