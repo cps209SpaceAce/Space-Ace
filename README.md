@@ -41,10 +41,7 @@ List work completed.
 
 ## Known Issues: 
 List any major issues.
-* Hitboxes - Bit bigger than objects.
-* Formations - Same image as normal on Load.
-* Save/Load - Load does not pass cheating.
-* Save/Load - Loads 2 bosses. One being invisible.
+* None?
 
 ## Recording: 
 https://tinyurl.com/cps209-TeamB-Alpha
