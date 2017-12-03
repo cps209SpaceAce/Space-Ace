@@ -215,6 +215,21 @@ namespace SpaceAce.UnitTests
             Assert.IsTrue(test.powerUpCounter == 0);
             Assert.IsTrue(test.triple == true);
         }
+        [TestMethod]
+        public void Activate_PowerUp_Helix_Success()
+        {
+            Player test = new Player(10, 10, 3, 5, new GameController(), "player1.png");
+            test.powerup = PowerUp.Helix;
+
+            test.Activate_powerup();
+
+            Assert.IsTrue(test.powerup == PowerUp.Empty);
+            Assert.IsTrue(test.isPoweredUp == true);
+            Assert.IsTrue(test.powerUpCounter == 0);
+            Assert.IsTrue(test.wanderingbullets == true);
+        }
+
+
 
         [TestMethod]
         public void Activate_PowerUp_Empty_Success()

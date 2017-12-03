@@ -22,7 +22,7 @@ namespace Model
         public string img = "ship 2.png";
         public State state;
         public int cooldown = 0;
-        protected double actionTimer;
+        public double actionTimer;
         public float max;
         public bool startup = true;
 
@@ -43,8 +43,6 @@ namespace Model
         {
             p_x = X;
             p_y = Y;
-
-            
         }
 
         public override bool Hit()
@@ -62,31 +60,6 @@ namespace Model
             }
             return false;
 
-        }
-
-        public override void UpdatePosition()
-        {
-
-            //TODO: movement logic for boss
-            actionTimer += 0.01;
-            if (X > 750)
-            {
-                X = Convert.ToInt32(X - (1 * speed));
-
-            }
-
-            // after x == 950 ... change y V^
-
-            // action == 1 
-            //bossShoot(x,y,type)
-            hitbox.X = Convert.ToInt32(X);
-            hitbox.Y = Convert.ToInt32(Y);
-        }
-
-
-        public override string Serialize()
-        {
-            return "boss,base" + "," + X + "," + Y +","+ health + "," + state; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
         }
     }
 

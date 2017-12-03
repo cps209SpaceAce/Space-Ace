@@ -102,7 +102,11 @@ namespace Model
             else
             {
                 goingBackwards = false;
-                currentState = MState.Start;
+
+                if (health < (max / 2))
+                    currentState = MState.Mid;
+                else
+                    currentState = MState.Start;
             }
         }
 
