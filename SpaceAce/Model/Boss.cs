@@ -24,7 +24,7 @@ namespace Model
         public int cooldown = 0;
         protected double actionTimer;
         public float max;
-        public bool start = true;
+        public bool startup = true;
 
         public double windowHeight;
         public double windowWidth;
@@ -49,10 +49,10 @@ namespace Model
 
         public override bool Hit()
         {
-            if (X > 750 && start)
+            if (X > 750 && startup)
                 return false;
-            else if(start == true)
-                start = false;
+            else if(startup == true)
+                startup = false;
             
             health--;
             if (health <= 0)
