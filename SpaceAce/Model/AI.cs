@@ -32,7 +32,7 @@ namespace Model
             hitbox.X = Convert.ToInt32(X);
             if (random.Next(0, 1000) == 42)
             {
-                FiredABullet = true; //for testing
+                FiredABullet = true; 
                 fireCoolDown = 50;
             }
             else
@@ -43,6 +43,7 @@ namespace Model
                 alive = false;
         }
 
+        //Serialization method that converts all necessary values into a string
         public override string Serialize()
         {
             return "ai" + "," + X + "," + Y + "," + Flightpath;
@@ -60,7 +61,6 @@ namespace Model
 
         public override void UpdatePosition()
         {
-            //TODO: move ship in a Pattern
             switch (this.Flightpath)
             {
                 case pattern.Sin:
@@ -75,7 +75,7 @@ namespace Model
             }
             if (random.Next(0, 1000) == 42)
             {
-                FiredABullet = true; //for testing
+                FiredABullet = true;
                 fireCoolDown = 50;
             }
             else
@@ -88,7 +88,7 @@ namespace Model
                 alive = false;
         }
 
-
+        //Serialization method that converts all necessary values into a string
         public override string Serialize()
         {
             return "formation" + "," + X + "," + Y + "," + Flightpath;
@@ -113,7 +113,7 @@ namespace Model
         }
         public override void UpdatePosition()
         {
-            if (X <= stopPosition) //initial positioning
+            if (X <= stopPosition) 
                 X = stopPosition;
             else
                 X = (X - (0.5 * speed));
@@ -125,7 +125,7 @@ namespace Model
 
             if (random.Next(0, 1000) == 64)
             {
-                FiredABullet = true; //for testing
+                FiredABullet = true; 
                 fireCoolDown = 50;
             }
             else
@@ -136,7 +136,9 @@ namespace Model
             hitbox.Y = Convert.ToInt32(Y);
 
         }
-        public override string Serialize() //Noah added it
+
+        //Serialization method that converts all necessary values into a string
+        public override string Serialize() 
         {
             return "tracker" + "," + X + "," + Y;
         }
@@ -162,8 +164,8 @@ namespace Model
         }
         public override void UpdatePosition()
         {
-            Vector target = new Vector(pX, pY);
-            //Based on Steering behariors: Seek            
+            //Based on Steering behariors: Seek  
+            Vector target = new Vector(pX, pY);         
             hitbox.X = Convert.ToInt32(X);
             hitbox.Y = Convert.ToInt32(Y);
 
@@ -177,9 +179,11 @@ namespace Model
 
         }
 
+        //Serialization method that converts all necessary values into a string
+
         public override string Serialize()
         {
-            return "mine" + "," + X + "," + Y; //JOANNA: x,y only for now;
+            return "mine" + "," + X + "," + Y; 
         }
     }
 }

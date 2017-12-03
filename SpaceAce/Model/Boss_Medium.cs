@@ -42,7 +42,7 @@ namespace Model
                     }
                     break;
                 case State.Mid:
-                    mid();
+                    Mid();
                     if (health < (max / .75))
                     {
                         state = State.End;
@@ -50,7 +50,7 @@ namespace Model
                     }
                     break;
                 case State.End:
-                    mid();
+                    Mid();
                     break;
 
             }
@@ -86,7 +86,7 @@ namespace Model
 
         }
 
-        private void mid()
+        private void Mid()
         {
             if (actionTimer > 0.75)
             {
@@ -99,12 +99,10 @@ namespace Model
             start();
         }
 
-
-
-
+        //Serialization method that converts all necessary save values into a string
         public override string Serialize()
         {
-            return "boss,medium" + "," + X + "," + Y + "," + health + "," + state; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.
+            return "boss,medium" + "," + X + "," + Y + "," + health + "," + state;
         }
     }
 }

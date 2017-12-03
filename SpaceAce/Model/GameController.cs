@@ -255,6 +255,8 @@ namespace Model
 
         //-----------  Load - Save  ------------//
 
+        //Save method that takes in a file name and saves the current state of the game (Defaults,
+        //Player, Enemies, etc...) into specified file.
         public void Save(string fileName)
         {
             File.WriteAllText(fileName, String.Empty);
@@ -291,6 +293,9 @@ namespace Model
 
             }
         }
+
+        //Method that loads game state from specified file name. 
+        //(Defaults, Player, Enemies, etc...)
         public void Load(string fileName)
         {
             enemie_Que.Clear();

@@ -287,6 +287,7 @@ namespace Model
             }
         }
 
+        //Serialization method that converts all necessary values into a string
         public override string Serialize()
         {
             return X + "," + Y + "," + powerup + "," + Lives + "," + Bombs + "," + isPoweredUp + "," + powerUpCounter + "," + cheating + "," + image + "," + triple + "," + wanderingbullets + "," + extraSpeed + "," + rapid_fire + "," + isInvincible;

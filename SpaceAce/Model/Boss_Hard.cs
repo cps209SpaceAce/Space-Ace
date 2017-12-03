@@ -80,11 +80,7 @@ namespace Model
             hitbox.Y = Convert.ToInt32(Y);
         }
 
-  
-
-     
-
-
+        //Serialization method that converts all necessary save values into a string
 
         public override string Serialize()
         {

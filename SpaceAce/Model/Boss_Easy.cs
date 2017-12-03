@@ -4,24 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
+
+/// <summary>
+/// Easy Boss found in Boss level Easy Mode
+/// Code byy Joanna Al Madanat
+/// </summary>
+/// 
 namespace Model
 {
-    public enum MState { Start, Mid, Attack }
+    public enum MState { Start, Mid, Attack } //State machine specific for Easy boss
 
     public class Boss_Easy : Boss
     {
-        public MState currentState;
-        public int dir = 1;
-        public bool goingBackwards = false;
-        public bool isEntering = true;
-        int reset = 60;
+        public MState currentState;         //Easy boss's current state
+        public int dir = 1;                 //Boss's direction of movement (1 = down, -1 = up)
+        public bool goingBackwards = false; //Movement of boss (X++ if true, X-- if false)
+        public bool isEntering = true;      //States if boss is not yet in desired starting position
+        int reset = 60;                     //Rate of bullet fire
 
+        //Constructor taking in 
+        //X position, Y position, initil health, Window height, and window width
         public Boss_Easy(double X, double Y, int health, double winWidth, double winHeight) : base(X, Y, health, winWidth, winHeight)
         {
             currentState = MState.Start;
         }
 
-
+        //Updates the boss's position based on current state according to MState state mahine
         public override void UpdatePosition()
         {
             if (isEntering && X > windowWidth / 2)
@@ -31,7 +39,6 @@ namespace Model
             }
             isEntering = false;
 
-            //TODO: movement logic for boss
             actionTimer += 0.01;
 
             switch (currentState)
@@ -45,7 +52,7 @@ namespace Model
                     }
                     break;
                 case MState.Mid:
-                    mid();
+                    Mid();
                     break;
 
                 case MState.Attack:
@@ -57,6 +64,8 @@ namespace Model
             hitbox.Y = Convert.ToInt32(Y);
         }
 
+        //At MState.Start, move up and down game screen while shooting at an average rate
+        //Randomly set MState to Attack
         private void start()
         {
             if (Y < 0 || Y > windowHeight - hitbox.Y)
@@ -65,14 +74,15 @@ namespace Model
             }
             Y = Convert.ToInt32(Y + (dir * speed));
 
-
             Shoot();
 
             if (random.Next(0, 1000) == 4)
                 currentState = MState.Attack;
         }
 
-        private void mid()
+        //At MState.Mid, track player's position and shoot at faster average rate
+        //Randomly set MState to Attack
+        private void Mid()
         {
             if (Y < (p_y - 100))
                 Y = (Y + (0.5 * speed));
@@ -85,6 +95,8 @@ namespace Model
                 currentState = MState.Attack;
         }
 
+        //At MState.Attack, move forward until reaching zero then returning to previous position
+        //and state
         private void Attack()
         {
             FiredABullet = false;
@@ -95,7 +107,6 @@ namespace Model
                 return;
             }
             goingBackwards = true;
-
 
             if (X <= windowWidth / 2)
                 X = Convert.ToInt32(X + speed);
@@ -110,6 +121,7 @@ namespace Model
             }
         }
 
+        //Shoot bullets at countdown rate
         void Shoot()
         {
             if (cooldown > 0)
@@ -124,9 +136,9 @@ namespace Model
             }
             else
                 FiredABullet = false;
-
         }
 
+        //Serialization method that converts all necessary save values into a string
         public override string Serialize()
         {
             return "boss,easy" + "," + X + "," + Y + "," + health + "," + currentState + "," + isEntering + "," + goingBackwards + "," + dir; //JOANNA: x,y only for now; //JOANNA: X,Y coords only for now.

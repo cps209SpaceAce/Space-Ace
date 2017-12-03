@@ -123,19 +123,11 @@ namespace Model
                 alive = false;
         }
 
+        //Serialization method that converts all necessary values into a string
+
         public override string Serialize()
         {
             return "bullet,wandering" + "," + X + "," + Y + "," + original_X + "," +original_Y + "," + path + "," + x_axis; //JOANNA: x,y only for now
         }
     }
-    //public class Tracking : Bullet
-    //{
-    //    private Entity target;
-    //    public override Point UpdatePosition()
-    //    {
-    //        //TODO: Towards target
-    //        throw new NotImplementedException();
-    //    }
-    //    //TODO: add tracking
-    //}
 }

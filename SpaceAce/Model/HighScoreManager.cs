@@ -6,8 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
-// Classes and Methods for Creating and Saving HighScores
-
+/// <summary>
+/// Classes and Methods for Creating and Saving HighScores
+/// </summary>
 
 namespace Model
 {
