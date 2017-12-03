@@ -150,13 +150,12 @@ namespace Model
                             }
                         
                         foreach (Direction val in Enum.GetValues(typeof(Direction)))
-                        {
                             if (des[6] == val.ToString())
                             {
                                 (result as Boss_Hard).dir = val;
                                 break;
                             }
-                        }
+                        
 
                         (result as Boss_Hard).x_axis = Convert.ToDouble(des[7]);
                         return result;

@@ -149,6 +149,13 @@ namespace SpaceAce.UnitTests
             test.powerUpCounter = 0;
 
             test.UpdatePosition();
+
+            test.isPoweredUp = true;
+            test.powerUpCounter = 800;
+            test.UpdatePosition();
+
+            Assert.IsTrue(test.isInvincible == false);
+            Assert.IsTrue(test.powerUpCounter == 0);
         }
 
         [TestMethod]
@@ -507,6 +514,9 @@ namespace SpaceAce.UnitTests
         [TestMethod]
         public void Player_DropBomb_Success()
         {
+            if (Application.Current == null)
+            { new Application { ShutdownMode = ShutdownMode.OnExplicitShutdown }; }
+
             List<Entity> enemies = new List<Entity>();
             enemies.Add(new AI(20, 20, pattern.Cos));
             enemies.Add(new AI(20, 20, pattern.Cos));
@@ -524,6 +534,12 @@ namespace SpaceAce.UnitTests
 
             Assert.IsTrue(game.current_Enemies.Count == 0);
             Assert.IsTrue(game.score == 50 * 4);
+
+            game.current_Enemies.Add(new Boss_Easy(10, 10, 100, 2000, 2000));
+            game.Bomb();
+
+            Assert.IsTrue(game.current_Enemies.Count == 1);
+
         }
 
         [TestMethod]
@@ -589,6 +605,10 @@ namespace SpaceAce.UnitTests
             en.Add(new Powerup(200, 200, PowerUp.RapidFire));
             en.Add(new Powerup(200, 200, PowerUp.ExtraLife));
             en.Add(new Powerup(200, 200, PowerUp.ExtraBomb));
+            Boss_Easy boss = new Boss_Easy(1000, 1000, 100, 2000, 2000);
+            boss.action = true;
+            en.Add(boss);
+
 
             AI shot = new AI(60, 60, pattern.Straight);
             shot.FiredABullet = true;
@@ -617,7 +637,7 @@ namespace SpaceAce.UnitTests
 
             ctrl.UpdateWorld();
 
-            Assert.IsTrue(ctrl.current_Enemies.Count == 0);
+            Assert.IsTrue(ctrl.current_Enemies.Count == 1);
             Assert.IsTrue(ctrl.player_fire.Count == 0);
             Assert.IsTrue(ctrl.player.Lives == 6);
             Assert.IsTrue(ctrl.player.Bombs == 7);

@@ -26,6 +26,8 @@ namespace SpaceAce.UnitTests
             enemies.Add(new Tracker(10, 10, pattern.Straight));
             enemies.Add(new Powerup(10, 10, PowerUp.TripleShot));
             enemies.Add(new AI(10, 10, pattern.Straight));
+            enemies.Add(new Slanted_Bullet(10, 10, 20));
+            enemies.Add(new Wandering_Bullet(10, 10, pattern.Straight));
 
             ctrl.current_Enemies = enemies;
 
@@ -48,6 +50,8 @@ namespace SpaceAce.UnitTests
                 Assert.IsTrue(reader.ReadLine() == "tracker,10,10");
                 Assert.IsTrue(reader.ReadLine() == "powerup,10,10,TripleShot");
                 Assert.IsTrue(reader.ReadLine() == "ai,10,10,Straight");
+                Assert.IsTrue(reader.ReadLine() == "bullet,slanted,10,10,20");
+                Assert.IsTrue(reader.ReadLine() == "bullet,wandering,10,10,10,10,Straight,0");
                 Assert.IsTrue(reader.ReadLine() == "[end]");
             }
         }
@@ -287,11 +291,15 @@ namespace SpaceAce.UnitTests
                 writer.WriteLine("[enemies]");
                 writer.WriteLine("asteroid,100,40,50");
                 writer.WriteLine("asteroid,100,30,20");
+                writer.WriteLine("bullet,slated,20,20,20");
+                writer.WriteLine("bullet,normal,20,20");
+
+
                 writer.WriteLine("[end]");
             }
             ctrl.Load("TestLoad.txt");
 
-            Assert.IsTrue(ctrl.current_Enemies.Count == 2);
+            Assert.IsTrue(ctrl.current_Enemies.Count == 4);
             Assert.IsTrue(ctrl.current_Enemies[0].health == 100);
             Assert.IsTrue(ctrl.current_Enemies[0].X == 40);
             Assert.IsTrue(ctrl.current_Enemies[0].Y == 50);
@@ -370,7 +378,9 @@ namespace SpaceAce.UnitTests
                 writer.WriteLine("[enemies]");
                 writer.WriteLine("asteroid,1,30,20");
                 writer.WriteLine("ai,200,600,Cos");
-                writer.WriteLine("bullet,20,20");
+                writer.WriteLine("bullet,normal,20,20");
+                writer.WriteLine("bullet,slanted,20,20,90");
+
                 writer.WriteLine("formation,80,80,Cos");
                 writer.WriteLine("ai,80,80,Cos");
                 writer.WriteLine("tracker,80,80");
@@ -402,7 +412,7 @@ namespace SpaceAce.UnitTests
             Assert.IsTrue(ctrl.player.rapid_fire == true);
 
 
-            Assert.IsTrue(ctrl.current_Enemies.Count == 8);
+            Assert.IsTrue(ctrl.current_Enemies.Count == 9);
             Assert.IsTrue(ctrl.current_Enemies[0].X == 30);
             Assert.IsTrue(ctrl.current_Enemies[0].Y == 20);
 
