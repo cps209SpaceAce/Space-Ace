@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
 
+/// <header>
+/// Unit tests for bosses
+/// </header>
+
 namespace SpaceAce.UnitTests
 {
     [TestClass]

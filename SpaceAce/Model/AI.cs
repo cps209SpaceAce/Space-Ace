@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 
-
 namespace Model
 {
     public enum pattern { Straight, Sin, Cos, Sindown };

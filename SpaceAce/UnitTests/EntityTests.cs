@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Model;
 using System.Windows;
 
-
+/// <header>
+/// Unit tests for the Entity class and its children
+/// </header>
 namespace SpaceAce.UnitTests
 {
     [TestClass]

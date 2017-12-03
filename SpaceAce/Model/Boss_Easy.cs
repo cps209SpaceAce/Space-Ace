@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Model;
 
-/// <summary>
+/// <header>
 /// Easy Boss found in Boss level Easy Mode
 /// Code byy Joanna Al Madanat
-/// </summary>
-/// 
+/// </header>
+
 namespace Model
 {
-    public enum MState { Start, Mid, Attack } //State machine specific for Easy boss
+    //State machine specific for Easy boss
+    public enum MState { Start, Mid, Attack } 
 
+    //Easy boss that has three states (Start, Mid, Attack) and is found in Boss level of Easy mode
     public class Boss_Easy : Boss
     {
         public MState currentState;         //Easy boss's current state

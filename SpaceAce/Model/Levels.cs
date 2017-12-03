@@ -7,18 +7,17 @@ using System.Drawing;
 using Model;
 
 
-/// <summary>
+/// <header>
 ///  This file contains the spawning methods for 
 ///  Entities and Bosses
 ///  Power Ups
-/// </summary>
+/// </header>
 
 namespace Model
 {
     // Contains the classes for both spawning Powerups, Entities, and Bosses
     class Levels
     {
-
         public static Entity Level_returnPowerUp()
         {
             Powerup output = null;

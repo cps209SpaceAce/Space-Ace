@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
 using System.IO;
-using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows;
 
@@ -68,11 +63,8 @@ namespace Model
 
         public GameController(Difficulty passDiff, double windowWidth, double windowHeight, bool isCheating, string shipIMG)
         {
-            player = new Player(50, 350, 3, 3, this, shipIMG);// Flags?
+            player = new Player(50, 350, 3, 3, this, shipIMG);
             player.cheating = isCheating;
-            //TODO: load level/save data from GameData
-            // OR
-            //TODO: get enemies for level from Level
             difficulty = passDiff;
 
             winWidth = windowWidth;
@@ -110,7 +102,6 @@ namespace Model
 
                     if (ent is Boss)
                     {
-
                         if ((ent as Boss).action)
                         {
                             (ent as Boss).action = false;
@@ -120,8 +111,6 @@ namespace Model
 
                     else
                     {
-
-
                         if (ent.FiredABullet)
                             ships_that_fired.Add(ent);
                         if (!ent.alive)
@@ -203,11 +192,11 @@ namespace Model
                             Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
 
                             dead_Badguy.Add(enemy);
-                            score += 50 * 1; // TODO: Based on DIff
+                            score += 50 * 1;
                             if (enemy is Powerup)
                             {
-                                player.powerup = (enemy as Powerup).type; // Added by Jo // copyed Noah
-                                                                          //if ((enemy as Powerup).type == PowerUp.ExtraLife)
+                                player.powerup = (enemy as Powerup).type;
+
                                 player.Activate_powerup();
                             }
                         }
@@ -330,13 +319,13 @@ namespace Model
                         gameLevelTimer = Convert.ToDouble(res[3]);
 
                         BossIsSpawned = Convert.ToBoolean(res[4]);
-                        reader.ReadLine(); //[end]
+                        reader.ReadLine(); 
                     }
                     else if (startLine == "[player]")
                     {
                         string line = reader.ReadLine();
                         player = Entity.Deserialize(line, "player", this) as Player;
-                        reader.ReadLine(); //[end]
+                        reader.ReadLine(); 
                     }
 
                     else if (startLine == "[playerBullets]")

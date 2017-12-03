@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Model
 {
     public enum ID { Friendly, Hostile }
     public class Bullet : Entity
     {
-        //JOANA: i made direction public for save and load purposes
-
         public int direction = 1; // 1:moving right | -1:moving left
         public Bullet(double X, double Y) : base(X, Y)
         {
@@ -43,7 +37,6 @@ namespace Model
             hitbox.X = Convert.ToInt32(X);
             if (X < 0 || X > 1200)
                 alive = false;
-
         }
 
         public override string Serialize()
@@ -59,7 +52,6 @@ namespace Model
         {
             this.slope = slope;
         }
-
 
         public override void UpdatePosition()
         {
@@ -81,7 +73,7 @@ namespace Model
         }
         public override string Serialize()
         {
-            return "bullet,slanted" + "," + X + "," + Y + "," + slope; //JOANNA: x,y only for now
+            return "bullet,slanted" + "," + X + "," + Y + "," + slope; 
         }
     }
 
@@ -102,7 +94,7 @@ namespace Model
         }
         public override void UpdatePosition()
         {
-            switch (this.path) //copyed from Robert's formation class
+            switch (path) 
             {
                 case pattern.Sin:
                     x_axis = (x_axis + (15 * direction));

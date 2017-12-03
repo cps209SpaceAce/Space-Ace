@@ -5,8 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.IO;
-
 using Model;
+
+/// <header>
+/// Unit tests for the Model namespace
+/// </header>
 
 namespace SpaceAce.UnitTests
 {

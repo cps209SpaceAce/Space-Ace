@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Model
 {
+    //Base class for all objects in game screen
     abstract public class Entity : ISerialiable
     {
 

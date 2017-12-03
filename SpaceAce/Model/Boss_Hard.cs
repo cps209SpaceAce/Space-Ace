@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Model;
+
+
 namespace Model
 {
-    
+    //Hard boss that moves in infinity sign pattern and is found in Boss level of Hard mode
+
     public class Boss_Hard : Boss
     {
         int reset = 50;
@@ -31,7 +29,6 @@ namespace Model
         {
             if (cooldown > 0)
                 cooldown--;
-            //TODO: movement logic for boss
             actionTimer += 0.01;
             if (X > 924 && startflag)
             {
@@ -72,10 +69,7 @@ namespace Model
                     fired_slanted_targeted_shot = false;
 
             }
-            // after x == 950 ... change y V^
 
-            // action == 1 
-            //bossShoot(x,y,type)
             hitbox.X = Convert.ToInt32(X);
             hitbox.Y = Convert.ToInt32(Y);
         }

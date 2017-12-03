@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Model;
+
 
 namespace Model
 {
@@ -16,8 +12,6 @@ namespace Model
             state = State.Start;
 
         }
-
-
 
         public override void UpdatePosition()
         {
@@ -53,10 +47,7 @@ namespace Model
                     break;
 
             }
-            // after x == 950 ... change y V^
 
-            // action == 1 
-            //bossShoot(x,y,type)
             hitbox.X = Convert.ToInt32(X);
             hitbox.Y = Convert.ToInt32(Y);
         }
@@ -68,7 +59,6 @@ namespace Model
                 reset = 25;
             }
 
-
             if (Y < (p_y - 100))
                 Y = (Y + (0.5 * speed));
             else if (Y > (p_y - 100))
@@ -77,12 +67,10 @@ namespace Model
             {
                 action = true;
                 fired_slanted_targeted_shot = true;
-                //wbullet_y = p_y;
                 cooldown = reset;
             }
             else
                 FiredABullet = false;
-
         }
 
         private void Mid()

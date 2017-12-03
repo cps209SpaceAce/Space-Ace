@@ -6,13 +6,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
-/// <summary>
+/// <header>
 /// Classes and Methods for Creating and Saving HighScores
-/// </summary>
+/// </header>
 
 namespace Model
 {
-
     // Each Class is a Single HighScore
     // HighScoreManager contains a list of these
     public class HighScore

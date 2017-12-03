@@ -8,6 +8,9 @@ using System.IO;
 using System.Drawing;
 using Model;
 
+/// <header>
+/// Unit tests for the Load/Save methods in Entity and GameContrller
+/// </header>
 namespace SpaceAce.UnitTests
 {
     [TestClass]
