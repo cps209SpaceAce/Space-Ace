@@ -49,9 +49,9 @@ namespace Model
         {
             if (X > 750 && startup)
                 return false;
-            else if(startup == true)
+            else if (startup == true)
                 startup = false;
-            
+
             health--;
             if (health <= 0)
             {
@@ -62,15 +62,4 @@ namespace Model
 
         }
     }
-
-
-
-    
-
-    
-
-
-
-
-    
 }
