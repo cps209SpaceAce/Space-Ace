@@ -90,7 +90,11 @@ namespace SpaceAce
             {
                 gameCtrl.Load("SaveData.txt");
                 if (gameCtrl.level == Level.Boss)
+                {
                     gameCtrl.BossIsSpawned = true;
+                    BossIsSpawned = true;
+                }
+                    
                 Draw_Load();
             }
             
@@ -253,6 +257,7 @@ namespace SpaceAce
 
             pbar_gamestatus.Minimum = 0;
             pbar_gamestatus.Maximum = 15;
+            pbar_gamestatus.Value = 0;
 
             timer = new System.Windows.Threading.DispatcherTimer();
             timer.Tick += Timer_Tick;
@@ -655,7 +660,7 @@ namespace SpaceAce
                 foreach(Entity ent in gameCtrl.current_Enemies)
                 {
                     if (ent is Boss)
-                        pbar_gamestatus.Value = ent.health / (ent as Boss).max * 15;
+                        pbar_gamestatus.Value = ((ent.health * 15) / 30) + 0.1;    
                 }
                 
             }
