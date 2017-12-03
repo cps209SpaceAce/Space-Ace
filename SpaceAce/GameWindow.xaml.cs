@@ -15,6 +15,11 @@ using System.Windows.Threading;
 using Model;
 using System.Media;
 
+/// <summary>
+/// Window for the main game
+/// Controls the general game GUI
+/// </summary>
+
 namespace SpaceAce
 {
     /// <summary>
@@ -58,34 +63,25 @@ namespace SpaceAce
 
     public partial class GameWindow : Window
     {
-        public List<Icon> icons = new List<SpaceAce.Icon>();
-
-        public GameController gameCtrl;
-
-        public List<Image> images = new List<Image>();
-
-        public int spawnCounter = 0;
-
-        public bool isPaused = false;
-        Button btnQUIT;
-        Button btnSAVE;
-        public DispatcherTimer timer;
-        MediaPlayer gameMusic;
-        public bool BossIsSpawned = false;
+        public List<Icon> icons = new List<SpaceAce.Icon>(); // TODO
+        public GameController gameCtrl;                      // Main GameController for Game
+        public List<Image> images = new List<Image>();       // TODO
+        public int spawnCounter = 0;                         // Timer for spawning entitys
+        public bool isPaused = false;                        // Value for pause menu
+        Button btnQUIT;                                      // Button for Quit
+        Button btnSAVE;                                      // Button for Quit and Save
+        public DispatcherTimer timer;                        // Main timer for updating the game
+        MediaPlayer gameMusic;                               // MediaPlayer for Game Background Music
+        public bool BossIsSpawned = false;                   // Value for showing whether Boss is spawned
 
 
 
-        public GameWindow(Difficulty setDiff, bool isLoad, bool ischeating, string shipIMG) //Joanna: isLoad checks whether to load game or start new one
+        public GameWindow(Difficulty setDiff, bool isLoad, bool ischeating, string shipIMG)
         {
             InitializeComponent();
-
-            
-
             CanvasBorder.BorderThickness = new Thickness(2);
-            // Load from levels
             gameCtrl = new GameController(setDiff, Width, Height, ischeating, shipIMG);
             
-
             if (isLoad)
             {
                 gameCtrl.Load("SaveData.txt");
@@ -93,8 +89,7 @@ namespace SpaceAce
                 {
                     gameCtrl.BossIsSpawned = true;
                     BossIsSpawned = true;
-                }
-                    
+                }        
                 Draw_Load();
             }
             
@@ -103,17 +98,13 @@ namespace SpaceAce
                 gameMusic = new MediaPlayer();
                 gameMusic.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\BossMusic.wav", UriKind.Absolute));
                 Application.Current.Dispatcher.BeginInvoke(new Action(() => gameMusic.Play()));
-
             }
             else
             {
                 gameMusic = new MediaPlayer();
                 gameMusic.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\GameMusic.wav", UriKind.Absolute));
                 Application.Current.Dispatcher.BeginInvoke(new Action(() => gameMusic.Play()));
-
             }
-
-
 
             // Quit Button
             btnQUIT = new Button { Content = "QUIT", Width = 150, Height = 50 };
@@ -121,26 +112,27 @@ namespace SpaceAce
             Canvas.SetTop(btnQUIT, 50);
             btnQUIT.Click += btnQUIT_Click;
 
-            // Save
+            // Save & Quit
             btnSAVE = new Button { Content = "SAVE & QUIT", Width = 150, Height = 50 };
             Canvas.SetLeft(btnSAVE, 350);
             Canvas.SetTop(btnSAVE, 50);
             btnSAVE.Click += btnSAVE_Click;
 
-            // Load ?
         }
-
+        // Closes the Game Windo
         private void btnQUIT_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        // Saves the Gmae & Closes the Game Windo
         private void btnSAVE_Click(object sender, RoutedEventArgs e)
         {
             gameCtrl.Save("SaveData.txt");
             this.Close();
         }
 
+        // ReCreates the GameController on a Load
         public void Draw_Load()
         {
             string imgname = "";
@@ -264,7 +256,7 @@ namespace SpaceAce
             timer.Interval = new TimeSpan(0, 0, 0, 0, 10);
             timer.Start();
         }
-
+        // Stops the Game Running and Music on Exit
         private void Window_Closed(object sender, EventArgs e)
         {
             gameMusic.Stop();
@@ -272,8 +264,9 @@ namespace SpaceAce
         }
 
 
-        public enum Id { player, computer }
+        public enum Id { player, computer }           // TODO
 
+        // TODO
         public void MakeBullet(Id id, Entity ship)
         {
             
@@ -340,7 +333,7 @@ namespace SpaceAce
 
         }
 
-
+        // TODO
         public void Make_Boss_slantedshot(Boss boss)
         {
             double slope = (boss.Y+100 - boss.p_y) / (boss.X - boss.p_x);
@@ -360,6 +353,8 @@ namespace SpaceAce
             icons.Add(new Icon() { i = i, e = b });
             gameCtrl.current_Enemies.Add(b);
         }
+
+        // TODO
         public void Make_bosswall(Boss ship)
         {
             double by = ship.p_y;
@@ -377,11 +372,9 @@ namespace SpaceAce
                 WorldCanvas.Children.Add(img);
                 icons.Add(new Icon() {e = a1, i = img });
             }
-
-          
-
         }
 
+        // TODO
         public void Make_Boss_Bullet(Boss boss)
         {
             
@@ -398,7 +391,7 @@ namespace SpaceAce
             icons.Add(i);
         }
 
-
+        // TODO
         public void Make_TripleShot(Entity p)
         {
 
@@ -436,14 +429,10 @@ namespace SpaceAce
                 i_up.update();
                 i_down.update();
                 i_normal.update();
-
             }
-
-
-
-
         }
 
+        // TODO
         public void Make_HelixShot(Entity ship) //broken: Noah Mansfield
         {
             if (ship is Player)
@@ -478,30 +467,24 @@ namespace SpaceAce
             }
         }
 
+        // Update World each tick
         public void Timer_Tick(object sender, EventArgs e)
         {
             gameCtrl.gameLevelTimer += 0.01;
-            // Check if power up is being used
             gameCtrl.player.powerUpCounter += 0.01;
             gameCtrl.spawnPowerUpTimer += 0.01;
 
             List<Icon> dead = new List<Icon>();            
-
-            gameCtrl.player.UpdatePosition(); // Update the Player Positions
+            gameCtrl.player.UpdatePosition();                      // Update the Player Positions
             List<Entity> fired = gameCtrl.UpdateWorld();           // Update the Model. fired: list of ships that fired 
             
 
             CheckGameStatus();
-            
-
-            if(!gameCtrl.BossIsSpawned)
-            {  
-                SpawnEntities();              // Spawn Entities
-            }
-            
-            
-            
             SpawnPowerUp();
+            if (!gameCtrl.BossIsSpawned)
+                SpawnEntities();              // Spawn Entities
+                     
+            
 
             // ---- Update New Bullets ---- //
             if (gameCtrl.player.FiredABullet == true)
@@ -566,6 +549,7 @@ namespace SpaceAce
                 imgSpeed.Source = null;
         }
 
+        // TODO
         private void SpawnPowerUp()
         {
             if(gameCtrl.spawnPowerUpTimer > 5)
@@ -613,6 +597,7 @@ namespace SpaceAce
             }
         }
 
+        // TODO
         private void CheckGameStatus()
         {
 
@@ -680,7 +665,7 @@ namespace SpaceAce
         }
 
 
-
+        // Spawns an Entity or Boss and adds it to canvas
         private void SpawnEntities()
         {
 
@@ -754,8 +739,8 @@ namespace SpaceAce
             }
        
         }
-        
 
+        // Detects when a button is pressed and acts on it
         private void WorldCanvas_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
@@ -801,9 +786,9 @@ namespace SpaceAce
             }
         }
 
-     
 
-    
+
+        // Detects when a button is released and acts on it
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
             switch (e.Key)
@@ -830,7 +815,5 @@ namespace SpaceAce
                     break;
             }
         }
-
-        
     }
 }
