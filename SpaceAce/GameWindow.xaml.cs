@@ -79,10 +79,7 @@ namespace SpaceAce
         {
             InitializeComponent();
 
-            gameMusic = new MediaPlayer();
-            gameMusic.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\GameMusic.wav", UriKind.Absolute));
-            Application.Current.Dispatcher.BeginInvoke(new Action(() => gameMusic.Play()));
-
+            
 
             CanvasBorder.BorderThickness = new Thickness(2);
             // Load from levels
@@ -96,6 +93,23 @@ namespace SpaceAce
                     gameCtrl.BossIsSpawned = true;
                 Draw_Load();
             }
+            
+            if(gameCtrl.level == Level.Boss)
+            {
+                gameMusic = new MediaPlayer();
+                gameMusic.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\BossMusic.wav", UriKind.Absolute));
+                Application.Current.Dispatcher.BeginInvoke(new Action(() => gameMusic.Play()));
+
+            }
+            else
+            {
+                gameMusic = new MediaPlayer();
+                gameMusic.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\GameMusic.wav", UriKind.Absolute));
+                Application.Current.Dispatcher.BeginInvoke(new Action(() => gameMusic.Play()));
+
+            }
+
+
 
             // Quit Button
             btnQUIT = new Button { Content = "QUIT", Width = 150, Height = 50 };
