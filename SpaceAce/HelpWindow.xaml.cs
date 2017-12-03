@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+/// <summary>
+/// Window for info about the game.
+/// </summary>
+
 namespace SpaceAce
 {
     /// <summary>
@@ -27,7 +31,7 @@ namespace SpaceAce
         public void Window_Loaded(Object sender, RoutedEventArgs stuff)
         {
         }
-
+        // Closes the Window
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();

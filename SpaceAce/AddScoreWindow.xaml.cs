@@ -13,6 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 
+/// <summary>
+/// Window for adding an Score
+/// Difference based on Win or Lose
+/// </summary>
+
 namespace SpaceAce
 {
     /// <summary>
@@ -21,8 +26,8 @@ namespace SpaceAce
     public partial class AddScoreWindow : Window
     {
 
-        public GameController ctrlSave;
-        MediaPlayer ResultSound;
+        public GameController ctrlSave; // Passed GameController
+        MediaPlayer ResultSound;        // MediaPlayer for Sound
         public AddScoreWindow(GameController ctrl)
         {
             ctrlSave = ctrl;
@@ -47,7 +52,7 @@ namespace SpaceAce
             }
 
         }
-
+        // Addeds a HighScore and Closes Window
         private void btnQuit_Click(object sender, RoutedEventArgs e)
         {
 

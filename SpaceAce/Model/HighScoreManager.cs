@@ -20,7 +20,7 @@ namespace Model
         public Level Level;       // Last Level Complete
         public Difficulty Diff;   // Difficulty
         public int Score;         // Final Score
-        public string ShipImage;
+        public string ShipImage;  // Saved SHip Image // Not Used
 
         public HighScore()
         {

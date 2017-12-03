@@ -13,6 +13,10 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Model;
 
+/// <summary>
+/// Window for Displaying the Saved High Score
+/// </summary>
+
 namespace SpaceAce
 {
     /// <summary>
@@ -20,7 +24,7 @@ namespace SpaceAce
     /// </summary>
     public partial class HighScoreWindow : Window
     {
-        HighScoreManager hsManager;
+        HighScoreManager hsManager; // HighScore manager for display
         public HighScoreWindow()
         {
             InitializeComponent();
@@ -40,7 +44,7 @@ namespace SpaceAce
             }
 
         }
-
+        // Closes the Window
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();

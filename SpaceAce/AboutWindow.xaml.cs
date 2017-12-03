@@ -11,6 +11,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+/// <summary>
+/// Window for Info about the Creators
+/// </summary>
 
 namespace SpaceAce
 {
@@ -29,7 +32,7 @@ namespace SpaceAce
 
         }
         
-
+        // Closes the Window
         private void btnQuit_Click(object sender, RoutedEventArgs e)
         {
             Close();
