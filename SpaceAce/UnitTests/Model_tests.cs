@@ -66,10 +66,8 @@ namespace SpaceAce.UnitTests
             Test.Update(newScore);
             Assert.IsTrue(Test.highScores.Contains(newScore));
 
-            if (!File.Exists(Environment.CurrentDirectory + @"/JSON.txt"))
-            {
-                File.Delete(Environment.CurrentDirectory + @"/JSON.txt");
-            }
+            File.Delete(Environment.CurrentDirectory + @"/JSON.txt");
+            
         }
 
         [TestMethod]
@@ -79,10 +77,7 @@ namespace SpaceAce.UnitTests
             Test.highScores.Add(new HighScore("Bob", Level.Level_1, Difficulty.Easy, 9001, "ship.png"));
             Assert.IsTrue(File.Exists("JSON.txt"));
 
-            if (!File.Exists(Environment.CurrentDirectory + @"/JSON.txt"))
-            {
-                File.Delete(Environment.CurrentDirectory + @"/JSON.txt");
-            }
+            File.Delete(Environment.CurrentDirectory + @"/JSON.txt");
         }
 
         [TestMethod]
@@ -101,10 +96,7 @@ namespace SpaceAce.UnitTests
             Assert.IsTrue(Test.highScores[Test.highScores.Count - 1].ShipImage == "ship.png" );
 
             //Delete File
-            if (!File.Exists(Environment.CurrentDirectory + @"/JSON.txt"))
-            {
-                File.Delete(Environment.CurrentDirectory + @"/JSON.txt");
-            }
+            File.Delete(Environment.CurrentDirectory + @"/JSON.txt");
         }
       
         [TestMethod]
