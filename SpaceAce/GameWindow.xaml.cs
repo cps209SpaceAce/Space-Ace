@@ -549,7 +549,7 @@ namespace SpaceAce
                 imgSpeed.Source = null;
         }
 
-        // TODO
+        // Spawns a powerup and adds it to the canvas
         private void SpawnPowerUp()
         {
             if(gameCtrl.spawnPowerUpTimer > 5)
@@ -597,7 +597,8 @@ namespace SpaceAce
             }
         }
 
-        // TODO
+        // Updates the GameControllers Status based on timer
+        // And ends game on Win or Lose
         private void CheckGameStatus()
         {
 
