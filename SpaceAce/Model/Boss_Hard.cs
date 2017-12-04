@@ -1,6 +1,8 @@
 ﻿using System;
 
-
+/// <header>
+/// Hard Boss found in Boss level Hard Mode
+/// </header>
 namespace Model
 {
     //Hard boss that moves in infinity sign pattern and is found in Boss level of Hard mode

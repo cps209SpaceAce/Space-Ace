@@ -19,10 +19,10 @@ namespace Model
         public int cooldown = 0;
         public double actionTimer;
         public float max;
-        public bool startup = true;
+        public bool startup = true;     //True if Boss is entering the screen
 
-        public double windowHeight;
-        public double windowWidth;
+        public double windowHeight;     //Window height for upper an lower boundaries of movement
+        public double windowWidth;      //Window width for left and right boundaries of movement
         public Boss(double X, double Y, int health, double winWidth, double winHeight) : base(X, Y)
         {
             this.health = health;
@@ -34,6 +34,7 @@ namespace Model
             windowWidth = winWidth;
         }
 
+        //Recieve player's current position
         public void RecieveTrackerData(double X, double Y)
         {
             p_x = X;

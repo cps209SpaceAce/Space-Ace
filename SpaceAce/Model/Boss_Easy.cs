@@ -2,7 +2,6 @@
 
 /// <header>
 /// Easy Boss found in Boss level Easy Mode
-/// Code byy Joanna Al Madanat
 /// </header>
 
 namespace Model

@@ -1,5 +1,8 @@
 ﻿using System;
 
+/// <summary>
+/// Medium Boss found in Boss level Medium Mode
+/// </summary>
 
 namespace Model
 {
