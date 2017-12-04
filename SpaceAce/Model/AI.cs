@@ -2,7 +2,7 @@
 using System.Windows;
 
 /// <header>
-/// AI enemyclass and its children
+/// AI enemy class and its children
 /// </header>
 
 namespace Model
@@ -64,6 +64,7 @@ namespace Model
             Flightpath = f;
         }
 
+        //Moves Formation according to FlightPath pattern (either Sin or Cos)
         public override void UpdatePosition()
         {
             switch (Flightpath)
@@ -111,7 +112,6 @@ namespace Model
         //Constructor to set X,Y. FlightPath always Straight
         public Tracker(double X, double Y, pattern flightPath) : base(X, Y, flightPath)
         {
-
         }
 
         //Recieves player's current position and X position to stop at
