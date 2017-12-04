@@ -3,34 +3,41 @@ using System.Drawing;
 using System.Windows;
 using System.Windows.Media;
 
+/// <summary>
+/// Player class that handles the player's movement and serialization/deserialization
+/// </summary>
+
 namespace Model
 {
+    //Types of powerups
     public enum PowerUp { Empty, Helix, Invincible, ExtraSpeed, ExtraLife, ExtraBomb, TripleShot, RapidFire } // TODO: pick what powerups to put here
 
+    //Player class that handles player controls and state
     public class Player : Entity
 
     {
         public bool wanderingbullets = false;   // flag for sin and cos bullets. currently broken 
         public bool triple = false;             //flag for triple shot
         public bool rapid_fire = false;         //flag to engage rapid fire mode by reducing the cooldown
-        public bool extraSpeed = false;
-        public int cooldown = 0;
-        public int bombCooldown = 0;
-        public int Lives { get; set; }
-        public int Bombs { get; set; }
-        public PowerUp powerup { get; set; }
-        public int HitCoolDown;
-        public string image = "spaceship-hi.png";
-        double baseSpeed;
+        public bool extraSpeed = false;         //flag for extra speed enables
+        public int cooldown = 0;                //cooldown before firing another bullet
+        public int bombCooldown = 0;            //gives time before firing another bomb
+        public int Lives { get; set; }          //Amount of lives player has
+        public int Bombs { get; set; }          //amount of bombs player has
+        public PowerUp powerup { get; set; }    //powerup player has collected
+        public int HitCoolDown;                 //cooldown for time player is invincible when hit
+        public string image = "spaceship-hi.png";   //Player's ship image
+        double baseSpeed;                           //Player's base speed
 
-        public double powerUpCounter = 0;
-        public bool isPoweredUp = false;
-        public bool isInvincible = false;
-        public bool cheating = false;
+        public double powerUpCounter = 0;           //Amount of time certain powerups stay active
+        public bool isPoweredUp = false;            //true if powerup is active
+        public bool isInvincible = false;           //true if invinsibility powerup is active
+        public bool cheating = false;               //true if in cheat mode
 
 
-        private GameController game;
+        private GameController game; //refference to gameController
 
+        //Constructor that initializes player class
         public Player(double X, double Y, int lives, int bombs, GameController flags, string shipIMG) : base(X, Y)
         {
             image = shipIMG;
@@ -43,6 +50,7 @@ namespace Model
             this.hitbox = new Rectangle(Convert.ToInt32(X), Convert.ToInt32(Y), 45, 20); //custom hit box for the player
         }
 
+        //Method for firing player bullets
         public void Fire()
         {
             if (cooldown == 0 || (rapid_fire && cooldown < 25))
