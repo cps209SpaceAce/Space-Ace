@@ -42,6 +42,7 @@ List work completed.
 ## Known Issues: 
 List any major issues.
 * Music sometimes stops.
+* Music does not repeat.
 
 ## Recording: 
 https://tinyurl.com/cps209-TeamB-Alpha
