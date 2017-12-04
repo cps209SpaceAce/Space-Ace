@@ -43,6 +43,7 @@ List work completed.
 List any major issues.
 * Music sometimes stops.
 * Music does not repeat.
+* Progress bar is empty if loaded into transition.
 
 ## Recording: 
 https://tinyurl.com/cps209-TeamB-Alpha
