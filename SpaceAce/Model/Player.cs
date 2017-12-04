@@ -3,9 +3,9 @@ using System.Drawing;
 using System.Windows;
 using System.Windows.Media;
 
-/// <summary>
+/// <header>
 /// Player class that handles the player's movement and serialization/deserialization
-/// </summary>
+/// </header>
 
 namespace Model
 {

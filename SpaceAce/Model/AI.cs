@@ -1,26 +1,34 @@
 ﻿using System;
 using System.Windows;
 
+/// <header>
+/// AI enemyclass and its children
+/// </header>
+
 namespace Model
 {
+    //Patterns in which certain types of AI can fly in
     public enum pattern { Straight, Sin, Cos, Sindown };
+
+    //Most basic enemy type that flighs straight and shoots
     public class AI : Entity
     {
         public int fireCoolDown = 50;
         public pattern Flightpath;      
 
-
+        //Constructor that sets X and Y coordinates and flight pattern
         public AI(double X, double Y, pattern flightpath) : base(X, Y)
         {
         }
 
+        //Method for when AI gets hit
         public override bool Hit()
         {
-
             alive = false;
             return true;
         }
 
+        //Method that moves AI accross the screen and fires bullets
         public override void UpdatePosition()
         {
             X = (X - (0.5 * speed));
@@ -44,9 +52,11 @@ namespace Model
             return "ai" + "," + X + "," + Y + "," + Flightpath;
         }
     }
+    
+    //AI type that flies in different patterns
     public class Formation : AI
     {
-        public double original_Y;
+        public double original_Y; //Keeping track of original Y coordinate
 
         public Formation(double X, double Y, pattern f) : base(X, Y, f)
         {
