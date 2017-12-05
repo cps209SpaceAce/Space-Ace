@@ -16,8 +16,10 @@ namespace Model
         public double x_axis = 0;
         public Direction dir = Direction.Left;
 
+        //constructor to set up inital state
         public Boss_Hard(double X, double Y, int health, double winWidth, double winHeight) : base(X, Y, health, winWidth, winHeight)
         {
+            // state is always start
             state = State.Start;
             og_X = 924;
             og_Y = 300;
@@ -26,12 +28,13 @@ namespace Model
         }
 
 
-
+        //controls movment and combat logic
         public override void UpdatePosition()
         {
             if (cooldown > 0)
                 cooldown--;
             actionTimer += 0.01;
+            //moves the boss to starting position
             if (X > 924 && startflag)
             {
                 X = Convert.ToInt32(X - (1 * speed));
@@ -41,6 +44,7 @@ namespace Model
 
             if (!startflag)
             {
+                //switches  movment pattern
                 switch (dir)
                 {
                     case Direction.Left:
@@ -61,8 +65,10 @@ namespace Model
 
                 }
 
-                if (cooldown == 0)
+                //firing logic
+                if (cooldown == 0) 
                 {
+                    //fires a targeted slanted shot at the player
                     action = true;
                     fired_slanted_targeted_shot = true;
                     cooldown = reset;

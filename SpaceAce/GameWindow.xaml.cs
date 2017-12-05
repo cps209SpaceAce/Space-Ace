@@ -63,9 +63,8 @@ namespace SpaceAce
 
     public partial class GameWindow : Window
     {
-        public List<Icon> icons = new List<SpaceAce.Icon>(); // TODO
+        public List<Icon> icons = new List<SpaceAce.Icon>(); // list of images and corresponding objects used to keep images up to date
         public GameController gameCtrl;                      // Main GameController for Game
-        public List<Image> images = new List<Image>();       // TODO
         public int spawnCounter = 0;                         // Timer for spawning entitys
         public bool isPaused = false;                        // Value for pause menu
         Button btnQUIT;                                      // Button for Quit
@@ -119,7 +118,7 @@ namespace SpaceAce
             btnSAVE.Click += btnSAVE_Click;
 
         }
-        // Closes the Game Windo
+        // Closes the Game Window
         private void btnQUIT_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -236,7 +235,7 @@ namespace SpaceAce
 
 
         
-
+        //setup for the inital game state
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Image img = new Image() { Source = new BitmapImage(new Uri("Images/PlayerShips/" + "player1.png", UriKind.Relative)) };
@@ -264,17 +263,22 @@ namespace SpaceAce
         }
 
 
-        public enum Id { player, computer }           // TODO
+        public enum Id { player, computer }           // used to determen you fired the bullet
 
-        // TODO
+        // Creates a bullet and image and adds them to the model and gui.
+        //id: who fired the bullet
+        //ship enity that fired
         public void MakeBullet(Id id, Entity ship)
         {
             
             if (id == Id.player)
             {
+                //if player has a power up active make the correct kind of bullet
+                //else make normal bullet
                 if (((Player)ship).triple)
                 {
                     Make_TripleShot(ship);
+                    return;
                 }
                 if (((Player)ship).wanderingbullets)
                 {
@@ -286,7 +290,7 @@ namespace SpaceAce
                 sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\Shoot1.wav", UriKind.Absolute));
                 Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
 
-                
+                //make bullet
                 double y = ship.Y + 10;
                 double x = ship.X + 50;
                 Bullet b = new Bullet(x, y);
@@ -303,6 +307,7 @@ namespace SpaceAce
 
                 if (ship is Boss)
                 {
+                    // calling correct bullet function for boss
                     Boss s = (Boss)ship;
                     if (s.fired_slanted_targeted_shot)
                         Make_Boss_slantedshot(s);
@@ -316,7 +321,7 @@ namespace SpaceAce
                 var sound = new MediaPlayer();
                 sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\Shoot2.wav", UriKind.Absolute));
                 Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
-
+                //making normal bullet for enemy
                 double y = ship.Y + 10;
                 double x = ship.X - 2;
                 Bullet b = new Bullet(x, y) {direction = -1 };
@@ -333,7 +338,8 @@ namespace SpaceAce
 
         }
 
-        // TODO
+        // Creates a bullet that follow the path of a line towards the player
+        //boss: used for position data of boss and player
         public void Make_Boss_slantedshot(Boss boss)
         {
             double slope = (boss.Y+100 - boss.p_y) / (boss.X - boss.p_x);
@@ -354,7 +360,7 @@ namespace SpaceAce
             gameCtrl.current_Enemies.Add(b);
         }
 
-        // TODO
+        // creates a wall of asteroids at player position heading right
         public void Make_bosswall(Boss ship)
         {
             double by = ship.p_y;
@@ -374,7 +380,7 @@ namespace SpaceAce
             }
         }
 
-        // TODO
+        // creates a bullet at a specified location.
         public void Make_Boss_Bullet(Boss boss)
         {
             
@@ -391,7 +397,7 @@ namespace SpaceAce
             icons.Add(i);
         }
 
-        // TODO
+        // creates two untargeted slanted bullets and one normal bullet at the player current position
         public void Make_TripleShot(Entity p)
         {
 
@@ -402,27 +408,32 @@ namespace SpaceAce
                 Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
 
                 double x = p.X + 50, y = p.Y + 10;
+                //make bullets
                 Slanted_Bullet up = new Slanted_Bullet(x, y, -1);
                 Slanted_Bullet down = new Slanted_Bullet(x, y, 1);
                 Bullet normal = new Bullet(x, y);
                 up.direction = 1;
                 down.direction = 1;
                 normal.direction = 1;
+                // images for bullets
                 Image img_up = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
                 Image img_down = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
                 Image img_normal = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
                 img_up.Width = 20;
                 img_down.Width = 20;
                 img_normal.Width = 20;
+                // Icons to relate images and bullets
                 Icon i_up = new Icon() { i = img_up, e = up };
                 Icon i_down = new Icon() { i = img_down, e = down };
                 Icon i_normal = new Icon() { i = img_normal, e = normal };
+                //add bullets to game controller
                 gameCtrl.player_fire.Add(up);
                 gameCtrl.player_fire.Add(down);
                 gameCtrl.player_fire.Add(normal);
                 icons.Add(i_up);
                 icons.Add(i_down);
                 icons.Add(i_normal);
+                //adding immages to the world
                 WorldCanvas.Children.Add(img_up);
                 WorldCanvas.Children.Add(img_down);
                 WorldCanvas.Children.Add(img_normal);
@@ -432,33 +443,40 @@ namespace SpaceAce
             }
         }
 
-        // TODO
+        // creates two bullets moving in sin and -sin patterns
+        //ship: position data
+        // enemies are currently unsupported
         public void Make_HelixShot(Entity ship) //broken: Noah Mansfield
         {
             if (ship is Player)
             {
+                //play a sound
                 var sound = new MediaPlayer();
                 sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\Shoot1.wav", UriKind.Absolute));
                 Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
-
+                
                 double y = ship.Y + 10;
                 double x = ship.X + 50;
-
+                
+                //make the bullets
                 Wandering_Bullet b_cos = new Wandering_Bullet(x, y, pattern.Sin);
                 Wandering_Bullet b_sin = new Wandering_Bullet(x, y, pattern.Sindown);
                 gameCtrl.player_fire.Add(b_cos);
                 gameCtrl.player_fire.Add(b_sin);
 
+                //make the images
                 Image img_cos = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
                 Image img_sin = new Image() { Source = new BitmapImage(new Uri("images/" + "P_bullet.png", UriKind.Relative)) };
                 img_sin.Width = 20;
                 img_cos.Width = 20;
 
+                //link the images and bullets together
                 Icon i_cos = new Icon() { i = img_cos, e = b_cos };
                 Icon i_sin = new Icon() { i = img_sin, e = b_sin };
                 i_cos.update();
                 i_sin.update();
 
+                //add images to the world
                 WorldCanvas.Children.Add(img_cos);
                 WorldCanvas.Children.Add(img_sin);
                 icons.Add(i_cos);

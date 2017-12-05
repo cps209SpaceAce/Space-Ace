@@ -6,28 +6,32 @@ using System.Windows;
 
 namespace Model
 {
-    public enum PlayerAction
-    {
-        Up, Down, Left, Right, Fire, Bomb, Powerup
-    }
+
+    // game level difficulty state
     public enum Difficulty
     {
         Easy, Medium, Hard
     }
+    //game level state
     public enum Level
     {
         Level_1, Level_2, Boss, Transition
     }
 
+    // saving 
     interface ISerialiable
     {
         string Serialize();
     }
+
+    //end state of game
     public enum GameResult
     {
         Running, Won, Lost
     }
 
+
+    //class to control all game logic
     public class GameController
     {
         //player actions
@@ -41,7 +45,6 @@ namespace Model
 
 
         //lists of moving objects
-        // add a boss var
         public List<Entity> current_Enemies = new List<Entity>();
         public List<Entity> enemie_Que = new List<Entity>();
         public Player player;
@@ -60,7 +63,14 @@ namespace Model
         public double winWidth;
         public double winHeight;
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="passDiff"> game difficulty</param>
+        /// <param name="windowWidth"> size of window</param>
+        /// <param name="windowHeight">size of window</param>
+        /// <param name="isCheating"> is player invincible</param>
+        /// <param name="shipIMG"> image of player ship</param>
         public GameController(Difficulty passDiff, double windowWidth, double windowHeight, bool isCheating, string shipIMG)
         {
             player = new Player(50, 350, 3, 3, this, shipIMG);
@@ -72,14 +82,14 @@ namespace Model
         }
 
 
-
+        //basic setup constructor
         public GameController()
         {
             player = new Player(50, 350, 3, 3, this, "ship.png");
         }
 
 
-
+        //moves every object on the screen
         public List<Entity> UpdateWorld()// Each tick of timer will call this.
         {
             List<Entity> ships_that_fired = new List<Entity>(); //does not include player
@@ -119,7 +129,7 @@ namespace Model
                 }
             }
 
-
+            //update player bullet position
             foreach (Entity playerBullet in player_fire)
             {
                 if (playerBullet != null)
@@ -139,10 +149,13 @@ namespace Model
             // loop through entites and detect collision
             DetectColl();
 
-            // Check if death
+            
             return ships_that_fired;
         }
 
+        /// <summary>
+        /// checks if any object has collided with the player or player bullets
+        /// </summary>
         public void DetectColl()
         {
             List<Entity> dead_Badguy = new List<Entity>();
@@ -213,8 +226,9 @@ namespace Model
 
         //------------- Bomb logic -------------//
         /// <summary>
-        /// Destroys all enemys: bombing asteroids is currently broken
+        /// Destroys all enemys
         /// also resets the current enemies
+        /// does only one damge to boss
         /// </summary>
         public void Bomb()
         {
