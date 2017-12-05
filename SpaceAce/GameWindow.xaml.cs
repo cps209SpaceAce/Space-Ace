@@ -263,7 +263,7 @@ namespace SpaceAce
         }
 
 
-        public enum Id { player, computer }           // used to determen you fired the bullet
+        public enum Id { player, computer }          // used to determen you fired the bullet
 
         // Creates a bullet and image and adds them to the model and gui.
         //id: who fired the bullet
