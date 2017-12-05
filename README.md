@@ -60,6 +60,6 @@ https://tinyurl.com/cps209-TeamB-FINAL
 | Person| Time Spent (HOURS)  | Time Left (HOURS)|Journal|
 | :---:   | :---:   | :---: | :---:|
 | Noah Mansfield  |32.1|17.8|https://github.com/cps209SpaceAce/Space-Ace/wiki/MansfieldJournal|
-| Joanna Madanat  |47.98|20.1|https://github.com/cps209SpaceAce/Space-Ace/wiki/MadanatJournal|
+| Joanna Madanat  |47.98|2.01|https://github.com/cps209SpaceAce/Space-Ace/wiki/MadanatJournal|
 | Robert Meyer    |42.8|7.25|https://github.com/cps209SpaceAce/Space-Ace/wiki/MeyerJournal|
 
