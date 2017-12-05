@@ -29,30 +29,7 @@ namespace SpaceAce.UnitTests
         //Assert.IsTrue(gc.base_Speed == 1);
         }
 
-        [TestMethod]
-        public void Invoke_updateWorld() {
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        public void Test_Load() {
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        public void Test_save() {
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        public void Test_updateplayer() {
-            Assert.Fail();
-        }
-
-        [TestMethod]
-        public void Test_collision() {
-            Assert.Fail();
-        }
+       
 
 
 
