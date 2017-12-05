@@ -95,13 +95,13 @@ namespace SpaceAce
             if(gameCtrl.level == Level.Boss)
             {
                 gameMusic = new MediaPlayer();
-                gameMusic.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\BossMusic.wav", UriKind.Absolute));
+                gameMusic.Open(new Uri(System.Environment.CurrentDirectory + "/Resources/BossMusic.wav", UriKind.Absolute));
                 Application.Current.Dispatcher.BeginInvoke(new Action(() => gameMusic.Play()));
             }
             else
             {
                 gameMusic = new MediaPlayer();
-                gameMusic.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\GameMusic.wav", UriKind.Absolute));
+                gameMusic.Open(new Uri(System.Environment.CurrentDirectory + "/Resources/GameMusic.wav", UriKind.Absolute));
                 Application.Current.Dispatcher.BeginInvoke(new Action(() => gameMusic.Play()));
             }
 
@@ -287,7 +287,7 @@ namespace SpaceAce
                 }
 
                 var sound = new MediaPlayer();
-                sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\Shoot1.wav", UriKind.Absolute));
+                sound.Open(new Uri(System.Environment.CurrentDirectory + "/Resources/Shoot1.wav", UriKind.Absolute));
                 Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
 
                 //make bullet
@@ -319,7 +319,7 @@ namespace SpaceAce
                 }
 
                 var sound = new MediaPlayer();
-                sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\Shoot2.wav", UriKind.Absolute));
+                sound.Open(new Uri(System.Environment.CurrentDirectory + "/Resources/Shoot2.wav", UriKind.Absolute));
                 Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
                 //making normal bullet for enemy
                 double y = ship.Y + 10;
@@ -404,7 +404,7 @@ namespace SpaceAce
             if (p is Player)
             {
                 var sound = new MediaPlayer();
-                sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\Shoot1.wav", UriKind.Absolute));
+                sound.Open(new Uri(System.Environment.CurrentDirectory + "/Resources/Shoot1.wav", UriKind.Absolute));
                 Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
 
                 double x = p.X + 50, y = p.Y + 10;
@@ -452,7 +452,7 @@ namespace SpaceAce
             {
                 //play a sound
                 var sound = new MediaPlayer();
-                sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\Shoot1.wav", UriKind.Absolute));
+                sound.Open(new Uri(System.Environment.CurrentDirectory + "/Resources/Shoot1.wav", UriKind.Absolute));
                 Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
                 
                 double y = ship.Y + 10;
@@ -722,7 +722,7 @@ namespace SpaceAce
                 else if(newEntity is Boss)
                 {
                     gameMusic.Stop();
-                    gameMusic.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\BossMusic.wav", UriKind.Absolute));
+                    gameMusic.Open(new Uri(System.Environment.CurrentDirectory + "/Resources/BossMusic.wav", UriKind.Absolute));
                     Application.Current.Dispatcher.BeginInvoke(new Action(() => gameMusic.Play()));
 
                     BossIsSpawned = true;

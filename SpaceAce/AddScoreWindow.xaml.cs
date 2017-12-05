@@ -39,14 +39,14 @@ namespace SpaceAce
             if(ctrlSave.gameResult == GameResult.Lost)
             {
                 ResultSound = new MediaPlayer();
-                ResultSound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\loseMusic.wav", UriKind.Absolute));
+                ResultSound.Open(new Uri(System.Environment.CurrentDirectory + "/Resources/loseMusic.wav", UriKind.Absolute));
                 Application.Current.Dispatcher.BeginInvoke(new Action(() => ResultSound.Play()));
 
             }
             else
             {
                 ResultSound = new MediaPlayer();
-                ResultSound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\WinMusic.wav", UriKind.Absolute));
+                ResultSound.Open(new Uri(System.Environment.CurrentDirectory + "/Resources/WinMusic.wav", UriKind.Absolute));
                 Application.Current.Dispatcher.BeginInvoke(new Action(() => ResultSound.Play()));
 
             }

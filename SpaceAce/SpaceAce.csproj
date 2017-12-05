@@ -204,28 +204,44 @@
     <Resource Include="Images\PowerUP\star.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\powerup.wav" />
+    <None Include="Resources\powerup.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\shoot1.wav" />
+    <None Include="Resources\shoot1.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\shoot2.wav" />
+    <None Include="Resources\shoot2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bomb.wav" />
+    <None Include="Resources\bomb.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\button.wav" />
+    <None Include="Resources\button.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\damage.wav" />
+    <None Include="Resources\damage.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\death.wav" />
+    <None Include="Resources\death.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\hurtplayer.wav" />
+    <None Include="Resources\hurtplayer.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Menu\arrow.png" />
@@ -258,19 +274,29 @@
     <Resource Include="Images\Menu\up.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\mainMenu.wav" />
+    <None Include="Resources\mainMenu.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\GameMusic.wav" />
+    <None Include="Resources\GameMusic.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\LoseMusic.wav" />
+    <None Include="Resources\LoseMusic.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\WinMusic.wav" />
+    <None Include="Resources\WinMusic.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\BossMusic.wav" />
+    <None Include="Resources\BossMusic.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\PowerUP\bullets2.png" />

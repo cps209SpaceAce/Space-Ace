@@ -52,13 +52,14 @@ namespace SpaceAce
             
             
             mainSound = new MediaPlayer();
-            mainSound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\mainMenu.wav", UriKind.Absolute));
+            mainSound.Open(new Uri(System.Environment.CurrentDirectory + "/Resources/mainMenu.wav", UriKind.Absolute));
+           
             Application.Current.Dispatcher.BeginInvoke(new Action(() => mainSound.Play()));
             
            
             Console.WriteLine(System.Environment.CurrentDirectory);
             Console.WriteLine(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9));
-            Console.WriteLine(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\mainMenu.wav");
+            Console.WriteLine(System.Environment.CurrentDirectory + "/Resources\\mainMenu.wav");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

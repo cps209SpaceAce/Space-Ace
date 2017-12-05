@@ -69,7 +69,7 @@ namespace Model
             isPoweredUp = true;
 
             var sound = new MediaPlayer();
-            sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\PowerUp.wav", UriKind.Absolute));
+            sound.Open(new Uri(System.Environment.CurrentDirectory + "/Resources/PowerUp.wav", UriKind.Absolute));
             Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
 
             if (powerup == PowerUp.ExtraSpeed)

@@ -169,7 +169,7 @@ namespace Model
                     if (player.HitPlayer(enemy))
                     {
                         var sound = new MediaPlayer();
-                        sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\hurtplayer.wav", UriKind.Absolute));
+                        sound.Open(new Uri(System.Environment.CurrentDirectory + "/Resources/hurtplayer.wav", UriKind.Absolute));
                         Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
                     }
                     if (!(enemy is Boss))
@@ -201,7 +201,7 @@ namespace Model
                         if (enemy.Hit())
                         {
                             var sound = new MediaPlayer();
-                            sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\damage.wav", UriKind.Absolute));
+                            sound.Open(new Uri(System.Environment.CurrentDirectory + "/Resources/damage.wav", UriKind.Absolute));
                             Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
 
                             dead_Badguy.Add(enemy);
@@ -234,7 +234,7 @@ namespace Model
         {
             Entity b = null;
             var sound = new MediaPlayer();
-            sound.Open(new Uri(System.Environment.CurrentDirectory.Substring(0, System.Environment.CurrentDirectory.Length - 9) + "Resources\\bomb.wav", UriKind.Absolute));
+            sound.Open(new Uri(System.Environment.CurrentDirectory + "/Resources/bomb.wav", UriKind.Absolute));
             Application.Current.Dispatcher.BeginInvoke(new Action(() => sound.Play()));
 
             foreach (Entity e in current_Enemies)
