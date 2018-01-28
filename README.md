@@ -1,4 +1,4 @@
-# SpaceAce - Team B - Beta
+# SpaceAce - Team B - Final
 
 ## Instructions: 
 Brief instructions on how to play your game.
